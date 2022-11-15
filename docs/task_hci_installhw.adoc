@@ -1,0 +1,428 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_installhw.html 
+summary: Avant de commencer à utiliser NetApp HCI, vous devez installer correctement les nœuds de stockage et de calcul. 
+keywords: netapp, hci, on premise, activeiq, active iq, cluster, performance, rails, h-series, nodes 
+---
+= Installer le matériel de série H.
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de commencer à utiliser NetApp HCI, vous devez installer correctement les nœuds de stockage et de calcul.
+
+
+TIP: Voir la link:../media/hseries-isi.pdf["affiche"^] pour une représentation visuelle des instructions.
+
+*  diagrams
+*  for installation
+*  the rails
+*  the node/chassis
+*  the switches
+*  the nodes
+*  on the nodes
+*  NetApp HCI
+*  post-configuration tasks
+
+
+
+
+== Diagrammes de flux de travail
+
+Les schémas de flux de travail présentés ici fournissent un aperçu général des étapes d'installation. Les étapes varient légèrement selon le modèle de la série H.
+
+*  and H410S
+*  and H615C
+* 
+
+
+
+
+=== H410C et H410S
+
+image::workflow_h410c.PNG[Workflow d'installation H410C et H410S]
+
+
+
+=== H610C et H615C
+
+
+NOTE: Les termes « nœud » et « châssis » sont utilisés de manière interchangeable dans les cas de H610C et de l'H615C, car les nœuds et les châssis ne constituent pas des composants distincts, contrairement à un châssis 2U à quatre nœuds.
+
+image::workflow_h610c.png[Workflow d'installation H610C et H615C]
+
+
+
+=== H610S
+
+
+NOTE: Les termes « nœud » et « châssis » sont utilisés de manière interchangeable dans les cas de H610C et de l'H615C, car les nœuds et les châssis ne constituent pas des composants distincts, contrairement à un châssis 2U à quatre nœuds.
+
+image::workflow_h610s.png[Workflow d'installation H610S]
+
+
+
+== Avant l'installation
+
+Avant de procéder à l'installation, inventoriez le matériel qui vous a été expédié et contactez le support NetApp en cas de problème.
+
+Assurez-vous que vous disposez des éléments suivants à votre emplacement d'installation :
+
+* Espace rack pour le système.
+
+
+[cols="2*"]
+|===
+| Type de nœud | D'espace rack 
+
+
+| Nœuds H410C et H410S | Deux unités de rack (2U) 
+
+
+| Nœud H610C | 2U 
+
+
+| Nœuds H615C et H610S | Une unité de rack (1U) 
+|===
+* Câbles ou émetteurs-récepteurs SFP28/SFP+ à connexion directe
+* Câbles Cat5e ou supérieur avec connecteur RJ45
+* Un commutateur KVM (clavier, vidéo, souris) pour configurer votre système
+* Clé USB (en option)
+
+
+
+TIP: Le matériel qui vous est expédié dépend de ce que vous commandez. La nouvelle commande 2U à quatre nœuds comprend le châssis, le panneau, le kit de rails de coulissement, les lecteurs pour les nœuds de stockage, les nœuds de calcul et de stockage, ainsi que les câbles d'alimentation (deux par châssis). Si vous commandez des nœuds de stockage H610S, les disques sont installés dans le châssis.
+
+
+CAUTION: Lors de l'installation du matériel de fixation, assurez-vous de retirer tout le matériel d'emballage et l'emballage de l'unité. Cela empêchera les nœuds de surchauffer et de s'arrêter.
+
+
+
+== Installer les rails
+
+La commande de matériel qui vous a été expédiée comprend un jeu de rails coulissants. Vous aurez besoin d'un tournevis pour terminer l'installation du rail. Les étapes d'installation varient légèrement pour chaque modèle de nœud.
+
+
+TIP: Installez le matériel de fixation du bas du rack jusqu'en haut pour éviter que l'équipement ne se renverse. Si votre rack comprend des dispositifs de stabilisation, installez-les avant d'installer le matériel.
+
+*  and H410S
+* 
+*  and H615C
+
+
+
+
+=== H410C et H410S
+
+Les nœuds H410C et H410S sont installés dans un châssis 2U H-Series à quatre nœuds, livré avec deux jeux d'adaptateurs. Si vous souhaitez installer le châssis dans un rack à trous ronds, utilisez les adaptateurs appropriés pour un rack à trous ronds. Les rails pour nœuds H410C et H410S s'adaptent à un rack de 29 pouces à 33.5 pouces de profondeur. Lorsque le rail est complètement engagé, sa longueur est de 28 pouces et les sections avant et arrière du rail sont maintenues ensemble par une seule vis.
+
+
+CAUTION: Si vous installez le châssis sur un rail entièrement sous contrat, les sections avant et arrière du rail peuvent se séparer.
+
+.Étapes
+. Alignez l'avant du rail avec les trous du montant avant du rack.
+. Poussez les crochets situés à l'avant du rail dans les trous du montant avant du rack, puis vers le bas, jusqu'à ce que les ergots à ressort s'enclenchent dans les trous du rack.
+. Fixez le rail au rack à l'aide de vis. Voici une illustration du rail gauche fixé à l'avant du rack :
++
+image::h410c_rail.gif[Installation sur rail pour 2U]
+
+. Étendre la section arrière du rail jusqu'au montant arrière du rack.
+. Alignez les crochets à l'arrière du rail avec les trous appropriés sur le montant arrière, en vous assurant que l'avant et l'arrière du rail sont au même niveau.
+. Montez l'arrière du rail sur le rack et fixez le rail à l'aide de vis.
+. Effectuez toutes les étapes ci-dessus pour l'autre côté du rack.
+
+
+
+
+=== H610C
+
+Voici une illustration de l'installation des rails pour un nœud de calcul H61OC :
+
+image::h610c_rail.png[Installation du rail pour le nœud de calcul H610C]
+
+
+
+=== H610S et H615C
+
+Voici une illustration de l'installation des rails pour un nœud de stockage H610S ou un nœud de calcul H615C :
+
+image::h610s_rail.gif[Installation sur rail pour le nœud de stockage H610S et le nœud de calcul H615C.]
+
+
+TIP: Il y a des rails gauche et droit sur les H610S et H615C. Positionnez le trou de vis vers le bas de sorte que la vis moletée H610S/H615C puisse fixer le châssis au rail.
+
+
+
+== Installez le nœud/châssis
+
+Vous installez le nœud de calcul H410C et le nœud de stockage H410S dans un châssis 2U à quatre nœuds. Pour H610C, H615C et H610S, installez le châssis/nœud directement sur les rails du rack.
+
+
+TIP: Depuis la version NetApp HCI 1.8, vous pouvez configurer un cluster de stockage avec deux ou trois nœuds.
+
+
+CAUTION: Retirez tous les matériaux d'emballage et d'emballage de l'unité. Cela empêche la surchauffe et l'arrêt des nœuds.
+
+*  and H410S nodes
+*  node/chassis
+*  and H615C node/chassis
+
+
+
+
+=== Nœuds H410C et H410S
+
+.Étapes
+. Installez les nœuds H410C et H410S dans le châssis. Voici un exemple de châssis avec quatre nœuds installés :
++
+image::hseries_2U_rear.gif[Vue arrière de 2U]
+
+. Installez les disques pour les nœuds de stockage H410S.
++
+image::h410s_drives.png[Vue avant du nœud de stockage H410S avec disques installés.]
+
+
+
+
+
+=== Nœud/châssis H610C
+
+Dans le cas de H610C, les termes « nœud » et « châssis » sont utilisés de manière interchangeable, parce que les nœuds et les châssis ne sont pas des composants distincts, contrairement au châssis 2U à quatre nœuds.
+
+Voici une illustration de l'installation du nœud/châssis sur le rack :
+
+image::h610c_chassis.png[Le nœud/châssis H610C est installé sur le rack.]
+
+
+
+=== Nœud/châssis H610S et H615C
+
+Dans le cas des modules H615C et H610S, les termes « nœud » et « châssis » sont utilisés de manière interchangeable, parce que les nœuds et les châssis ne sont pas des composants distincts, contrairement à ceux du châssis 2U à quatre nœuds.
+
+Voici une illustration de l'installation du nœud/châssis sur le rack :
+
+image::h610s_chassis.gif[La montre le nœud/châssis H615C ou H610S en cours d'installation dans le rack.]
+
+
+
+== Poser les commutateurs
+
+Si vous souhaitez utiliser des switchs Mellanox SN2010, SN2100 et SN2700 dans votre installation de NetApp HCI, suivez les instructions fournies ici pour installer et câbler les switchs :
+
+* link:https://docs.mellanox.com/pages/viewpage.action?pageId=6884619["Manuel d'utilisation du matériel Mellanox"^]
+* link:https://fieldportal.netapp.com/content/1075535?assetComponentId=1077676["Tr-4836 : Guide de câblage des switchs Mellanox SN2100 et SN2700 de NetApp HCI (connexion requise)"^]
+
+
+
+
+== Câconnectez les nœuds
+
+Si vous ajoutez des nœuds à une installation NetApp HCI existante, assurez-vous que le câblage et la configuration réseau des nœuds que vous ajoutez sont identiques à l'installation existante.
+
+
+CAUTION: Assurez-vous que les évents d'aération situés à l'arrière du châssis ne sont pas obstrués par des câbles ou des étiquettes. Cela peut entraîner des défaillances prématurées des composants en raison d'une surchauffe.
+
+*  compute node and H410S storage node
+*  compute node
+*  compute node
+*  storage node
+
+
+
+
+=== Nœud de calcul H410C et nœud de stockage H410S
+
+Vous avez deux options de câblage pour le nœud H410C : avec deux câbles ou avec six câbles.
+
+Voici la configuration à deux câbles :
+
+image::HCI_ISI_compute_2cable.png[La illustre la configuration à deux câbles pour le nœud H410C.]
+
+image:blue circle.png["point bleu"] Pour les ports D et E, connectez deux câbles SFP28/SFP+ ou des émetteurs-récepteurs pour la gestion partagée, les machines virtuelles et la connectivité du stockage.
+
+image:purple circle.png["point violet"] (Facultatif, recommandé) Connectez un câble CAT5e au port IPMI pour la connectivité de gestion hors bande.
+
+Voici la configuration à 6 câbles :
+
+image::HCI_ISI_compute_6cable.png[La illustre la configuration à six câbles du nœud H410C.]
+
+image:green circle.png["point vert"] Pour les ports A et B, connectez deux câbles CAT5e ou supérieurs dans les ports A et B pour la connectivité de gestion.
+
+image:orange circle.png["point orange"] Pour les ports C et F, connectez deux câbles SFP28/SFP+ ou des émetteurs-récepteurs pour la connectivité des machines virtuelles.
+
+image:blue circle.png["point bleu"] Pour les ports D et E, connectez deux câbles SFP28/SFP+ ou des émetteurs-récepteurs pour la connectivité du stockage.
+
+image:purple circle.png["point violet"] (Facultatif, recommandé) Connectez un câble CAT5e au port IPMI pour la connectivité de gestion hors bande.
+
+Voici le câblage du nœud H410S :
+
+image::HCI_ISI_storage_cabling.png[La montre le câblage pour le nœud H410S.]
+
+image:green circle.png["point vert"] Pour les ports A et B, connectez deux câbles CAT5e ou supérieurs dans les ports A et B pour la connectivité de gestion.
+
+image:blue circle.png["point bleu"] Pour les ports C et D, connectez deux câbles SFP28/SFP+ ou des émetteurs-récepteurs pour la connectivité du stockage.
+
+image:purple circle.png["point violet"] (Facultatif, recommandé) Connectez un câble CAT5e au port IPMI pour la connectivité de gestion hors bande.
+
+Une fois les nœuds connectés, connectez les câbles d'alimentation aux deux unités d'alimentation par châssis et branchez-les sur une PDU 240 V ou une prise de courant.
+
+
+
+=== Nœud de calcul H610C
+
+Voici le câblage du nœud H610C :
+
+
+NOTE: Les nœuds H610C ne sont déployés que dans la configuration à deux câbles. Assurez-vous que tous les VLAN sont présents sur les ports C et D.
+
+image::H610C_node-cabling.png[La représente le câblage du nœud H610C.]
+
+image:dark green.png["point vert foncé"] Pour les ports C et D, connectez le nœud à un réseau 10 GbE à l'aide de deux câbles SFP28/SFP+.
+
+image:purple circle.png["point violet"] (Facultatif, recommandé) Connectez le nœud à un réseau 1 GbE à l'aide d'un connecteur RJ45 dans le port IPMI.
+
+image:light blue circle.png["point bleu clair"] Connectez les deux câbles d'alimentation au nœud et branchez les câbles d'alimentation sur une prise secteur 200 V.
+
+
+
+=== Nœud de calcul H615C
+
+Voici le câblage du nœud H615C :
+
+
+NOTE: Les nœuds H615C sont déployés uniquement dans la configuration à deux câbles. Assurez-vous que tous les VLAN sont présents sur les ports A et B.
+
+image::H615C_node_cabling.png[La représente le câblage du nœud H615C.]
+
+image:dark green.png["point vert foncé"] Pour les ports A et B, connectez le nœud à un réseau 10 GbE à l'aide de deux câbles SFP28/SFP+.
+
+image:purple circle.png["point violet"] (Facultatif, recommandé) Connectez le nœud à un réseau 1 GbE à l'aide d'un connecteur RJ45 dans le port IPMI.
+
+image:light blue circle.png["point bleu clair"] Connectez les deux câbles d'alimentation au nœud et branchez les câbles d'alimentation sur une prise électrique de 110 V.
+
+
+
+=== Nœud de stockage H610S
+
+Voici le câblage du nœud H610S :
+
+image::H600S_ISI_noderear.png[Affiche le câblage du nœud H610S.]
+
+image:purple circle.png["point violet"] Connectez le nœud à un réseau 1 GbE à l'aide de deux connecteurs RJ45 dans le port IPMI.
+
+image:dark green.png["point vert foncé"] Connectez le nœud à un réseau 10 GbE à l'aide de deux câbles SFP28 ou SFP+.
+
+image:orange circle.png["point orange"] Connectez le nœud à un réseau 1 GbE à l'aide d'un connecteur RJ45 dans le port IPMI.
+
+image:light blue circle.png["point bleu clair"] Connectez les deux câbles d'alimentation au nœud.
+
+
+
+== Mettez les nœuds sous tension
+
+Le démarrage des nœuds prend environ six minutes.
+
+Voici une illustration du bouton d'alimentation du châssis NetApp HCI 2U :
+
+image::H410c_poweron_ISG.png[La illustre le bouton d'alimentation de la série H 2U]
+
+Voici une illustration du bouton de mise sous tension du nœud H610C :
+
+image::H610C_power-on.png[La représente le bouton de mise sous tension du nœud/châssis H610C.]
+
+Voici une illustration montrant le bouton d'alimentation sur les nœuds H615C et H610S :
+
+image::H600S_ISI_nodefront.png[Affiche le bouton d'alimentation du nœud/châssis H610S/H615C.]
+
+
+
+== Configurez NetApp HCI
+
+Choisissez l'une des options suivantes :
+
+*  NetApp HCI installation
+*  an existing NetApp HCI installation
+
+
+
+
+=== Nouvelle installation de NetApp HCI
+
+.Étapes
+. Configurez une adresse IPv4 sur le réseau de gestion (Bond1G) sur un nœud de stockage NetApp HCI.
++
+
+NOTE: Si vous utilisez DHCP sur le réseau de gestion, vous pouvez vous connecter à l'adresse IPv4 acquise par DHCP du système de stockage.
+
++
+.. Branchez un clavier, une vidéo, une souris (KVM) à l'arrière d'un nœud de stockage.
+.. Configurez l'adresse IP, le masque de sous-réseau et l'adresse de passerelle de Bond1G dans l'interface utilisateur. Vous pouvez également configurer un ID VLAN pour le réseau Bond1G.
+
+
+. Dans un navigateur Web pris en charge (Mozilla Firefox, Google Chrome ou Microsoft Edge), accédez au moteur de déploiement NetApp en vous connectant à l'adresse IPv4 que vous avez configurée à l'étape 1.
+. Utilisez l'interface utilisateur du moteur de déploiement NetApp pour configurer NetApp HCI.
++
+
+NOTE: Tous les autres nœuds NetApp HCI sont détectés automatiquement.
+
+
+
+
+
+=== Développez une installation NetApp HCI existante
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web.
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Suivez les étapes de l'assistant pour ajouter des nœuds de stockage et/ou de calcul à votre installation NetApp HCI.
++
+
+TIP: Pour ajouter des nœuds de calcul H410C, l'installation existante doit exécuter NetApp HCI 1.4 ou une version ultérieure. Pour ajouter des nœuds de calcul H615C, l'installation existante doit exécuter NetApp HCI 1.7 ou version ultérieure.
+
++
+
+NOTE: Les nœuds NetApp HCI récemment installés sur le même réseau sont détectés automatiquement.
+
+
+
+
+
+== Exécution de tâches post-configuration
+
+Selon le type de nœud dont vous disposez, vous devrez peut-être effectuer des étapes supplémentaires après avoir installé le matériel et configuré NetApp HCI.
+
+*  node
+*  and H610S nodes
+
+
+
+
+=== Nœud H610C
+
+Installez les pilotes GPU dans ESXi pour chaque nœud H610C que vous avez installé et validez leur fonctionnalité.
+
+
+
+=== Nœuds H615C et H610S
+
+.Étapes
+. Utilisez un navigateur Web et accédez à l'adresse IP BMC par défaut : `192.168.0.120`
+. Connectez-vous à l'aide du nom d'utilisateur `root` et mot de passe `calvin`.
+. Dans l'écran de gestion des nœuds, accédez à *Paramètres > Paramètres réseau* et configurez les paramètres réseau pour le port de gestion hors bande.
+
+
+Si votre nœud H615C dispose de processeurs graphiques, installez les pilotes GPU dans ESXi pour chaque nœud H615C installé et validez leur fonctionnalité.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/media/tr-4820.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^]
+* https://mysupport.netapp.com/site/tools["NetApp Configuration Advisor"^] outil de validation réseau 5.8.1 ou version ultérieure
+

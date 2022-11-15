@@ -1,0 +1,175 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_driverepl.html 
+summary: 'Si un disque tombe en panne ou si le niveau d"usure de l"entraînement tombe en dessous d"un seuil, vous devez le remplacer. Vous pouvez remplacer à chaud un disque défectueux.' 
+keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S 
+---
+= Remplacement des disques par des nœuds de stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un entraînement est défectueux ou si le niveau d'usure de l'entraînement tombe en dessous d'un seuil, vous devez le remplacer. Les alarmes de l'interface utilisateur du logiciel Element et de VMware vSphere Web client vous avertissent en cas de défaillance ou d'échec d'un disque. Vous pouvez remplacer à chaud un disque défectueux.
+
+Cette procédure est destinée au remplacement des disques dans les nœuds de stockage H410S et H610S Le retrait d'un lecteur met le lecteur hors ligne. Toutes les données du disque sont supprimées et migrées vers d'autres disques du cluster. La migration des données vers d'autres disques actifs du système peut prendre quelques minutes à une heure selon l'utilisation de la capacité et les E/S actives sur le cluster.
+
+
+
+== Bonnes pratiques de gestion des disques
+
+Suivez ces meilleures pratiques pour la gestion des disques :
+
+* Conservez le lecteur dans le sac ESD jusqu'à ce que vous soyez prêt à l'installer.
+* Ouvrez le sac ESD à la main ou coupez le dessus avec une paire de ciseaux.
+* Portez toujours un bracelet antistatique relié à la terre sur une surface non peinte du châssis.
+* Utilisez toujours les deux mains lors du retrait, de l'installation ou du transport d'un lecteur.
+* Ne forcez jamais un lecteur dans le châssis.
+* Lors de l'expédition des disques, utilisez toujours l'emballage approuvé.
+* Ne pas empiler les disques les uns sur les autres.
+
+
+
+
+== Pratiques d'excellence pour l'ajout et la suppression de disques
+
+Pour ajouter des disques au cluster et supprimer de ce dernier, procédez comme suit :
+
+* Ajoutez toutes les unités de bloc et assurez-vous que la synchronisation des blocs est terminée avant d'ajouter les unités de coupe.
+* Pour le logiciel Element 10.x et versions ultérieures, ajoutez tous les disques de bloc à la fois. Assurez-vous de ne pas le faire pour plus de trois nœuds à la fois.
+* Pour le logiciel Element 9.x et les versions antérieures, ajoutez trois disques à la fois. Vous pouvez ainsi synchroniser complètement vos données avant d'ajouter le groupe suivant de trois disques.
+* Retirez l'entraînement de coupe et assurez-vous que la synchronisation de coupe est terminée avant de retirer les lecteurs de bloc.
+* Supprimez tous les disques de bloc d'un seul nœud à la fois. Assurez-vous que la synchronisation des blocs est terminée avant de passer au nœud suivant.
+
+
+.Étapes
+. Retirez le lecteur du cluster à l'aide de l'interface utilisateur du logiciel NetApp Element ou du point d'extension NetApp Element Management dans le plug-in Element pour le serveur vCenter.
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Utilisation de l'interface utilisateur Element  a| 
+.. Dans l'interface utilisateur de l'élément, sélectionnez *Cluster > lecteurs*.
+.. Cliquez sur *FAILED* pour afficher la liste des disques défectueux.
+.. Notez le numéro de slot du disque défaillant. Vous avez besoin de ces informations pour localiser le lecteur défectueux dans le châssis.
+.. Cliquez sur *actions* pour le lecteur que vous souhaitez supprimer.
+.. Cliquez sur *Supprimer*.
+
+
+Vous pouvez maintenant retirer physiquement le lecteur du châssis.
+
+
+
+| Utilisation du plug-in Element pour l'interface utilisateur du serveur vCenter  a| 
+.. Dans le point d'extension NetApp Element Management du client Web vSphere, sélectionnez *NetApp Element Management > Cluster*.
+.. Si deux clusters ou plus sont ajoutés, assurez-vous que le cluster que vous souhaitez utiliser pour la tâche est sélectionné dans la barre de navigation.
+.. Sélectionnez *tous* dans la liste déroulante pour afficher la liste complète des lecteurs.
+.. Cochez la case correspondant à chaque lecteur que vous souhaitez supprimer.
+.. Sélectionnez *Supprimer les lecteurs*.
+.. Confirmez l'action.
++
+
+NOTE: Si la capacité de retrait des disques actifs est insuffisante avant de supprimer un nœud, un message d'erreur s'affiche lorsque vous confirmez le retrait du disque. Après avoir résolu l'erreur, vous pouvez à présent retirer physiquement le lecteur du châssis.
+
+
+
+|===
+. Remplacez le lecteur du châssis :
++
+.. Déballez le lecteur de remplacement et placez-le sur une surface plane et sans électricité statique près du rack. Enregistrez les matériaux d'emballage lorsque vous renvoyez le disque défectueux à NetApp. Voici la vue avant des nœuds de stockage H610S et H410S avec les disques :
++
+image::h610s_h410s.png[La vue avant des nœuds de stockage H610S et H410S est illustrée.]
+
+.. Effectuez les étapes en fonction du modèle de nœud :
++
+[cols="2*"]
+|===
+| Modèle de nœud | Étapes 
+
+
+| H410S  a| 
+... Identifiez le nœud en faisant correspondre le numéro de série (numéro de service) avec le numéro que vous avez noté dans l'interface utilisateur de l'élément. Le numéro de série est apposé sur un autocollant à l'arrière de chaque nœud. Une fois le nœud identifié, vous pouvez utiliser les informations relatives à son slot pour identifier le slot dans lequel le disque défectueux est. Les lecteurs sont classés par ordre alphabétique de A à D et de 0 à 5.
+... Retirez le panneau.
+... Appuyez sur le bouton de déverrouillage du lecteur défectueux :
++
+image::h410s_drive.png[La représente le bouton de déblocage sur le disque pour les nœuds de stockage H410S.]
+
++
+Lorsque vous appuyez sur le bouton de déverrouillage, la poignée de came des ressorts d'entraînement s'ouvre partiellement et l'entraînement se relâche du fond de panier central.
+
+... Ouvrez la poignée de came et faites glisser l'entraînement avec précaution à l'aide des deux mains.
+... Placer le disque sur une surface plane antistatique.
+... Insérez le lecteur de remplacement dans le slot complètement dans le châssis à l'aide des deux mains.
+... Appuyez sur la poignée de came jusqu'à ce qu'elle s'enclenche.
+... Réinstallez le panneau.
+... Informer le support NetApp sur le remplacement des disques. Le support NetApp vous fournira des instructions pour renvoyer le disque défectueux.
+
+
+
+
+| H610S  a| 
+... Faites correspondre le numéro de slot du disque défectueux dans l'interface utilisateur d'Element avec le numéro sur le châssis. Le voyant du disque défectueux s'allume en orange.
+... Retirez le panneau.
+... Appuyez sur le bouton de déverrouillage et retirez le lecteur défectueux comme indiqué dans l'illustration suivante :
++
+image::h610s_driveremove.png[Affiche le disque en cours de retrait du nœud H610S.]
+
++
+
+NOTE: Assurez-vous que la poignée du bac est complètement ouverte avant d'essayer de faire glisser le lecteur hors du châssis.
+
+... Faites glisser l'entraînement et placez-le sur une surface plane et non statique.
+... Appuyez sur le bouton de dégagement du lecteur de remplacement avant de l'insérer dans la baie. Les ressorts de la poignée du plateau d'entraînement s'ouvrent.
++
+image::H600S_driveinstall.png[Affiche le lecteur en cours d'installation dans le nœud H610S.]
+
+... Insérez le lecteur de remplacement sans exercer de force excessive. Lorsque le lecteur est complètement inséré, vous entendez un clic.
+... Fermez soigneusement la poignée du plateau du lecteur.
+... Réinstallez le panneau.
+... Informer le support NetApp sur le remplacement des disques. Le support NetApp vous fournira des instructions pour renvoyer le disque défectueux.
+
+
+|===
+
+
+. Ajoutez le lecteur au cluster à l'aide de l'interface utilisateur Element ou du point d'extension NetApp Element Management dans le plug-in Element pour le serveur vCenter.
++
+
+NOTE: Lorsque vous installez un nouveau lecteur dans un nœud existant, le lecteur s'enregistre automatiquement sous *disponible* dans l'interface utilisateur de l'élément. Vous devez ajouter le disque au cluster avant qu'il ne puisse participer au cluster.
+
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Utilisation de l'interface utilisateur Element  a| 
+.. Dans l'interface utilisateur de l'élément, sélectionnez *Cluster > lecteurs*.
+.. Sélectionnez *disponible* pour afficher la liste des lecteurs disponibles.
+.. Sélectionnez l'icône actions du lecteur que vous souhaitez ajouter et sélectionnez *Ajouter*.
+
+
+
+
+| Utilisation du plug-in Element pour l'interface utilisateur du serveur vCenter  a| 
+.. Dans le point d'extension NetApp Element Management du client Web vSphere, sélectionnez *NetApp Element Management > Cluster > Drives*.
+.. Dans la liste déroulante disponible, sélectionnez le lecteur et sélectionnez *Ajouter*.
+.. Confirmez l'action.
+
+
+|===
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

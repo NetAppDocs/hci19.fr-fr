@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_hwmainoverview.html 
+summary: 'Vous pouvez effectuer des tâches de maintenance matérielles, comme remplacer vos nœuds, remplacer les disques des nœuds de stockage, remplacer les unités d"alimentation, etc.' 
+keywords: netapp, hci, on premise, activeiq, active iq, cluster, performance, rails, h-series, nodes 
+---
+= Présentation de la maintenance matérielle H-series
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il est recommandé d'effectuer les tâches de maintenance matérielles, comme remplacer les nœuds défectueux ou remplacer les disques défectueux dans les nœuds de stockage, etc. Afin d'assurer le fonctionnement optimal de votre système.
+
+Voici les liens vers les tâches de maintenance du matériel :
+
+* link:task_hci_hserieschassisrepl.html["Remplacement du châssis 2U H-Series"]
+* link:task_hci_dcpsurepl.html["Remplacement des unités d'alimentation CC dans les nœuds H615C et H610S"]
+* link:task_hci_dimmcomputerepl.html["Remplacez les modules DIMM dans les nœuds de calcul"]
+* link:task_hci_driverepl.html["Remplacement des disques par des nœuds de stockage"]
+* link:task_hci_h410crepl.html["Remplacement des nœuds H410C"]
+* link:task_hci_h410srepl.html["Remplacer les nœuds H410S"]
+* link:task_hci_h610ch615crepl.html["Remplacer les nœuds H610C et H615C"]
+* link:task_hci_h610srepl.html["Remplacer les nœuds H610S"]
+* link:task_hci_psurepl.html["Remplacez les unités d'alimentation"]
+* link:task_hci_snswitches.html["Remplacer les commutateurs SN2010, SN2100 et SN2700"]
+* link:task_hci_2noderepl.html["Remplacement d'un nœud de stockage dans un cluster à deux nœuds"]
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/media/tr-4820.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^]
+* https://mysupport.netapp.com/site/tools["NetApp Configuration Advisor"^] outil de validation réseau 5.8.1 ou version ultérieure
+

@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_select_net_topology.html 
+summary: Découvrez comment configurer VMware vSphere lors du déploiement de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Sélectionnez une topologie réseau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Lors du câblage des nœuds NetApp HCI, vous avez la possibilité d'utiliser différentes configurations de câbles réseau en fonction de vos besoins. Pour chaque nœud de calcul, vous pouvez utiliser les six ports réseau, avec différents types de trafic attribués à chaque paire de ports, ou utiliser deux ports avec tous les types de trafic attribués aux ports. Les nœuds de stockage utilisent la configuration standard à quatre câbles. Votre choix affecte les nœuds de calcul que vous pouvez sélectionner dans l'inventaire.
+
+Si vous choisissez la topologie réseau à deux câbles pour les nœuds de calcul, prenez en compte les exigences suivantes :
+
+* Une fois le déploiement terminé, vous disposez d'une licence VMware vSphere Enterprise plus prête à être appliquée.
+* Vous avez vérifié que la configuration de vos commutateurs réseau et réseau est correcte.
+* Le balisage VLAN est nécessaire pour le stockage et les réseaux vMotion pour tous les nœuds de calcul et de stockage.
+
+
+.Étapes
+. Sur la page *topologie réseau*, sélectionnez une topologie de nœud de calcul correspondant à la manière dont vous avez installé les nœuds de calcul pour NetApp HCI :
++
+** *6 option câble* : l'option six câbles fournit des ports dédiés pour chaque type de trafic (gestion, machine virtuelle et stockage). Vous pouvez activer le commutateur distribué vSphere (VDS) en option. L'activation de VDS configure un commutateur distribué, ce qui permet une gestion simplifiée et centralisée de la configuration du réseau des machines virtuelles une fois le déploiement NetApp HCI terminé. Si vous l'activez, vous devez disposer d'une licence vSphere Enterprise plus prête à faire l'objet d'une demande après le déploiement.
+** *2 option de câble* : l'option à deux câbles combine la gestion, la machine virtuelle et le trafic de stockage sur deux ports liés. Cette option de câblage requiert VDS et l'active automatiquement. Vous devez disposer d'une licence vSphere Enterprise plus prête à être appliquée après le déploiement.
+
+
+. Certaines options de câblage affichent plusieurs vues du panneau arrière de différents types de matériel de nœuds. Parcourez les vues du panneau arrière pour voir comment connecter les câbles réseau pour ce modèle de nœud spécifique et cette option de câblage.
+. Lorsque vous avez terminé, cliquez sur *Continuer*.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

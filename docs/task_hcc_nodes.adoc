@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_nodes.html 
+summary: Vous pouvez afficher à la fois les ressources de stockage et de calcul de votre système à partir de la page nœuds de contrôle du cloud hybride. 
+keywords: netapp, hci, on premise, cluster, inventory, nodes, storage, compute 
+---
+= Affichez votre inventaire sur la page nœuds
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher à la fois vos ressources de stockage et de calcul dans votre système et déterminer leurs adresses IP, noms et versions logicielles.
+
+Vous pouvez afficher les informations de stockage de vos systèmes à plusieurs nœuds et de tout nœud NetApp HCI Witness associé aux clusters à deux ou trois nœuds. Si link:concept_hcc_custom_protection_domains.html["domaines de protection personnalisés"] vous pouvez voir les domaines de protection affectés à des nœuds spécifiques.
+
+Les nœuds témoins gèrent le quorum au sein du cluster et ne sont pas utilisés pour le stockage. Les nœuds témoins sont uniquement applicables aux systèmes NetApp HCI et non aux environnements de stockage 100 % Flash.
+
+Pour plus d'informations sur Witness Nodes, voir link:concept_hci_nodes.html["Définitions de nœuds"].
+
+Pour les nœuds SolidFire Enterprise SDS, vous pouvez surveiller l'inventaire dans l'onglet stockage.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Dans le menu de navigation de gauche, cliquez sur *noeuds*.
++
+image::hcc_nodes_storage_2nodes.png[Image de la page nœuds de contrôle dans le cloud hybride]
+
++
+
+NOTE: Lorsque vous lancez une nouvelle session NetApp Hybrid Cloud Control pour la première fois, le chargement de la page des nœuds de contrôle dans le cloud hybride NetApp peut retarder le chargement de la page des nœuds de contrôle dans le cloud hybride lorsque le nœud de gestion gère de nombreux clusters. La durée de chargement varie en fonction du nombre de clusters gérés activement par le nœud de gestion. Pour les lancements suivants, vous aurez des temps de chargement plus courts.
+
+. Dans l'onglet *Storage* de la page noeuds, vérifiez les informations suivantes :
++
+.. Clusters à deux nœuds : une étiquette « deux nœuds » apparaît sur l'onglet stockage et les nœuds témoins associés sont répertoriés.
+.. Clusters à trois nœuds : les nœuds de stockage et les nœuds Witness associés sont répertoriés. Dans les clusters à trois nœuds, un nœud témoin est déployé en veille pour maintenir une haute disponibilité en cas de panne du nœud.
+.. Clusters avec quatre nœuds ou plus : les informations concernant les clusters avec quatre nœuds ou plus s'affichent. Les nœuds témoins ne s'appliquent pas. Si vous avez commencé avec deux ou trois nœuds de stockage et si vous avez ajouté d'autres nœuds, Witness Nodes s'affiche toujours. Sinon, le tableau des nœuds témoins ne s'affiche pas.
+.. Version du bundle de firmware : à partir de la version 2.14 des services de gestion, si vous utilisez des clusters Element 12.0 ou version ultérieure, vous pouvez voir la version du bundle de firmware pour ces clusters. Si les nœuds d'un cluster ont des versions de micrologiciel différentes, vous pouvez voir *multiple* dans la colonne *Firmware Bundle version*.
+.. Domaines de protection personnalisés : si des domaines de protection personnalisés sont utilisés sur le cluster, vous pouvez voir des attributions de domaine de protection personnalisées pour chaque nœud du cluster. Si les domaines de protection personnalisés ne sont pas activés, cette colonne n'apparaît pas.
+
+
+. Pour afficher les informations d'inventaire de calcul, cliquez sur *Compute*.
+. Vous pouvez manipuler les informations de ces pages de plusieurs façons :
++
+.. Pour filtrer la liste des éléments dans les résultats, cliquez sur l'icône *Filter* et sélectionnez les filtres. Vous pouvez également saisir du texte pour le filtre.
+.. Pour afficher ou masquer des colonnes, cliquez sur l'icône *Afficher/Masquer les colonnes*.
+.. Pour télécharger le tableau, cliquez sur l'icône *Download*.
+.. Pour ajouter ou modifier les informations d'identification BMC stockées pour un nœud de calcul avec des erreurs de connexion BMC, cliquez sur *Modifier les paramètres de connexion* dans le texte du message d'erreur de la colonne *état de connexion BMC*. Uniquement si la tentative de connexion échoue pour un nœud de calcul, un message d'erreur s'affiche dans cette colonne pour ce nœud.
+
+
+
+
+
+TIP: Pour afficher le nombre de ressources de stockage et de calcul, consultez le tableau de bord NetApp Hybrid Cloud Control (HCC). Voir link:task_hcc_dashboard.html["Surveillez les ressources de stockage et de calcul à l'aide du tableau de bord HCC"].
+
+
+NOTE: Pour gérer un nœud de calcul dans le contrôle de cloud hybride NetApp, vous devez https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/How_to_set_up_compute_node_management_in_NetApp_Hybrid_Cloud_Control["Ajoutez le nœud de calcul à un cluster hôte vCenter"^].
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

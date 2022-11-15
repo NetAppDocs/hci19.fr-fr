@@ -1,0 +1,180 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_add_assets.html 
+summary: 'Vous pouvez ajouter des ressources de calcul et de contrôleur à la configuration du nœud de gestion à l"aide de l"interface utilisateur de l"API REST.' 
+keywords: netapp, mnode, management node, rest api, hci 
+---
+= Ajoutez des ressources de calcul et de contrôleur au nœud de gestion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ajouter des ressources de calcul et de contrôleur à la configuration du nœud de gestion à l'aide de l'interface utilisateur de l'API REST.
+
+Vous devrez peut-être ajouter une ressource si vous avez récemment fait évoluer votre installation et que de nouvelles ressources n'ont pas été ajoutées automatiquement à votre configuration. Utilisez ces API pour ajouter des ressources qui sont des ajouts récents à votre installation.
+
+.Ce dont vous avez besoin, 8217;ll
+* Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
+* Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
+* Vous avez link:task_mnode_create_netapp_hcc_role_vcenter.html["Création d'un nouveau rôle NetApp HCC dans vCenter"] Limiter l'affichage des services de nœud de gestion aux ressources NetApp uniquement.
+* Vous disposez de l'adresse IP de gestion vCenter et des identifiants.
+* Vous disposez de l'adresse IP de gestion du nœud de calcul (ESXi) et des identifiants root.
+* Vous disposez de l'adresse IP de gestion du matériel (BMC) et des informations d'identification de l'administrateur.
+
+
+(NetApp HCI uniquement) si vous ne voyez pas de nœuds de calcul dans le contrôle du cloud hybride (HCC) après avoir fait évoluer votre système NetApp HCI, vous pouvez ajouter un nœud de calcul à l'aide du `POST /assets/{asset_id}/compute-nodes` décrit dans cette procédure.
+
+
+NOTE: Lorsque vous ajoutez manuellement des nœuds de calcul, assurez-vous d'ajouter également les ressources BMC, sinon une erreur est renvoyée.
+
+.Étapes
+. Procurez-vous l'ID de ressource de base pour l'installation :
++
+.. Ouvrez l'interface utilisateur de l'API REST du service d'inventaire sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre.
+
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *OBTENIR ​/installations*.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Exécuter*.
+.. À partir du corps de réponse du code 200, copiez le `id` pour l'installation.
++
+[listing, subs="+quotes"]
+----
+{
+  "installations": [
+    {
+      "_links": {
+        "collection": "https://10.111.211.111/inventory/1/installations",
+        "self": "https://10.111.217.111/inventory/1/installations/abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x"
+      },
+      *"id": "abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x",*
+----
++
+
+NOTE: Votre installation dispose d'une configuration de ressource de base créée lors de l'installation ou de la mise à niveau.
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *GET /installations/{ID}*.
+.. Sélectionnez *essayez-le*.
+.. Collez l'ID de ressource d'installation dans le champ *ID*.
+.. Sélectionnez *Exécuter*.
+.. Depuis le réponse, copiez et enregistrez l'ID du contrôleur du cluster (`"controllerId"`) pour une utilisation ultérieure.
+
+
+. (Pour les nœuds de calcul uniquement) xref:task_mnode_locate_hardware_tag.adoc[Recherchez le numéro de matériel de votre nœud de calcul] Dans vSphere.
+. Pour ajouter une ressource de contrôleur (vCenter), un nœud de calcul (ESXi) ou du matériel (BMC) à une ressource de base existante, sélectionnez l'une des options suivantes :
++
+[cols="40,60"]
+|===
+| Option | Description 
+
+
+| POST /Assets/{ASSET_ID}/contrôleurs  a| 
+.. Ouvrez l'interface de l'API REST du service nœud M sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Sélectionnez *Authorise* et procédez comme suit :
++
+.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.... Saisissez l'ID client en tant que `mnode-client`.
+.... Sélectionnez *Autoriser* pour démarrer une session.
+.... Fermez la fenêtre.
+
+
+
+
+.. Sélectionnez *POST /Assets/{ASSET_ID}/contrôleurs*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de l'actif de base parent dans le champ *Asset_ID*.
+.. Ajouter les valeurs requises à la charge utile.
+.. Sélectionnez *Exécuter*.
+
+
+
+
+| POST /Assets/{ASSET_ID}/Compute-nodes  a| 
+.. Ouvrez l'interface de l'API REST du service nœud M sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Sélectionnez *Authorise* et procédez comme suit :
++
+.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.... Saisissez l'ID client en tant que `mnode-client`.
+.... Sélectionnez *Autoriser* pour démarrer une session.
+.... Fermez la fenêtre.
+
+
+
+
+.. Sélectionnez *POST /Assets/{ASSET_ID}/Compute-nodes*.
+.. Sélectionnez *essayez-le*.
+.. Entrez l'ID d'actif de base parent que vous avez copié à une étape précédente dans le champ *Asset_ID*.
+.. Dans la charge utile, procédez comme suit :
++
+... Saisissez l'IP de gestion du nœud dans le `ip` légale.
+... Pour `hardwareTag`, entrez la valeur de l'étiquette matérielle que vous avez enregistrée lors d'une étape précédente.
+... Entrez d'autres valeurs, si nécessaire.
+
+
+.. Sélectionnez *Exécuter*.
+
+
+
+
+| POST /Assets/{ASSET_ID}/Hardware-nodes  a| 
+.. Ouvrez l'interface de l'API REST du service nœud M sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Sélectionnez *Authorise* et procédez comme suit :
++
+.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.... Saisissez l'ID client en tant que `mnode-client`.
+.... Sélectionnez *Autoriser* pour démarrer une session.
+.... Fermez la fenêtre.
+
+
+
+
+.. Sélectionnez *POST /Assets/{ASSET_ID}/Hardware-nodes*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de l'actif de base parent dans le champ *Asset_ID*.
+.. Ajouter les valeurs requises à la charge utile.
+.. Sélectionnez *Exécuter*.
+
+
+|===
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

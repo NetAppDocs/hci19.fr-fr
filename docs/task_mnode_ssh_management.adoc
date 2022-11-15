@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_ssh_management.html 
+summary: 'Vous pouvez désactiver et activer la fonctionnalité SSH sur le nœud de gestion à l"aide de l"interface utilisateur NetApp Hybrid Cloud Control ou de l"interface utilisateur de l"API REST, ou déterminer l"état de la fonctionnalité de connexion de support SSH à l"aide de l"interface utilisateur de l"API REST.' 
+keywords: netapp, mnode, management node, ssh, disable, enable, rest api, hybrid, cloud, control, hcc 
+---
+= Gérez la fonctionnalité SSH sur le nœud de gestion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez désactiver, réactiver ou déterminer l'état de la fonctionnalité SSH sur le nœud de gestion (nœud M) à l'aide de l'API REST. Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_connections.html["Accès à la session de tunnel de support à distance (RST) de NetApp"] est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure.
+
+Depuis les services de gestion 2.20.69, vous pouvez activer et désactiver la fonctionnalité SSH sur le nœud de gestion à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Permissions de contrôle de cloud hybride NetApp* : vous disposez d'autorisations en tant qu'administrateur.
+* *Autorisations d'administrateur de cluster* : vous disposez d'autorisations en tant qu'administrateur sur le cluster de stockage.
+* *Logiciel Element* : votre cluster exécute le logiciel NetApp Element version 11.3 ou ultérieure.
+* *Noeud de gestion* : vous avez déployé un noeud de gestion exécutant la version 11.3 ou ultérieure.
+* *Mises à jour des services de gestion* :
++
+** Pour utiliser l'interface de NetApp Hybrid Cloud Control, vous avez mis à jour votre https://mysupport.netapp.com/site/products/all/details/mgmtservices/downloads-tab["pack de services de gestion"^] à la version 2.20.69 ou ultérieure.
+** Pour utiliser l'interface utilisateur de l'API REST, vous avez mis à jour votre https://mysupport.netapp.com/site/products/all/details/mgmtservices/downloads-tab["pack de services de gestion"^] à la version 2.17.
+
+
+
+
+.Options
+*  or enable the SSH capability on the management node using NetApp Hybrid Cloud Control UI
+
+
+Vous pouvez effectuer l'une des tâches suivantes après vous link:task_mnode_api_get_authorizationtouse.html["authentifier"]:
+
+*  or enable the SSH capability on the management node using APIs
+*  status of the SSH capability on the management node using APIs
+
+
+
+
+== Désactivez ou activez la fonctionnalité SSH sur le nœud de gestion à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control
+
+Vous pouvez désactiver ou réactiver la fonctionnalité SSH sur le nœud de gestion. Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_connections.html["Accès à la session de tunnel de support à distance (RST) de NetApp"] est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure. La désactivation de SSH ne met pas fin ou ne déconnecte pas les sessions client SSH existantes vers le nœud de gestion. Si vous désactivez SSH et choisissez de le réactiver ultérieurement, vous pouvez utiliser l'interface de contrôle du cloud hybride NetApp.
+
+
+NOTE: Pour activer ou désactiver l'accès au support à l'aide de SSH pour un cluster de stockage, vous devez utiliser le https://docs.netapp.com/us-en/element-software/storage/task_system_manage_cluster_enable_and_disable_support_access.html["Page des paramètres de cluster de l'interface utilisateur Element"^].
+
+.Étapes
+. Dans le Tableau de bord, sélectionnez le menu d'options en haut à droite et sélectionnez *configurer*.
+. Dans l'écran *support Access for Management Node*, activez le commutateur pour activer SSH du noeud de gestion.
+. Une fois le dépannage terminé, dans l'écran *support Access for Management Node*, activez le commutateur pour désactiver le nœud de gestion SSH.
+
+
+
+
+== Désactivez ou activez la fonctionnalité SSH sur le nœud de gestion à l'aide d'API
+
+Vous pouvez désactiver ou réactiver la fonctionnalité SSH sur le nœud de gestion. Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_connections.html["Accès à la session de tunnel de support à distance (RST) de NetApp"] est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure. La désactivation de SSH ne met pas fin ou ne déconnecte pas les sessions client SSH existantes vers le nœud de gestion. Si vous désactivez SSH et choisissez de le réactiver ultérieurement, vous pouvez le faire à l'aide de la même API.
+
+Pour les services de gestion version 2.18 ou ultérieure :
+
+[listing]
+----
+curl -k -X PUT "https://<<ManagementNodeIP>/mnode/2/settings/ssh?enabled=<false/true>" -H  "accept: application/json" -H  "Authorization: Bearer ${TOKEN}"
+----
+Pour les services de gestion version 2.17 ou antérieure :
+
+[listing]
+----
+curl -X PUT "https://<ManagementNodeIP>/mnode/settings/ssh?enabled=<false/true>" -H  "accept: application/json" -H  "Authorization: Bearer ${TOKEN}"
+----
+
+NOTE: Vous pouvez trouver le porteur `${TOKEN}` Utilisé par la commande API lorsque vous link:task_mnode_api_get_authorizationtouse.html["autoriser"]. Le porteur `${TOKEN}` est dans la réponse curl.
+
+.ÉTAPES DE L'INTERFACE UTILISATEUR DE L'API REST
+. Accédez à l'interface de l'API REST pour le service d'API du nœud de gestion en entrant l'adresse IP du nœud de gestion suivie de `/mnode/`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode/
+----
+. Sélectionnez *Authorise* et procédez comme suit :
++
+.. Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.. Saisissez l'ID client en tant que `mnode-client`.
+.. Sélectionnez *Autoriser* pour démarrer une session.
+.. Fermez la fenêtre.
+
+
+. Dans l'interface utilisateur de l'API REST, sélectionnez *PUT /settings​/ssh*.
++
+.. Cliquez sur *essayez-le*.
+.. Définissez le paramètre *Enabled* sur `false` Pour désactiver SSH ou `true` Pour réactiver la fonctionnalité SSH précédemment désactivée.
+.. Cliquez sur *Exécuter*.
+
+
+
+
+
+
+== Détermination de l'état de la fonctionnalité SSH sur le nœud de gestion à l'aide d'API
+
+Vous pouvez déterminer si la fonctionnalité SSH est activée ou non sur le nœud de gestion à l'aide d'une API de service de nœud de gestion. SSH est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure.
+
+Pour les services de gestion version 2.18 ou ultérieure :
+
+[listing]
+----
+curl -k -X PUT "https://<<ManagementNodeIP>/mnode/2/settings/ssh?enabled=<false/true>" -H  "accept: application/json" -H  "Authorization: Bearer ${TOKEN}"
+----
+Pour les services de gestion version 2.17 ou antérieure :
+
+[listing]
+----
+curl -X PUT "https://<ManagementNodeIP>/mnode/settings/ssh?enabled=<false/true>" -H  "accept: application/json" -H  "Authorization: Bearer ${TOKEN}"
+----
+
+NOTE: Vous pouvez trouver le porteur `${TOKEN}` Utilisé par la commande API lorsque vous link:task_mnode_api_get_authorizationtouse.html["autoriser"]. Le porteur `${TOKEN}` est dans la réponse curl.
+
+.ÉTAPES DE L'INTERFACE UTILISATEUR DE L'API REST
+. Accédez à l'interface de l'API REST pour le service d'API du nœud de gestion en entrant l'adresse IP du nœud de gestion suivie de `/mnode/`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode/
+----
+. Sélectionnez *Authorise* et procédez comme suit :
++
+.. Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.. Saisissez l'ID client en tant que `mnode-client`.
+.. Sélectionnez *Autoriser* pour démarrer une session.
+.. Fermez la fenêtre.
+
+
+. Dans l'interface utilisateur de l'API REST, sélectionnez *GET /settings​/ssh*.
++
+.. Cliquez sur *essayez-le*.
+.. Cliquez sur *Exécuter*.
+
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

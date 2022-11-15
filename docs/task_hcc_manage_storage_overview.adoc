@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_storage_overview.html 
+summary: Avec NetApp HCI, vous pouvez gérer les ressources de stockage via le contrôle de cloud hybride NetApp. 
+keywords: netapp, hci, on premise, cluster, element, account, user, volume, hybrid cloud control, hcc 
+---
+= Gérer la présentation du stockage NetApp HCI
+:allow-uri-read: 
+
+
+[role="lead"]
+Avec NetApp HCI, vous pouvez gérer ces ressources de stockage en utilisant le contrôle de cloud hybride NetApp.
+
+* link:task_hcc_manage_accounts.html["Créer et gérer des comptes utilisateur"]
+* link:task_hcc_manage_storage_clusters.html["Ajouter et gérer des clusters de stockage"]
+* link:task_hcc_manage_vol_management.html["Création et gestion des volumes"]
+* link:task_hcc_manage_vol_access_groups.html["Créez et gérez des groupes d'accès de volume"]
+* link:task_hcc_manage_initiators.html["Création et gestion des initiateurs"]
+* link:task_hcc_qos_policies.html["Création et gestion de règles de QoS pour les volumes"]
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

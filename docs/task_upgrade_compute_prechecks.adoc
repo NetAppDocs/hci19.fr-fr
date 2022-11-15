@@ -1,0 +1,292 @@
+---
+sidebar: sidebar 
+permalink: docs/task_upgrade_compute_prechecks.html 
+summary: 'Lors de la mise à niveau d"un système NetApp HCI, vous devez exécuter des vérifications de l"état du nœud de calcul avant de procéder à des mises à niveau firwamre.' 
+keywords: netapp, compute prechecks, compute node upgrade, netapp hci 
+---
+= Exécutez des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez exécuter des vérifications de l'état avant de mettre à niveau le firmware du calcul afin de vous assurer que tous les nœuds de calcul du cluster sont prêts à être mis à niveau. Les vérifications de l'état des nœuds de calcul ne peuvent être exécutées que sur des clusters de calcul d'un ou de plusieurs nœuds de calcul NetApp HCI gérés.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Services de gestion*: Vous avez mis à jour le dernier bundle de services de gestion (2.11 ou version ultérieure).
+* *Noeud de gestion* : vous exécutez le noeud de gestion 11.3 ou ultérieur.
+* *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 11.3 ou ultérieure.
+* *Contrat de licence utilisateur final (CLUF)* : à partir des services de gestion 2.20.69, vous devez accepter et enregistrer le CLUF avant d'utiliser l'interface utilisateur ou l'API de contrôle de cloud hybride NetApp pour exécuter les contrôles d'état du nœud de calcul :
++
+.. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+.. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+.. Sélectionnez *Upgrade* en haut à droite de l'interface.
+.. Le CLUF s'affiche. Faites défiler vers le bas, sélectionnez *J'accepte les mises à jour actuelles et futures*, puis sélectionnez *Enregistrer*.
++
+
+NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à jour futures et la fonction de téléchargement automatique est activée. Vous recevrez des mises à jour sur les mises à jour et les mises à niveau logicielles NetApp que vous pouvez installer à votre discrétion et à votre convenance. Vous pouvez désactiver la fonctionnalité de téléchargement automatique en désactivant la connectivité réseau au référentiel logiciel en ligne de NetApp.
+
+
+
+
+
+Vous pouvez exécuter des vérifications de l'état avec l'interface de contrôle du cloud hybride NetApp ou l'API de contrôle du cloud hybride NetApp :
+
+*  NetApp Hybrid Cloud Control to run compute node health checks prior to upgrading firmware (Méthode préférée)
+*  API to run compute node health checks prior to upgrading firmware
+
+
+Vous pouvez également en savoir plus sur les vérifications de l'état des nœuds de calcul exécutées par le service :
+
+*  node health checks made by the service
+
+
+
+
+== Utilisez NetApp Hybrid Cloud Control pour exécuter des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware
+
+Avec NetApp Hybrid Cloud Control, vous pouvez vérifier qu'un nœud de calcul est prêt pour la mise à niveau du firmware.
+
+
+NOTE: Si vous disposez de plusieurs configurations de cluster de stockage à deux nœuds, chacune d'elles doit être intégrée dans son propre vCenter. Les vérifications de l'état des nœuds Witness ne seront pas effectuées avec précision. Par conséquent, lorsque vous êtes prêt à mettre à niveau les hôtes ESXi, vous devez arrêter uniquement le nœud témoin sur l'hôte ESXi en cours de mise à niveau. Vous devez vous assurer qu'un nœud témoin est toujours exécuté dans votre installation NetApp HCI en mettant hors tension les nœuds témoin.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>/hcc
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+. Sélectionnez *Upgrade* en haut à droite de l'interface.
+. Sur la page *mises à niveau*, sélectionnez l'onglet *Compute Firmware*.
+. Sélectionnez le bilan de santé image:hcc_healthcheck_icon.png["icône"] pour le cluster, vérifiez que la mise à niveau est prête.
+. Sur la page *Compute Health Check*, sélectionnez *Run Health Check*.
+. En cas de problème, la page fournit un rapport. Procédez comme suit :
++
+.. Consultez l'article de la base de connaissances spécifique répertorié pour chaque problème ou effectuez la solution spécifiée.
+.. Si vous spécifiez une base de connaissances, suivez la procédure décrite dans l'article correspondant de la base de connaissances.
+.. Après avoir résolu les problèmes de cluster, sélectionnez *Re-Run Health Check*.
+
+
+
+
+Une fois le contrôle de l'état terminé et sans erreur, les nœuds de calcul du cluster sont prêts à être mis à niveau. Voir link:task_hcc_upgrade_compute_node_firmware.html["Met à jour le firmware du nœud de calcul"] pour continuer.
+
+
+
+== Utilisez l'API pour exécuter des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware
+
+Vous pouvez utiliser l'API REST pour vérifier que les nœuds de calcul d'un cluster sont prêts à être mis à niveau. Le contrôle d'état vérifie qu'il n'y a aucun obstacle à la mise à niveau, tel que les problèmes d'hôte ESXi ou tout autre problème vSphere. Vous devez exécuter des vérifications de l'état de santé des nœuds de calcul pour chaque cluster de calcul de votre environnement.
+
+.Étapes
+. Recherchez l'ID de contrôleur et l'ID de cluster :
++
+.. Ouvrez l'interface utilisateur de l'API REST du service d'inventaire sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client` si la valeur n'est pas déjà renseignée.
+... Sélectionnez *Autoriser* pour démarrer une session.
+
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *OBTENIR ​/installations*.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Exécuter*.
+.. À partir du corps de réponse du code 200, copiez le `"id"` pour l'installation que vous prévoyez d'utiliser pour les vérifications de l'état de santé.
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *OBTENIR ​/installations​/{ID}*.
+.. Sélectionnez *essayez-le*.
+.. Entrez l'ID d'installation.
+.. Sélectionnez *Exécuter*.
+.. À partir du corps de réponse du code 200, copiez les ID pour chacun des éléments suivants :
++
+... ID de cluster (`"clusterID"`)
+... Un ID de contrôleur (`"controllerId"`)
++
+[listing]
+----
+{
+  "_links": {
+    "collection": "https://10.117.187.199/inventory/1/installations",
+    "self": "https://10.117.187.199/inventory/1/installations/xx94f6f0-12a6-412f-8b5e-4cf2z58329x0"
+  },
+  "compute": {
+    "errors": [],
+    "inventory": {
+      "clusters": [
+        {
+          "clusterId": "domain-1",
+          "controllerId": "abc12c3a-aa87-4e33-9f94-xx588c2cdcf6",
+          "datacenterName": "NetApp-HCI-Datacenter-01",
+          "installationId": "xx94f6f0-12a6-412f-8b5e-4cf2z58329x0",
+          "installationName": "test-nde-mnode",
+          "inventoryType": "managed",
+          "name": "NetApp-HCI-Cluster-01",
+          "summary": {
+            "nodeCount": 2,
+            "virtualMachineCount": 2
+          }
+        }
+      ],
+----
+
+
+
+
+. Exécutez des vérifications de l'état sur les nœuds de calcul du cluster :
++
+.. Ouvrez l'interface de l'API REST du service de calcul sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/vcenter/1/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client` si la valeur n'est pas déjà renseignée.
+... Sélectionnez *Autoriser* pour démarrer une session.
+
+
+.. Sélectionnez *POST /compute​/{CONTROLLER_ID}​/Health-chèques*.
+.. Sélectionnez *essayez-le*.
+.. Entrez le `"controllerId"` Vous avez copié à partir de l'étape précédente dans le champ du paramètre *Controller_ID*.
+.. Dans la charge utile, entrez le `"clusterId"` que vous avez copié à partir de l'étape précédente comme `"cluster"` et supprimer le `"nodes"` paramètre.
++
+[listing]
+----
+{
+  "cluster": "domain-1"
+}
+----
+.. Sélectionnez *Exécuter* pour exécuter un contrôle d'intégrité sur le cluster.
++
+La réponse du code 200 donne un `"resourceLink"` URL avec l'ID de tâche ajouté qui est nécessaire pour confirmer les résultats de la vérification de l'état.
+
++
+[listing]
+----
+{
+  "resourceLink": "https://10.117.150.84/vcenter/1/compute/tasks/[This is the task ID for health check task results]",
+  "serviceName": "vcenter-v2-svc",
+  "taskId": "ab12c345-06f7-42d7-b87c-7x64x56x321x",
+  "taskName": "VCenter service health checks"
+}
+----
+.. Copiez la partie ID tâche du `"resourceLink"` URL pour vérifier le résultat de la tâche.
+
+
+. Vérifier le résultat des vérifications d'état :
++
+.. Revenir à l'interface de l'API REST du service de calcul sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/vcenter/1/
+----
+.. Sélectionnez *LIRE /compute​/tâches/{ID_tâche}*.
+.. Sélectionnez *essayez-le*.
+.. Entrez la partie ID tâche du `"resourceLink"` URL de la réponse *POST /compute​/{CONTROLLER_ID}​/Health-chèques* code 200 dans le `task_id` champ de paramètre.
+.. Sélectionnez *Exécuter*.
+.. Si le `status` renvoyé indique qu'il y a des problèmes concernant l'intégrité du nœud de calcul. procédez comme suit :
++
+... Consultez l'article de la base de connaissances (`KbLink`) pour chaque problème ou effectuez la réparation indiquée.
+... Si vous spécifiez une base de connaissances, suivez la procédure décrite dans l'article correspondant de la base de connaissances.
+... Après avoir résolu les problèmes de cluster, exécutez à nouveau *POST /compute​/{CONTROLLER_ID}​/Health-chèques* (voir étape 2).
+
+
+
+
+
+
+Si les contrôles d'intégrité sont terminés sans problème, le code de réponse 200 indique que le résultat a réussi.
+
+
+
+== Vérifications de l'état du nœud de calcul effectuées par le service
+
+Les vérifications de l'état du calcul, qu'elles soient réalisées par les méthodes NetApp Hybrid Cloud Control ou API, effectuent les vérifications suivantes par nœud. Selon votre environnement, certaines de ces vérifications peuvent être ignorées. Vous devez relancer les contrôles d'intégrité après avoir résolu tout problème détecté.
+
+|===
+| Vérifiez la description | Nœud/cluster | Action requise pour résoudre | Article de la base de connaissances avec procédure 
+
+
+| DRS est-il activé et entièrement automatisé ? | Cluster | Activez DRS et assurez-vous qu'il est entièrement automatisé. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Virtual_Storage_Console_for_VMware_vSphere/How_to_enable_DRS_in_vSphere["Voir cette base de connaissances"^]. REMARQUE : si vous disposez d'une licence standard, mettez l'hôte ESXi en mode maintenance et ignorez cet avertissement d'échec du contrôle d'intégrité. 
+
+
+| DPM est-il désactivé dans vSphere ? | Cluster | Désactivez Distributed Power Management. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Plug-in_for_vCenter_server/How_to_disable_DPM_in_VMware_vCenter["Voir cette base de connaissances"^]. 
+
+
+| Le contrôle d'admission HA est-il désactivé dans vSphere ? | Cluster | Désactivez le contrôle d'admission HA. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_control_enable_HA_admission_in_vSphere["Voir cette base de connaissances"^]. 
+
+
+| Est-ce que FT est activé pour une machine virtuelle sur un hôte du cluster ? | Nœud | Suspendre la tolérance aux pannes sur toutes les machines virtuelles affectées. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_suspend_fault_tolerance_on_virtual_machines_in_a_vSphere_cluster["Voir cette base de connaissances"^]. 
+
+
+| Le système vCenter comporte-t-il des alarmes critiques pour le cluster ? | Cluster | Lancez vSphere et résolvez et/ou acceptez toutes les alertes avant de poursuivre. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| VCenter émet-il des alertes d'information génériques/globales ? | Cluster | Lancez vSphere et résolvez et/ou acceptez toutes les alertes avant de poursuivre. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| Les services de gestion sont-ils à jour ? | Système HCI | Vous devez mettre à jour les services de gestion avant d'effectuer une mise à niveau ou d'effectuer des vérifications avant mise à niveau. | Aucune base de connaissances requise pour résoudre le problème. Voir link:task_hcc_update_management_services.html["cet article"] pour en savoir plus. 
+
+
+| Y a-t-il des erreurs sur le nœud ESXi actuel dans vSphere ? | Nœud | Lancez vSphere et résolvez et/ou acceptez toutes les alertes avant de poursuivre. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| Un support virtuel est-il monté sur une VM sur un hôte du cluster ? | Nœud | Démontez tous les disques de média virtuel (CD/DVD/disquette) des machines virtuelles. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| La version de BMC est-elle la version minimale requise pour la prise en charge des produits de sébaste ? | Nœud | Mettez à jour manuellement le micrologiciel du contrôleur BMC. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| L'hôte ESXi est-il opérationnel ? | Nœud | Démarrez votre hôte ESXi. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| Certaines machines virtuelles résident-elles sur le stockage ESXi local ? | Nœud/VM | Suppression ou migration d'un stockage local rattaché à des machines virtuelles | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| BMC est-il à la hausse ? | Nœud | Mettez votre contrôleur BMC sous tension et assurez-vous qu'il est connecté à un réseau auquel ce nœud de gestion peut accéder. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| Existe-t-il des hôtes partenaires ESXi ? | Nœud | Rendre un ou plusieurs hôtes ESXi disponibles en cluster (pas en mode maintenance) pour migrer des machines virtuelles. | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| Pouvez-vous vous connecter à BMC via le protocole IPMI ? | Nœud | Activez le protocole IPMI sur le contrôleur BMC (Baseboard Management Controller). | Aucune base de connaissances requise pour résoudre le problème. 
+
+
+| L'hôte ESXi est-il correctement mappé sur l'hôte matériel (BMC) ? | Nœud | L'hôte ESXi n'est pas correctement mappé au contrôleur BMC (Baseboard Management Controller). Corrigez le mappage entre l'hôte ESXi et l'hôte matériel. | Aucune base de connaissances requise pour résoudre le problème. Voir link:task_hcc_edit_bmc_info.html["cet article"] pour en savoir plus. 
+
+
+| Quel est l'état des nœuds témoins dans le cluster ? Aucun des nœuds témoins identifiés n'est opérationnel. | Nœud | Un noeud témoin ne s'exécute pas sur un autre hôte ESXi. Mettez le nœud témoin sous tension sur un autre hôte ESXi et exécutez de nouveau le contrôle d'état. *Un noeud témoin doit s'exécuter en permanence dans l'installation de HCI*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Voir cette base de connaissances"^] 
+
+
+| Quel est l'état des nœuds témoins dans le cluster ? Le nœud témoin est opérationnel sur cet hôte ESXi et le nœud témoin secondaire n'est pas opérationnel. | Nœud | Un noeud témoin ne s'exécute pas sur un autre hôte ESXi. Mettez le nœud témoin sous tension sur un autre hôte ESXi. Lorsque vous êtes prêt à mettre à niveau cet hôte ESXi, arrêtez le nœud témoin exécuté sur cet hôte ESXi et relancez le contrôle d'état. *Un noeud témoin doit s'exécuter en permanence dans l'installation de HCI*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Voir cette base de connaissances"^] 
+
+
+| Quel est l'état des nœuds témoins dans le cluster ? Le nœud témoin est opérationnel sur cet hôte ESXi et le nœud secondaire est opérationnel, mais s'exécute sur le même hôte ESXi. | Nœud | Les deux nœuds témoin s'exécutent sur cet hôte ESXi. Déplacez un nœud témoin vers un autre hôte ESXi. Lorsque vous êtes prêt à mettre à niveau cet hôte ESXi, arrêtez le nœud témoin restant sur cet hôte ESXi et relancez le contrôle d'état. *Un noeud témoin doit s'exécuter en permanence dans l'installation de HCI*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Voir cette base de connaissances"^] 
+
+
+| Quel est l'état des nœuds témoins dans le cluster ? Le nœud témoin est opérationnel sur cet hôte ESXi et le nœud témoin secondaire est opérationnel sur un autre hôte ESXi. | Nœud | Un nœud témoin s'exécute localement sur cet hôte ESXi. Lorsque vous êtes prêt à mettre à niveau cet hôte ESXi, arrêtez le nœud témoin uniquement sur cet hôte ESXi et relancez le contrôle d'état. *Un noeud témoin doit s'exécuter en permanence dans l'installation de HCI*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Voir cette base de connaissances"^] 
+|===
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

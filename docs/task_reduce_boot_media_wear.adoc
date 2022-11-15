@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/task_reduce_boot_media_wear.html 
+summary: 'Découvrez comment réduire l"usure des supports de démarrage sur un nœud de calcul NetApp HCI.' 
+keywords: netapp, hci, deployment, review, deploy, boot, drive, wear 
+---
+= Réduisez l'usure des supports de démarrage sur un nœud de calcul NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous utilisez une mémoire Flash ou un support de démarrage NVDIMM avec un nœud de calcul NetApp HCI, conserver les journaux système sur ce support entraîne des écritures fréquentes sur ce support. Ceci peut finir par dégrader la mémoire flash. Suivez les instructions de l'article suivant de la base de connaissances pour déplacer la consignation des hôtes et le fichier de vidage de mémoire vers un emplacement de stockage partagé, ce qui peut contribuer à empêcher la dégradation du support de démarrage au fil du temps et à éviter les erreurs de disque de démarrage complet.
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_reduce_wear_on_the_boot_drive_of_a_Netapp_HCI_compute_node["Comment réduire l'usure sur le disque de démarrage d'un nœud de calcul NetApp HCI"^]
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

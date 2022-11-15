@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_cables.html 
+summary: En savoir plus sur les exigences de câblage réseau de NetApp HCI. 
+keywords: netapp, hci, network, cable, requirements 
+---
+= Exigences en matière de câblage réseau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, network, cable, requirements
+
+
+[role="lead"]
+Vous pouvez utiliser les instructions suivantes pour vous assurer que vous disposez d'un nombre suffisant de câbles réseau adaptés à la taille de votre déploiement. Pour les ports RJ45, vous devez utiliser des câbles de catégorie 5e ou 6.
+
+* Configuration de nœuds de calcul à 2 câbles : chaque nœud de calcul doit être connecté à un réseau 10 GbE via deux interfaces SFP+/SFP28 (un câble Cat 5e/6 supplémentaire est facultatif pour la gestion hors bande).
+* Configuration de nœuds de calcul à 6 câbles : chaque nœud de calcul doit être connecté à un réseau 10 GbE via quatre interfaces SFP+/SFP28 et à un réseau 1 GbE via deux câbles Cat 5e/6 (un câble Cat 5e/6 supplémentaire est facultatif pour la gestion hors bande).
+* Chaque nœud de stockage doit être connecté à un réseau 10 GbE via deux interfaces SFP+/SFP28 et à un réseau 1 GbE via deux câbles catégorie 5e/6 (un câble Cat 5e/6 supplémentaire est facultatif pour la gestion hors bande).
+* Assurez-vous que les câbles réseau que vous utilisez pour connecter le système NetApp HCI au réseau sont suffisamment longs pour atteindre facilement vos commutateurs.
+
+
+Par exemple, un déploiement contenant quatre nœuds de stockage et trois nœuds de calcul (qui utilise la configuration à 6 câbles) nécessite le nombre suivant de câbles réseau :
+
+* (14) câbles catégorie 5e/6 avec connecteurs RJ45 (plus sept câbles pour le trafic IPMI, si nécessaire)
+* (20) câbles Twinax avec les connecteurs SFP28/SFP+
+
+
+Ceci est dû aux raisons suivantes :
+
+* Quatre nœuds de stockage nécessitent huit (8) câbles catégorie 5e/6 et huit (8) câbles Twinax.
+* Trois nœuds de calcul utilisant la configuration à six câbles nécessitent six (6) câbles CAT 5e/6 et douze (12) câbles Twinax.
+
+
+
+NOTE: Dans une configuration à 6 câbles, deux ports sont réservés à VMware ESXi et configurés et gérés par le moteur de déploiement NetApp. Vous ne pouvez ni accéder à ces ports dédiés ESXi ni les gérer avec l'interface utilisateur Web Element TUI ou Element.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

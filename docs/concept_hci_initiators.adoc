@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_initiators.html 
+summary: 'Découvrez les initiateurs et comment les utiliser pour autoriser l"accès au stockage dans des groupes d"accès de volume.' 
+keywords: netapp, hci, initiator, storage volume, solidfire volume, element volume, access group 
+---
+= Initiateurs
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les initiateurs permettent aux clients externes d'accéder aux volumes d'un cluster, servant de point d'entrée pour la communication entre les clients et les volumes. Vous pouvez utiliser des initiateurs pour l'accès CHAP aux volumes de stockage plutôt qu'en fonction du compte. Un seul initiateur, lorsqu'il est ajouté à un groupe d'accès de volume, permet aux membres du groupe d'accès de volume d'accéder à tous les volumes de stockage ajoutés au groupe sans nécessiter d'authentification. Un initiateur ne peut appartenir à qu'un seul groupe d'accès.
+
+
+
+== Trouvez plus d'informations
+
+* link:task_hcc_manage_initiators.html["Gestion des initiateurs"]
+* link:concept_hci_volume_access_groups.html["Groupes d'accès de volume"]
+* link:task_hcc_manage_vol_access_groups.html["Gérez les groupes d'accès aux volumes"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

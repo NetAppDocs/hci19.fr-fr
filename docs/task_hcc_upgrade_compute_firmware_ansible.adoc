@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_upgrade_compute_firmware_ansible.html 
+summary: 'Pour les nœuds de calcul H-Series, NetApp offre un rôle Ansible qui vous permet d"automatiser la mise à niveau du micrologiciel pour les composants matériels tels que le BMC, le BIOS et la carte réseau.' 
+keywords: netapp, hci, on premise, cluster, element, compute node, ansible upgrade, upgrade role 
+---
+= Automatisez les mises à niveau du firmware des nœuds de calcul avec Ansible
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez mettre à jour le firmware du système sur les nœuds de calcul NetApp HCI, y compris les firmwares des composants tels que BMC, BIOS et NIC, à l'aide des workflows du contrôle du cloud hybride NetApp. Pour les installations avec de grands clusters de calcul, vous pouvez automatiser les workflows à l'aide d'Ansible, afin d'effectuer une mise à niveau propagée de l'ensemble du cluster.
+
+
+NOTE: Le rôle Ansible qui permet d'automatiser les mises à niveau du firmware des nœuds de calcul est disponible auprès de NetApp. Cependant, l'automatisation est un composant auxiliaire qui requiert une configuration et des composants logiciels supplémentaires. La modification de l'automatisation Ansible est uniquement prise en charge avec les meilleurs efforts.
+
+
+NOTE: Le rôle Ansible pour les mises à niveau fonctionne uniquement sur les nœuds de calcul NetApp HCI H-Series. Vous ne pouvez pas utiliser ce rôle pour mettre à niveau des nœuds de calcul tiers.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Préparation et conditions préalables pour les mises à niveau du micrologiciel* : votre installation NetApp HCI doit être prête pour la mise à niveau du micrologiciel, comme indiqué dans les instructions pour link:task_hcc_upgrade_compute_node_firmware.html["effectuer des mises à niveau du firmware"].
+* *Préparation à l'exécution de l'automatisation sur le nœud de contrôle Ansible* : un serveur physique ou virtuel pour exécuter l'automatisation des mises à jour de firmware dans Ansible.
+
+
+Dans un environnement de production, il est recommandé de mettre à jour les nœuds de calcul d'un cluster d'installation NetApp HCI de manière propagée. Les nœuds de calcul de cette installation sont installés à la fois, sur un nœud après l'autre. Les API de NetApp Hybrid Cloud Control permettent d'orchestrer la mise à niveau du firmware du nœud de calcul en général pour un nœud de calcul unique, notamment en exécutant des vérifications de l'état, en plaçant ESXi sur les nœuds de calcul en maintenance et en redémarrant le nœud de calcul afin d'appliquer les mises à niveau du firmware. Le rôle Ansible offre la possibilité d'orchestrer la mise à niveau de firmware pour un groupe de nœuds de calcul ou de clusters entiers.
+
+Pour commencer, accédez au https://github.com/NetApp-Automation/nar_compute_firmware_upgrade["Référentiel NetApp Ansible sur GitHub"^] et téléchargez le `nar_compute_nodes_firmware_upgrades` rôle et documentation.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

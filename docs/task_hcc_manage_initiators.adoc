@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_initiators.html 
+summary: Découvrez comment ajouter et gérer des initiateurs qui permettent la communication entre des clients externes et des volumes de stockage Element. 
+keywords: netapp, hci, initiator, storage, element, access group 
+---
+= Création et gestion des initiateurs
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez utiliser link:concept_hci_initiators.html["initiateurs"] Pour l'accès CHAP aux volumes plutôt que basé sur les comptes. Vous pouvez créer et supprimer des initiateurs, et leur donner des alias conviviaux pour simplifier l'administration et l'accès aux volumes. Lorsque vous ajoutez un initiateur à un groupe d'accès de volume, cet initiateur permet d'accéder à tous les volumes du groupe.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous disposez des informations d'identification d'administrateur de cluster.
+* Vous avez mis à niveau vos services de gestion vers au moins la version 2.17. La gestion de l'initiateur NetApp Hybrid Cloud Control n'est pas disponible dans les versions précédentes de packs de services.
+
+
+.Options
+*  an initiator
+*  initiators to a volume access group
+*  an initiator alias
+*  initiators
+
+
+
+
+== Créer un initiateur
+
+Vous pouvez créer des initiateurs iSCSI ou Fibre Channel et éventuellement leur attribuer des alias.
+
+Le format accepté d'un IQN initiateur est `iqn.yyyy-mm` où y et m sont des chiffres suivis d'un texte qui ne doit contenir que des chiffres, des caractères alphabétiques minuscules et un point (`.`), deux points (`:`) ou tiret (`-`). Voici un exemple de format :
+
+[listing]
+----
+iqn.2010-01.com.solidfire:c2r9.fc0.2100000e1e09bb8b
+----
+Le format accepté d'un WWPN de l'initiateur Fibre Channel est `:Aa:bB:CC:dd:11:22:33:44` ou `AabBCCdd11223344`. Voici un exemple de format :
+
+[listing]
+----
+5f:47:ac:c0:5c:74:d4:02
+----
+.Étapes
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *initiateurs*.
+. Sélectionnez le bouton *Créer initiateurs*.
++
+|===
+| Option | Étapes 
+
+
+| Créer un ou plusieurs initiateurs  a| 
+.. Saisissez l'IQN ou le WWPN de l'initiateur dans le champ *IQN/WWPN*.
+.. Saisissez un nom convivial pour l'initiateur dans le champ *alias*.
+.. (Facultatif) sélectionnez *Ajouter initiateur* pour ouvrir de nouveaux champs d'initiateur ou utilisez plutôt l'option de création groupée.
+.. Sélectionnez *Créer initiateurs*.
+
+
+
+
+| Créez des initiateurs en bloc  a| 
+.. Sélectionnez *Bulk Add IQN/WWPN*.
+.. Entrez une liste d'IQN ou de WWPN dans la zone de texte. Chaque IQN ou WWPN doit être séparé par une virgule ou un espace, ou sur sa propre ligne.
+.. Sélectionnez *Ajouter IQN/WWPN*.
+.. (Facultatif) Ajoutez des alias uniques à chaque initiateur.
+.. Supprimez tous les initiateurs de la liste qui peuvent déjà exister dans l'installation.
+.. Sélectionnez *Créer initiateurs*.
+
+
+|===
+
+
+
+
+== Ajoutez des initiateurs à un groupe d'accès de volume
+
+Vous pouvez ajouter des initiateurs à un groupe d'accès de volume. Lorsque vous ajoutez un initiateur à un groupe d'accès de volume, celui-ci permet d'accéder à tous les volumes de ce groupe.
+
+.Étapes
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *initiateurs*.
+. Sélectionnez un ou plusieurs initiateurs à ajouter.
+. Sélectionnez *actions > Ajouter au groupe d'accès*.
+. Sélectionnez le groupe d'accès.
+. Confirmez vos modifications en sélectionnant *Ajouter initiateur*.
+
+
+
+
+== Modifier un alias d'initiateur
+
+Vous pouvez modifier l'alias d'un initiateur existant ou ajouter un alias s'il n'existe pas déjà.
+
+.Étapes
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *initiateurs*.
+. Dans la colonne *actions*, développez le menu des options de l'initiateur.
+. Sélectionnez *Modifier*.
+. Apportez les modifications nécessaires à l'alias ou ajoutez un nouvel alias.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Supprimer les initiateurs
+
+Vous pouvez supprimer un ou plusieurs initiateurs. Lorsque vous supprimez un initiateur, le système le supprime de tout groupe d'accès de volume associé. Toutes les connexions utilisant l'initiateur restent valides jusqu'à ce que la connexion soit réinitialisée.
+
+.Étapes
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *initiateurs*.
+. Supprimer un ou plusieurs initiateurs :
++
+.. Sélectionnez un ou plusieurs initiateurs à supprimer.
+.. Sélectionnez *actions > Supprimer*.
+.. Confirmez l'opération de suppression et sélectionnez *Oui*.
+
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* link:concept_hci_initiators.html["En savoir plus sur les initiateurs"]
+* link:concept_hci_volume_access_groups.html["En savoir plus sur les groupes d'accès aux volumes"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

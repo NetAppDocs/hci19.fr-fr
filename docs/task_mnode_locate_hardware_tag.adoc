@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_locate_hardware_tag.html 
+summary: 'Vous avez besoin de la balise matérielle pour ajouter vos ressources de nœud de calcul à la configuration du nœud de gestion à l"aide de l"interface utilisateur de l"API REST.' 
+keywords: netapp, management node, rest api, hci, hardware tag 
+---
+= Localisation d'une balise matérielle pour un nœud de calcul
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous avez besoin de la balise matérielle pour ajouter vos ressources de nœud de calcul à la configuration du nœud de gestion à l'aide de l'interface utilisateur de l'API REST.
+
+Cette section explique comment localiser la balise matérielle de votre nœud de calcul.
+
+.Étapes
+. Sélectionnez l'hôte dans le navigateur vSphere Web client.
+. Sélectionnez l'onglet *moniteur* et sélectionnez *Santé du matériel*.
+. En fonction de la version de vSphere que vous utilisez, vous pouvez localiser le numéro d'identification matériel à l'un des emplacements suivants sur l'écran *Hardware Health*.
++
+** Vérifiez si l'étiquette est répertoriée avec le fabricant et le numéro de modèle du BIOS.
++
+image:../media/hw_tag_67.PNG["État du matériel"]
+
+** Sélectionnez l'onglet *configurer*. Dans la barre latérale, sélectionnez *matériel* et *Présentation*. Vérifiez si l'étiquette matérielle est répertoriée dans le `System` tableau.
++
+image:../media/hw_tag_70.PNG["État du matériel"]
+
+
+
+. Copier et enregistrer la valeur pour `Tag`.
+. Pour ajouter votre ressource nœud de calcul au nœud de gestion, accédez à xref:task_mnode_add_assets.adoc[Ajoutez des ressources de calcul et de contrôleur au nœud de gestion].
+

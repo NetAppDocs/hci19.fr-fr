@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_nodes.html 
+summary: Les nœuds sont le matériel associé à un cluster pour être accessible sous forme de ressources de calcul ou de stockage bloc. 
+keywords: netapp, hci, storage nodes, volumes, compute nodes, witness nodes, management node 
+---
+= Nœuds
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les nœuds sont des ressources matérielles ou virtuelles regroupées dans un cluster afin de fournir des fonctionnalités de calcul et de stockage de blocs.
+
+Les logiciels NetApp HCI et Element définissent différents rôles de nœud pour un cluster. Les quatre types de rôles de nœud sont *noeud de gestion*, *noeud de stockage*, *noeud de calcul* et *noeud témoin NetApp HCI*.
+
+
+
+== Nœud de gestion
+
+Le nœud de gestion (parfois abrégé en nœud M) interagit avec un cluster de stockage pour effectuer des actions de gestion, mais il n'est pas membre du cluster de stockage. Les nœuds de gestion recueillent régulièrement des informations sur le cluster via des appels d'API et les signalent à Active IQ à des fins de surveillance à distance (si cette option est activée). Des nœuds de gestion sont également chargés de coordonner les mises à niveau logicielles des nœuds du cluster.
+
+Le nœud de gestion est une machine virtuelle (VM) qui s'exécute en parallèle avec un ou plusieurs clusters de stockage logiciels Element. Outre les mises à niveau, il fournit des services système comprenant la surveillance et la télémétrie, une gestion des ressources et des paramètres du cluster, des tests système et des utilitaires. Il permet également d'activer l'accès au support NetApp pour la résolution de problèmes. Avec la version 11.3 d'Element, le nœud de gestion fonctionne comme un hôte de microservice, ce qui permet de mettre à jour plus rapidement des services logiciels spécifiques en dehors des versions majeures. Ces microservices ou services de gestion, comme le collecteur Active IQ, les QoSSIOC pour le plug-in vCenter et le service de nœuds de gestion, sont fréquemment mis à jour en tant que packs de services.
+
+
+
+== Nœuds de stockage
+
+Les nœuds de stockage NetApp HCI sont matériels qui fournissent les ressources de stockage d'un système NetApp HCI. Les disques du nœud contiennent des espaces de bloc et de métadonnées pour le stockage et la gestion des données. Chaque nœud contient une image d'usine du logiciel NetApp Element. Les nœuds de stockage NetApp HCI peuvent être gérés à l'aide du point d'extension de gestion NetApp Element.
+
+
+
+== Nœuds de calcul
+
+Les nœuds de calcul NetApp HCI sont matériels qui fournissent des ressources de calcul, telles que le processeur, la mémoire et les ressources réseau, nécessaires à la virtualisation lors de l'installation de NetApp HCI. Comme chaque serveur exécute VMware ESXi, la gestion du nœud de calcul NetApp HCI (ajout ou suppression d'hôtes) doit être effectuée en dehors du plug-in dans le menu hôtes et clusters de vSphere. Qu'il s'agisse d'un cluster de stockage à quatre nœuds ou d'un cluster de stockage à deux nœuds, le nombre minimal de nœuds de calcul reste deux pour un déploiement NetApp HCI.
+
+
+
+== Nœuds témoins
+
+Les nœuds NetApp HCI Witness sont des machines virtuelles qui s'exécutent sur des nœuds de calcul en parallèle avec un cluster de stockage basé sur le logiciel Element. Les nœuds témoins n'hébergent pas les services de tranche ou de bloc. Un nœud Witness permet la disponibilité du cluster de stockage en cas de défaillance d'un nœud de stockage. Vous pouvez gérer et mettre à niveau les nœuds Witness de la même manière que les autres nœuds de stockage. Un cluster de stockage peut disposer d'un maximum de quatre nœuds témoin. Leur but principal est de s'assurer qu'il existe suffisamment de nœuds de grappe pour former un quorum d'ensemble valide.
+
+|===
+
+
+ a| 
+*Meilleure pratique :* configurer les machines virtuelles du nœud témoin pour utiliser le datastore local du nœud de calcul (défini par défaut par NDE), ne les configurer pas sur du stockage partagé, comme les volumes de stockage SolidFire. Pour empêcher la migration automatique des machines virtuelles, définissez le niveau d'automatisation DRS (Distributed Resource Scheduler) de la machine virtuelle Witness Node sur *Disabled*. Cela empêche les deux nœuds témoin de s'exécuter sur le même nœud de calcul et de créer une configuration de paire haute disponibilité.
+
+|===
+
+TIP: En savoir plus sur link:hci_prereqs_witness_nodes.html["Conditions requises pour les ressources du nœud témoin"] et link:hci_prereqs_ip_address.html["Exigences relatives à l'adresse IP du nœud témoin"].
+
+
+NOTE: Dans un cluster de stockage à deux nœuds, au moins deux nœuds Witness sont déployés pour assurer la redondance en cas de défaillance du nœud témoin. Lorsque le processus d'installation de NetApp HCI installe Witness Nodes, un modèle de machine virtuelle est stocké dans VMware vCenter que vous pouvez utiliser pour redéployer un nœud témoin s'il est accidentellement retiré, perdu ou corrompu. Vous pouvez également utiliser le modèle pour redéployer un nœud témoin si vous devez remplacer un nœud de calcul défaillant qui héberge le nœud Witness. Pour obtenir des instructions, consultez la section *Redeploy Witness Nodes clusters de stockage à deux et trois nœuds* link:task_hci_h410crepl.html["ici"].
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Cluster de stockage à deux nœuds NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

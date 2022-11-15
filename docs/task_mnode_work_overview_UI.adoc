@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_work_overview_UI.html 
+summary: 'Grâce à l"interface du nœud de gestion (https://<mNodeIP>:442)[], vous pouvez modifier les paramètres du réseau et du cluster, exécuter des tests système ou utiliser des utilitaires système.' 
+keywords: 'netapp, management node ui, mnode ui, :442, element' 
+---
+= Présentation de l'interface du nœud de gestion
+:allow-uri-read: 
+
+
+[role="lead"]
+Grâce à l'interface du nœud de gestion (`https://<mNodeIP>:442`), vous pouvez modifier les paramètres du réseau et du cluster, exécuter des tests système ou utiliser des utilitaires système.
+
+Les tâches que vous pouvez effectuer sur l'interface du nœud de gestion :
+
+* link:task_mnode_enable_alerts.html["Configurez le contrôle des alertes sur NetApp HCI"]
+* link:task_mnode_settings.html["Modifiez et testez les paramètres réseau, cluster et système du nœud de gestion"]
+* link:task_mnode_run_system_utilities.html["Exécutez les utilitaires du système à partir du nœud de gestion"]
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* link:task_mnode_access_ui.html["Accédez au nœud de gestion"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_timekeeping.html 
+summary: En savoir plus sur les exigences de DNS et de timeconservation pour NetApp HCI. 
+keywords: netapp, hci, timekeeping, NTP, DNS 
+---
+= Exigences relatives au DNS et à la tenue de temps
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, timekeeping, NTP, DNS
+
+
+[role="lead"]
+Avant le déploiement, vous devez préparer des enregistrements DNS (Domain Name System) pour votre système NetApp HCI et collecter des informations sur le serveur NTP. NetApp HCI nécessite un serveur DNS avec les entrées DNS correctes et un serveur NTP pour réussir le déploiement.
+
+Avant de déployer NetApp HCI, effectuez les préparations suivantes pour les DNS et les serveurs de temps :
+
+* Créez toutes les entrées DNS nécessaires pour les hôtes (par exemple, les nœuds de calcul ou de stockage individuels) et indiquez comment les entrées de l'hôte sont mappées aux adresses IP respectives. Pendant le déploiement, vous devez attribuer un préfixe à votre cluster de stockage qui sera appliqué à chaque hôte. Pour éviter toute confusion, gardez vos plans de nommage DNS à l'esprit lorsque vous choisissez un préfixe.
+* Si vous déployez NetApp HCI avec une nouvelle installation VMware vSphere utilisant un nom de domaine complet, vous devez créer un enregistrement de pointeur (PTR) et un enregistrement d'adresse (A) pour vCenter Server sur tout serveur DNS utilisé avant le déploiement.
+* Si vous déployez NetApp HCI avec une nouvelle installation vSphere en utilisant uniquement des adresses IP, il n'est pas nécessaire de créer de nouveaux enregistrements DNS pour vCenter.
+* NetApp HCI requiert un serveur NTP valide pour la gestion du temps. Vous pouvez utiliser un serveur de temps accessible au public si vous n'en avez pas dans votre environnement.
+* Assurez-vous que toutes les horloges de nœuds de stockage et de calcul sont synchronisées les unes avec les autres et que les horloges des périphériques que vous utilisez pour vous connecter à NetApp HCI sont synchronisées avec les nœuds NetApp HCI.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

@@ -1,0 +1,299 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_hserieschassisrepl.html 
+summary: 'Si votre châssis présente une panne de ventilateur ou un problème d"alimentation, vous devez le remplacer dès que possible. Les étapes de la procédure de remplacement du châssis dépendent de la capacité du cluster et de la configuration NetApp HCI, qui nécessite une analyse approfondie et une planification minutieuse. Vous devez contacter le support NetApp pour obtenir des conseils et commander un châssis de remplacement.' 
+keywords: netapp, hci, chassis replacement,2U chassis replacement, h-series 
+---
+= Remplacement du châssis 2U H-Series
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre châssis présente une panne de ventilateur ou un problème d'alimentation, vous devez le remplacer dès que possible. Les étapes de la procédure de remplacement du châssis dépendent de la capacité du cluster et de la configuration NetApp HCI, qui nécessite une analyse approfondie et une planification minutieuse. Vous devez contacter le support NetApp pour obtenir des conseils et commander un châssis de remplacement.
+
+Avant de remplacer le châssis, tenez compte des points suivants :
+
+* Votre rack dispose-t-il d'espace supplémentaire pour un nouveau châssis ?
+* L'un des châssis de votre déploiement reste-t-il des emplacements de nœud inutilisés ?
+* Si votre rack dispose d'un espace supplémentaire, pouvez-vous déplacer chacun des nœuds du châssis défectueux vers le nouveau châssis, un à la fois ? Vous devez garder à l'esprit que ce processus peut prendre du temps.
+* Votre cluster de stockage peut-il rester en ligne lorsque vous supprimez les nœuds qui font partie du châssis défectueux ?
+* Vos machines virtuelles et votre cluster ESXi sont-ils en mesure de gérer la charge de travail lorsque vous supprimez les nœuds de calcul qui font partie du châssis défaillant ?
+
+
+Choisissez l'une des options suivantes : the chassis when additional unused space is available in the rack
+ the chassis when additional unused space is not available in the rack
+
+
+
+== Remplacez le châssis lorsque de l'espace inutilisé supplémentaire est disponible dans le rack
+
+Si votre rack dispose d'espace supplémentaire, vous pouvez installer le nouveau châssis et déplacer les nœuds un par un vers le nouveau châssis. Si l'un des châssis installés contient des emplacements de nœud inutilisés, vous pouvez déplacer les nœuds du châssis défectueux vers les emplacements inutilisés un par un, puis retirer le châssis défectueux. Avant d'effectuer la procédure, s'assurer que les longueurs de câble sont suffisantes et que les ports de commutateur sont disponibles.
+
+
+NOTE: Les étapes de déplacement des nœuds de calcul sont différentes des étapes de déplacement des nœuds de stockage. Assurez-vous que les nœuds sont correctement arrêtés avant de les déplacer. Une fois que vous avez déplacé tous les nœuds du châssis défaillant, vous devez retirer le châssis du rack et le renvoyer à NetApp.
+
+
+
+=== Installez le nouveau châssis
+
+Vous pouvez installer le nouveau châssis dans l'espace rack disponible, et y déplacer les nœuds.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
+* Vous avez le châssis de remplacement.
+* Vous avez un ascenseur ou deux personnes ou plus pour effectuer les étapes.
+* Vous avez un tournevis cruciforme n° 1.
+
+
+.Étapes
+. Mettre en place une protection antistatique.
+. Déballez le châssis de remplacement. Conservez l'emballage à partir de quand vous renvoyez le châssis défectueux à NetApp.
+. Insérez les rails qui vous ont été livrés avec le châssis.
+. Faites glisser le châssis de remplacement dans le rack.
++
+
+TIP: Utilisez toujours suffisamment de main-d'œuvre ou un lève-personnes lors de l'installation du châssis.
+
+. Fixez le châssis sur le rack à l'aide des vis de fixation avant, puis serrez les vis à l'aide du tournevis.
+
+
+
+
+=== Déplace un nœud de calcul
+
+Avant de déplacer un nœud de calcul vers le nouveau châssis ou vers un châssis existant doté de slots supplémentaires inutilisés, vous devez migrer les machines virtuelles (VM), arrêter correctement le nœud et étiqueter les câbles insérés dans le nœud.
+
+
+NOTE: Assurez-vous de disposer d'une protection antistatique lorsque vous déplacez le nœud.
+
+.Étapes
+. Noter le numéro de série du nœud depuis l'autocollant situé à l'arrière du nœud.
+. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*, sélectionnez un nœud (hôte), puis sélectionnez *moniteur > État du matériel > capteurs*.
+. Dans la section *capteurs*, recherchez le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
+. Une fois le numéro de série correspondant trouvé, migrez ces machines virtuelles vers un autre hôte disponible.
++
+
+NOTE: Pour connaître les étapes de migration, reportez-vous à la documentation VMware.
+
+. Cliquez avec le bouton droit de la souris sur le nœud et sélectionnez *alimentation > Arrêter*. Vous êtes maintenant prêt à retirer physiquement le nœud du châssis.
+. Etiqueter le nœud et tous les câbles à l'arrière du nœud.
+. Retirez le nœud du châssis en tirant la poignée de came sur le côté droit de chaque nœud et en tirant le nœud vers l'extérieur à l'aide des deux poignées de came.
+. Réinstallez le nœud dans le nouveau châssis en poussant le nœud vers l'intérieur jusqu'à ce que vous entendiez un clic. Les étiquettes que vous aviez attachées au nœud avant que vous n'ayez supprimé ce guide d'aide. Le nœud s'allume automatiquement lorsque vous l'installez correctement.
++
+
+CAUTION: Assurez-vous que vous prenez en charge le nœud depuis le dessous lorsque vous l'installez. N'utilisez pas de force excessive tout en poussant le nœud dans le châssis.
+
++
+
+NOTE: Si vous installez le nœud dans le nouveau châssis, assurez-vous d'en installer le dans son slot d'origine dans le châssis.
+
+. Reconnectez les câbles aux mêmes ports à l'arrière du nœud. Les étiquettes que vous aviez sur les câbles lorsque vous les avez débranchées vous guident.
++
+
+CAUTION: Veillez à ne pas forcer les câbles dans les ports, car vous pourriez endommager les câbles, les ports ou les deux.
+
+. Vérifiez que le nœud de calcul (hôte) est répertorié dans le cluster ESXi dans le client Web VMware vSphere.
+. Effectuez ces étapes pour tous les nœuds de calcul du châssis défaillant.
+
+
+
+
+=== Déplace un nœud de stockage
+
+Avant de déplacer les nœuds de stockage vers le nouveau châssis, vous devez retirer les disques, arrêter les nœuds correctement et étiqueter tous les composants.
+
+.Étapes
+. Identifiez le nœud que vous allez supprimer, comme suit :
++
+.. Notez le numéro de série du nœud depuis l'autocollant situé à l'arrière du nœud.
+.. Dans le client Web VMware vSphere, sélectionnez *NetApp Element Management* et copiez l'adresse IP MVIP.
+.. Utilisez l'adresse IP MVIP d'un navigateur Web pour vous connecter à l'interface utilisateur du logiciel NetApp Element avec le nom d'utilisateur et le mot de passe que vous avez configurés dans le moteur de déploiement NetApp.
+.. Sélectionnez *Cluster > nœuds*.
+.. Faites correspondre le numéro de série que vous avez indiqué avec le numéro de série (numéro de série) indiqué.
+.. Noter l'ID du nœud.
+
+
+. Une fois le nœud identifié, éloignez les sessions iSCSI du nœud à l'aide de l'appel d'API suivant :
+`wget --no-check-certificate -q --user=<USER> --password=<PASS> -O - --post-data '{ "method":"MovePrimariesAwayFromNode", "params":{"nodeID":<NODEID>} }' https://<MVIP>/json-rpc/8.0`MVIP est l'adresse IP MVIP, NODEID est l'ID de nœud, UTILISATEUR est le nom d'utilisateur que vous avez configuré dans le moteur de déploiement NetApp lorsque vous configurez NetApp HCI et LE MOT de passe QUE vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI.
+. Sélectionnez *Cluster > lecteurs* pour supprimer les lecteurs associés au nœud.
++
+
+NOTE: Attendez que les disques que vous avez supprimés s'affichent comme disponibles avant de supprimer le nœud.
+
+. Sélectionnez *Cluster > nœuds > actions > Supprimer* pour supprimer le nœud.
+. Utilisez l'appel d'API suivant pour arrêter le nœud :
+`wget --no-check-certificate -q --user=<USER> --password=<PASS> -O - --post-data '{ "method":"Shutdown", "params":{"option":"halt", "nodes":[ <NODEID>]} }' https://<MVIP>/json-rpc/8.0`MVIP est l'adresse IP MVIP, NODEID est l'ID de nœud, UTILISATEUR est le nom d'utilisateur que vous avez configuré dans le moteur de déploiement NetApp lorsque vous configurez NetApp HCI et LE MOT de passe QUE vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI. Une fois le nœud arrêté, vous êtes prêt à le retirer physiquement du châssis.
+. Retirez les disques du nœud du châssis en procédant comme suit :
++
+.. Retirez le panneau.
+.. Etiqueter les disques.
+.. Ouvrez la poignée de came et faites glisser chaque entraînement avec précaution à l'aide des deux mains.
+.. Placez les disques sur une surface plane et antistatique.
+
+
+. Retirez le nœud du châssis en procédant comme suit :
++
+.. Etiqueter le nœud et les câbles qui y sont reliés.
+.. Abaissez la poignée de came sur le côté droit de chaque nœud et tirez le nœud vers l'extérieur à l'aide des deux poignées de came.
+
+
+. Réinstallez le nœud dans le châssis en poussant le nœud vers l'intérieur jusqu'à ce que vous entendiez un clic. Les étiquettes que vous aviez attachées au nœud avant que vous n'ayez supprimé ce guide d'aide.
++
+
+CAUTION: Assurez-vous que vous prenez en charge le nœud depuis le dessous lorsque vous l'installez. N'utilisez pas de force excessive tout en poussant le nœud dans le châssis.
+
++
+
+NOTE: Si vous installez le nœud dans le nouveau châssis, assurez-vous d'en installer le dans son slot d'origine dans le châssis.
+
+. Installez les disques dans leurs emplacements respectifs du nœud en appuyant sur la poignée de came de chaque disque jusqu'à ce qu'il s'enclenche.
+. Reconnectez les câbles aux mêmes ports à l'arrière du nœud. Les étiquettes que vous aviez attachées aux câbles lorsque vous les avez débranchées vous guideront.
++
+
+CAUTION: Veillez à ne pas forcer les câbles dans les ports, car vous pourriez endommager les câbles, les ports ou les deux.
+
+. Une fois le nœud mis sous tension, ajoutez-le au cluster.
++
+
+NOTE: L'ajout du nœud peut prendre jusqu'à 2 minutes et s'afficher sous *noeuds > Active*.
+
+. Ajoutez les lecteurs.
+. Effectuez ces étapes pour tous les nœuds de stockage du châssis.
+
+
+
+
+== Remplacez le châssis lorsque de l'espace non utilisé supplémentaire n'est pas disponible dans le rack
+
+Si votre rack ne dispose pas d'espace supplémentaire et si aucun châssis ne comporte de logements de nœud inutilisés dans votre déploiement, vous devez déterminer ce qui peut rester en ligne, le cas échéant, avant de procéder au remplacement.
+
+Prenez en compte les points suivants avant d'effectuer le remplacement du châssis :
+
+* Votre cluster de stockage peut-il rester en ligne sans les nœuds de stockage du châssis défaillant ? Si la réponse est non, arrêtez tous les nœuds (à la fois de calcul et de stockage) dans votre déploiement NetApp HCI. Si la réponse est oui, vous pouvez arrêter uniquement les nœuds de stockage du châssis en panne.
+* Vos machines virtuelles et votre cluster ESXi peuvent-ils rester en ligne sans les nœuds de calcul du châssis défaillant ? Si la réponse est non, vous devez arrêter ou migrer les machines virtuelles appropriées pour pouvoir arrêter les nœuds de calcul du châssis défaillant. Si la réponse est oui, vous pouvez arrêter uniquement les nœuds de calcul du châssis en panne.
+
+
+
+
+=== Arrêtez un nœud de calcul
+
+Avant de déplacer le nœud de calcul vers le nouveau châssis, vous devez migrer les machines virtuelles, les arrêter correctement et étiqueter les câbles insérés dans le nœud.
+
+.Étapes
+. Noter le numéro de série du nœud depuis l'autocollant situé à l'arrière du nœud.
+. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*, sélectionnez un nœud (hôte), puis sélectionnez *moniteur > État du matériel > capteurs*.
+. Dans la section *capteurs*, recherchez le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
+. Une fois le numéro de série correspondant trouvé, migrez ces machines virtuelles vers un autre hôte disponible.
++
+
+NOTE: Pour connaître les étapes de migration, reportez-vous à la documentation VMware.
+
+. Cliquez avec le bouton droit de la souris sur le nœud et sélectionnez *alimentation > Arrêter*. Vous êtes maintenant prêt à retirer physiquement le nœud du châssis.
+
+
+
+
+=== Arrêtez un nœud de stockage
+
+Voir les étapes  a storage node,ici.
+
+
+
+=== Ne supprime pas le nœud
+
+Veillez à retirer soigneusement le nœud du châssis et à étiqueter tous les composants. Les étapes permettant de supprimer physiquement le nœud sont les mêmes pour les nœuds de stockage et de calcul. Pour un nœud de stockage, retirez le lecteur avant de supprimer le nœud.
+
+.Étapes
+. Pour un nœud de stockage, retirer les disques du nœud du châssis en procédant comme suit :
++
+.. Retirez le panneau.
+.. Etiqueter les disques.
+.. Ouvrez la poignée de came et faites glisser chaque entraînement avec précaution à l'aide des deux mains.
+.. Placez les disques sur une surface plane et antistatique.
+
+
+. Retirez le nœud du châssis en procédant comme suit :
++
+.. Etiqueter le nœud et les câbles qui y sont reliés.
+.. Abaissez la poignée de came sur le côté droit de chaque nœud et tirez le nœud vers l'extérieur à l'aide des deux poignées de came.
+
+
+. Procédez comme suit pour tous les nœuds que vous souhaitez supprimer. Vous êtes maintenant prêt à retirer le châssis défectueux.
+
+
+
+
+=== Remplacez le châssis
+
+Si votre rack ne dispose pas d'espace supplémentaire, désinstallez le châssis défectueux et remplacez-le par le nouveau châssis.
+
+.Étapes
+. Mettre en place une protection antistatique.
+. Déballez le châssis de remplacement et conservez-le sur une surface plane. Conservez l'emballage à partir du moment où vous renvoyez l'unité défectueuse à NetApp.
+. Retirez le châssis défectueux du rack et placez-le sur une surface plane.
++
+
+NOTE: Utilisez suffisamment de main-d'œuvre ou un ascenseur lors du déplacement d'un châssis.
+
+. Déposer les rails.
+. Installez les nouveaux rails qui vous ont été livrés avec le châssis de remplacement.
+. Faites glisser le châssis de remplacement dans le rack.
+. Fixez le châssis sur le rack à l'aide des vis de fixation avant, puis serrez les vis à l'aide du tournevis.
+. Installez les nœuds sur le nouveau châssis comme suit :
++
+.. Réinstallez le nœud dans son slot d'origine dans le châssis en poussant le nœud vers l'intérieur jusqu'à ce que vous entendiez un clic. Les étiquettes que vous avez attachées au nœud avant que vous n'ayez supprimé ce guide d'aide.
++
+
+CAUTION: Assurez-vous que vous prenez en charge le nœud depuis le dessous lorsque vous l'installez. N'utilisez pas de force excessive tout en poussant le nœud dans le châssis.
+
+.. Pour les nœuds de stockage, installez les disques dans leurs emplacements respectifs du nœud en appuyant sur la poignée de came de chaque disque jusqu'à ce qu'il s'enclenche.
+.. Reconnectez les câbles aux mêmes ports à l'arrière du nœud. Les étiquettes que vous avez fixées aux câbles lorsque vous les avez débranchées vous guident.
++
+
+CAUTION: Veillez à ne pas forcer les câbles dans les ports, car vous pourriez endommager les câbles, les ports ou les deux.
+
+
+
+. Assurez-vous que les nœuds sont en ligne comme suit :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Si vous avez réinstallé tous les nœuds (de stockage et de calcul) dans votre déploiement NetApp HCI  a| 
+.. Dans le client Web VMware vSphere, vérifiez que les nœuds de calcul (hôtes) sont répertoriés dans le cluster ESXi.
+.. Dans le plug-in Element pour serveur vCenter, vérifiez que les nœuds de stockage sont répertoriés comme actifs.
+
+
+
+
+| Si vous avez réinstallé uniquement les nœuds du châssis défaillant  a| 
+.. Dans le client Web VMware vSphere, vérifiez que les nœuds de calcul (hôtes) sont répertoriés dans le cluster ESXi.
+.. Dans le plug-in Element pour serveur vCenter, sélectionnez *Cluster > nœuds > en attente*.
+.. Sélectionnez le nœud et sélectionnez *Ajouter*.
++
+
+NOTE: L'ajout du nœud peut prendre jusqu'à 2 minutes et s'afficher sous *noeuds > Active*.
+
+.. Sélectionnez *lecteurs*.
+.. Dans la liste disponible, ajoutez les lecteurs.
+.. Procédez comme suit pour tous les noeuds de stockage que vous avez réinstallés.
+
+
+|===
+. Vérification que les volumes et les datastores sont en service et accessibles
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

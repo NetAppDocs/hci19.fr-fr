@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_enable_activeIQ.html 
+summary: 'Vous pouvez utiliser le nœud de gestion (nœud M) pour activer la télémétrie NetApp Active IQ et NetApp HCI.' 
+keywords: netapp, hci, api, enable, active iq, activeiq, hci monitoring 
+---
+= Activation de la surveillance Active IQ et NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez activer la surveillance du stockage Active IQ pour les ressources de calcul NetApp HCI et NetApp HCI si ce n'est pas déjà le cas pendant l'installation ou la mise à niveau. Cette procédure peut être nécessaire si vous avez désactivé la télémétrie à l'aide du moteur de déploiement NetApp HCI.
+
+Le service Active IQ Collector transmet les données de configuration et les metrics de performance du cluster basés sur le logiciel Element à NetApp Active IQ pour un reporting historique et un contrôle des performances en temps quasi réel. Le service de surveillance NetApp HCI permet de transférer les défaillances de cluster de stockage vers vCenter pour en informer les alertes.
+
+.Avant de commencer
+* Votre cluster de stockage exécute NetApp Element version 11.3 ou ultérieure.
+* Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
+* Vous avez accès à Internet. Le service Active IQ Collector ne peut pas être utilisé à partir de sites sombres qui n'ont pas de connectivité externe.
+
+
+.Étapes
+. Procurez-vous l'ID de ressource de base pour l'installation :
++
+.. Ouvrez l'interface utilisateur de l'API REST du service d'inventaire sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Cliquez sur *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Cliquez sur *Autoriser* pour démarrer une session.
+... Fermez la fenêtre.
+
+
+.. Dans l'interface utilisateur de l'API REST, cliquez sur *OBTENIR ​/installations*.
+.. Cliquez sur *essayez-le*.
+.. Cliquez sur *Exécuter*.
+.. À partir du corps de réponse du code 200, copiez le `id` pour l'installation.
++
+[listing, subs="+quotes"]
+----
+{
+  "installations": [
+    {
+      "_links": {
+        "collection": "https://10.111.211.111/inventory/1/installations",
+        "self": "https://10.111.217.111/inventory/1/installations/abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x"
+      },
+      *"id": "abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x",*
+----
++
+
+NOTE: Votre installation dispose d'une configuration de ressource de base créée lors de l'installation ou de la mise à niveau.
+
+
+
+. Activer la télémétrie :
++
+.. Accédez à l'interface de l'API du service mNode sur le nœud de gestion en entrant l'adresse IP du nœud de gestion suivie de `/mnode`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
+.. Cliquez sur *Authorise* ou sur une icône de verrouillage et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Cliquez sur *Autoriser* pour démarrer une session.
+... Fermez la fenêtre.
+
+
+.. Configurer l'actif de base :
++
+... Cliquez sur *PUT /Assets/{ASSET_ID}*.
+... Cliquez sur *essayez-le*.
+... Entrez la valeur suivante dans la charge JSON :
++
+[listing]
+----
+{
+"telemetry_active": true
+"config": {}
+}
+----
+... Saisissez l'ID de base de l'étape précédente dans *Asset_ID*.
+... Cliquez sur *Exécuter*.
++
+Le service Active IQ redémarre automatiquement dès que les ressources sont modifiées. La modification des actifs entraîne un court délai avant l'application des paramètres.
+
+
+
+
+
+. Si vous ne l'avez pas encore fait, ajoutez un contrôleur vCenter pour la surveillance NetApp HCI (installations NetApp HCI uniquement) et le contrôle du cloud hybride (pour toutes les installations) au nœud de gestion des ressources connues :
++
+
+NOTE: Une ressource de contrôleur est requise pour les services de surveillance NetApp HCI.
+
++
+.. Cliquez sur *POST /Assets/{ASSET_ID}/contrôleurs* pour ajouter un sous-actif de contrôleur.
+.. Cliquez sur *essayez-le*.
+.. Saisissez l'ID d'actif de base parent que vous avez copié dans le presse-papiers dans le champ *Asset_ID*.
+.. Entrer les valeurs de charge utile requises avec `type` comme `vCenter` Et vCenter.
++
+[listing]
+----
+{
+"username": "string",
+"password": "string",
+"ip": "string",
+"type": "vCenter",
+"host_name": "string",
+"config": {}
+}
+----
++
+
+NOTE: `ip` Est l'adresse IP vCenter.
+
+.. Cliquez sur *Exécuter*.
+
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

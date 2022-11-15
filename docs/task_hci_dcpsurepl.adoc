@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_dcpsurepl.html 
+summary: 'Les nœuds H615C et H610S prennent en charge deux unités d"alimentation c.c. de –48 à –60 V. Ces unités sont disponibles en tant qu"add-ons facultatifs lorsque vous commandez des nœuds H615C ou H610S. Vous pouvez utiliser le même ensemble d"instructions pour retirer les unités d"alimentation CA du châssis et les remplacer par des unités d"alimentation CC, ou pour remplacer une unité d"alimentation CC défectueuse par une nouvelle unité d"alimentation CC.' 
+keywords: netapp, hci, psu, replace power supply, H610S, H615C, DC 
+---
+= Remplacement des unités d'alimentation CC dans les nœuds H615C et H610S
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les nœuds H615C et H610S prennent en charge deux unités d'alimentation c.c. de –48 à –60 V. Ces unités sont disponibles en tant qu'add-ons facultatifs lorsque vous commandez des nœuds H615C ou H610S. Vous pouvez utiliser ces instructions pour retirer les unités d'alimentation CA du châssis et les remplacer par des unités d'alimentation CC, ou pour remplacer une unité d'alimentation CC défectueuse par une nouvelle unité d'alimentation CC.
+
+.Ce dont vous avez besoin, 8217;ll
+* Si vous remplacez une unité d'alimentation CC défectueuse, vous avez acheté une unité d'alimentation CC de remplacement.
+* Si vous échangez les blocs d'alimentation CA de votre châssis avec des unités CC, vous avez pris en compte les temps d'arrêt de la procédure.
+* Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
+* Vous avez vérifié que les exigences d'alimentation sont respectées :
++
+** Tension d'alimentation : – (48-60) V CC
+** Consommation de courant : 37A (maximum)
+** Exigences du disjoncteur : disjoncteur 40A
+
+
+* Vous avez vérifié que les matériaux de votre environnement sont conformes aux spécifications RoHS.
+* Vous avez vérifié que les exigences en matière de câbles sont respectées :
++
+** Un câble noir UL 10 AWG, 2 m maximum (multibrins) [–(48-60) V DC]
+** Un câble rouge UL 10 AWG, 2 m maximum (multibrins) [retour V DC]
+** Un câble UL 10 AWG, 2 m maximum vert/jaune, vert avec une bande jaune, toron (masse de sécurité)
+
+
+
+
+La procédure s'applique aux modèles de nœud suivants :
+
+* Un châssis de calcul en unité de rack (1U) H615C
+* Châssis de stockage 1U H610S
++
+
+NOTE: Dans le cas des modules H615C et H610S, les termes « nœud » et « châssis » sont utilisés de manière interchangeable, parce que les nœuds et les châssis ne sont pas des composants distincts, contrairement à ceux du châssis 2U à quatre nœuds.
+
+
+
+
+CAUTION: Vous ne pouvez pas combiner des unités d'alimentation CA et CC dans votre installation.
+
+.Étapes
+. Eteindre les unités d'alimentation en panne et débrancher les cordons d'alimentation. Si vous remplacez une unité d'alimentation CC défectueuse, éteignez la source d'alimentation et retirez tous les câbles insérés dans le connecteur bleu.
+. Soulevez la poignée de came et appuyez sur le loquet bleu pour faire glisser l'unité d'alimentation.
++
+image::psu-remove.gif[Montre la poignée de came soulevée et l'unité d'alimentation glissée hors du châssis.]
+
++
+
+NOTE: L'illustration en est un exemple. L'emplacement du bloc d'alimentation dans le châssis et la couleur du bouton de déverrouillage varient en fonction du type de châssis que vous avez.
+
++
+
+IMPORTANT: Veillez à utiliser les deux mains pour supporter le poids de l'unité d'alimentation.
+
+. À l'aide des deux mains, alignez les bords de l'unité d'alimentation avec l'ouverture du châssis, poussez doucement l'unité dans le châssis à l'aide de la poignée de came jusqu'à ce qu'elle s'enclenche et remettez la poignée de came en position verticale.
++
+image::psu-install.gif[La illustre l'unité d'alimentation en cours d'installation dans le châssis.]
+
+. Branchez les câbles des unités d'alimentation CC. Assurez-vous que la source d'alimentation est éteinte pendant le câblage de l'unité d'alimentation CC et de la source d'alimentation.
++
+.. Insérez les câbles noir, rouge et vert/jaune dans les connecteurs bleus.
+.. Insérez le connecteur bleu dans les unités d'alimentation CC et la source d'alimentation.
++
+image::dc-psu.png[La illustre le câblage de l'unité d'alimentation CC.]
+
+
+
+. Mettez les unités d'alimentation CC sous tension.
++
+
+TIP: Les voyants du bloc d'alimentation sont allumés lorsque l'unité d'alimentation CC est en ligne. Les voyants verts indiquent que les unités d'alimentation fonctionnent correctement.
+
+. Retournez l'unité défectueuse à NetApp en suivant les instructions dans la boîte qui vous a été expédiée.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_edit_vcenter_assets.html 
+summary: 'Vous pouvez modifier les contrôleurs de nœud de gestion vCenter à l"aide de l"interface utilisateur de l"API REST.' 
+keywords: netapp, mnode, management node, rest api, hci 
+---
+= Afficher ou modifier des actifs de contrôleur existants
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez afficher des informations sur les contrôleurs VMware vCenter existants et les modifier dans la configuration du nœud de gestion à l'aide de l'API REST. Les contrôleurs sont des instances VMware vCenter enregistrées sur le nœud de gestion pour votre installation NetApp HCI.
+
+.Avant de commencer
+* Assurez-vous que votre version de cluster exécute le logiciel NetApp Element 11.3 ou une version ultérieure.
+* Vérifiez que vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
+
+
+
+
+== Accédez à l'API REST des services de gestion
+
+.Étapes
+. Accédez à l'interface d'API REST pour les services de gestion en entrant l'adresse IP du nœud de gestion suivie de `/vcenter/1/`:
++
+[listing]
+----
+https://<ManagementNodeIP>/vcenter/1/
+----
+. Cliquez sur *Authorise* ou sur une icône de verrouillage et procédez comme suit :
++
+.. Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.. Saisissez l'ID client en tant que `mnode-client`.
+.. Cliquez sur *Autoriser* pour démarrer une session.
+.. Fermez la fenêtre.
+
+
+
+
+
+
+== Afficher les informations stockées relatives aux contrôleurs existants
+
+Vous pouvez lister les contrôleurs vCenter existants enregistrés auprès du nœud de gestion et afficher les informations stockées les concernant à l'aide de l'API REST.
+
+.Étapes
+. Cliquez sur *OBTENIR /calculer/contrôleurs*.
+. Cliquez sur *essayez-le*.
+. Cliquez sur *Exécuter*.
++
+L'API renvoie la liste de tous les contrôleurs vCenter connus, ainsi que l'adresse IP, l'ID de contrôleur, le nom d'hôte et l'ID utilisateur utilisés pour communiquer avec chaque contrôleur.
+
+. Si vous souhaitez que l'état de connexion d'un contrôleur particulier soit défini, copiez l'ID du contrôleur à partir du `id` champ de ce contrôleur dans le presse-papiers et voir  the status of an existing controller.
+
+
+
+
+== Afficher l'état d'un contrôleur existant
+
+Vous pouvez afficher l'état de tous les contrôleurs vCenter existants enregistrés avec le nœud de gestion. L'API renvoie un état indiquant si NetApp Hybrid Cloud Control peut se connecter au contrôleur vCenter et la raison de ce statut.
+
+.Étapes
+. Cliquez sur *OBTENIR /calculer/contrôleurs/{Controller_ID}/status*.
+. Cliquez sur *essayez-le*.
+. Entrez l'ID de contrôleur que vous avez copié précédemment dans `controller_id` paramètre.
+. Cliquez sur *Exécuter*.
++
+L'API renvoie l'état de ce contrôleur vCenter en particulier, ainsi qu'une raison pour cet état.
+
+
+
+
+
+== Modifier les propriétés stockées d'un contrôleur
+
+Vous pouvez modifier le nom d'utilisateur ou le mot de passe stockés pour tous les contrôleurs vCenter existants enregistrés avec le nœud de gestion. Vous ne pouvez pas modifier l'adresse IP stockée d'un contrôleur vCenter existant.
+
+.Étapes
+. Cliquez sur *PUT /Compute/controllers/{Controller_ID}*.
+. Entrez l'ID de contrôleur d'un contrôleur vCenter dans le `controller_id` paramètre.
+. Cliquez sur *essayez-le*.
+. Modifiez l'un des paramètres suivants dans le champ *corps de la demande* :
++
+|===
+| Paramètre | Type | Description 
+
+
+| `userId` | chaîne | Modifiez l'ID utilisateur utilisé pour communiquer avec le contrôleur vCenter (l'utilisateur doit disposer des privilèges d'administrateur). 
+
+
+| `password` | chaîne | Modifiez le mot de passe utilisé pour communiquer avec le contrôleur vCenter. 
+|===
+. Cliquez sur *Exécuter*.
++
+L'API renvoie la mise à jour des informations relatives au contrôleur.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* link:task_mnode_add_assets.html["Ajoutez des ressources de calcul et de contrôleur au nœud de gestion"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

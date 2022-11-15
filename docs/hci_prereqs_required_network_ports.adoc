@@ -1,0 +1,246 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_required_network_ports.html 
+summary: Ports TCP et UDP utilisés par NetApp HCI. 
+keywords: netapp, hci, ports, tcp, udp 
+---
+= Configuration requise pour les ports réseau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, ports, tcp, udp
+
+
+[role="lead"]
+Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de bord de votre centre de données afin de pouvoir gérer le système à distance, permettre aux clients externes à votre centre de données de se connecter aux ressources et de vous assurer que les services internes fonctionnent correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système. Tous les ports sont TCP, sauf indication contraire.
+
+[NOTE]
+====
+L'interface Web NetApp Hybrid Cloud Control et les packages logiciels de téléchargement d'API depuis le référentiel logiciel en ligne NetApp. Pour cette raison, certaines adresses URL ou IP peuvent se résoudre à d'autres adresses URL ou adresses IP basées sur le réseau de diffusion de contenu. Si possible, vous devez travailler avec un ingénieur réseau pour ajouter ces URL ou adresses IP aux règles de pare-feu, en procédant comme suit :
+
+.Étapes
+. Utilisez les utilitaires wget ou curl pour accéder à une URL (support-sg-nawest.netapp.com, par exemple).
+. Vérifiez la connectivité comme indiqué dans l'exemple suivant :
++
+image::network_ports.PNG[Vérifiez la connectivité des ports]
+
+. Échec de réception de l'accès à l'URL (différent de support-sg-nawest.netapp.com).
+. Modifiez les règles de pare-feu pour autoriser la nouvelle URL.
+. Répétez les étapes ci-dessus jusqu'à ce que la tentative d'accès réussisse.
+
+
+====
+Les abréviations suivantes sont utilisées dans le tableau :
+
+* MIP : adresse IP de gestion, une adresse par nœud
+* SIP : adresse IP de stockage, une adresse par nœud
+* MVIP : adresse IP virtuelle de gestion
+* SVIP : adresse IP virtuelle de stockage
+
+
+Tous les ports du tableau sont TCP, sauf indication contraire.
+
+|===
+| Source | Destination | Port | Description 
+
+
+| Nœud de calcul BMC/IPMI | Nœud de gestion | 111 TCP/UDP | Communication avec l'API de contrôle de cloud hybride NetApp 
+
+
+| Nœud de calcul BMC/IPMI | Nœud de gestion | 137-138 UDP | Communication avec l'API de contrôle de cloud hybride NetApp 
+
+
+| Nœud de calcul BMC/IPMI | Nœud de gestion | 445 | Communication avec l'API de contrôle de cloud hybride NetApp 
+
+
+| Nœud de calcul BMC/IPMI | Nœud de gestion | 623 UDP | Port RMCP (Remote Management Control Protocol). Requis pour les mises à niveau du firmware des ressources de calcul NetApp Cloud Control. 
+
+
+| Nœud de calcul BMC/IPMI | Nœud de gestion | 2049 TCP/UDP | Communication avec l'API de contrôle de cloud hybride NetApp 
+
+
+| Clients iSCSI | Cluster de stockage MVIP | 443 | (Facultatif) l'accès à l'interface et aux API 
+
+
+| Clients iSCSI | Cluster de stockage SVIP | 3260 | Communications iSCSI du client 
+
+
+| Clients iSCSI | SIP de nœud de stockage | 3260 | Communications iSCSI du client 
+
+
+| Nœud de gestion | `sfsupport.solidfire.com` | 22 | Tunnel SSH inversé pour l'accès au support 
+
+
+| Nœud de gestion | MIP du nœud de stockage | 22 | Accès SSH pour la prise en charge 
+
+
+| Nœud de gestion | Serveurs DNS | 53 TCP/UDP | Recherche DNS 
+
+
+| Nœud de gestion | Nœud de calcul BMC/IPMI | 139 | Communication avec l'API de contrôle de cloud hybride NetApp 
+
+
+| Nœud de gestion | MIP du nœud de stockage | 442 | Accès à l'interface et à l'API pour les mises à niveau du nœud de stockage et du logiciel Element 
+
+
+| Nœud de gestion | Nœud de stockage MVIP | 442 | Accès à l'interface et à l'API pour les mises à niveau du nœud de stockage et du logiciel Element 
+
+
+| Nœud de gestion | `23.32.54.122`, `216.240.21.15` | 443 | Mises à niveau du logiciel Element 
+
+
+| Nœud de gestion | Contrôleur BMC (Baseboard Management Controller) | 443 | Surveillance du matériel et connexion à l'inventaire (commandes Redfish et IPMI) 
+
+
+| Nœud de gestion | Nœud de calcul BMC/IPMI | 443 | Communications HTTPS de NetApp Hybrid Cloud Control 
+
+
+| Nœud de gestion | `monitoring.solidfire.com` | 443 | Reporting sur le cluster de stockage Active IQ 
+
+
+| Nœud de gestion  a| 
+Notification de nouvelle version :
+
+* `https://support.netapp.com/aods/`
+
+
+Téléchargement de logiciels :
+
+* `https://support-sg-emea.netapp.com`
+* `https://support-sg-naeast.netapp.com`
+* `https://support-sg-nawest.netapp.com`
+
+| 443 | Mises à niveau du service des nœuds de gestion 
+
+
+| Nœud de gestion | Cluster de stockage MVIP | 443 | Accès à l'interface et à l'API pour les mises à niveau du nœud de stockage et du logiciel Element 
+
+
+| Nœud de gestion | VMware vCenter | 443 | Communications HTTPS de NetApp Hybrid Cloud Control 
+
+
+| Nœud de gestion | Nœud de calcul BMC/IPMI | 623 UDP | Port RMCP (Remote Management Control Protocol). Requis pour les mises à niveau du firmware des ressources de calcul NetApp Cloud Control. 
+
+
+| Nœud de gestion | VMware vCenter | 5988-5989 | Communications HTTPS de NetApp Hybrid Cloud Control 
+
+
+| Nœud de gestion | Nœud témoin | 9442 | Service d'API de configuration par nœud 
+
+
+| Nœud de gestion | Serveur vCenter | 9443 | Enregistrement du plug-in vCenter. Le port peut être fermé une fois l'enregistrement terminé. 
+
+
+| Serveur SNMP | Cluster de stockage MVIP | 161 UDP | Interrogation SNMP 
+
+
+| Serveur SNMP | MIP du nœud de stockage | 161 UDP | Interrogation SNMP 
+
+
+| MIP du nœud de stockage | Serveurs DNS | 53 TCP/UDP | Recherche DNS 
+
+
+| MIP du nœud de stockage | Nœud de gestion | 80 | Mises à niveau du logiciel Element 
+
+
+| MIP du nœud de stockage | Terminal S3/Swift | 80 | (Facultatif) communication HTTP avec le terminal S3/Swift pour la sauvegarde et la restauration 
+
+
+| MIP du nœud de stockage | Serveur NTP | 123 UDP | NTP 
+
+
+| MIP du nœud de stockage | Nœud de gestion | 162 UDP | (Facultatif) les interruptions SNMP 
+
+
+| MIP du nœud de stockage | Serveur SNMP | 162 UDP | (Facultatif) les interruptions SNMP 
+
+
+| MIP du nœud de stockage | Serveur LDAP | 389 TCP/UDP | (Facultatif) recherche LDAP 
+
+
+| MIP du nœud de stockage | Nœud de gestion | 443 | Mises à niveau du logiciel Element 
+
+
+| MIP du nœud de stockage | Cluster de stockage distant MVIP | 443 | Communication de jumelage de cluster de réplication à distance 
+
+
+| MIP du nœud de stockage | MIP du nœud de stockage distant | 443 | Communication de jumelage de cluster de réplication à distance 
+
+
+| MIP du nœud de stockage | Terminal S3/Swift | 443 | (Facultatif) communication HTTPS vers le terminal S3/Swift pour la sauvegarde et la restauration 
+
+
+| MIP du nœud de stockage | Serveur LDAPS | 636 TCP/UDP | Recherche LDAPS 
+
+
+| MIP du nœud de stockage | Nœud de gestion | 10514 TCP/UDP, 514 TCP/UDP | Transfert syslog 
+
+
+| MIP du nœud de stockage | Serveur Syslog | 10514 TCP/UDP, 514 TCP/UDP | Transfert syslog 
+
+
+| MIP du nœud de stockage | MIP du nœud de stockage distant | 2181 | Communication intercluster pour la réplication distante 
+
+
+| SIP de nœud de stockage | Terminal S3/Swift | 80 | (Facultatif) communication HTTP avec le terminal S3/Swift pour la sauvegarde et la restauration 
+
+
+| SIP de nœud de stockage | SIP nœud de calcul | 442 | API de nœud de calcul, configuration et validation, accès à l'inventaire logiciel 
+
+
+| SIP de nœud de stockage | Terminal S3/Swift | 443 | (Facultatif) communication HTTPS vers le terminal S3/Swift pour la sauvegarde et la restauration 
+
+
+| SIP de nœud de stockage | SIP du nœud de stockage distant | 2181 | Communication intercluster pour la réplication distante 
+
+
+| SIP de nœud de stockage | SIP de nœud de stockage | 3260 | ISCSI internœud 
+
+
+| SIP de nœud de stockage | SIP du nœud de stockage distant | 4000 à 4020 | Transfert des données nœud à nœud de réplication à distance 
+
+
+| PC administrateur système | MIP du nœud de stockage | 80 | (NetApp HCI uniquement) page d'accueil du moteur de déploiement NetApp 
+
+
+| PC administrateur système | Nœud de gestion | 442 | Accès interface utilisateur HTTPS au nœud de gestion 
+
+
+| PC administrateur système | MIP du nœud de stockage | 442 | L'interface utilisateur HTTPS et l'API d'accès au nœud de stockage, (NetApp HCI uniquement) et à la surveillance du déploiement dans le moteur de déploiement NetApp 
+
+
+| PC administrateur système | Nœud de gestion | 443 | L'interface et l'API HTTPS accèdent au nœud de gestion 
+
+
+| PC administrateur système | Cluster de stockage MVIP | 443 | L'interface HTTPS et l'accès API au cluster de stockage 
+
+
+| PC administrateur système | MIP du nœud de stockage | 443 | Création du cluster de stockage HTTPS, accès d'interface post-déploiement au cluster de stockage 
+
+
+| PC administrateur système | Nœud témoin | 8080 | Interface utilisateur Web par nœud témoin 
+
+
+| Serveur vCenter | Cluster de stockage MVIP | 443 | Accès à l'API du plug-in vCenter 
+
+
+| Serveur vCenter | Plug-in à distance | 8333 | Service de plug-in vCenter distant 
+
+
+| Serveur vCenter | Nœud de gestion | 8443 | (Facultatif) service QoSSIOC plug-in vCenter. 
+
+
+| Serveur vCenter | Cluster de stockage MVIP | 8444 | Accès au fournisseur vCenter VASA (VVol uniquement) 
+
+
+| Serveur vCenter | Nœud de gestion | 9443 | Enregistrement du plug-in vCenter. Le port peut être fermé une fois l'enregistrement terminé. 
+|===
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

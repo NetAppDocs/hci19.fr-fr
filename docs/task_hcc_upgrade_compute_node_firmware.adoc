@@ -1,0 +1,637 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_upgrade_compute_node_firmware.html 
+summary: 'La NetApp HCI mise à niveau du firmware des nœuds de calcul s"effectue dans le cadre d"une mise à niveau de ces systèmes.' 
+keywords: netapp, hci, on premise, cluster, element, compute node, vmware, upgrade firmware 
+---
+= Met à niveau le firmware des nœuds de calcul
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour les nœuds de calcul H-Series, vous pouvez mettre à niveau le micrologiciel pour des composants matériels tels que le BMC, le BIOS et la carte réseau. Pour mettre à niveau le firmware des nœuds de calcul, vous pouvez utiliser l'interface utilisateur NetApp Hybrid Cloud Control, l'API REST, un lecteur USB avec l'image de firmware la plus récente ou l'interface utilisateur BMC.
+
+Une fois la mise à niveau effectuée, le nœud de calcul démarre dans ESXi et fonctionne comme avant, en conservant la configuration.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Pilotes de calcul* : vous avez mis à niveau vos pilotes de nœud de calcul. Si les pilotes de nœud de calcul ne sont pas compatibles avec le nouveau micrologiciel, la mise à niveau ne démarre pas. Voir la https://mysupport.netapp.com/matrix["Matrice d'interopérabilité (IMT)"^] pour obtenir des informations sur la compatibilité des pilotes et des micrologiciels, et vérifiez la dernière version link:rn_relatedrn.html["notes de version du firmware du nœud de calcul"] pour obtenir des informations importantes concernant le micrologiciel et le pilote de dernière minute.
+* *Privilèges d'administrateur* : vous disposez des autorisations d'administrateur de cluster et d'administrateur BMC pour effectuer la mise à niveau.
+* *Ports système* : si vous utilisez le contrôle du cloud hybride NetApp pour les mises à niveau, vous avez vérifié que les ports nécessaires sont ouverts. Voir link:hci_prereqs_required_network_ports.html["Ports réseau"] pour en savoir plus.
+* *Versions minimales de BMC et de BIOS* : le nœud que vous envisagez de mettre à niveau avec NetApp Hybrid Cloud Control respecte les exigences minimales suivantes :
++
+[cols="3*"]
+|===
+| Modèle | Version minimale du contrôleur BMC | Version minimale du BIOS 
+
+
+| H410C​ | Toutes les versions prises en charge (aucune mise à niveau requise)​ | Toutes les versions prises en charge (aucune mise à niveau requise)​ 
+
+
+| H610C​ | 3.96.07​ | 3B01 
+
+
+| H615C​ | 4.68.07 | 3B08.CO ​ ​ 
+|===
++
+
+NOTE: Les nœuds de calcul H615C doivent mettre à jour le firmware du BMC vers la version 4.68 à l'aide du link:rn_compute_firmware_2.27.html["pack du firmware des calculs 2.27"] Pour permettre au contrôle du cloud hybride NetApp d'effectuer des mises à niveau de firmware futures.
+
++
+
+NOTE: Pour obtenir une matrice complète de micrologiciel et de micrologiciel de pilote pour votre matériel, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Article de cette base de connaissances"^] (connexion requise).
+
+* *Ordre de démarrage du BIOS* : modifiez manuellement l'ordre de démarrage dans la configuration du BIOS pour chaque nœud pour vous assurer `USB CD/DVD` apparaît dans la liste de démarrage. Voir ceci link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades#BootOrder["article"^] pour en savoir plus.
+* *Informations d'identification BMC* : mettez à jour les informations d'identification utilisées par NetApp Hybrid Cloud Control pour se connecter au nœud de calcul BMC. Pour ce faire, vous pouvez utiliser NetApp Hybrid Cloud Control link:task_hcc_edit_bmc_info.html#use-netapp-hybrid-cloud-control-to-edit-bmc-information["INTERFACE UTILISATEUR"] ou link:task_hcc_edit_bmc_info.html#use-the-rest-api-to-edit-bmc-information["API"]. La mise à jour des informations BMC avant la mise à niveau actualise l'inventaire et garantit que les services de nœud de gestion connaissent tous les paramètres matériels nécessaires à la mise à niveau.
+* *Support connecté* : déconnectez tout port USB ou ISO physique avant de démarrer une mise à niveau de nœud de calcul.
+* *Console KVM ESXi* : fermez toutes les sessions Serial-over-LAN (sol) ouvertes et toutes les sessions KVM actives dans l'interface utilisateur du contrôleur BMC avant de démarrer une mise à niveau du nœud de calcul.
+* *Configuration requise pour Witness Node* : dans les clusters de stockage à deux et trois nœuds, un link:concept_hci_nodes.html["Nœud témoin"] Doit toujours être exécuté dans l'installation NetApp HCI.
+* *Contrôle d'intégrité du nœud de calcul* : vous avez vérifié que le nœud est prêt à être mis à niveau. Voir link:task_upgrade_compute_prechecks.html["Exécutez des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware"].
+* *Contrat de licence utilisateur final (CLUF)* : à partir des services de gestion 2.20.69, vous devez accepter et enregistrer le CLUF avant d'utiliser l'interface utilisateur ou l'API de contrôle du cloud hybride NetApp pour mettre à niveau le micrologiciel du nœud de calcul :
++
+.. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+.. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+.. Sélectionnez *Upgrade* en haut à droite de l'interface.
+.. Le CLUF s'affiche. Faites défiler vers le bas, sélectionnez *J'accepte les mises à jour actuelles et futures*, puis sélectionnez *Enregistrer*.
++
+
+NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à jour futures et la fonction de téléchargement automatique est activée. Vous recevrez des mises à jour sur les mises à jour et les mises à niveau logicielles NetApp que vous pouvez installer à votre discrétion et à votre convenance. Vous pouvez désactiver la fonctionnalité de téléchargement automatique en désactivant la connectivité réseau au référentiel logiciel en ligne de NetApp.
+
+
+
+
+
+Dans les environnements de production, mettez à niveau le firmware sur un nœud de calcul à la fois.
+
+
+NOTE: L'hôte ESXi doit être mis hors mode de verrouillage avant d'exécuter un contrôle d'intégrité et de procéder à la mise à niveau du micrologiciel. Voir link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_disable_lockdown_mode_on_ESXi_host["Comment désactiver le mode de verrouillage sur l'hôte VMware ESXi"^] et link:https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-F8F105F7-CF93-46DF-9319-F8991839D265.html["Comportement du mode de verrouillage VMware"^] pour en savoir plus.
+
+Pour les mises à niveau de l'interface ou des API de contrôle de cloud hybride NetApp, votre hôte ESXi est automatiquement mis en mode de maintenance pendant le processus de mise à niveau si vous disposez de la fonctionnalité DRS et du licence requis. Le nœud est redémarré et une fois le processus de mise à niveau terminé, l'hôte ESXi sera mis hors mode de maintenance. Pour les options USB et BMC UI, vous devez placer l'hôte ESXi en mode maintenance manuellement, comme décrit dans chaque procédure.
+
+
+NOTE: Avant de procéder à la mise à niveau, vérifiez la version actuelle du pilote VMware ESXi. Si le pilote est obsolète, mettez-le d'abord à niveau. Mettez ensuite à niveau le firmware de calcul de vos nœuds de calcul.
+
+Choisissez l'option qui correspond à votre scénario de mise à niveau :
+
+*  NetApp Hybrid Cloud Control UI to upgrade a compute node (Recommandé)
+*  NetApp Hybrid Cloud Control API to upgrade a compute node
+*  a USB drive imaged with the latest compute firmware bundle
+*  the Baseboard Management Controller (BMC) user interface (UI)
+
+
+
+
+== Utilisez l'interface de contrôle du cloud hybride NetApp pour mettre à niveau un nœud de calcul
+
+Depuis les services de gestion 24h/2.14, 7j/7, vous pouvez mettre à niveau un nœud de calcul à l'aide de l'interface utilisateur NetApp de contrôle du cloud hybride. Dans la liste des nœuds, vous devez sélectionner le nœud à mettre à niveau. L'onglet *versions actuelles* affiche les versions actuelles du micrologiciel et l'onglet *versions proposées* affiche les versions de mise à niveau disponibles, le cas échéant.
+
+
+TIP: Pour une mise à niveau réussie, assurez-vous que la vérification de l'état du cluster vSphere a réussi.
+
+
+TIP: Pour les mises à niveau vers des sites sombres, vous pouvez réduire le temps de chargement si le bundle de firmware de calcul et le nœud de gestion sont tous deux locaux.
+
+
+NOTE: La mise à niveau de la carte réseau, du BIOS et du contrôleur BMC peut prendre environ 60 minutes par nœud en fonction de la vitesse de la connectivité réseau entre le nœud de gestion et l'hôte BMC.
+
+
+NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un ,Lecteur USB ou le ,INTERFACE UTILISATEUR BMC pour monter le bundle de firmware de calcul.
+
+.Ce dont vous avez besoin, 8217;ll
+* Si votre nœud de gestion n'est pas connecté à Internet, vous avez téléchargé le bundle du firmware de calcul à partir du https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Site de support NetApp"^].
++
+
+NOTE: Vous devez extraire le `TAR.GZ` fichier à un `TAR` puis extrayez le `TAR` fichier dans le pack du micrologiciel de calcul.
+
+
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+. Sélectionnez *Upgrade* en haut à droite de l'interface.
+. Sur la page *mises à niveau*, sélectionnez *Compute Firmware*.
+. Choisissez l'une des options suivantes et effectuez l'ensemble des étapes applicables au cluster :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Votre nœud de gestion dispose d'une connectivité externe.  a| 
+.. Sélectionnez le cluster que vous mettez à niveau.
++
+Vous verrez que les nœuds du cluster sont répertoriés ainsi que les versions de firmware actuelles et les plus récentes, le cas échéant, à mettre à niveau.
+
+.. Sélectionnez le bundle de firmware de calcul.
+.. Sélectionnez *commencer la mise à niveau*.
++
+Une fois que vous avez sélectionné *Begin Upgrade*, la fenêtre affiche les vérifications d'intégrité ayant échoué, le cas échéant.
+
++
+
+CAUTION: La mise à niveau ne peut pas être interrompue après le démarrage. Le micrologiciel sera mis à jour séquentiellement dans l'ordre suivant : carte réseau, BIOS et BMC. Ne vous connectez pas à l'interface utilisateur du contrôleur BMC pendant la mise à niveau. La connexion au contrôleur BMC met fin à la session sol (Serial-over-LAN) de contrôle du cloud hybride qui surveille le processus de mise à niveau.
+
+.. Si les vérifications d'intégrité au niveau du cluster ou du nœud ont réussi avec des avertissements, mais sans échecs critiques, vous verrez *prêt à être mis à niveau*. Sélectionnez *Upgrade Node*.
+
+
+
+NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. Pendant la mise à niveau, l'interface utilisateur affiche différents messages relatifs à l'état de la mise à niveau.
+
+
+CAUTION: Lors de la mise à niveau du micrologiciel sur les nœuds de calcul H610C et H615C, n'ouvrez pas la console série sur LAN (sol) via l'interface utilisateur Web du BMC. Ceci peut entraîner l'échec de la mise à niveau.
+
+L'interface utilisateur affiche un message une fois la mise à niveau terminée. Vous pouvez télécharger les journaux une fois la mise à niveau terminée.
+
+
+
+| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
+.. Sélectionnez le cluster que vous mettez à niveau.
+.. Sélectionnez *Browse* pour télécharger le bundle de microprogramme de calcul que vous avez téléchargé à partir duhttps://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Site de support NetApp"^].
+.. Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
+
+
+
+TIP: Le téléchargement du fichier se fera en arrière-plan si vous vous éloignez de la fenêtre du navigateur.
+
+Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section  status changes.
+
+|===
+
+
+
+TIP: En cas de défaillance pendant la mise à niveau, NetApp Hybrid Cloud Control redémarre le nœud, puis le mode de maintenance est désactivé et affiche le statut de la panne via un lien vers le journal des erreurs. Vous pouvez télécharger le journal des erreurs, qui contient des instructions spécifiques ou des liens vers des articles de la base de connaissances, pour diagnostiquer et corriger tout problème. Pour en savoir plus sur les problèmes de mise à niveau du firmware des nœuds de calcul avec NetApp Hybrid Cloud Control, consultez cette section link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades["KO"^] article.
+
+
+
+=== Modifications du statut des mises à niveau
+
+Voici les différents États que l'interface utilisateur affiche avant, pendant et après le processus de mise à niveau :
+
+[cols="2*"]
+|===
+| État de mise à niveau | Description 
+
+
+| Échec d'une ou de plusieurs vérifications de l'état du nœud. Développez pour afficher les détails. | Échec d'un ou plusieurs vérifications de l'état. 
+
+
+| Erreur | Une erreur s'est produite lors de la mise à niveau. Vous pouvez télécharger le journal des erreurs et l'envoyer au support NetApp. 
+
+
+| Détection impossible | NetApp Hybrid Cloud Control ne dispose d'aucune connectivité externe pour accéder au référentiel logiciel en ligne. Ce statut s'affiche également si NetApp Hybrid Cloud Control ne parvient pas à interroger le nœud de calcul lorsque l'actif du nœud de calcul ne possède pas le numéro d'identification matériel. 
+
+
+| Prêt à être mis à niveau. | Tous les vérifications de l'état sont effectuées avec succès, et le nœud est prêt à être mis à niveau. 
+
+
+| Une erreur s'est produite lors de la mise à niveau. | La mise à niveau échoue avec cette notification lorsqu'une erreur critique se produit. Téléchargez les journaux en sélectionnant le lien *Télécharger les journaux* pour aider à résoudre l'erreur. Vous pouvez réessayer de mettre à niveau une fois l'erreur résolu. 
+
+
+| La mise à niveau du nœud est en cours. | La mise à niveau est en cours. Une barre de progression indique l'état de la mise à niveau. 
+|===
+
+
+== Utilisez l'API de contrôle de cloud hybride NetApp pour mettre à niveau un nœud de calcul
+
+Vous pouvez utiliser des API pour mettre à niveau chaque nœud de calcul d'un cluster vers la version la plus récente du firmware. Vous pouvez utiliser l'outil d'automatisation de votre choix pour exécuter les API. Le workflow d'API documenté ici utilise l'interface d'API REST disponible sur le nœud de gestion, par exemple.
+
+
+NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un ,Lecteur USB ou le ,INTERFACE UTILISATEUR BMC pour monter le bundle de firmware de calcul.
+
+Les ressources de nœud de calcul, y compris vCenter et matérielles, doivent être connues des ressources de nœud de gestion. Vous pouvez utiliser les API du service d'inventaire pour vérifier les ressources (`https://<ManagementNodeIP>/inventory/1/`).
+
+.Étapes
+. Effectuez l'une des opérations suivantes en fonction de votre connexion :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Votre nœud de gestion dispose d'une connectivité externe.  a| 
+.. Vérifiez la connexion au référentiel :
++
+... Ouvrez l'interface de l'API REST du service d'pack sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/package-repository/1/
+----
+... Sélectionnez *Authorise* et procédez comme suit :
++
+.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.... Saisissez l'ID client en tant que `mnode-client`.
+.... Sélectionnez *Autoriser* pour démarrer une session.
+.... Fermez la fenêtre d'autorisation.
+
+
+... Dans l'interface utilisateur de l'API REST, sélectionnez *GET ​/packages​/remote-repository​/connection*.
+... Sélectionnez *essayez-le*.
+... Sélectionnez *Exécuter*.
+... Si le code 200 est renvoyé, passer à l'étape suivante. S'il n'y a pas de connexion au référentiel distant, établissez la connexion ou utilisez l'option site sombre.
+
+
+.. Recherchez l'ID du pack du firmware de calcul :
++
+... Dans l'interface utilisateur de l'API REST, sélectionnez *GET /packages*.
+... Sélectionnez *essayez-le*.
+... Sélectionnez *Exécuter*.
+... Dans la réponse, copiez et enregistrez le nom du bundle du firmware de calcul (`"packageName"`) et version (`"packageVersion"`) pour une utilisation ultérieure.
+
+
+
+
+
+
+| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
+.. Accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["télécharger la page"^] téléchargez le dernier bundle de firmware de calcul sur un périphérique accessible au nœud de gestion.
++
+
+TIP: Pour les mises à niveau vers des sites sombres, vous pouvez réduire le temps de chargement si le bundle de firmware de calcul et le nœud de gestion sont tous deux locaux.
+
+.. Téléchargez le bundle du firmware de calcul sur le nœud de gestion :
++
+... Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/package-repository/1/
+----
+... Sélectionnez *Authorise* et procédez comme suit :
++
+.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.... Saisissez l'ID client en tant que `mnode-client`.
+.... Sélectionnez *Autoriser* pour démarrer une session.
+.... Fermez la fenêtre d'autorisation.
+
+
+... Dans l'interface utilisateur de l'API REST, sélectionnez *POST /packages*.
+... Sélectionnez *essayez-le*.
+... Sélectionnez *Browse* et sélectionnez le pack de microprogramme de calcul.
+... Sélectionnez *Exécuter* pour lancer le téléchargement.
+... Dans la réponse, copiez et enregistrez l'ID du bundle du firmware de calcul (`"id"`) pour une utilisation ultérieure.
+
+
+.. Vérifiez l'état du chargement.
++
+... Dans l'interface utilisateur de l'API REST, sélectionnez *GET​ /packages​/{ID}​/status*.
+... Sélectionnez *essayez-le*.
+... Saisissez l'ID de paquet que vous avez copié à l'étape précédente dans *ID*.
+... Sélectionnez *Exécuter* pour lancer la demande d'état.
++
+La réponse indique `state` comme `SUCCESS` une fois l'opération terminée.
+
+... Dans la réponse, copiez et enregistrez le nom du bundle du firmware de calcul (`"name"`) et version (`"version"`) pour une utilisation ultérieure.
+
+
+
+
+|===
+. Recherchez l'ID du contrôleur de calcul et l'ID matériel de nœud pour le nœud que vous envisagez de mettre à niveau :
++
+.. Ouvrez l'interface utilisateur de l'API REST du service d'inventaire sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
+
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *OBTENIR /installations*.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Exécuter*.
+.. Dans le cas d'une réponse, copiez l'ID de ressource d'installation (`"id"`).
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *GET /installations/{ID}*.
+.. Sélectionnez *essayez-le*.
+.. Collez l'ID de ressource d'installation dans le champ *ID*.
+.. Sélectionnez *Exécuter*.
+.. Depuis le réponse, copiez et enregistrez l'ID du contrôleur du cluster (`"controllerId"`)Et ID matériel du nœud (`"hardwareId"`) pour une utilisation ultérieure :
++
+[listing, subs="+quotes"]
+----
+"compute": {
+  "errors": [],
+  "inventory": {
+    "clusters": [
+      {
+        "clusterId": "Test-1B",
+        *"controllerId": "a1b23456-c1d2-11e1-1234-a12bcdef123a",*
+----
++
+[listing, subs="+quotes"]
+----
+"nodes": [
+  {
+    "bmcDetails": {
+      "bmcAddress": "10.111.0.111",
+      "credentialsAvailable": true,
+      "credentialsValidated": true
+    },
+    "chassisSerialNumber": "111930011231",
+    "chassisSlot": "D",
+    *"hardwareId": "123a4567-01b1-1243-a12b-11ab11ab0a15",*
+    "hardwareTag": "00000000-0000-0000-0000-ab1c2de34f5g",
+    "id": "e1111d10-1a1a-12d7-1a23-ab1cde23456f",
+    "model": "H410C",
+----
+
+
+. Exécutez la mise à niveau du firmware des nœuds de calcul :
++
+.. Ouvrez l'interface de l'API REST du service matériel sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/hardware/2/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
+
+
+.. Sélectionnez *POST /nodes/{Hardware_ID}/upgrades*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de l'actif hôte matériel (`"hardwareId"` enregistré à partir d'une étape précédente) dans le champ de paramètre.
+.. Effectuer les opérations suivantes avec les valeurs de charge utile :
++
+... Conserver les valeurs `"force": false` et `"maintenanceMode": true"` Les vérifications de l'état de santé sont effectuées sur le nœud et l'hôte ESXi est défini en mode de maintenance.
+... Indiquez l'ID de contrôleur du cluster (`"controllerId"` enregistré à partir d'une étape précédente).
+... Saisissez le nom et la version du groupe de microprogramme de calcul que vous avez enregistrés à partir d'une étape précédente.
++
+[listing]
+----
+{
+  "config": {
+    "force": false,
+    "maintenanceMode": true
+  },
+  "controllerId": "a1b23456-c1d2-11e1-1234-a12bcdef123a",
+  "packageName": "compute-firmware-12.2.109",
+  "packageVersion": "12.2.109"
+}
+----
+
+
+.. Sélectionnez *Exécuter* pour lancer la mise à niveau.
++
+
+CAUTION: La mise à niveau ne peut pas être interrompue après le démarrage. Le micrologiciel sera mis à jour séquentiellement dans l'ordre suivant : carte réseau, BIOS et BMC. Ne vous connectez pas à l'interface utilisateur du contrôleur BMC pendant la mise à niveau. La connexion au contrôleur BMC met fin à la session sol (Serial-over-LAN) de contrôle du cloud hybride qui surveille le processus de mise à niveau.
+
+.. Copiez l'ID de tâche de mise à niveau qui fait partie du lien de ressource (`"resourceLink"`) URL dans la réponse.
+
+
+. Vérifier la progression et les résultats de la mise à niveau :
++
+.. Sélectionnez *OBTENIR /tâche/{ID_tâche}/logs*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de tâche à partir de l'étape précédente dans *ID_tâche*.
+.. Sélectionnez *Exécuter*.
+.. Procédez de l'une des manières suivantes en cas de problème ou d'exigence spéciale lors de la mise à niveau :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Vous devez corriger les problèmes de santé du cluster dus à `failedHealthChecks` message dans le corps de la réponse.  a| 
+... Consultez l'article de la base de connaissances spécifique répertorié pour chaque problème ou effectuez la solution spécifiée.
+... Si vous spécifiez une base de connaissances, suivez la procédure décrite dans l'article correspondant de la base de connaissances.
+... Après avoir résolu les problèmes de cluster, réauthentifier si nécessaire et sélectionner *POST /nodes/{Hardware_ID}/upgrades*.
+... Répétez les étapes décrites précédemment dans l'étape de mise à niveau.
+
+
+
+
+| La mise à niveau échoue et les étapes d'atténuation ne sont pas répertoriées dans le journal de mise à niveau.  a| 
+... Voir ceci https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades["Article de la base de connaissances"^] (connexion requise).
+
+
+|===
+.. Exécutez l'API *GET ​/Task/{Task_ID}/logs* plusieurs fois, si nécessaire, jusqu'à ce que le processus soit terminé.
++
+Pendant la mise à niveau, le `status` indique `running` si aucune erreur n'est détectée. À mesure que chaque étape se termine, le `status` la valeur passe à `completed`.
+
++
+La mise à niveau a réussi lorsque l'état de chaque étape est `completed` et le `percentageCompleted` la valeur est `100`.
+
+
+
+. (Facultatif) Confirmez les versions mises à niveau du micrologiciel pour chaque composant :
++
+.. Ouvrez l'interface de l'API REST du service matériel sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/hardware/2/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
+
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *GET ​/nodes​/{Hardware_ID}​/upgrades*.
+.. (Facultatif) Entrez les paramètres de date et d'état pour filtrer les résultats.
+.. Saisissez l'ID de l'actif hôte matériel (`"hardwareId"` enregistré à partir d'une étape précédente) dans le champ de paramètre.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Exécuter*.
+.. Vérifiez dans la réponse que le micrologiciel de tous les composants a été mis à niveau de la version précédente vers la dernière version du micrologiciel.
+
+
+
+
+
+
+== Utilisez un lecteur USB imagé avec la dernière offre de microprogramme de calcul
+
+Vous pouvez insérer un lecteur USB avec le dernier pack de firmware de calcul téléchargé sur un port USB du nœud de calcul. Au lieu d'utiliser la méthode de la clé USB décrite dans cette procédure, vous pouvez monter l'ensemble du micrologiciel de calcul sur le nœud de calcul à l'aide de l'option *Virtual CD/DVD* de la console virtuelle dans l'interface BMC (Baseboard Management Controller). La méthode du contrôleur BMC prend beaucoup plus de temps que la méthode du lecteur USB. Assurez-vous que votre poste de travail ou serveur dispose de la bande passante réseau nécessaire et que votre session de navigateur avec le contrôleur BMC ne s'arrête pas.
+
+.Ce dont vous avez besoin, 8217;ll
+* Si votre nœud de gestion n'est pas connecté à Internet, vous avez téléchargé le bundle du firmware de calcul à partir du https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Site de support NetApp"^].
++
+
+NOTE: Vous devez extraire le `TAR.GZ` fichier à un `TAR` puis extrayez le `TAR` fichier dans le pack du micrologiciel de calcul.
+
+
+
+.Étapes
+. Utilisez l'utilitaire Etcher pour flasher le pack du micrologiciel de calcul sur une clé USB.
+. Placez le nœud de calcul en mode maintenance à l'aide de VMware vCenter et évacuez toutes les machines virtuelles de l'hôte.
++
+
+NOTE: Si VMware Distributed Resource Scheduler (DRS) est activé sur le cluster (il s'agit de la valeur par défaut dans les installations NetApp HCI), les machines virtuelles seront automatiquement migrées vers d'autres nœuds du cluster.
+
+. Insérez la clé USB dans un port USB du nœud de calcul et redémarrez le nœud de calcul à l'aide de VMware vCenter.
+. Pendant le POST-cycle du nœud de calcul, appuyez sur *F11* pour ouvrir Boot Manager. Vous devrez peut-être appuyer plusieurs fois sur *F11* en succession rapide. Vous pouvez effectuer cette opération en connectant une vidéo/un clavier ou en utilisant la console dans `BMC`.
+. Sélectionnez *One Shot* > *USB Flash Drive* dans le menu qui s'affiche. Si le lecteur USB n'apparaît pas dans le menu, vérifiez que le lecteur flash USB fait partie de l'ordre de démarrage hérité dans le BIOS du système.
+. Appuyez sur *entrée* pour démarrer le système à partir de la clé USB. Le processus de flash du micrologiciel commence.
++
+Une fois le clignotement du firmware et le redémarrage du nœud, le démarrage de ESXi peut prendre quelques minutes.
+
+. Une fois le redémarrage terminé, quittez le mode de maintenance sur le nœud de calcul mis à niveau à l'aide de vCenter.
+. Retirez le lecteur flash USB du nœud de calcul mis à niveau.
+. Répétez cette tâche pour les autres nœuds de calcul de votre cluster ESXi jusqu'à la mise à niveau de tous les nœuds de calcul.
+
+
+
+
+== Utilisation de l'interface utilisateur (UI) du contrôleur de gestion de la carte mère (BMC)
+
+Vous devez effectuer les étapes séquentielles pour charger le pack du firmware de calcul et redémarrer le nœud dans le bundle du firmware de calcul afin de garantir la réussite de la mise à niveau. Le bundle de firmware de calcul doit se trouver sur le système ou la machine virtuelle hébergeant le navigateur Web. Vérifiez que vous avez téléchargé le pack du firmware de calcul avant de lancer le processus.
+
+
+TIP: Il est recommandé de disposer du système ou de la machine virtuelle et du nœud sur le même réseau.
+
+
+NOTE: La mise à niveau via l'interface utilisateur BMC prend environ 25 à 30 minutes.
+
+*  firmware on H410C and H300E/H500E/H700E nodes
+*  firmware on H610C/H615C nodes
+
+
+
+
+=== Mise à niveau du firmware sur les nœuds H410C/H500E/H700E
+
+Si votre nœud fait partie d'un cluster, vous devez placer le nœud en mode maintenance avant la mise à niveau et le mettre à niveau hors mode de maintenance après la mise à niveau.
+
+
+TIP: Ignorez le message d'information suivant que vous voyez pendant le processus : `Untrusty Debug Firmware Key is used, SecureFlash is currently in Debug Mode`
+
+.Étapes
+. Si votre nœud fait partie d'un cluster, placez-le en mode maintenance comme suit. Si ce n'est pas le cas, passez à l'étape 2.
++
+.. Connectez-vous au client Web VMware vCenter.
+.. Cliquez avec le bouton droit de la souris sur le nom de l'hôte (nœud de calcul) et sélectionnez *Maintenance mode > Enter Maintenance mode*.
+.. Sélectionnez *OK*. Les machines virtuelles de l'hôte seront migrées vers un autre hôte disponible. La migration d'un ordinateur virtuel peut prendre du temps en fonction du nombre de machines virtuelles à migrer.
++
+
+CAUTION: Assurez-vous que toutes les machines virtuelles de l'hôte sont migrées avant de continuer.
+
+
+
+. Accédez à l'interface utilisateur du contrôleur BMC, `https://BMCIP/#login`, Où BMCIP est l'adresse IP du BMC.
+. Connectez-vous à l'aide de vos informations d'identification.
+. Sélectionnez *télécommande > Redirection de console*.
+. Sélectionnez *lancer la console*.
++
+
+NOTE: Vous devrez peut-être installer Java ou le mettre à jour.
+
+. Lorsque la console s'ouvre, sélectionnez *Virtual Media > Virtual Storage*.
+. Sur l'écran *Virtual Storage*, sélectionnez *Logical Drive Type* et *ISO File*.
++
+image:BIOS_H410C_iso.png["Affiche le chemin de navigation pour sélectionner le fichier de bundle de microprogramme de calcul."]
+
+. Sélectionnez *Ouvrir image* pour accéder au dossier dans lequel vous avez téléchargé le fichier de bundle de microprogramme de calcul, puis sélectionnez le fichier de bundle de microprogramme de calcul.
+. Sélectionnez *Plug in*.
+. Lorsque l'état de la connexion s'affiche `Device#: VM Plug-in OK!!`, Sélectionnez *OK*.
+. Redémarrez le nœud en appuyant sur *F12* et en sélectionnant *redémarrer* ou en sélectionnant *contrôle d'alimentation > définir réinitialisation d'alimentation*.
+. Au cours du redémarrage, appuyez sur *F11* pour sélectionner les options de démarrage et charger le pack du micrologiciel de calcul. Vous devrez peut-être appuyer plusieurs fois sur F11 avant que le menu de démarrage ne s'affiche.
++
+L'écran suivant s'affiche :
+
++
+image:boot_option_iso_h410c.png["Affiche l'écran de démarrage de l'ISO virtuel jusqu'à."]
+
+. Sur l'écran ci-dessus, appuyez sur *entrée*. En fonction de votre réseau, la mise à niveau peut prendre quelques minutes après avoir appuyé sur *entrée*.
++
+
+NOTE: Certaines mises à niveau du micrologiciel peuvent provoquer la déconnexion de la console et/ou la déconnexion de votre session sur le contrôleur BMC. Vous pouvez vous reconnecter au contrôleur BMC, mais certains services, tels que la console, peuvent ne pas être disponibles en raison des mises à niveau du micrologiciel. Une fois les mises à niveau effectuées, le nœud procède à un redémarrage à froid qui peut prendre environ cinq minutes.
+
+. Connectez-vous à nouveau à l'interface utilisateur du contrôleur BMC et sélectionnez *System* pour vérifier la version du BIOS et le temps de construction après le démarrage du système d'exploitation. Si la mise à niveau s'est terminée correctement, les nouvelles versions BIOS et BMC s'affichent.
++
+
+NOTE: La version du BIOS n'affiche pas la version mise à niveau tant que le démarrage complet du nœud n'est pas terminé.
+
+. Si le nœud fait partie d'un cluster, effectuez la procédure ci-dessous. S'il s'agit d'un nœud autonome, aucune action supplémentaire n'est requise.
++
+.. Connectez-vous au client Web VMware vCenter.
+.. Sortir l'hôte du mode de maintenance. Cela peut afficher un indicateur rouge déconnecté. Attendre que tous les États soient effacés.
+.. Mettez sous tension l'un des serveurs virtuels restants qui ont été mis hors tension.
+
+
+
+
+
+
+=== Mise à niveau du firmware sur les nœuds H610C/H615C
+
+Les étapes varient selon que le nœud est autonome ou fait partie d'un cluster. La procédure peut prendre environ 25 minutes et inclut la mise hors tension du nœud, le téléchargement du bundle de firmware de calcul, le flashage des périphériques et la remise sous tension du nœud après la mise à niveau.
+
+.Étapes
+. Si votre nœud fait partie d'un cluster, placez-le en mode maintenance comme suit. Si ce n'est pas le cas, passez à l'étape 2.
++
+.. Connectez-vous au client Web VMware vCenter.
+.. Cliquez avec le bouton droit de la souris sur le nom de l'hôte (nœud de calcul) et sélectionnez *Maintenance mode > Enter Maintenance mode*.
+.. Sélectionnez *OK*. Les machines virtuelles de l'hôte seront migrées vers un autre hôte disponible. La migration d'un ordinateur virtuel peut prendre du temps en fonction du nombre de machines virtuelles à migrer.
++
+
+CAUTION: Assurez-vous que toutes les machines virtuelles de l'hôte sont migrées avant de continuer.
+
+
+
+. Accédez à l'interface utilisateur du contrôleur BMC, `https://BMCIP/#login`, Où BMC IP est l'adresse IP du BMC.
+. Connectez-vous à l'aide de vos informations d'identification.
+. Sélectionnez *Remote Control > Launch KVM (Java)*.
+. Dans la fenêtre de la console, sélectionnez *Média > Assistant média virtuel*.
++
+image::bmc_wizard.gif[Démarrez l'assistant de média virtuel à partir de l'interface utilisateur BMC.]
+
+. Sélectionnez *Parcourir* et sélectionnez le micrologiciel de calcul `.iso` fichier.
+. Sélectionnez *connexion*. Une fenêtre contextuelle indiquant la réussite s'affiche, ainsi que le chemin et le périphérique affichés en bas. Vous pouvez fermer la fenêtre *Virtual Media*.
++
+image::virtual_med_popup.gif[Fenêtre contextuelle indiquant que le téléchargement ISO a réussi.]
+
+. Redémarrez le nœud en appuyant sur *F12* et en sélectionnant *redémarrer* ou en sélectionnant *contrôle d'alimentation > définir réinitialisation d'alimentation*.
+. Au cours du redémarrage, appuyez sur *F11* pour sélectionner les options de démarrage et charger le pack du micrologiciel de calcul.
+. Sélectionnez *CD-ROM virtuel ami* dans la liste affichée et sélectionnez *entrée*. Si vous ne voyez pas ami Virtual CDROM dans la liste, allez dans le BIOS et activez-le dans la liste de démarrage. Le nœud redémarre après l'enregistrement. Pendant le redémarrage, appuyez sur *F11*.
++
+image::boot_device.gif[Affiche la fenêtre dans laquelle vous pouvez sélectionner le périphérique de démarrage.]
+
+. Sur l'écran affiché, sélectionnez *entrée*.
++
+
+NOTE: Certaines mises à niveau du micrologiciel peuvent provoquer la déconnexion de la console et/ou la déconnexion de votre session sur le contrôleur BMC. Vous pouvez vous reconnecter au contrôleur BMC, mais certains services, tels que la console, peuvent ne pas être disponibles en raison des mises à niveau du micrologiciel. Une fois les mises à niveau effectuées, le nœud procède à un redémarrage à froid qui peut prendre environ cinq minutes.
+
+. Si vous êtes déconnecté de la console, sélectionnez *Remote Control* et sélectionnez *Launch KVM* ou *Launch KVM (Java)* pour vous reconnecter et vérifier lorsque le nœud a terminé la sauvegarde. Vous pourriez avoir besoin de plusieurs reconnexions pour vérifier que le nœud a bien démarré.
++
+
+CAUTION: Pendant le processus de mise sous tension, pendant environ cinq minutes, la console KVM affiche *pas de signal*.
+
+. Une fois le nœud sous tension, sélectionnez *Tableau de bord > informations sur le périphérique > plus d'informations* pour vérifier les versions du BIOS et du BMC. Les versions mises à niveau du BIOS et du BMC sont affichées. La version mise à niveau du BIOS ne s'affiche qu'après le démarrage complet du nœud.
+. Si vous avez placé le nœud en mode maintenance, après le démarrage du nœud sur ESXi, cliquez avec le bouton droit de la souris sur le nom de l'hôte (nœud de calcul), puis sélectionnez *Maintenance mode > Exit Maintenance mode* (mode de maintenance) et faites migrer les machines virtuelles vers l'hôte.
+. Dans vCenter, avec le nom d'hôte sélectionné, configurez et vérifiez la version du BIOS.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

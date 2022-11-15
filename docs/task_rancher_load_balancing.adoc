@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_load_balancing.html 
+summary: 'Découvrez comment configurer l"équilibrage de charge après l"installation de Rancher sur NetApp HCI.' 
+keywords: netapp, hci, Rancher, install, installation, load, balance 
+---
+= Configurer l'équilibrage de charge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez comment configurer l'équilibrage de charge après l'installation de Rancher sur NetApp HCI. L'équilibrage des charges pour Rancher sur NetApp HCI implique l'utilisation de clusters de gestion.
+
+Pour les charges de travail de production, il convient d'envisager une technique telle que DNS Round-Robin ou un équilibreur de charge L4 pour la valeur de l'URL Rancher. Soit l'une de ces techniques distribuera l'accès à l'interface utilisateur Rancher et fournira la résilience la plus importante.
+
+L'équilibrage de charge L4 est une technique selon laquelle une machine virtuelle ou un conteneur qui héberge une application est configuré de manière à distribuer les requêtes entre les trois nœuds du cluster de gestion.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentation de l'éleveur sur l'architecture"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminologie Kubernetes pour Rancher"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

@@ -1,0 +1,281 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_dimmcomputerepl.html 
+summary: 'Vous pouvez remplacer un module DIMM (Dual Inline Memory module) défectueux dans les nœuds de calcul NetApp HCI au lieu de remplacer le nœud entier.' 
+keywords: netapp, hci, dimm, compute nodes 
+---
+= Remplacez les modules DIMM dans les nœuds de calcul
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez remplacer un module DIMM (Dual Inline Memory module) défectueux dans les nœuds de calcul NetApp HCI au lieu de remplacer le nœud entier.
+
+.Ce dont vous avez besoin, 8217;ll
+* Avant de commencer cette procédure, vous devez avoir contacté le support NetApp et reçu une pièce de rechange. Le support sera impliqué pendant l'installation du remplacement. Si ce n'est déjà fait, contactez https://www.netapp.com/us/contact-us/support.aspx["Assistance"^].
+* Vous avez planifié de temps d'indisponibilité du système, car vous devez mettre le nœud hors tension ou le mettre hors tension puis sous tension et démarrer le nœud en mode sans échec NetApp pour accéder à l'interface utilisateur du terminal (TUI).
+
+
+Cette procédure s'applique aux modèles de nœud de calcul suivants :
+
+* Nœuds H410C. Un nœud H410C est inséré dans un châssis NetApp HCI 2U.
+* Nœud H610C Un nœud H610C est intégré dans le châssis.
+* Nœud H615C. Un nœud H615C est intégré au châssis.
++
+
+IMPORTANT: Les nœuds H410C et H615C incluent les modules DIMM de différents fournisseurs. Veillez à ne pas mélanger des modules DIMM de différents fournisseurs dans un châssis.
+
++
+
+NOTE: Les termes « châssis » et « nœud » sont utilisés de manière interchangeable dans les cas de H610C et de l'H615C, car les nœuds et les châssis ne sont pas des composants distincts.
+
+
+
+Voici les étapes du remplacement des modules DIMM dans les nœuds de calcul :
+
+*  to replace the DIMM
+*  the DIMM from the chassis
+
+
+
+
+== Préparez-vous à remplacer le module DIMM
+
+En cas de problème avec le module DIMM, VMware ESXi affiche des alertes, par exemple `Memory Configuration Error`, `Memory Uncorrectable ECC`, `Memory Transition to Critical`, et `Memory Critical Overtemperature`. Même si les alertes disparaissent après un certain temps, le problème matériel peut persister. Vous devez diagnostiquer et corriger le module DIMM défectueux. Vous pouvez obtenir des informations sur le module DIMM défectueux à partir de vCenter Server. Si vous avez besoin de plus d'informations que ce qui est disponible dans vCenter Server, vous devez exécuter la vérification matérielle dans l'interface TUI.
+
+.Étapes
+. Identifiez l'emplacement qui a consigné l'erreur comme suit :
++
+.. Pour l'H615C :
++
+... Connectez-vous à l'interface utilisateur du contrôleur BMC.
+... Sélectionnez *journaux et rapports* > *Journal d'événements IPMI*.
+... Dans le journal des événements, recherchez l'erreur de mémoire et identifiez l'emplacement sur lequel l'erreur est consignée.
++
+image::h615c_bmc_memoryerror.png[La présente l'erreur de mémoire non réparable dans l'interface utilisateur BMC pour les nœuds H615C]
+
+
+
+.. Pour H410C, procédez comme suit :
++
+... Connectez-vous à l'interface utilisateur du contrôleur BMC.
+... Sélectionnez *Server Health* > *Health Event Log*.
+... Dans le journal des événements, recherchez l'erreur de mémoire et identifiez l'emplacement sur lequel l'erreur est consignée.
++
+image::dimm_h410c_bmc.png[Affiche l'erreur de mémoire dans l'interface utilisateur BMC du nœud H410C.]
+
+
+
+
+
+. Procédez comme suit pour identifier le numéro de référence du fabricant du module DIMM.
++
+
+IMPORTANT: Les nœuds H410C et H615C incluent des modules DIMM provenant de différents fabricants. Vous ne devez pas combiner différents types de modules DIMM dans le même châssis. Vous devez identifier le fabricant du module DIMM défectueux et commander un remplacement du même type.
+
++
+.. Connectez-vous au BMC pour lancer la console sur le nœud.
+.. Appuyez sur *F2* sur le clavier pour accéder au menu *Personnaliser le système/Afficher les journaux*.
+.. Saisissez le mot de passe lorsque vous y êtes invité.
++
+
+NOTE: Le mot de passe doit correspondre à celui que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI.
+
++
+image::node_console_step1.png[Affiche la fenêtre pour saisir le mot de passe pour vous connecter à la console du nœud.]
+
+.. Dans le menu Personnalisation du système, appuyez sur la flèche vers le bas pour accéder aux Options de dépannage, puis appuyez sur *entrée*.
++
+image::node_console_step2.png[Affiche le menu Personnalisation du système.]
+
+.. Dans le menu Options du mode de dépannage, utilisez la flèche vers le haut ou vers le bas pour activer le shell ESXi et SSH, qui sont désactivés par défaut.
+.. Appuyez deux fois sur la touche <Esc> pour quitter les options de dépannage.
+.. Exécutez le `smbiosDump` utilisez l'une des options suivantes :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Option A  a| 
+... Connectez-vous à l'hôte ESXi (nœud de calcul) à l'aide de l'adresse IP de l'hôte et des informations d'identification root que vous avez définies.
+... Exécutez le `smbiosDump` commande. Voir l'exemple de sortie suivant :
+
+
+[listing]
+----
+`Memory Device:#30
+Location: "P1-DIMMA1"
+Bank: "P0_Node0_Channel0_Dimm0"
+Manufacturer:"Samsung"
+Serial: "38EB8380"
+Asset Tag: "P1-DIMMA1_AssetTag (date:18/15)"
+Part Number: "M393A4K40CB2-CTD"
+Memory Array: #29
+Form Factor: 0x09(DIMM)
+Type: 0x1a (DDR4)
+Type Detail: 0x0080 (Synchronous)
+Data Width: 64 bits (+8 ECC bits)
+Size: 32 GB`
+----
+
+
+| Option B  a| 
+... Appuyez sur *Alt + F1* pour entrer le shell et connectez-vous au nœud pour exécuter la commande.
+
+
+|===
+
+
+. Contactez le support NetApp pour obtenir de l'aide lors des étapes suivantes. Le support NetApp nécessite les informations suivantes pour traiter le remplacement d'une pièce :
++
+** Numéro de série du nœud
+** Nom du cluster
+** Détails du journal des événements système à partir de l'interface utilisateur BMC
+** Sortie du `smbiosDump` commande
+
+
+
+
+
+
+== Remplacez le module DIMM du châssis
+
+Avant de retirer et de remplacer physiquement le module DIMM défectueux dans le châssis, vérifiez que vous avez effectué toutes les opérations de link:task_hci_dimmcomputerepl.html#prepare-to-replace-the-dimm["étapes préparatoires"].
+
+
+IMPORTANT: Les modules DIMM doivent être remplacés dans les emplacements où ils ont été retirés.
+
+.Étapes
+. Accédez au nœud en vous connectant à vCenter Server.
+. Cliquez avec le bouton droit de la souris sur le nœud signalant l'erreur, puis sélectionnez l'option pour placer le nœud en mode maintenance.
+. Migrez les machines virtuelles vers un autre hôte disponible.
++
+
+NOTE: Pour connaître les étapes de migration, reportez-vous à la documentation VMware.
+
+. Mettez le châssis ou le nœud hors tension.
++
+
+NOTE: Dans le cas d'un châssis H610C ou H615C, mettez le châssis hors tension. Pour les nœuds H410C dans un châssis 2U à quatre nœuds, mettez uniquement le nœud hors tension lorsque le module DIMM est défectueux.
+
+. Retirez les câbles d'alimentation et les câbles réseau, faites glisser avec précaution le nœud ou le châssis hors du rack et placez-le sur une surface plane et antistatique.
++
+
+TIP: Pensez à utiliser des serre-câbles pour les câbles.
+
+. Mettez la protection antistatique avant d'ouvrir le capot du châssis pour remplacer le module DIMM.
+. Effectuez les étapes pertinentes pour votre modèle de nœud :
++
+[cols="2*"]
+|===
+| Modèle de nœud | Étapes 
+
+
+| H410C  a| 
+.. Recherchez le module DIMM défectueux en faisant correspondre le numéro/l'ID de logement que vous avez noté précédemment avec la numérotation sur la carte mère. Voici quelques exemples d'images montrant les numéros des emplacements DIMM sur la carte mère :
++
+image::h410c_dimmslot.png[La montre les numéros des emplacements DIMM sur la carte mère du nœud H410C.]
+
++
+image::h410c_dimmslot_2.png[La montre une vue rapprochée des numéros des emplacements DIMM sur la carte mère du nœud H410C.]
+
+.. Appuyez sur les deux clips de fixation vers l'extérieur et tirez doucement le DIMM vers le haut. Voici un exemple d'image montrant les clips de retenue :
++
+image::h410c_dimm_clips.png[La illustre les clips de fixation des DIMM du nœud H410C.]
+
+.. Installez correctement le module DIMM de remplacement. Lorsque vous insérez correctement le DIMM dans le logement, les deux clips se verrouillent en place.
++
+
+IMPORTANT: Assurez-vous que vous ne touchez que les extrémités arrière du module DIMM. Si vous appuyez sur d'autres parties du module DIMM, le matériel risque d'être endommagé.
+
+.. Installez le nœud dans le châssis NetApp HCI, en veillant à ce que ce dernier s'enclenche lorsque vous le faites glisser.
+
+
+
+
+| H610C  a| 
+.. Soulevez le capot comme indiqué sur l'image suivante :
++
+image::h610c_airflowcover.png[La représente le couvercle levé sur le nœud H610C.]
+
+.. Desserrez les quatre vis de blocage bleues à l'arrière du nœud. Voici un exemple d'image montrant l'emplacement des deux vis de blocage ; vous trouverez les deux autres sur l'autre côté du nœud :
++
+image::h610c_lockscrews.png[La représente les vis de blocage à l'arrière du nœud H610C.]
+
+.. Retirez les deux caches de carte PCI.
+.. Retirez le GPU et le capot du flux d'air.
+.. Recherchez le module DIMM défectueux en faisant correspondre le numéro/l'ID de logement que vous avez noté précédemment avec la numérotation sur la carte mère. Voici un exemple d'image illustrant l'emplacement des numéros des connecteurs DIMM sur la carte mère :
++
+image::h610c_dimmslot.png[La montre les numéros des connecteurs DIMM de la carte mère H610C.]
+
+.. Appuyez sur les deux clips de fixation vers l'extérieur et tirez doucement le DIMM vers le haut.
+.. Installez correctement le module DIMM de remplacement. Lorsque vous insérez correctement le DIMM dans le logement, les deux clips se verrouillent en place.
++
+
+IMPORTANT: Assurez-vous que vous ne touchez que les extrémités arrière du module DIMM. Si vous appuyez sur d'autres parties du module DIMM, le matériel risque d'être endommagé.
+
+.. Remplacez tous les composants que vous avez retirés : GPU, capot du flux d'air et caches PCI.
+.. Serrer les vis de blocage.
+.. Replacer le capot sur le nœud.
+.. Installez le châssis H610C sur le rack, en veillant à ce que le châssis s'enclenche lorsque vous le faites glisser.
+
+
+
+
+| H615C  a| 
+.. Soulevez le capot comme indiqué sur l'image suivante :
++
+image::h615c_airflowcover.png[La représente le capot soulevé sur le nœud H615C.]
+
+.. Retirez le processeur graphique (si votre nœud H615C est équipé d'un processeur graphique) et du capot du flux d'air.
++
+image::h615c_gpu.png[La représente le capot du flux d'air retiré sur le nœud H615C.]
+
+.. Recherchez le module DIMM défectueux en faisant correspondre le numéro/l'ID de logement que vous avez noté précédemment avec la numérotation sur la carte mère. Voici un exemple d'image illustrant l'emplacement des numéros des connecteurs DIMM sur la carte mère :
++
+image::h615c_dimmslot.png[La montre les numéros des connecteurs DIMM de la carte mère H615C.]
+
+.. Appuyez sur les deux clips de fixation vers l'extérieur et tirez doucement le DIMM vers le haut.
+.. Installez correctement le module DIMM de remplacement. Lorsque vous insérez correctement le DIMM dans le logement, les deux clips se verrouillent en place.
++
+
+IMPORTANT: Assurez-vous que vous ne touchez que les extrémités arrière du module DIMM. Si vous appuyez sur d'autres parties du module DIMM, le matériel risque d'être endommagé.
+
+.. Remettez en place le couvercle du débit d'air.
+.. Replacer le capot sur le nœud.
+.. Installez le châssis H610C sur le rack, en veillant à ce que le châssis s'enclenche lorsque vous le faites glisser.
+
+
+|===
+. Insérez les câbles d'alimentation et les câbles réseau. Assurez-vous que tous les voyants des ports s'allument.
+. Appuyez sur le bouton d'alimentation situé à l'avant du nœud si celui-ci ne s'exécute pas automatiquement lors de l'installation.
+. Une fois le nœud affiché dans vSphere, cliquez avec le bouton droit de la souris sur le nom et sortez le nœud du mode de maintenance.
+. Vérifiez les informations matérielles comme suit :
++
+.. Connectez-vous à l'interface utilisateur du contrôleur de gestion de la carte mère (BMC).
+.. Sélectionnez *système > informations sur le matériel* et vérifiez les modules DIMM répertoriés.
+
+
+
+
+Lorsque le nœud revient à un fonctionnement normal, dans vCenter, vérifiez l'onglet Résumé pour vous assurer que la capacité de mémoire est la bonne.
+
+
+NOTE: Si le module DIMM n'est pas installé correctement, le nœud fonctionne normalement mais avec une capacité de mémoire inférieure à la capacité prévue.
+
+
+TIP: Après la procédure de remplacement du module DIMM, vous pouvez effacer les avertissements et erreurs de l'onglet Etat du matériel dans vCenter. Vous pouvez le faire si vous souhaitez effacer l'historique des erreurs liées au matériel que vous avez remplacé. https://kb.vmware.com/s/article/2011531["En savoir plus >>"^].
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

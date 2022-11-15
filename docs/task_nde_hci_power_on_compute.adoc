@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_on_compute.html 
+summary: Découvrez comment mettre les nœuds de calcul NetApp HCI sous tension. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Alimentation des ressources de calcul d'un système NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Une fois l'interruption planifiée terminée, vous pouvez mettre les ressources de calcul d'un système NetApp HCI sous tension.
+
+.Étapes
+. Mettez les nœuds de calcul sous tension en suivant les étapes réalisées pour la mise sous tension des nœuds de stockage.
+. Lorsque tous les nœuds de calcul sont opérationnels, connectez-vous à l'hôte ESXi qui exécutait le vCSA.
+. Connectez-vous à l'hôte de calcul et vérifiez qu'il détecte tous les datastores NetApp HCI. Dans un système NetApp HCI standard, vous devriez voir tous les datastores locaux ESXi ainsi qu'au moins les datastores partagés suivants :
+
+
+[listing]
+----
+NetApp-HCI-Datastore-[01,02]
+----
+. Dans la mesure où l'ensemble du stockage est accessible, mettez le vCSA sous tension et toutes les autres machines virtuelles requises de la manière suivante :
++
+.. Sélectionnez les machines virtuelles dans le navigateur, sélectionnez toutes les machines virtuelles que vous souhaitez mettre sous tension, puis cliquez sur le bouton *Marche/Arrêt*.
+
+
+. Après la mise sous tension des machines virtuelles, attendez environ 5 minutes, puis utilisez un navigateur Web pour naviguer vers l'adresse IP ou le FQDN de l'application vCSA.
++
+Si vous n'attendez pas assez longtemps, un message s'affiche indiquant que le serveur Web vSphere client est en cours d'initialisation.
+
+. Une fois le client vSphere initialisé, connectez-vous et vérifiez que tous les hôtes VMware ESXi et les machines virtuelles sont en ligne.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

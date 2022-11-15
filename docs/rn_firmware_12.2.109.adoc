@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_firmware_12.2.109.html 
+summary: Obtenez des liens vers les notes de version pour les packages de firmware que vous pouvez télécharger et appliquer aux nœuds NetApp HCI. 
+keywords: netapp, hci, compute firmware 
+---
+= Notes de version de Compute Firmware Bundle 12.2.109
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Le bundle de firmware de calcul téléchargeable contient les dernières améliorations de fonctionnalités du BIOS et du BMC, des corrections de bugs et la prise en charge matérielle pour tous les nœuds de calcul NetApp HCI pris en charge.
+
+
+
+== Nouveautés
+
+La version 12.2.109 introduit la prise en charge de BMC avec les API DMTF Redfish, qui permet d'exploiter à l'avenir la solution NetApp Hybrid Cloud Control. Les mises à jour du micrologiciel contiennent également des correctifs généraux et permettent de résoudre les problèmes de mémoire. Les mises à jour BMC pour les nœuds de calcul H300E, H500E et H700E corrigent plusieurs vulnérabilités de sécurité, notamment CVE-2019-16649, CVE-2019-16650 et CVE-2019-6260.
+
+Ce pack contient les versions de firmware suivantes pour les composants matériels, avec des versions mises à jour en gras :
+
+|===
+| Composant | H300E, H500E, H700E | H410C | H610C | H615C 
+
+
+| BIOS | NA2.1 | *NA3.7* | *3B01* | 3B06.CO 
+
+
+| BMC | *6.84.00* | 6.71.06 | *3.96.07* | *4.64.07* 
+
+
+| NIC/Mellanox | 14.21.1000 | 14.21.1000 | 14.22.1002 | 14.23.1020 
+|===
+Pour télécharger le pack Compute Firmware, rendez-vous sur le https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Bundle de firmware de calcul NetApp HCI"^] page.
+
+Visitez link:task_hcc_upgrade_compute_node_firmware.html#use-the-baseboard-management-controller-bmc-user-interface-ui["Met à jour le firmware du nœud de calcul"] pour obtenir des instructions sur la mise à jour du firmware de votre nœud de calcul.
+
+
+
+== Résolution des problèmes
+
+Les problèmes suivants ont été résolus dans cette version :
+
+|===
+| Problème | Description 
+
+
+| PE-10306 | Lorsque vous mettez à niveau le logiciel BMC sur un nœud de stockage Element 11.8, les informations d'identification de l'utilisateur BMC sont perdues. 
+
+
+| CSFSE-26 | Dans certains cas, les nœuds H610C peuvent présenter un bruit de ventilateur intermittent. 
+
+
+| CSFSE-293 | Lorsque vous effectuez une mise à niveau vers la version 12.2.92 du firmware des nœuds de calcul sur un nœud H300E, H410C, H410C, H500E ou H700E, La version 14.21.1000 du firmware des cartes d'interface réseau Mellanox est installée, même si la version précédente l'était plus récente. 
+
+
+| CSFSE-352 | Les versions 1.0 et 1.1 de TLS souffrent de vulnérabilités de sécurité. Cette version désactive TLS 1.0 et 1.1 pour les nœuds de calcul H610C et H615C. 
+|===
+
+
+== Problèmes connus
+
+Dans cette version, vous trouverez ci-dessous des problèmes connus qui peuvent affecter le fonctionnement quotidien de certains environnements.
+
+|===
+| Problème | Description | Solution de contournement 
+
+
+| CSFSE-295 | Le processus de mise à jour du micrologiciel du nœud de calcul échoue en raison d'une erreur de mise à jour du BIOS lorsque vous mettez à jour le micrologiciel sur un nœud H410C à l'aide du pack de firmware téléchargeable. | Mettez manuellement à jour le BIOS vers la version NA3.7 sur le nœud H410C : 1. Accédez au https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Page de téléchargements NetApp HCI"^]. 2. Entrer `H410C_BIOS_3.7` dans la zone de texte de la liste déroulante. 3. Cliquez sur *Go*. Les instructions de mise à jour sont disponibles en format PDF sur la page de téléchargement. Après la mise à jour du BIOS et du BMC, mettez à jour le micrologiciel du nœud H410C à l'aide du progiciel du micrologiciel de calcul 12.2.109. 
+|===

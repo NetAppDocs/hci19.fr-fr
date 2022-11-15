@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_upgrade_overview.html 
+summary: Vous pouvez mettre à niveau NetApp HCI et tous ses composants. 
+keywords: netapp, hci, on premise, cluster, upgrade, element 
+---
+= Présentation de la séquence de mise à niveau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez maintenir votre système NetApp HCI à jour après son déploiement en mettant à niveau séquentiellement tous les composants logiciels NetApp HCI.
+
+Ces composants incluent les services de gestion, HealthTools, NetApp Hybrid Cloud Control, le logiciel Element, le nœud de gestion, le firmware de calcul, les pilotes de calcul, Et le plug-in Element pour vCenter Server.​
+
+Le ,séquence de mise à niveau du système Le contenu décrit les tâches nécessaires à la mise à niveau d'un système NetApp HCI. Idéalement, vous devez effectuer ces procédures dans le cadre d'une séquence de mise à niveau plus importante et non isolément. Si une mise à niveau ou une mise à jour basée sur les composants est nécessaire, reportez-vous aux conditions préalables requises pour vous assurer que des complexités supplémentaires sont traitées.
+
+Le xref:task_hci_upgrade_all_vsphere.adoc[Séquence de mise à niveau de vSphere] L'ajout du contenu du plug-in Element pour vCenter Server décrit les étapes supplémentaires requises pour la préinstallation et la post-mise à niveau pour vCenter Server.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous exécutez le nœud de gestion 11.3 ou version ultérieure. Les dernières versions du nœud de gestion disposent d'une architecture modulaire qui fournit des services individuels.
++
+
+TIP: Pour vérifier la version, connectez-vous à votre nœud de gestion et consultez le numéro de version d'élément dans la bannière de connexion. Si vous n'avez pas 11.3, voir link:task_hcc_upgrade_management_node.html["Mettez à niveau le nœud de gestion"].
+
+* Vous avez mis à niveau vos services de gestion vers au moins la version 2.1.326.
++
+Les mises à niveau utilisant NetApp Hybrid Cloud Control ne sont pas disponibles dans les versions précédentes de Service bundle.
+
+* Vous avez vérifié que l'heure du système sur tous les nœuds est synchronisée et que le protocole NTP est correctement configuré pour le cluster de stockage et les nœuds. Chaque nœud doit être configuré avec un serveur de noms DNS dans l'interface utilisateur Web par nœud (`https://[IP address]:442`) sans erreurs de cluster non résolues liées à l'inclinaison temporelle.
+
+
+
+
+== Séquence de mise à niveau du système
+
+Vous pouvez utiliser la séquence suivante pour mettre à niveau votre système NetApp HCI.
+
+.Étapes
+. link:task_hcc_update_management_services.html["Mise à jour des services de gestion à partir du cloud hybride Control"].
++
+
+IMPORTANT: Si vous mettez à jour les services de gestion vers la version 2.16 ou ultérieure et que vous exécutez un nœud de gestion 11.3 à 11.8, vous devez augmenter la RAM de la machine virtuelle du nœud de gestion avant de mettre à jour les services de gestion.
+
++
+
+IMPORTANT: Vous devez effectuer la mise à jour vers le dernier pack de services de gestion avant de mettre à niveau votre logiciel Element.
+
+. link:task_upgrade_element_latest_healthtools.html["(Facultatif) mise à niveau vers les derniers outils de santé"].
++
+
+NOTE: La mise à niveau de HealthTools n'est nécessaire que si le noeud de gestion et le logiciel Element que vous exécutez sont 11.1 ou antérieurs. Les outils de stockage ne sont pas nécessaires pour effectuer des mises à niveau d'Element avec le contrôle de cloud hybride NetApp.
+
+. link:task_hcc_upgrade_element_prechecks.html["Exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage"].
+. link:task_hcc_upgrade_element_software.html["Mettez à niveau le firmware de stockage et le logiciel Element"].
+. link:task_hcc_upgrade_storage_firmware.html["(Facultatif) mettez uniquement à niveau le firmware de votre stockage Element"].
++
+
+NOTE: Cette tâche peut être effectuée lorsqu'une nouvelle mise à niveau du firmware de stockage est disponible en dehors d'une version majeure.
+
+. link:task_hcc_upgrade_management_node.html["(Facultatif) mettre à niveau votre nœud de gestion"].
++
+
+NOTE: La mise à niveau du système d'exploitation du nœud de gestion n'est plus nécessaire pour mettre à niveau le logiciel Element sur le cluster de stockage. Si le nœud de gestion est la version 11.3 ou ultérieure, il vous suffit de mettre à niveau les services de gestion vers la dernière version pour effectuer les mises à niveau Element avec NetApp Hybrid Cloud Control. Suivez la procédure de mise à niveau du nœud de gestion pour votre scénario si vous souhaitez mettre à niveau le système d'exploitation du nœud de gestion pour d'autres raisons, telles que la résolution des problèmes de sécurité.
+
+. link:task_vcp_upgrade_plugin.html["Mettez à niveau le plug-in Element pour vCenter Server"].
+. link:task_upgrade_compute_prechecks.html["Exécutez des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware"].
+. link:task_hcc_upgrade_compute_node_drivers.html["Mettez à jour vos pilotes de nœud de calcul"].
+. link:task_hcc_upgrade_compute_node_firmware.html["Mettez à jour le firmware de nœud de calcul à l'aide de NetApp Hybrid Cloud Control"] ou link:task_hcc_upgrade_compute_firmware_ansible.html["Automatisez les mises à niveau du firmware de calcul avec Ansible"].
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/upgrade/task_sf_upgrade_all.html["Mettez à niveau un système de stockage 100 % Flash NetApp SolidFire"^]
+

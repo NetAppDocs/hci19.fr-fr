@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_node_compatibility.html 
+summary: En savoir plus sur les exigences de compatibilité des nœuds NetApp HCI pour un déploiement. 
+keywords: netapp, hci, deployment, compatibility, nodes 
+---
+= Sélection de l'inventaire et compatibilité des nœuds
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous choisissez des nœuds pour votre déploiement, certaines restrictions s'appliquent aux configurations de nœuds que vous pouvez combiner dans le même déploiement.
+
+
+
+== Compatibilité des nœuds de stockage
+
+NetApp HCI prend en charge les nœuds de stockage et les disques avec la fonctionnalité de chiffrement de disque SED (disques avec autocryptage) et FIPS 140-2-2. Lors du déploiement ou de l'extension de NetApp HCI, vous pouvez combiner des nœuds avec différents niveaux de chiffrement signalés. Toutefois, NetApp HCI prend uniquement en charge la forme de chiffrement plus basique. Par exemple, si vous combinez un nœud de stockage qui est un cryptage FIPS compatible avec des nœuds qui ne prennent en charge que le cryptage SED, le cryptage SED est pris en charge avec cette configuration, mais pas avec le cryptage de lecteur FIPS.
+
+
+NOTE: L'ajout de nœuds de stockage capables de chiffrer des disques FIPS au cluster de stockage n'active pas automatiquement la fonctionnalité de chiffrement de disque FIPS. Une fois que vous avez déployé ou déployé une installation avec des nœuds compatibles FIPS, vous devez activer manuellement le chiffrement de disque FIPS. Voir la https://docs.netapp.com/us-en/element-software/index.html["Documentation du logiciel Element"^] pour obtenir des instructions.
+
+Tous les nœuds de stockage doivent exécuter la même version mineure du logiciel Element pour être compatibles avec le même déploiement. Par exemple, vous ne pouvez pas combiner un nœud de stockage exécutant Element 11.3.1 avec d'autres nœuds de stockage exécutant Element 11.5.
+
+
+NOTE: En fonction de la configuration matérielle des nœuds, les nœuds de stockage H410S peuvent apparaître dans la liste d'inventaire intitulée H300S, H500S ou H700S.
+
+NetApp HCI ne prend en charge que certains modèles de nœuds de stockage dans des clusters de stockage à deux nœuds. Pour plus d'informations, voir link:concept_hci_clusters.html#two-node-storage-clusters["clusters de stockage à deux nœuds"] Ou les notes de version de votre version de NetApp HCI.
+
+
+NOTE: Dans le cas de déploiements de clusters de stockage à deux nœuds, les types de nœuds de stockage sont limités aux nœuds avec des disques de 480 Go et 960 Go.
+
+
+
+== Compatibilité des nœuds de calcul
+
+Les nœuds de calcul doivent répondre aux exigences suivantes pour être sélectionnables :
+
+* Dans tous les nœuds de calcul, les générations de processeurs doivent correspondre pour assurer la fonctionnalité VMware vMotion appropriée. Une fois que vous avez sélectionné un nœud de calcul dans l'inventaire, vous ne pouvez pas sélectionner de nœuds de calcul avec différentes générations de processeurs.
+* Vous ne pouvez pas associer plusieurs nœuds de calcul à des nœuds de calcul compatibles avec les processeurs graphiques dans le même cluster de calcul. Si vous sélectionnez un nœud de calcul compatible avec le GPU, les nœuds de calcul avec processeur uniquement ne peuvent pas être sélectionnés, et inversement.
+* La version logicielle exécutée sur le nœud de calcul doit correspondre à la version principale et secondaire du moteur de déploiement NetApp qui héberge le déploiement. Si ce n'est pas le cas, vous devez recopier le nœud de calcul à l'aide du processus RTFI. Consultez les articles de la base de connaissances NetApp concernant le programme RTFI pour obtenir des instructions.
+* La configuration de câblage que vous avez sélectionnée sur la page topologie réseau doit être sélectionnable dans la liste *nœuds de calcul* du nœud de calcul.
+* Les configurations de câblage réseau pour les nœuds de calcul d'un même modèle doivent correspondre au sein d'un cluster de calcul unique.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentation sur SolidFire et Element"^]
+

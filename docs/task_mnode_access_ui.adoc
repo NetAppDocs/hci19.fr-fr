@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_access_ui.html 
+summary: 'Vous pouvez accéder à l"interface de gestion ou à l"interface de l"API REST.' 
+keywords: netapp, mnode, management node, api, hci 
+---
+= Accédez au nœud de gestion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Depuis la version 11.3 du logiciel NetApp Element, le nœud de gestion contient deux interfaces utilisateur : une interface pour la gestion des services REST et une interface utilisateur par nœud pour la gestion des paramètres réseau et cluster, ainsi que des tests et utilitaires du système d'exploitation.
+
+Pour les clusters qui exécutent le logiciel Element version 11.3 ou ultérieure, vous pouvez utiliser l'une des deux interfaces suivantes :
+
+* En utilisant l'interface du nœud de gestion (`https:// [mNode IP}:442`), vous pouvez modifier les paramètres du réseau et du cluster, exécuter des tests système ou utiliser des utilitaires système.
+* À l'aide de l'interface utilisateur de l'API REST intégrée (`https://[mNode IP}/mnode`), vous pouvez exécuter ou comprendre des API relatives aux services de nœud de gestion, y compris la configuration du serveur proxy, les mises à jour du niveau de service ou la gestion des ressources.
+
+
+
+
+== Accédez à l'interface utilisateur du nœud de gestion par nœud
+
+À partir de l'interface utilisateur par nœud, vous pouvez accéder aux paramètres du réseau et du cluster et utiliser les tests et utilitaires du système.
+
+.Étapes
+. Accédez à l'interface utilisateur par nœud pour le nœud de gestion en saisissant l'adresse IP du nœud de gestion suivie de :442
++
+[listing]
+----
+https://[IP address]:442
+----
++
+image::mnode_per_node_442_ui.png[Interface utilisateur de nœud de gestion par nœud]
+
+. Indiquez le nom d'utilisateur et le mot de passe du nœud de gestion.
+
+
+
+
+== Accédez à l'interface de l'API REST du nœud de gestion
+
+Depuis l'interface utilisateur de l'API REST, vous pouvez accéder à un menu d'API liées aux services qui contrôlent les services de gestion sur le nœud de gestion.
+
+.Étapes
+. Pour accéder à l'interface d'API REST pour les services de gestion, entrez l'adresse IP du nœud de gestion suivie de `/mnode`:
++
+[listing]
+----
+https://[IP address]/mnode
+----
++
+image::mnode_swagger_ui.png[Interface de l'API REST du nœud de gestion]
+
+. Cliquez sur *Autoriser* ou sur une icône de verrouillage et entrez les informations d'identification d'administrateur de cluster pour les autorisations d'utilisation des API.
+
+
+[discrete]
+== En savoir plus
+
+* link:task_mnode_enable_activeIQ.html["Activation de la surveillance Active IQ et NetApp HCI"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

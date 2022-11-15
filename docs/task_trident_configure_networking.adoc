@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: docs/task_trident_configure_networking.html 
+summary: Activez la prise en charge de Trident pour les clusters utilisateur. 
+keywords: netapp, hci, netapp, networking, clusters, user, trident, rancher 
+---
+= Activez la prise en charge de Trident pour les clusters utilisateur
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre environnement NetApp HCI ne dispose pas d'un itinéraire entre les réseaux de stockage et de gestion et que vous déployez les clusters utilisateur nécessitant une prise en charge de Trident, vous devez configurer davantage les réseaux de clusters utilisateur après l'installation de Trident. Pour chaque cluster utilisateur, il faut activer la communication entre les réseaux de stockage et de gestion. Pour ce faire, vous pouvez modifier la configuration réseau de chaque nœud du cluster utilisateur.
+
+Procédez comme suit pour modifier la configuration réseau de chaque nœud du cluster utilisateur. Ces étapes supposent que vous avez créé le cluster utilisateur avec le modèle de nœud par défaut installé avec Rancher sur NetApp HCI.
+
+
+NOTE: Vous pouvez effectuer ces modifications dans le cadre d'un modèle de nœud personnalisé à utiliser pour les futurs clusters utilisateur.
+
+.Étapes
+. Déployer un cluster utilisateur avec un modèle par défaut existant.
+. Connectez le réseau de stockage au cluster utilisateur.
++
+.. Ouvrez le client Web VMware vSphere pour l'instance vCenter connectée.
+.. Dans l'arborescence d'inventaire hôtes et clusters, sélectionnez un nœud dans le cluster utilisateur récemment déployé.
+.. Modifiez les paramètres du nœud.
+.. Dans la boîte de dialogue des paramètres, ajoutez une nouvelle carte réseau.
+.. Dans la liste déroulante *Nouveau réseau*, recherchez un réseau et sélectionnez *HCI_Internal_Storage_Data_Network*.
+.. Développez la section carte réseau et enregistrez l'adresse MAC de la nouvelle carte réseau.
+.. Cliquez sur *OK*.
+
+
+. Dans Rancher, téléchargez le fichier de clé privée SSH pour chaque nœud du cluster utilisateur.
+. Connectez-vous à l'aide de SSH à un nœud du cluster utilisateur à l'aide du fichier de clé privée que vous avez téléchargé pour ce nœud :
++
+[listing]
+----
+ssh -i <private key filename> <ip address>
+----
+. En tant que superutilisateur, modifiez et enregistrez `/etc/netplan/50-cloud-init.yaml` fichier de sorte qu'il inclut le `ens224` similaire à l'exemple suivant. Remplacement `<MAC address>` Avec l'adresse MAC enregistrée précédemment :
++
+[listing]
+----
+network:
+    ethernets:
+        ens192:
+            dhcp4: true
+            match:
+                macaddress: 00:50:56:91:1d:41
+            set-name: ens192
+        ens224:
+            dhcp4: true
+            match:
+                macaddress: <MAC address>
+            set-name: ens224
+    version: 2
+----
+. Utiliser la commande suivante pour reconfigurer le réseau :
++
+[listing]
+----
+`netplan try`
+----
+. Répétez les étapes 4 à 6 pour chaque nœud restant du cluster utilisateur.
+. Une fois que vous avez reconfiguré le réseau pour chaque nœud du cluster utilisateur, vous pouvez déployer des applications dans le cluster utilisateur qui utilise Trident.
+

@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_protection_domains.html 
+summary: Découvrez la fonction domaines de protection pour les clusters de stockage NetApp HCI. 
+keywords: netapp, hci, element, storage, protection domains 
+---
+= Les domaines de protection
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, element, storage, protection domains
+
+
+[role="lead"]
+Le logiciel NetApp Element prend en charge link:concept_hci_dataprotection.html#protection-domains["les domaines de protection"] de meilleures fonctionnalités qui optimisent l'organisation des données sur les nœuds de stockage pour une disponibilité optimale des données. Pour utiliser cette fonctionnalité, il est conseillé de répartir uniformément la capacité de stockage sur trois châssis de la gamme H, ou plus, pour une fiabilité du stockage optimale. Dans ce scénario, le cluster de stockage active automatiquement les domaines de protection.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

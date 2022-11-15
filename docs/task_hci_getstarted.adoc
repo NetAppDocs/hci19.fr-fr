@@ -1,0 +1,283 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_getstarted.html 
+summary: Suivez ces instructions pour installer et déployer NetApp HCI. 
+keywords: netapp, hci, install, deploy, get started 
+---
+= Présentation de l'installation et du déploiement de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Suivez ces instructions pour installer et déployer NetApp HCI. Ces instructions incluent des liens vers des détails supplémentaires.
+
+Voici un aperçu du processus :
+
+*  for installation
+*  network readiness with NetApp Active IQ Config Advisor
+*  with your NetApp team
+*  NetApp HCI hardware
+*  optional tasks after installing hardware
+*  NetApp HCI using the NetApp Deployment Engine (NDE)
+*  NetApp HCI using the vCenter Plug-in
+*  or upgrade NetApp HCI with the Hybrid Cloud Control
+
+
+
+
+== Avant l'installation
+
+Avant de commencer l'installation, remplissez le Manuel de découverte d'installation de _NetApp HCI_ liste de contrôle préalable à la réception du matériel.
+
+
+
+=== Préparez le réseau et les sites d'installation
+
+Voici une installation simplifiée de la topologie réseau NetApp HCI :
+
+image::hci_topology_simple_network.png[Schéma de topologie réseau NetApp HCI simplifiée]
+
+Il s'agit de la topologie réseau simplifiée pour un nœud de stockage et un nœud de calcul unique. Le cluster minimum pour NetApp HCI est deux nœuds de stockage et deux nœuds de calcul.
+
+
+NOTE: La topologie de votre réseau peut différer de celle illustrée ici. Ceci n'est qu'un exemple.
+
+Cette configuration utilise deux câbles réseau sur les nœuds de calcul pour la connectivité à tous les réseaux NetApp HCI. 
+
+Consultez ces ressources :
+
+* Utilisez le Manuel de découverte d'installation _NetApp HCI_ pour configurer votre réseau avant l'installation.
+* Pour plus de détails et pour connaître les autres configurations prises en charge, reportez-vous à https://www.netapp.com/us/media/tr-4820.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^] et le https://library.netapp.com/ecm/ecm_download_file/ECMLP2856176["_Instructions d'installation et de configuration de NetApp HCI_"^].
+* Pour plus d'informations sur les configurations NetApp HCI inférieures à quatre nœuds de stockage, reportez-vous à la section https://www.netapp.com/us/media/tr-4823.pdf["_TR-4823 : cluster de stockage NetApp HCI à 2 nœuds_"^].
+* Pour plus d'informations sur la configuration du protocole LACP (Link Aggregation Control Protocol) sur les ports de switch utilisés pour chacun des nœuds de stockage, reportez-vous à la section link:hci_prereqs_LACP_configuration.html["Configurez LCAP pour des performances de stockage optimales"].
+
+
+Cette configuration consolide l'ensemble du trafic sur deux ports physiques et redondants, ce qui réduit le câblage et rationalise la configuration du réseau. Cette configuration nécessite le stockage, vMotion et les segments du réseau des machines virtuelles utilisent l'étiquetage VLAN. Le segment du réseau de gestion peut utiliser un VLAN natif ou marqué ; toutefois, le VLAN natif est le mode préféré afin que le moteur de déploiement NetApp (NDE) puisse attribuer des ressources réseau de manière automatisée (Zero Conf).
+
+Ce mode nécessite des switchs distribués vSphere (VDS) qui requièrent une licence VMware vSphere Enterprise plus.
+
+
+
+=== Configuration requise pour la mise en réseau avant de commencer
+
+Voici les points forts des conditions préalables.
+
+Pour plus de détails sur les prérequis, voir link:hci_prereqs_overview.html["Configuration requise pour le déploiement de NetApp HCI"].
+
+* Bond1G est une interface logique qui combine les ports réseau 1GbE sur les nœuds de stockage et une interface de gestion sur les nœuds de calcul. Ce réseau est utilisé pour le trafic de l'API NDE. Tous les nœuds doivent pouvoir communiquer sur l'interface de gestion du même réseau L2.
+* Bond10G est une interface logique qui combine des ports 10 GbE et qui sont utilisés par NDE pour le balisage et l'inventaire. Tous les nœuds doivent pouvoir communiquer sur l'interface Bond10G avec des trames Jumbo non fragmentées.
+* Nde requiert au moins une adresse IP attribuée manuellement sur l'interface Bond1G sur un nœud de stockage. Le moteur de déploiement NetApp sera exécuté à partir de ce nœud.
+* Tous les nœuds disposent d'adresses IP temporaires attribuées par la découverte NDE, effectuée par l'adressage IP privé automatique (APIPA).
+
+
+
+NOTE: Au cours du processus NDE, toutes les adresses IP permanentes sont attribuées à tous les nœuds et toutes les adresses IP temporaires attribuées à APIPA sont libérées.
+
+* Le moteur de déploiement NetApp nécessite des réseaux distincts pour la gestion, iSCSI et vMotion qui sont préconfigurés sur le réseau de switchs.
+
+
+
+
+== Validez la préparation du réseau avec NetApp Active IQ Config Advisor
+
+Pour vérifier que le réseau est prêt pour NetApp HCI, installez NetApp Active IQ Config Advisor 5.8.1 ou une version ultérieure. Cet outil de validation réseau est situé avec un autre link:https://mysupport.netapp.com/site/tools/tool-eula/5ddb829ebd393e00015179b2["Outils de support NetApp"^]. Utilisez cet outil pour valider la connectivité, les ID VLAN, les exigences d'adresse IP, la connectivité du commutateur et plus encore.
+
+Pour plus de détails, voir link:hci_prereqs_task_validate_config_advisor.html["Validez votre environnement avec Active IQ Config Advisor"].
+
+
+
+== Travaillez avec votre équipe NetApp
+
+Votre équipe NetApp utilise le rapport NetApp Active IQ Config Advisor et le manuel _Discovery_ afin de vérifier que votre environnement réseau est prêt.
+
+
+
+== Installation du matériel NetApp HCI
+
+NetApp HCI peut être installé dans différentes configurations :
+
+* Nœuds de calcul H410C : configuration à 2 câbles ou à 6 câbles
+* Nœud de calcul H610C : configuration à deux câbles
+* Nœud de calcul H615C : configuration à 2 câbles
+* Nœud de stockage H410S
+* Nœud de stockage H610S
+
+
+
+CAUTION: Pour plus de détails et de précautions, reportez-vous à la section link:task_hci_installhw.html["Installer le matériel de série H."].
+
+.Étapes
+. Installez les rails et le châssis.
+. Installez les nœuds dans le châssis et installez les disques pour les nœuds de stockage. (Ne s'applique que si vous installez H410C et H410S dans un châssis NetApp H-series.)
+. Poser les commutateurs.
+. Connectez les câbles du nœud de calcul.
+. Connectez les câbles du nœud de stockage.
+. Branchez les câbles d'alimentation.
+. Mettez les nœuds NetApp HCI sous tension.
+
+
+
+
+== Effectuez les tâches facultatives après l'installation du matériel
+
+Après avoir installé le matériel NetApp HCI, vous devez effectuer certaines tâches facultatives mais recommandées.
+
+
+
+=== Gérez la capacité de stockage dans tous les châssis
+
+Assurez-vous que la capacité de stockage est répartie de manière homogène sur tous les nœuds de stockage contenant des châssis.
+
+
+
+=== Configurez IPMI pour chaque nœud
+
+Une fois que vous avez mis en rack, câblé et sous tension votre matériel NetApp HCI, vous pouvez configurer l'accès à l'interface de gestion de plateforme intelligente pour chaque nœud. Attribuez une adresse IP à chaque port IPMI et modifiez le mot de passe IPMI de l'administrateur par défaut dès que vous disposez d'un accès IPMI distant au nœud.
+
+Voir link:hci_prereqs_final_prep.html["Configurez IPMI"].
+
+
+
+== Déploiement de NetApp HCI à l'aide du moteur de déploiement NetApp
+
+L'interface du moteur de déploiement NetApp est l'interface de l'assistant logiciel utilisée pour installer NetApp HCI.
+
+
+
+=== Lancez l'interface utilisateur NDE
+
+NetApp HCI utilise une adresse IPv4 de réseau de gestion du nœud de stockage pour l'accès initial au moteur de déploiement NetApp. Il est recommandé de connecter le premier nœud de stockage.
+
+.Prérequis
+* L'adresse IP initiale du réseau de gestion du nœud de stockage est déjà attribuée manuellement ou à l'aide de DHCP.
+* Vous devez disposer d'un accès physique à l'installation de NetApp HCI.
+
+
+.Étapes
+. Si vous ne connaissez pas l'IP du réseau de gestion des noeuds de stockage initial, utilisez l'interface utilisateur terminal (TUI), accessible via le clavier et le moniteur sur le nœud de stockage ou link:task_nde_access_dhcp.html["Utilisez une clé USB"].
++
+Pour plus de détails, voir link:concept_nde_access_overview.html["_Accès au moteur de déploiement NetApp_"].
+
+. Si vous connaissez l'adresse IP, à partir d'un navigateur Web, connectez-vous à l'adresse Bond1G du nœud principal via HTTP, et non HTTPS.
++
+*Exemple* : `http://<IP_address>:442/nde/`
+
+
+
+
+
+=== Déploiement de NetApp HCI avec l'interface de déploiement NetApp
+
+. Dans le moteur de déploiement NetApp, acceptez les conditions préalables, vérifiez l'utilisation de Active IQ et acceptez les accords de licence.
+. Activez également les services de fichiers Data Fabric par ONTAP Select et acceptez la licence ONTAP Select.
+. Configurez un nouveau déploiement vCenter. Cliquez sur *configurer à l'aide d'un nom de domaine complet* et saisissez à la fois le nom de domaine du serveur vCenter et l'adresse IP du serveur DNS.
++
+
+NOTE: Il est fortement recommandé d'utiliser l'approche FQDN pour l'installation de vCenter.
+
+. Vérifiez que l'évaluation de l'inventaire de tous les nœuds a été effectuée avec succès.
++
+Le nœud de stockage qui exécute le moteur de déploiement NetApp est déjà vérifié.
+
+. Sélectionnez tous les nœuds et cliquez sur *Continuer*.
+. Configurez les paramètres réseau. Reportez-vous au manuel de découverte d'installation _NetApp HCI_ pour connaître les valeurs à utiliser.
+. Cliquez sur la case bleue pour lancer le formulaire simplifié.
++
+image::hci_nde_network_settings_ui.png[Page Paramètres réseau NDE]
+
+. Dans le formulaire Paramètres réseau Easy :
++
+.. Saisissez le préfixe de nom. (Reportez-vous aux détails du système du _Manuel de découverte d'installation de NetApp HCI_.)
+.. Cliquez sur *non* pour attribuer des ID de VLAN ? (Vous les attribuez ultérieurement dans la page principale des paramètres réseau.)
+.. Saisissez le CIDR de sous-réseau, la passerelle par défaut et l'adresse IP de départ pour les réseaux vMotion et iSCI, selon votre manuel. (Reportez-vous à la section méthode d'affectation IP du Manuel de découverte d'installation _NetApp HCI_ pour connaître ces valeurs.)
+.. Cliquez sur *appliquer aux paramètres réseau*.
+
+
+. Rejoignez un link:task_nde_join_existing_vsphere.html["VCenter existant"] (en option).
+. Notez les numéros de série du nœud dans le manuel de découverte d'installation _NetApp HCI_.
+. Spécifiez un ID VLAN pour le réseau vMotion et tout réseau qui nécessite un marquage VLAN. Consultez le _Manuel de découverte d'installation de NetApp HCI_.
+. Téléchargez votre configuration en tant que fichier .CSV.
+. Cliquez sur *Démarrer le déploiement*.
+. Copiez et enregistrez l'URL qui apparaît.
++
+
+NOTE: Le déploiement peut prendre environ 45 minutes.
+
+
+
+
+
+=== Vérifiez l'installation à l'aide du client Web vSphere
+
+. Lancez le client Web vSphere et connectez-vous à l'aide des identifiants spécifiés lors de l'utilisation du moteur de déploiement NetApp.
++
+Vous devez ajouter `@vsphere.local` au nom de l'utilisateur.
+
+. Vérifier qu'aucune alarme n'est présente.
+. Vérifiez que les appliances vCenter, nœud M et ONTAP Select (facultatif) s'exécutent sans icônes d'avertissement.
+. Observer que les deux datastores par défaut (NetApp-HCI-datastore_01 et 02) sont créés.
+. Sélectionnez chaque datastore et assurez-vous que tous les nœuds de calcul sont répertoriés dans l'onglet hôtes.
+. Valider vMotion et datastore-02.
++
+.. Migrez le serveur vCenter vers NetApp HCI-datastore-02 (stockage uniquement vMotion).
+.. Migrez le serveur vCenter vers chacun des nœuds de calcul (calcul uniquement vMotion).
+
+
+. Accédez au plug-in NetApp Element pour vCenter Server et vérifiez que le cluster est visible.
+. Assurez-vous qu'aucune alerte n'apparaît sur le tableau de bord.
+
+
+
+
+== Gérez NetApp HCI à l'aide du plug-in vCenter
+
+Une fois NetApp HCI installé, vous pouvez configurer les clusters, les volumes, les datastores, les journaux, les groupes d'accès, Initiateurs et règles de qualité de service (QoS) à l'aide du plug-in NetApp Element pour vCenter Server.
+
+Pour plus de détails, voir https://docs.netapp.com/us-en/vcp/index.html["_Documentation du plug-in NetApp Element pour vCenter Server_"^].
+
+image::vcp_shortcuts_page.png[Page raccourcis du client vSphere]
+
+
+
+== Contrôle ou mise à niveau de NetApp HCI avec Cloud Control
+
+Vous pouvez utiliser le contrôle de cloud hybride NetApp HCI pour surveiller, mettre à niveau ou étendre votre système, si nécessaire.
+
+Vous vous connectez au contrôle du cloud hybride NetApp en accédant à l'adresse IP du nœud de gestion.
+
+Le contrôle du cloud hybride offre plusieurs avantages :
+
+* link:task_hcc_dashboard.html["Surveillez votre installation NetApp HCI"]
+* link:concept_hci_upgrade_overview.html["Mettez à niveau votre système NetApp HCI"]
+* link:concept_hcc_expandoverview.html["Étendez vos ressources de stockage ou de calcul NetApp HCI"]
+
+
+*Étapes*
+
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
++
+L'interface NetApp Hybrid Cloud Control apparaît.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* link:../media/hseries-isi.pdf["Instructions d'installation et de configuration du système NetApp HCI"^]
+* https://www.netapp.com/us/media/tr-4820.pdf["Tr-4820 : Guide de planification rapide de la mise en réseau NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Documentation du plug-in NetApp Element pour vCenter Server"^]
+* https://mysupport-beta.netapp.com/site/tools/tool-eula/5ddb829ebd393e00015179b2["NetApp Configuration Advisor"^] outil de validation réseau 5.8.1 ou version ultérieure
+* https://docs.netapp.com/us-en/solidfire-active-iq/index.html["Documentation NetApp SolidFire Active IQ"^]
+

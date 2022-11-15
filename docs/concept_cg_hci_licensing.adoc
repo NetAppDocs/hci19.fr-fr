@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_cg_hci_licensing.html 
+summary: Si vous utilisez NetApp HCI, vous devrez peut-être disposer de licences supplémentaires. 
+keywords: netapp, hci, license 
+---
+= Licences NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous utilisez NetApp HCI, vous devrez peut-être disposer de licences supplémentaires selon ce que vous utilisez.
+
+
+
+== Licences NetApp HCI et VMware vSphere
+
+La licence VMware vSphere dépend de votre configuration :
+
+[cols="25,75"]
+|===
+| Option de mise en réseau | Licences 
+
+
+| Option A : deux câbles pour les nœuds de calcul utilisant le balisage VLAN (tous les nœuds de calcul) | Nécessite l'utilisation de vSphere Distributed Switch, qui nécessite une licence VMware vSphere Enterprise plus. 
+
+
+| Option B : six câbles pour les nœuds de calcul utilisant des VLAN balisés (nœud de calcul 2RU H410C à 4 nœuds) | Cette configuration utilise le commutateur standard vSphere par défaut. L'utilisation en option du switch distribué vSphere nécessite une licence VMware Enterprise plus. 
+
+
+| Option C : six câbles pour les nœuds de calcul utilisant des VLAN natifs et balisés (nœud de calcul H410C, 2RU à 4 nœuds) | Cette configuration utilise le commutateur standard vSphere par défaut. L'utilisation en option du switch distribué vSphere nécessite une licence VMware Enterprise plus. 
+|===
+
+
+== Licences NetApp HCI et ONTAP Select
+
+Si vous avez reçu une version de ONTAP Select pour une utilisation conjointe avec un système NetApp HCI acheté, les limites supplémentaires suivantes s'appliquent :
+
+* La licence ONTAP Select, qui est intégrée à la vente de systèmes NetApp HCI, ne peut être utilisée qu'avec des nœuds de calcul NetApp HCI.
+* Le stockage de ces instances ONTAP Select doit résider uniquement sur les nœuds de stockage NetApp HCI.
+* Il est interdit d'utiliser des nœuds de calcul tiers ou des nœuds de stockage tiers.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

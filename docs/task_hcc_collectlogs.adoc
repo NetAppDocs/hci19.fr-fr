@@ -1,0 +1,173 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_collectlogs.html 
+summary: 'Vous pouvez utiliser le contrôle du cloud hybride NetApp pour collecter les journaux de votre installation de NetApp HCI ou d"Element pour faciliter la résolution de problèmes.' 
+keywords: netapp, hci, logs, collection, troubleshooting, monitor 
+---
+= Collecte des journaux pour le dépannage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous rencontrez des problèmes lors de l'installation d'un système de stockage 100 % Flash NetApp HCI ou SolidFire, vous pouvez collecter les journaux à envoyer au support NetApp pour vous aider à effectuer vos diagnostics. Vous pouvez utiliser NetApp Hybrid Cloud Control ou l'API REST pour collecter les journaux sur les systèmes NetApp HCI ou Element.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vérifiez que votre cluster de stockage exécute la version 11.3 ou ultérieure du logiciel NetApp Element.
+* Vérifiez que vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
+
+
+Choisissez l'une des options suivantes :
+
+*  NetApp Hybrid Cloud Control to collect logs
+*  the REST API to collect logs
+
+
+
+
+== Utilisez le contrôle du cloud hybride NetApp pour collecter les journaux
+
+Vous pouvez accéder à la zone de collecte des journaux à partir du tableau de bord NetApp de contrôle du cloud hybride.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le Tableau de bord, cliquez sur le menu en haut à droite.
+. Sélectionnez *collecter les journaux*.
++
+La page *recueillir les journaux* s'affiche. Si vous avez déjà collecté des journaux, vous pouvez télécharger le fichier journal existant ou commencer une nouvelle collecte de journaux.
+
+. Sélectionnez une plage de dates dans le menu déroulant *Plage de dates* pour spécifier les dates que les journaux doivent inclure.
++
+Si vous spécifiez une date de début personnalisée, vous pouvez sélectionner la date pour commencer la plage de dates. Les journaux seront collectés à partir de cette date jusqu'à l'heure actuelle.
+
+. Dans la section *Log Collection*, sélectionnez les types de fichiers journaux que le package de journaux doit inclure.
++
+Pour les journaux de stockage et de calcul, vous pouvez développer la liste des nœuds de stockage ou de calcul et sélectionner des nœuds individuels pour collecter les journaux (ou tous les nœuds de la liste).
+
+. Cliquez sur *collecter les journaux* pour démarrer la collecte de journaux.
++
+La collecte des journaux s'exécute en arrière-plan et la page affiche la progression.
+
++
+
+NOTE: Selon les journaux que vous collectez, la barre de progression peut rester à un certain pourcentage pendant plusieurs minutes, ou progresser très lentement à certains points.
+
+. Cliquez sur *Télécharger les journaux* pour télécharger le fichier journal.
++
+Le package de journaux est au format de fichier UNIX .tgz compressé.
+
+
+
+
+
+== Utilisez l'API REST pour collecter les journaux
+
+Vous pouvez utiliser l'API REST pour collecter les journaux NetApp HCI ou Element.
+
+.Étapes
+. Recherchez l'ID de cluster de stockage :
++
+.. Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/logs/1/
+----
+.. Cliquez sur *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client` si la valeur n'est pas déjà renseignée.
+... Cliquez sur *Autoriser* pour démarrer une session.
+
+
+
+
+. Collectez des journaux depuis NetApp HCI ou Element :
++
+.. Cliquez sur *POST /bundle*.
+.. Cliquez sur *essayez-le*.
+.. Modifiez les valeurs des paramètres suivants dans le champ *corps de la demande* en fonction du type de journal que vous devez collecter et de la plage de temps suivante :
++
+|===
+| Paramètre | Type | Description 
+
+
+| `modifiedSince` | Chaîne de date | N'incluez les journaux modifiés qu'après cette date et cette heure. Par exemple, la valeur "2020-07-14T20:19:00.000Z" définit une date de début du 14 juillet 2020 à 20:19 UTC. 
+
+
+| `computeLogs` | Booléen | Définissez ce paramètre sur `true` pour inclure les journaux de nœud de calcul. 
+
+
+| `computeIds` | Matrice UUID | Si `computeLogs` est défini sur `true`, Remplissez ce paramètre avec les ID d'actifs de nœud de gestion des nœuds de calcul pour limiter la collecte de journaux à ces nœuds de calcul spécifiques. Utilisez le `GET https://<ManagementNodeIP>/logs/1/bundle/options` Point final pour voir tous les ID de nœud possibles que vous pouvez utiliser. 
+
+
+| `mnodeLogs` | Booléen | Définissez ce paramètre sur `true` pour inclure les journaux du nœud de gestion. 
+
+
+| `storageCrashDumps` | Booléen | Définissez ce paramètre sur `true` pour inclure les journaux de débogage de panne du nœud de stockage. 
+
+
+| `storageLogs` | Booléen | Définissez ce paramètre sur `true` pour inclure les journaux du nœud de stockage. 
+
+
+| `storageNodeIds` | Matrice UUID | Si `storageLogs` est défini sur `true`, Remplissez ce paramètre avec les ID de nœud du cluster de stockage pour limiter la collecte de journaux à ces nœuds de stockage spécifiques. Utilisez le `GET https://<ManagementNodeIP>/logs/1/bundle/options` Point final pour voir tous les ID de nœud possibles que vous pouvez utiliser. 
+|===
+.. Cliquez sur *Exécuter* pour commencer la collecte de journaux. La réponse doit renvoyer une réponse similaire à ce qui suit :
++
+[listing]
+----
+{
+  "_links": {
+    "self": "https://10.1.1.5/logs/1/bundle"
+  },
+  "taskId": "4157881b-z889-45ce-adb4-92b1843c53ee",
+  "taskLink": "https://10.1.1.5/logs/1/bundle"
+}
+----
+
+
+. Vérifier l'état de la tâche de collecte des journaux :
++
+.. Cliquez sur *OBTENIR /bundle*.
+.. Cliquez sur *essayez-le*.
+.. Cliquez sur *Exécuter* pour revenir à l'état de la tâche de collecte.
+.. Faites défiler jusqu'au bas du corps de réponse.
++
+Vous devriez voir un `percentComplete` attribut détaillant la progression de la collection. Si la collection est terminée, le `downloadLink` attribut contient le lien de téléchargement complet incluant le nom du fichier du paquet de journal.
+
+.. Copiez le nom du fichier à la fin du `downloadLink` attribut.
+
+
+. Téléchargez le fichier journal collecté :
++
+.. Cliquez sur *OBTENIR /bundle/{filename}*.
+.. Cliquez sur *essayez-le*.
+.. Collez le nom de fichier que vous avez copié précédemment dans l' `filename` champ de texte de paramètre.
+.. Cliquez sur *Exécuter*.
++
+Après exécution, un lien de téléchargement apparaît dans la zone du corps de réponse.
+
+.. Cliquez sur *Télécharger le fichier* et enregistrez le fichier résultant sur votre ordinateur.
++
+Le package de journaux est au format de fichier UNIX .tgz compressé.
+
+
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

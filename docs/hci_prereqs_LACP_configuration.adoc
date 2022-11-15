@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_LACP_configuration.html 
+summary: Découvrez comment configurer NetApp HCI pour obtenir les meilleures performances de stockage. 
+keywords: netapp, hci, storage, performance, LACP 
+---
+= Configurez LACP pour des performances de stockage optimales
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, storage, performance, LACP
+
+
+[role="lead"]
+Pour optimiser les performances des clusters de stockage NetApp HCI, configurez le protocole LACP (Link Aggregation Control Protocol) sur les ports de switch utilisés pour chacun des nœuds de stockage.
+
+.Avant de commencer
+* Vous avez configuré les ports de switch connectés aux interfaces 10 GbE des nœuds de stockage NetApp HCI en tant que canaux de port LACP.
+* Vous avez défini les minuteries LACP sur les commutateurs qui gèrent le trafic de stockage sur « mode rapide (1s) » pour un temps de détection de basculement optimal. Pendant le déploiement, les interfaces Bond1G sur tous les nœuds de stockage sont automatiquement configurées pour le mode actif-passif.
+* Vous avez configuré Cisco Virtual PortChannel (VPC) ou la technologie d'empilement de commutateurs équivalente pour les commutateurs gérant le réseau de stockage. La technologie d'empilement des switchs facilite la configuration des canaux LACP et des ports. Elle offre une topologie sans boucle entre les switchs et les ports 10 GbE sur les nœuds de stockage.
+
+
+.Étapes
+. Suivez les recommandations des fournisseurs de switchs pour activer LACP sur les ports de switchs utilisés pour les nœuds de stockage NetApp H-Series.
+. Avant de déployer NetApp HCI, définissez le mode bond sur tous les nœuds de stockage comme LACP dans l'interface utilisateur On-node (également appelée interface utilisateur du terminal ou interface utilisateur TUI).
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

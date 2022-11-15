@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_storage_maintenance_mode.html 
+summary: 'Si vous devez mettre un nœud de stockage hors ligne pour des opérations de maintenance telles que les mises à niveau logicielles ou la réparation d"hôte, vous pouvez réduire l"impact sur les E/S au reste du cluster de stockage en activant le mode de maintenance pour ce nœud. Vous pouvez utiliser le mode de maintenance avec les deux nœuds de dispositif et les nœuds SolidFire Enterprise SDS.' 
+keywords: netapp, hci, storage nodes, maintenance, mode 
+---
+= Mode Maintenance
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous devez mettre un nœud de stockage hors ligne pour des opérations de maintenance telles que les mises à niveau logicielles ou la réparation d'hôte, vous pouvez réduire l'impact sur les E/S au reste du cluster de stockage en activant le mode de maintenance pour ce nœud. Vous pouvez utiliser le mode de maintenance avec les deux nœuds de dispositif et les nœuds SolidFire Enterprise SDS.
+
+
+NOTE: Lorsqu'un nœud de stockage est hors tension, il s'affiche sous la forme *indisponible* dans la colonne État du nœud de la page stockage de HCC, car cette colonne affiche l'état du nœud du point de vue du cluster. L'état hors tension du nœud est indiqué par l'icône *hors ligne* en regard du nom d'hôte du nœud.
+
+Vous pouvez passer d'un nœud de stockage en mode maintenance uniquement si le nœud fonctionne correctement (ne présente pas de blocage des défaillances de cluster) et si le cluster de stockage est tolérant à une panne de nœud unique. Une fois que vous activez le mode de maintenance pour un nœud sain et tolérant, le nœud n'est pas immédiatement transféré. Il est surveillé jusqu'à ce que les conditions suivantes soient vraies :
+
+* Tous les volumes hébergés sur le nœud ont fait l'objet d'une panne
+* Le nœud n'héberge plus la base d'un volume
+* Un nœud de veille temporaire est attribué pour chaque volume en cours de basculement
+
+
+Lorsque ces critères sont remplis, le nœud est passé en mode maintenance. Si ces critères ne sont pas remplis au cours d'une période de 5 minutes, le nœud n'entrera pas en mode de maintenance.
+
+Lorsque vous désactivez le mode de maintenance pour un nœud de stockage, le nœud est surveillé jusqu'à ce que les conditions suivantes soient vraies :
+
+* Toutes les données sont entièrement répliquées vers le nœud
+* Toutes les défaillances de bloc d'instruments de blocage sont résolues
+* Toutes les affectations de noeuds de secours temporaires pour les volumes hébergés sur le noeud ont été inactivées
+
+
+Une fois ces critères remplis, le nœud est mis hors mode maintenance. Si ces critères ne sont pas remplis dans une heure, le nœud ne pourra pas basculer en mode de maintenance à partir du nœud.
+
+Vous pouvez voir les États des opérations en mode maintenance lorsque vous travaillez avec le mode maintenance à l'aide de l'API Element :
+
+* *Désactivé* : aucune maintenance n'a été demandée.
+* *FailedToRecover* : le nœud n'a pas pu récupérer à partir de la maintenance.
+* *Recovery ingFromMaintenance*: Le noeud est en cours de récupération à partir de la maintenance.
+* *PréparingForMaintenance* : des actions sont en cours pour permettre à un noeud d'effectuer la maintenance.
+* *ReadyForMaintenance* : le nœud est prêt à effectuer la maintenance.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/element-software/api/reference_element_api_enablemaintenancemode.html["Activez le mode maintenance avec l'API Element"^]
+* https://docs.netapp.com/us-en/element-software/api/reference_element_api_disablemaintenancemode.html["Désactivez le mode de maintenance avec l'API Element"^]
+* https://docs.netapp.com/us-en/element-software/api/concept_element_api_about_the_api.html["Documentation de l'API NetApp Element"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

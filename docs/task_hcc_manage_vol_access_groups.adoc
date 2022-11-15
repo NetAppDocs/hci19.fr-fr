@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_vol_access_groups.html 
+summary: 'Découvrez comment ajouter un nouveau groupe d"accès de volume pour utiliser les volumes de stockage NetApp HCI, supprimer des groupes d"accès de volume du système, modifier les groupes d"accès de volume existants et afficher les détails des groupes d"accès de volumes.' 
+keywords: netapp, hci, on premise, cluster, element 
+---
+= Créez et gérez des groupes d'accès de volume
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez créer de nouveaux groupes d'accès aux volumes, modifier le nom, les initiateurs associés ou les volumes associés de groupes d'accès, ou supprimer des groupes d'accès aux volumes existants à l'aide de NetApp Hybrid Cloud Control.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous disposez des informations d'identification administrateur pour ce système NetApp HCI.
+* Vous avez mis à niveau vos services de gestion vers au moins la version 2.15.28. La gestion du stockage NetApp Hybrid Cloud Control n'est pas disponible dans les versions précédentes de packs de services.
+* Assurez-vous de disposer d'un schéma de nommage logique pour les groupes d'accès aux volumes.
+
+
+
+
+== Ajouter un groupe d'accès de volume
+
+Vous pouvez ajouter un groupe d'accès de volume à un cluster de stockage à l'aide de NetApp Hybrid Cloud Control.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *Access Groups*.
+. Sélectionnez le bouton *Créer un groupe d'accès*.
+. Dans la boîte de dialogue qui s'affiche, entrez un nom pour le nouveau groupe d'accès au volume.
+. (Facultatif) dans la section *initiateurs*, sélectionnez un ou plusieurs initiateurs à associer au nouveau groupe d'accès au volume.
++
+Si vous associez un initiateur au groupe d'accès de volume, cet initiateur peut accéder à chaque volume du groupe sans avoir besoin d'une authentification.
+
+. (Facultatif) dans la section *volumes*, sélectionnez un ou plusieurs volumes à inclure dans ce groupe d'accès de volume.
+. Sélectionnez *Créer un groupe d'accès*.
+
+
+
+
+== Modifier un groupe d'accès de volume
+
+Vous pouvez modifier les propriétés d'un groupe d'accès aux volumes existant à l'aide de NetApp Hybrid Cloud Control. Vous pouvez modifier le nom, les initiateurs associés ou les volumes associés d'un groupe d'accès.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *Access Groups*.
+. Dans la colonne *actions* de la table des groupes d'accès, développez le menu d'options du groupe d'accès à modifier.
+. Dans le menu d'options, sélectionnez *Modifier*.
+. Apportez les modifications nécessaires au nom, aux initiateurs associés ou aux volumes associés.
+. Confirmez vos modifications en sélectionnant *Enregistrer*.
+. Dans le tableau *Access Groups*, vérifiez que le groupe d'accès reflète vos modifications.
+
+
+
+
+== Supprimer un groupe d'accès de volume
+
+Vous pouvez supprimer un groupe d'accès aux volumes à l'aide de NetApp Hybrid Cloud Control et supprimer simultanément les initiateurs associés à ce groupe d'accès du système.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le nom du cluster de stockage dans le menu de navigation à gauche.
+. Sélectionnez *volumes*.
+. Sélectionnez l'onglet *Access Groups*.
+. Dans la colonne *actions* de la table des groupes d'accès, développez le menu d'options du groupe d'accès à supprimer.
+. Dans le menu d'options, sélectionnez *Supprimer*.
+. Si vous ne souhaitez pas supprimer les initiateurs associés au groupe d'accès, décochez la case *Supprimer les initiateurs de ce groupe d'accès*.
+. Confirmez l'opération de suppression en sélectionnant *Oui*.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* link:concept_hci_volume_access_groups.html["En savoir plus sur les groupes d'accès aux volumes"]
+* link:task_hcc_manage_initiators.html#add-initiators-to-a-volume-access-group["Ajoutez un initiateur à un groupe d'accès de volume"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

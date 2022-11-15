@@ -1,0 +1,425 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_upgrade_element_prechecks.html 
+summary: 'Lors de la mise à niveau des systèmes NetApp HCI, des vérifications de l"état du logiciel NetApp Element doivent être effectuées.' 
+keywords: netapp, storage prechecks, element upgrade, healthtools, sfupgradecheck 
+---
+= Exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez exécuter des vérifications de l'état avant de mettre à niveau le stockage Element pour garantir que tous les nœuds de stockage du cluster sont prêts pour la prochaine mise à niveau du stockage Element.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Services de gestion*: Vous avez mis à jour le dernier bundle de services de gestion (2.10.27 ou version ultérieure).
++
+
+IMPORTANT: Vous devez effectuer la mise à niveau vers le dernier pack de services de gestion avant de mettre à niveau votre logiciel Element.
+
+* *Noeud de gestion* : vous exécutez le noeud de gestion 11.3 ou ultérieur.
+* *Logiciel Element* : votre version de cluster exécute le logiciel NetApp Element version 11.3 ou ultérieure.
+* *Contrat de licence utilisateur final (CLUF)* : à partir des services de gestion 2.20.69, vous devez accepter et enregistrer le CLUF avant d'utiliser l'interface utilisateur ou l'API de NetApp Hybrid Cloud Control pour exécuter les contrôles d'état du stockage d'Element :
++
+.. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+.. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+.. Sélectionnez *Upgrade* en haut à droite de l'interface.
+.. Le CLUF s'affiche. Faites défiler vers le bas, sélectionnez *J'accepte les mises à jour actuelles et futures*, puis sélectionnez *Enregistrer*.
++
+
+NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à jour futures et la fonction de téléchargement automatique est activée. Vous recevrez des mises à jour sur les mises à jour et les mises à niveau logicielles NetApp que vous pouvez installer à votre discrétion et à votre convenance. Vous pouvez désactiver la fonctionnalité de téléchargement automatique en désactivant la connectivité réseau au référentiel logiciel en ligne de NetApp.
+
+
+
+
+
+Vous pouvez exécuter des vérifications de l'état à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control (HCC), de l'API HCC ou de la suite HealthTools :
+
+*  NetApp Hybrid Cloud Control to run Element storage health checks prior to upgrading storage (Méthode préférée)
+*  API to run Element storage health checks prior to upgrading storage
+*  HealthTools to run Element storage health checks prior to upgrading storage
+
+
+Vous pouvez également en savoir plus sur les vérifications de l'état du stockage exécutées par ce service :
+
+*  health checks made by the service
+
+
+
+
+== Avec NetApp Hybrid Cloud Control, exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage
+
+Avec NetApp Hybrid Cloud Control (HCC), vous pouvez vérifier qu'un cluster de stockage est prêt à être mis à niveau.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
+. Sélectionnez *Upgrade* en haut à droite de l'interface.
+. Sur la page *mises à niveau*, sélectionnez l'onglet *stockage*.
+. Sélectionnez le bilan de santé image:hcc_healthcheck_icon.png["icône"] pour le cluster, vérifiez que la mise à niveau est prête.
+. Sur la page *Storage Health Check*, sélectionnez *Run Health Check*.
+. En cas de problème, procédez comme suit :
++
+.. Consultez l'article de la base de connaissances spécifique répertorié pour chaque problème ou effectuez la solution spécifiée.
+.. Si vous spécifiez une base de connaissances, suivez la procédure décrite dans l'article correspondant de la base de connaissances.
+.. Après avoir résolu les problèmes de cluster, sélectionnez *Re-Run Health Check*.
+
+
+
+
+Une fois la vérification de l'état de santé terminée sans erreur, le cluster de stockage est prêt à être mis à niveau. Voir mise à niveau du nœud de stockage link:task_hcc_upgrade_element_software.html["instructions"] pour continuer.
+
+
+
+== Exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage
+
+Vous pouvez utiliser l'API REST pour vérifier qu'un cluster de stockage est prêt à être mis à niveau. Le contrôle de l'état vérifie qu'il n'existe aucun obstacle à la mise à niveau, par exemple les nœuds en attente, les problèmes d'espace disque et les défaillances de cluster.
+
+.Étapes
+. Recherchez l'ID de cluster de stockage :
++
+.. Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client` si la valeur n'est pas déjà renseignée.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
+
+
+.. Dans l'interface utilisateur de l'API REST, sélectionnez `GET /assets`.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Exécuter*.
+.. Dans la réponse, copiez le `"id"` à partir du `"storage"` de la section du cluster que vous prévoyez de vérifier que la mise à niveau est prête.
++
+
+NOTE: N'utilisez pas le `"parent"` Valeur dans cette section car il s'agit de l'ID du nœud de gestion, et non de l'ID du cluster de stockage.
+
++
+[listing, subs="+quotes"]
+----
+"config": {},
+"credentialid": "12bbb2b2-f1be-123b-1234-12c3d4bc123e",
+"host_name": "SF_DEMO",
+*"id": "12cc3a45-e6e7-8d91-a2bb-0bdb3456b789",*
+"ip": "10.123.12.12",
+"parent": "d123ec42-456e-8912-ad3e-4bd56f4a789a",
+"sshcredentialid": null,
+"ssl_certificate": null
+----
+
+
+. Exécutez des vérifications d'état sur le cluster de stockage :
++
+.. Ouvrez l'interface de l'API REST de stockage sur le nœud de gestion :
++
+[listing]
+----
+https://<ManagementNodeIP>/storage/1/
+----
+.. Sélectionnez *Authorise* et procédez comme suit :
++
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client` si la valeur n'est pas déjà renseignée.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
+
+
+.. Sélectionnez *POST /Health-chèques*.
+.. Sélectionnez *essayez-le*.
+.. Dans le champ paramètre, entrez l'ID de cluster de stockage obtenu à l'étape 1.
++
+[listing]
+----
+{
+  "config": {},
+  "storageId": "123a45b6-1a2b-12a3-1234-1a2b34c567d8"
+}
+----
+.. Sélectionnez *Exécuter* pour exécuter un contrôle d'intégrité sur le cluster de stockage spécifié.
++
+La réponse doit indiquer l'état comme `initializing`:
+
++
+[listing]
+----
+{
+  "_links": {
+    "collection": "https://10.117.149.231/storage/1/health-checks",
+    "log": "https://10.117.149.231/storage/1/health-checks/358f073f-896e-4751-ab7b-ccbb5f61f9fc/log",
+    "self": "https://10.117.149.231/storage/1/health-checks/358f073f-896e-4751-ab7b-ccbb5f61f9fc"
+  },
+  "config": {},
+  "dateCompleted": null,
+  "dateCreated": "2020-02-21T22:11:15.476937+00:00",
+  "healthCheckId": "358f073f-896e-4751-ab7b-ccbb5f61f9fc",
+  "state": "initializing",
+  "status": null,
+  "storageId": "c6d124b2-396a-4417-8a47-df10d647f4ab",
+  "taskId": "73f4df64-bda5-42c1-9074-b4e7843dbb77"
+}
+----
+.. Copiez le `healthCheckID` cela fait partie de la réponse.
+
+
+. Vérifier les résultats des vérifications d'intégrité :
++
+.. Sélectionnez *GET ​/Health-checks​/{healHealthCheckId}*.
+.. Sélectionnez *essayez-le*.
+.. Entrez l'ID du contrôle de l'état dans le champ paramètre.
+.. Sélectionnez *Exécuter*.
+.. Faites défiler jusqu'au bas du corps de réponse.
++
+Si toutes les vérifications de l'état réussissent, le retour est similaire à l'exemple suivant :
+
++
+[listing]
+----
+"message": "All checks completed successfully.",
+"percent": 100,
+"timestamp": "2020-03-06T00:03:16.321621Z"
+----
+
+
+. Si le `message` « return » indique qu'un problème se produit au niveau de la santé du cluster, procédez comme suit :
++
+.. Sélectionnez *GET ​/Health-checks​/{healHealthCheckId}/log*
+.. Sélectionnez *essayez-le*.
+.. Entrez l'ID du contrôle de l'état dans le champ paramètre.
+.. Sélectionnez *Exécuter*.
+.. Examinez toutes les erreurs spécifiques et obtenez les liens associés à l'article de la base de connaissances.
+.. Consultez l'article de la base de connaissances spécifique répertorié pour chaque problème ou effectuez la solution spécifiée.
+.. Si vous spécifiez une base de connaissances, suivez la procédure décrite dans l'article correspondant de la base de connaissances.
+.. Après avoir résolu les problèmes de cluster, exécutez à nouveau *GET ​/Health-checks​/{healCheckId}/log*.
+
+
+
+
+
+
+== Utilisez HealthTools pour exécuter les vérifications de l'état du stockage Element avant la mise à niveau du stockage
+
+Vous pouvez vérifier que le cluster de stockage est prêt à être mis à niveau à l'aide du `sfupgradecheck` commande. Cette commande vérifie des informations, telles que les nœuds en attente, l'espace disque et les défaillances de cluster.
+
+Si votre nœud de gestion se trouve sur un site sombre sans connectivité externe, la vérification de l'état de préparation de la mise à niveau a besoin de `metadata.json` fichier que vous avez téléchargé pendant link:task_upgrade_element_latest_healthtools.html["Mises à niveau de HealthTools"] pour réussir l'exécution.
+
+Cette procédure explique comment gérer les contrôles de mise à niveau qui produisent l'un des résultats suivants :
+
+* Exécution du `sfupgradecheck` exécution de la commande réussie. Votre cluster est prêt à être mis à niveau.
+* Contrôles dans l' `sfupgradecheck` l'outil a échoué avec un message d'erreur. Votre cluster n'est pas prêt pour la mise à niveau et des étapes supplémentaires sont requises.
+* Votre contrôle de mise à niveau échoue et un message d'erreur indique que HealthTools est obsolète.
+* La vérification de la mise à niveau échoue car votre nœud de gestion se trouve sur un site sombre.
+
+
+.Étapes
+. Exécutez le `sfupgradecheck` commande :
++
+[listing]
+----
+sfupgradecheck -u <cluster-user-name> MVIP
+----
++
+
+NOTE: Pour les mots de passe contenant des caractères spéciaux, ajoutez une barre oblique inverse (`\`) avant chaque caractère spécial. Par exemple : `mypass!@1` doit être saisi comme `mypass\!\@`.
+
++
+Exemple de commande d'entrée avec une sortie d'exemple dans laquelle aucune erreur n'apparaît et que vous êtes prêt à être mis à niveau :
+
++
+[listing]
+----
+sfupgradecheck -u admin 10.117.78.244
+----
++
+[listing]
+----
+check_pending_nodes:
+Test Description: Verify no pending nodes in cluster
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltOQAQ/pendingnodes
+check_cluster_faults:
+Test Description: Report any cluster faults
+check_root_disk_space:
+Test Description: Verify node root directory has at least 12 GBs of available disk space
+Passed node IDs: 1, 2, 3
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltTQAQ/
+SolidFire-Disk-space-error
+check_mnode_connectivity:
+Test Description: Verify storage nodes can communicate with management node
+Passed node IDs: 1, 2, 3
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltYQAQ/mNodeconnectivity
+check_files:
+Test Description: Verify options file exists
+Passed node IDs: 1, 2, 3
+check_cores:
+Test Description: Verify no core or dump files exists
+Passed node IDs: 1, 2, 3
+check_upload_speed:
+Test Description: Measure the upload speed between the storage node and the
+management node
+Node ID: 1 Upload speed: 90063.90 KBs/sec
+Node ID: 3 Upload speed: 106511.44 KBs/sec
+Node ID: 2 Upload speed: 85038.75 KBs/sec
+----
+. En cas d'erreurs, des actions supplémentaires sont nécessaires. Voir les sous-sections suivantes pour plus de détails.
+
+
+
+
+=== Votre cluster n'est pas prêt pour la mise à niveau
+
+Si un message d'erreur associé à l'une des vérifications de l'état s'affiche, effectuez la procédure suivante :
+
+. Vérifiez le `sfupgradecheck` message d'erreur.
++
+Exemple de réponse :
+
+
+
+[listing]
+----
+The following tests failed:
+check_root_disk_space:
+Test Description: Verify node root directory has at least 12 GBs of available disk space
+Severity: ERROR
+Failed node IDs: 2
+Remedy: Remove unneeded files from root drive
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltTQAQ/SolidFire-
+Disk-space-error
+check_pending_nodes:
+Test Description: Verify no pending nodes in cluster
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltOQAQ/pendingnodes
+check_cluster_faults:
+Test Description: Report any cluster faults
+check_root_disk_space:
+Test Description: Verify node root directory has at least 12 GBs of available disk space
+Passed node IDs: 1, 3
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltTQAQ/SolidFire-
+Disk-space-error
+check_mnode_connectivity:
+Test Description: Verify storage nodes can communicate with management node
+Passed node IDs: 1, 2, 3
+More information: https://kb.netapp.com/support/s/article/ka11A0000008ltYQAQ/mNodeconnectivity
+check_files:
+Test Description: Verify options file exists
+Passed node IDs: 1, 2, 3
+check_cores:
+Test Description: Verify no core or dump files exists
+Passed node IDs: 1, 2, 3
+check_upload_speed:
+Test Description: Measure the upload speed between the storage node and the management node
+Node ID: 1 Upload speed: 86518.82 KBs/sec
+Node ID: 3 Upload speed: 84112.79 KBs/sec
+Node ID: 2 Upload speed: 93498.94 KBs/sec
+----
+Dans cet exemple, le nœud 1 est faible sur l'espace disque. Pour plus d'informations, consultez le https://kb.netapp.com["base de connaissances"^] (KB) article répertorié dans le message d'erreur.
+
+
+
+=== HealthTools est obsolète
+
+Si un message d'erreur s'affiche indiquant que HealthTools n'est pas la dernière version, suivez ces instructions :
+
+. Vérifiez le message d'erreur et notez que la vérification de la mise à niveau a échoué.
++
+Exemple de réponse :
+
++
+[listing]
+----
+sfupgradecheck failed: HealthTools is out of date:
+installed version: 2018.02.01.200
+latest version: 2020.03.01.09.
+The latest version of the HealthTools can be downloaded from: https://mysupport.netapp.com/NOW/cgi-bin/software/
+Or rerun with the -n option
+----
+. Suivez les instructions décrites dans la réponse.
+
+
+
+
+=== Votre nœud de gestion se trouve sur un site sombre
+
+. Vérifiez le message et notez que la vérification de la mise à niveau échoue :
++
+Exemple de réponse :
+
++
+[listing]
+----
+sfupgradecheck failed: Unable to verify latest available version of healthtools.
+----
+. Télécharger un link:https://library.netapp.com/ecm/ecm_get_file/ECMLP2840740["Fichier JSON"^] Sur le site de support NetApp d'un ordinateur qui n'est pas le nœud de gestion, puis renommez-le en `metadata.json`.
+. Exécutez la commande suivante :
++
+[listing]
+----
+sfupgradecheck -l --metadata=<path-to-metadata-json>
+----
+. Pour plus de détails, voir supplémentaire link:task_upgrade_element_latest_healthtools.html["Mises à niveau de HealthTools"] informations pour les sites sombres.
+. Vérifiez que la suite HealthTools est à jour en exécutant la commande suivante :
++
+[listing]
+----
+sfupgradecheck -u <cluster-user-name> -p <cluster-password> MVIP
+----
+
+
+
+
+== Vérifications de l'état du stockage effectuées par le service
+
+Les vérifications de l'état du stockage font les vérifications suivantes par cluster.
+
+|===
+| Vérifiez le nom | Nœud/Cluster | Description 
+
+
+| vérifier_les_résultats_async | Cluster | Vérifie que le nombre de résultats asynchrones dans la base de données est inférieur à un nombre de seuils. 
+
+
+| vérifier_les_défauts_cluster | Cluster | Vérifie qu'il n'y a pas d'erreur de blocage de mise à niveau (comme défini dans la source d'élément). 
+
+
+| vérifier_la_vitesse_de_chargement | Nœud | Mesure la vitesse de chargement entre le nœud de stockage et le nœud de gestion. 
+
+
+| contrôle_vitesse_connexion | Nœud | Vérifie que les nœuds sont connectés au nœud de gestion pour le service des packages de mise à niveau et estime la vitesse de connexion. 
+
+
+| vérifier les noyaux | Nœud | Vérifie si le vidage de panne du noyau et les fichiers « core » du nœud. Le contrôle échoue pour les pannes d'une période récente (seuil de 7 jours). 
+
+
+| check_root_disk_space | Nœud | Vérifie que le système de fichiers racine dispose de suffisamment d'espace libre pour effectuer une mise à niveau. 
+
+
+| check_var_log_disk_space | Nœud | Vérifie cela `/var/log` l'espace libre atteint un certain seuil de pourcentage libre. Si ce n'est pas le cas, le contrôle tourne et purge les anciens journaux afin de tomber sous le seuil. La vérification échoue si la création d'un espace libre suffisant a échoué. 
+
+
+| check_pending_nodes | Cluster | Vérifie qu'il n'y a aucun nœud en attente sur le cluster. 
+|===
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

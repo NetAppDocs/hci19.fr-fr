@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_2noderepl.html 
+summary: 'Avant de remplacer un nœud faisant partie d"un cluster à deux nœuds, vous devez d"abord ajouter un troisième nœud de stockage (qui nécessite un nouvel ensemble d"adresses IP), autoriser la synchronisation et supprimer le nœud défectueux. cluster à quatre nœuds. Vous avez besoin d"un MIP et d"un SIP supplémentaires.' 
+keywords: netapp, hci, H610C, H615C, chassis replacement, node replacement 
+---
+= Remplacement d'un nœud de stockage dans un cluster à deux nœuds
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de remplacer un nœud de stockage faisant partie d'un cluster à deux nœuds, vous devez d'abord ajouter un troisième nœud de stockage (qui nécessite un nouvel ensemble d'adresses IP), autoriser la synchronisation et supprimer le nœud défectueux. Le cluster reste dans l'état dégradé jusqu'à ce qu'un nœud de remplacement soit ajouté au cluster.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous disposez de nouvelles adresses IP de gestion et d'adresses IP de stockage.
+* Vous avez vérifié que le cluster affiche `ClusterCannotSync` alerte après la mise hors ligne du nœud. Cela vous permet de vous assurer que le cluster effectue une resynchronisation complète lorsque le nouveau nœud est ajouté au cluster. Cette alerte s'affiche environ six minutes après la mise hors ligne du nœud de stockage.
+* Vous avez contacté le service de support NetApp. Si vous commandez une solution de remplacement, vous devez ouvrir un dossier auprès du support NetApp.
+* Vous avez obtenu le noeud de remplacement.
+* Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
+
+
+Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un hôte. Vous devez correspondre au numéro de série de l'hôte défaillant à partir du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
+
+.Étapes
+. Retirez physiquement le nœud défectueux du rack. Les étapes dépendent du type de nœud de stockage dont vous disposez. Voir link:task_hci_h410srepl.html["Remplacer les nœuds H410S"] et link:task_hci_h610srepl.html["Remplacer les nœuds H610S"].
++
+
+NOTE: Ne supprimez pas le nœud du cluster à ce stade.
+
+. Installez le nœud de remplacement dans le même slot.
+. Reliez le nœud.
+. Mettez le nœud sous tension.
+. Connectez un clavier et un moniteur au nœud.
+. Effectuez les étapes de configuration :
++
+.. Configurez l'adresse IP IPMI/BMC.
+.. Configurez le nouveau nœud avec les nouvelles adresses IP de gestion et IP de stockage, ainsi que le nom du cluster.
+
+
+. Une fois le nœud ajouté au cluster, ajoutez-les.
+. Une fois la synchronisation terminée, retirez les disques défectueux et le nœud défaillant du cluster.
+. Utilisez NetApp Hybrid Cloud Control pour configurer le nouveau nœud de stockage que vous avez ajouté. Voir link:task_hcc_expand_storage.html["L'extension des ressources de stockage NetApp HCI"].
+
+
+
+
+== Trouvez plus d'informations
+
+* http://docs.netapp.com/hci/index.jsp["Centre de documentation NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

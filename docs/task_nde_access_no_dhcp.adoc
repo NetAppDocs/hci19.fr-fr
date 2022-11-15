@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_no_dhcp.html 
+summary: Découvrez comment accéder au moteur de déploiement NetApp dans les environnements sans DHCP. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access 
+---
+= Accédez au moteur de déploiement NetApp dans des environnements sans DHCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Lorsque DHCP n'est pas utilisé sur le réseau, vous devez définir une adresse IPv4 statique sur l'interface Bond1G de l'un des nœuds de stockage (également appelé nœud de stockage de contrôle) que vous utiliserez pour accéder au moteur de déploiement NetApp. Le moteur de déploiement NetApp sur le nœud de stockage de contrôle détecte et communique avec les autres nœuds de calcul et de stockage à l'aide d'adresses IPv4 qui ont été configurées automatiquement sur les interfaces Bond10G de tous les nœuds. Vous devez utiliser cette méthode à moins que votre réseau ne présente des exigences particulières.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous ou votre administrateur réseau avez terminé les tâches du document instructions d'installation et de configuration.
+* Vous disposez d'un accès physique aux nœuds NetApp HCI.
+* Tous les nœuds NetApp HCI sont sous tension.
+* DHCP n'est pas activé pour les réseaux NetApp HCI et les nœuds NetApp HCI n'ont pas obtenu d'adresses IP auprès des serveurs DHCP.
+* Le réseau de gestion NetApp HCI est configuré comme VLAN natif sur les interfaces Bond1G et Bond10G de tous les nœuds.
+
+
+.Étapes
+. Branchez une KVM à l'arrière de l'un des nœuds de stockage NetApp HCI (ce nœud deviendra le nœud de stockage de contrôle).
+. Configurez l'adresse IP, le masque de sous-réseau et l'adresse de passerelle de Bond1G dans l'interface utilisateur. Vous pouvez également configurer un ID VLAN pour le réseau Bond1G si nécessaire.
++
+
+NOTE: Cette adresse IPv4 ne peut pas être réutilisé ultérieurement pendant le déploiement avec le moteur de déploiement NetApp.
+
+. Ouvrez un navigateur Web sur un ordinateur qui peut accéder au réseau de gestion NetApp HCI.
+. Accédez à l'adresse IP que vous avez attribuée au noeud de stockage de contrôle. Par exemple :
++
+[listing]
+----
+http://<Bond1G IP address>
+----
++
+
+NOTE: Vérifiez que vous utilisez HTTP ici.
+
++
+Cela vous mène à l'interface utilisateur du moteur de déploiement NetApp.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

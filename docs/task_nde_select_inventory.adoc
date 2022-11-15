@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_select_inventory.html 
+summary: 'Découvrez comment sélectionner l"inventaire des nœuds NetApp HCI pendant le déploiement.' 
+keywords: netapp, hci, deployment, compatibility, nodes 
+---
+= Sélectionnez stock
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sur la page *Inventory*, le moteur de déploiement NetApp détecte automatiquement les nœuds de calcul et de stockage disponibles. Vous pouvez ainsi sélectionner et ajouter toutes les ressources NetApp HCI au déploiement. Si un nœud ne répond pas aux exigences de déploiement, il n'est pas sélectionnable et des problèmes sont indiqués comme des erreurs. Vous pouvez positionner votre curseur sur l'erreur dans la ligne du nœud pour afficher une explication. Lorsque vous sélectionnez l'inventaire des nœuds sur la page Inventaire, le nœud de stockage hébergeant le moteur de déploiement NetApp est automatiquement sélectionné et vous ne pouvez pas le désélectionner.
+
+Les trames Jumbo doivent être activées pour assurer une détection correcte de l'inventaire. Si aucun nœud ou qu'un seul sous-ensemble de nœuds n'apparaît dans l'inventaire, vérifiez que les ports de switchs utilisés pour les nœuds NetApp HCI (toutes les interfaces SFP+/SFP28) sont configurés avec des trames jumbo.
+
+.Étapes
+. Sur la page *Inventory*, affichez la liste des nœuds disponibles.
++
+Si le système ne peut détecter aucun inventaire, il affiche une erreur. Corrigez l'erreur avant de continuer. Si votre système utilise DHCP pour l'affectation d'adresses IP, les ressources de stockage et de calcul risquent de ne pas apparaître immédiatement dans l'inventaire.
+
+. Facultatif : si une ressource n'apparaît pas immédiatement dans l'inventaire ou si vous traitez une erreur et que vous devez actualiser l'inventaire, cliquez sur *Actualiser l'inventaire*. Vous devrez peut-être actualiser l'inventaire plusieurs fois.
+. Facultatif : pour filtrer l'inventaire sur les attributs de nœud, tels que le type de nœud :
++
+.. Cliquez sur *Filter* dans l'en-tête des listes *Compute Nodes* ou *Storage Nodes*.
+.. Choisissez des critères dans les listes déroulantes.
+.. Sous les listes déroulantes, saisissez les informations nécessaires pour répondre aux critères.
+.. Cliquez sur *Ajouter filtre*.
+.. Désactivez les filtres individuels en cliquant sur *X* en regard d'un filtre actif, ou effacez tous les filtres en cliquant sur *X* au-dessus de la liste des filtres.
+
+
+. Sélectionnez tous les nœuds de calcul fournis avec votre système dans la liste *nœuds de calcul*.
++
+Pour procéder au déploiement, vous devez sélectionner au moins deux nœuds de calcul.
+
+. Sélectionnez tous les nœuds de stockage fournis avec votre système dans la liste *nœuds de stockage*.
++
+Vous devez sélectionner au moins deux nœuds de stockage pour procéder au déploiement.
+
+. Facultatif : si une case de sélection de nœud de stockage est cochée, ce nœud de stockage dépasse 33 % de la capacité totale du cluster de stockage. Procédez comme suit :
++
+** Décochez la case correspondant au nœud de stockage signalé.
+** Sélectionnez des nœuds de stockage supplémentaires pour répartir plus équitablement la capacité du cluster de stockage entre les nœuds.
+
+
+. Cliquez sur *Continuer*.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentation SolidFire et Element"^]
+

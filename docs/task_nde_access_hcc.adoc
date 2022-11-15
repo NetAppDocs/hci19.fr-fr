@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_hcc.html 
+summary: Découvrez comment accéder au contrôle de cloud hybride après le déploiement de NetApp HCI. 
+keywords: netapp, hci, deployment, review, GPU, install, driver, drivers 
+---
+= Accédez au contrôle de cloud hybride NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez votre NetApp HCI avec NetApp Cloud Control. Vous pouvez mettre à niveau les services de gestion et d'autres composants de NetApp HCI et étendre et surveiller votre installation. Vous vous connectez au contrôle du cloud hybride NetApp en accédant à l'adresse IP du nœud de gestion.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Autorisations d'administrateur de cluster* : vous disposez d'autorisations en tant qu'administrateur sur le cluster de stockage.
+* *Services de gestion*: Vous avez mis à niveau vos services de gestion à au moins la version 2.1.326. NetApp Hybrid Cloud Control n'est pas disponible dans les versions précédentes de packs de services. Pour plus d'informations sur la version actuelle de l'offre groupée de services, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notes de version des services de gestion"^].
+
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
++
+L'interface NetApp Hybrid Cloud Control apparaît.
+
+
+
+
+NOTE: Si vous vous êtes connecté en utilisant des autorisations insuffisantes, un message « Impossible de charger » s'affiche dans les pages de ressources HCC et les ressources ne seront pas disponibles.
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentation SolidFire et Element"^]
+

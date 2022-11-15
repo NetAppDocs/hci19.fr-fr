@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_enable_alerts.html 
+summary: Vous pouvez configurer les paramètres de façon à surveiller les alertes sur votre système NetApp HCI. 
+keywords: netapp, element, management node, mnode, ui, alerts, alert monitoring 
+---
+= Configurez le contrôle des alertes sur NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer les paramètres de façon à surveiller les alertes sur votre système NetApp HCI.
+
+La fonction de surveillance des alertes NetApp HCI transmet les alertes du système de stockage NetApp HCI au serveur vCenter, ce qui vous permet de voir toutes les alertes pour NetApp HCI à partir de l'interface du client Web vSphere.
+
+. Ouvrez l'interface utilisateur de nœud de gestion par nœud (`https://[IP address]:442`).
+. Cliquez sur l'onglet *moniteur d'alertes*.
+. Configurez les options de contrôle des alertes.
+
+
+
+
+== Options de contrôle des alertes
+
+[cols="2*"]
+|===
+| options | Description 
+
+
+| Exécuter les tests du moniteur d'alertes  a| 
+Exécute les tests système du moniteur pour vérifier les éléments suivants :
+
+* Connectivité de NetApp HCI et VMware vCenter
+* Couplage de NetApp HCI et de VMware vCenter via les informations de datastore fournies par le service QoSSIOC
+* Listes actuelles d'alarmes NetApp HCI et vCenter
+
+
+
+
+| Collectez des alertes | Active ou désactive le transfert des alarmes de stockage NetApp HCI vers vCenter. Vous pouvez sélectionner le cluster de stockage cible dans la liste déroulante. Le paramètre par défaut de cette option est `Enabled`. 
+
+
+| Collectez des alertes relatives aux meilleures pratiques | Active ou désactive le transfert des alertes relatives aux meilleures pratiques de stockage NetApp HCI à vCenter. Les alertes de meilleure pratique sont des erreurs déclenchées par une configuration système sous-optimale. Le paramètre par défaut de cette option est `Disabled`. Lorsque cette option est désactivée, les alertes relatives aux meilleures pratiques de stockage NetApp HCI n'apparaissent pas dans vCenter. 
+
+
+| Envoyez les données de support à AIQ  a| 
+Contrôle le flux de données de prise en charge et de surveillance de VMware vCenter vers NetApp SolidFire Active IQ.
+
+Les options sont les suivantes :
+
+* Activé : toutes les alarmes vCenter, les alarmes de stockage NetApp HCI et les données de support sont envoyées à NetApp SolidFire Active IQ. NetApp peut ainsi assurer une prise en charge et une surveillance proactives de l'installation NetApp HCI, de sorte que les problèmes éventuels puissent être détectés et résolus avant d'affecter le système.
+* Désactivé : aucune alarme vCenter, les alarmes de stockage NetApp HCI ou les données de support ne sont envoyées à NetApp SolidFire Active IQ.
+
+
+
+NOTE: Si vous avez désactivé l'option *Envoyer les données à AIQ* à l'aide du moteur de déploiement NetApp, vous devez link:task_mnode_enable_activeIQ.html["activer la télémétrie"] Utilisez de nouveau l'API REST du nœud de gestion pour configurer le service à partir de cette page.
+
+
+
+| Envoyez les données du nœud de calcul à AIQ  a| 
+Contrôle le flux de données de support et de surveillance des nœuds de calcul vers NetApp SolidFire Active IQ.
+
+Les options sont les suivantes :
+
+* Activé : les données de support et de contrôle des nœuds de calcul sont transmises à NetApp SolidFire Active IQ afin de permettre un support proactif pour le matériel du nœud de calcul.
+* Désactivé : les données de prise en charge et de surveillance concernant les nœuds de calcul ne sont pas transmises à NetApp SolidFire Active IQ.
+
+
+
+NOTE: Si vous avez désactivé l'option *Envoyer les données à AIQ* à l'aide du moteur de déploiement NetApp, vous devez link:task_mnode_enable_activeIQ.html["activer la télémétrie"] Utilisez de nouveau l'API REST du nœud de gestion pour configurer le service à partir de cette page.
+
+|===
+[discrete]
+== En savoir plus
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

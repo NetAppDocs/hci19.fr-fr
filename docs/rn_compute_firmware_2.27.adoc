@@ -1,0 +1,178 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_compute_firmware_2.27.html 
+summary: Obtenez des liens vers les notes de version pour les packages de firmware que vous pouvez télécharger et appliquer aux nœuds NetApp HCI. 
+keywords: netapp, hci, compute firmware 
+---
+= Notes de version de Compute Firmware Bundle 2.27
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Le bundle de firmware de calcul téléchargeable contient les dernières améliorations de fonctionnalités du BIOS et du BMC, des corrections de bugs et la prise en charge matérielle pour tous les nœuds de calcul NetApp HCI pris en charge.
+
+
+
+== Nouveautés
+
+La version 2.27 contient des corrections de bugs générales.
+
+
+
+=== Composants de firmware mis à jour
+
+Ce pack contient les versions de firmware suivantes pour les composants matériels, avec des versions mises à jour en gras :
+
+|===
+| Composant | H300E, H500E, H700E | H410C | H610C | H615C 
+
+
+| BIOS | NA2.1 | NA3.7 | *3B03* | *3B08.CO* 
+
+
+| BMC | 6.84.00 | *6.71.18* | *4.00.07* | *4.68.07* 
+
+
+| NIC/Mellanox | *14.25.1020* | *14.25.1020* | *14.25.1020* | *14.24.1000* 
+|===
+
+
+=== Les modifications apportées aux composants de firmware
+
+Voici les détails des améliorations et des changements inclus dans chaque nouveau composant du micrologiciel :
+
+|===
+| Composant de nœud et de firmware | Améliorations et modifications 
+
+
+| H300E, H500E, H700E BMC 6.84.00 | Prise en charge des protocoles TLS 1.0 et 1.1 désactivée (cette version de BMC a également été fournie dans Compute Firmware Bundle 12.2.109). 
+
+
+| BIOS H610C 3B03  a| 
+* Amélioration de la gestion des défaillances de mémoire
+* Ajout des dernières mises à jour du micrologiciel Intel NVM
+* Mise à jour de la version RC à 602.D02 (UIP 2020.1)
+* Mise à jour de la version du microcode vers MCU x6906
+* Mise à jour de la version du SPS ME vers la version 04.01.04.381.0
+* Supprimez les options de configuration du BIOS * Restore on AC Power Loss* et *Current Restore on AC Power Loss*
+
+
+
+
+| BIOS H615C 3B08.CO  a| 
+* Amélioration de la gestion des défaillances de mémoire
+* Ajout des dernières mises à jour du micrologiciel Intel NVM
+* Mise à jour de la version du microcode vers MCU x2F01
+* Mise à jour de la version RC à 602.D02 (UIP 2020.1)
+* Mise à jour de la version du SPS ME vers la version 04.01.04.381.0
+* Supprimez les options de configuration du BIOS * Restore on AC Power Loss* et *Current Restore on AC Power Loss*
+* Modifiez la valeur par défaut de l'option *tentative démarrage à froid rapide* sur `disable`
+* L'option *Allow Correctables* valeur par défaut a été modifiée sur `enable`
+
+
+
+
+| BMC H410C 6.71.18 | Ajouter des rapports BMC pour les événements SEL de mémoire EPPR 
+
+
+| H610C BMC 4.00.07 | Ajout de prise en charge syslog distant 
+
+
+| BMC H615C 4.68.07 | Ajout de prise en charge syslog distant 
+|===
+
+
+=== Compatibilité du pilote du firmware du NIC Mellanox
+
+Les versions 14.25.1020 et 14.24.1000 du firmware Mellanox mises à jour sont uniquement compatibles avec les versions suivantes du pilote VMware ESXi :
+
+* *ESXi 7.0* : H500/H500E/H700E/H410C E/H410C : version 4.19.16.1
+* *ESXi 7.0*: H610C/H615C: Version 4.17.15.16
+* *ESXi 6.7* : version 4.17.15.16
+* *ESXi 6.5* : version 4.16.13.5
+
+
+
+NOTE: Avant de mettre à niveau vers la version 2.27, vérifiez la version actuelle du pilote VMware ESXi. Si le pilote est obsolète, mettez-le d'abord à niveau. Mettez ensuite à niveau le firmware du calcul vers la version 2.27 pour vos nœuds de calcul. Visitez link:task_hcc_upgrade_compute_node_drivers.html["Mettez à jour les pilotes des nœuds de calcul"] Pour obtenir des instructions sur la mise à jour de vos pilotes de nœud de calcul, qui incluent le pilote ESXi.
+
+Bien que le moteur de déploiement NetApp 1.8P1 ne déploie pas la version ESXi 7.0, ESXi 7.0 est pris en charge en tant qu'option d'auto-installation ou de mise à niveau manuelle. Lorsque vous installez ou mettez à niveau manuellement les systèmes d'exploitation hôtes, NetApp ne peut pas contrôler les pilotes et les micrologiciels pour ces systèmes d'exploitation.
+
+
+
+== Téléchargez le pack Compute Firmware 2.27
+
+Pour télécharger le pack Compute Firmware, rendez-vous sur le https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Bundle de firmware de calcul NetApp HCI"^] page.
+
+Visitez link:task_hcc_upgrade_compute_node_firmware.html#use-the-baseboard-management-controller-bmc-user-interface-ui["Met à jour le firmware du nœud de calcul"] pour obtenir des instructions sur la mise à jour du firmware de votre nœud de calcul.
+
+
+
+== Résolution des problèmes
+
+Les problèmes suivants ont été résolus dans cette version :
+
+|===
+| Problème | Description 
+
+
+| CSD-3321/CSESF-129 | Le contrôleur BMC peut se bloquer et devenir inaccessible suite à l'erreur `BMC Self Test Failed`. Ceci est résolu dans BMC 4.00.07 et H615C BMC 4.68.07. 
+
+
+| CSFSE-234 | L'API d'inventaire de l'interface utilisateur Web du BMC H610C renvoie un format de numéro de série de mémoire incorrect. Ce problème est résolu dans le BMC H610C 4.00.07. 
+
+
+| PE-6708 | La paire de cartes NIC avec liaison ne passe pas en mode secondaire lorsque la carte réseau est en panne ou que le port est désactivé. Ce problème est résolu dans le firmware Mellanox 14.24.1000. 
+|===
+
+
+== Problèmes connus
+
+Dans cette version, vous trouverez ci-dessous des problèmes connus qui peuvent affecter le fonctionnement quotidien de certains environnements.
+
+|===
+| Problème | Description | Solution de contournement 
+
+
+| CSFSE-295 | Le processus de mise à jour du micrologiciel du nœud de calcul échoue en raison d'une erreur de mise à jour du BIOS lorsque vous mettez à jour le micrologiciel sur un nœud H410C à l'aide du pack de firmware téléchargeable.  a| 
+Mettez manuellement à jour le BIOS vers la version NA3.7 sur le nœud H410C :
+
+. Accédez au https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Page de téléchargements NetApp HCI"^].
+. Entrez `H410C_BIOS_3.7` dans la zone de texte de la liste déroulante.
+. Cliquez sur *Go*. Les instructions de mise à jour sont disponibles en format PDF sur la page de téléchargement.
+
+
+Après la mise à jour du BIOS et du BMC, mettez à jour le micrologiciel du nœud H410C à l'aide du progiciel du micrologiciel de calcul 2.27.
+
+
+
+| CSFSE-328 | Sur les nœuds H300E et H410C/H500E/H700E, un capteur NIC pour la carte réseau Mellanox dans le BMC indique l'état « NA » et indique « absent ». | Aucune 
+
+
+| CSFSE-309 | Les nœuds H410C/H500E/H700E et H410C ne peuvent pas ramener le port NIC Mellanox après avoir arrêté manuellement le port lors de l'exécution de VMware EXSi 6.7u1. | Lancer la commande suivante pour récupérer les ports : `esxcli network nic set -n vmnic2 -a` 
+
+
+| CSFSE-303 | Des erreurs de statistiques réseau ont été détectées pour la carte réseau Mellanox sur les nœuds H410C. | Aucune 
+
+
+| CSESF-293 / PE-10130 | Le micrologiciel du NIC Mellanox peut être mis à niveau par Bootstrap OS après la mise à niveau vers la version 2.27 du pack de microprogramme de calcul. | Réinstallez Compute Firmware Bundle version 2.27. 
+
+
+| PE-11033 | Sous des charges lourdes, le message de liaison vmnic0 attendu est parfois manquant dans les fichiers journaux du nœud H615C. | Aucune 
+
+
+| PE-11032 | Lorsque les charges sont lourdes, des erreurs de transmission se produisent parfois pour la carte réseau Mellanox H610C sur des nœuds. | Aucune 
+
+
+| PE-10954 | Les nœuds H610C reflètent parfois le paramètre MTU incorrect une fois que vous avez défini la MTU à l'aide de l'interface utilisateur terminal (TUI) du logiciel Element. | Aucune 
+|===
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_disable_lacp_individual.html 
+summary: 'Découvrez comment désactiver le `lacp-individual` Commande sur les commutateurs configurés après le déploiement de NetApp HCI.' 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Désactiver la commande lacp-Individual sur les switchs configurés
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Par défaut, le switch Mellanox `lacp-individual` Et le commutateur Cisco `lacp suspend-individual` la commande reste configurée après le déploiement. Cette commande n'est pas requise après l'installation ; si elle reste configurée, elle peut entraîner des problèmes d'accès aux volumes lors du dépannage ou du redémarrage d'un commutateur. Après le déploiement, vous devez vérifier la configuration de chaque switch Mellanox et de commutateur Cisco, puis supprimer le `lacp-individual` ou `lacp suspend-individual` commande.
+
+.Étapes
+. À l'aide de SSH, ouvrez une session sur le commutateur.
+. Afficher la configuration en cours d'exécution :
++
+`show running-config`
+
+. Vérifier la sortie de configuration du commutateur pour l' `lacp-individual` ou `lacp suspend-individual` commande.
++
+
+NOTE: Le `xxx-xxx` est le(s) numéro(s) d'interface fourni(s) par l'utilisateur. Si nécessaire, vous pouvez accéder au numéro d'interface en affichant les interfaces de groupe d'agrégation de liens multi-châssis : `show mlag interfaces`
+
++
+.. Pour un switch Mellanox, vérifiez si la sortie contient la ligne suivante :
++
+`interface mlag-port-channel xxx-xxx lacp-individual enable force`
+
+.. Pour un commutateur Cisco, vérifiez si la sortie contient la ligne suivante :
++
+`interface mlag-port-channel xxx-xxx lacp suspend-individual enable force`
+
+
+
+. Si la commande est présente, supprimez-la de la configuration.
++
+.. Pour un switch Mellanox :
++
+`no interface mlag-port-channel xxx-xxx lacp-individual enable force`
+
+.. Pour un commutateur Cisco :
+`no interface mlag-port-channel xxx-xxx lacp suspend-individual enable force`
+
+
+. Répétez ces étapes pour chaque commutateur de votre configuration.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/SF_Series/SolidFire_Bond10G_goes_down_when_flapping_an_interface_during_troubleshooting["Le nœud de stockage est arrêté pendant le dépannage"^]
+

@@ -1,0 +1,200 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_storage_clusters.html 
+summary: 'Vous pouvez ajouter, supprimer, modifier et activer et désactiver le mode de maintenance pour les clusters de stockage à l"aide de l"interface de contrôle hybride NetApp.' 
+keywords: netapp, hci, element, storage cluster, hybrid cloud control, hcc, maintenance mode, enable, disable 
+---
+= Ajoutez et gérez des clusters de stockage avec NetApp Hybrid Cloud Control
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez ajouter des clusters de stockage à l'inventaire des ressources des nœuds de gestion afin qu'ils puissent être gérés à l'aide de NetApp Hybrid Cloud Control (HCC). Le premier cluster de stockage ajouté lors de la configuration du système est la valeur par défaut link:concept_hci_clusters.html#authoritative-storage-clusters["cluster de stockage faisant autorité"], Mais des clusters supplémentaires peuvent être ajoutés à l'aide de l'interface utilisateur HCC.
+
+Après l'ajout d'un cluster de stockage, vous pouvez surveiller les performances du cluster, modifier les informations d'identification du cluster de stockage pour l'actif géré ou supprimer un cluster de stockage de l'inventaire des actifs du nœud de gestion s'il n'a plus besoin d'être géré à l'aide de HCC.
+
+À partir de l'élément 12.2, vous pouvez utiliser le link:concept_hci_storage_maintenance_mode.html["mode maintenance"] options d'activation et de désactivation du mode de maintenance pour les nœuds de cluster de stockage.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Autorisations d'administrateur de cluster* : vous disposez des autorisations en tant qu'administrateur sur le link:concept_hci_clusters.html#authoritative-storage-clusters["cluster de stockage faisant autorité"]. Le cluster faisant autorité est le premier cluster ajouté à l'inventaire des nœuds de gestion au cours de la configuration du système.
+* *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 11.3 ou ultérieure.
+* *Noeud de gestion* : vous avez déployé un noeud de gestion exécutant la version 11.3 ou ultérieure.
+* *Services de gestion*: Vous avez mis à jour votre offre groupée de services de gestion à la version 2.17 ou ultérieure.
+
+
+.Options
+*  a storage cluster
+*  storage cluster status
+*  storage cluster credentials
+*  a storage cluster
+*  and disable maintenance mode
+
+
+
+
+== Ajout d'un cluster de stockage
+
+Vous pouvez ajouter un cluster de stockage à l'inventaire des ressources du nœud de gestion à l'aide de NetApp Hybrid Cloud Control. Cela vous permet de gérer et de contrôler le cluster à l'aide de l'interface utilisateur HCC.
+
+.Étapes
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant des informations d'identification autorité à l'administrateur du cluster de stockage.
+. Dans le Tableau de bord, sélectionnez le menu d'options en haut à droite et sélectionnez *configurer*.
+. Dans le volet *clusters de stockage*, sélectionnez *Détails du cluster de stockage*.
+. Sélectionnez *Ajouter un cluster de stockage*.
+. Saisissez les informations suivantes :
++
+** Adresse IP virtuelle de gestion de cluster de stockage
++
+
+NOTE: Seuls les clusters de stockage distants qui ne sont pas gérés actuellement par un nœud de gestion peuvent être ajoutés.
+
+** Nom d'utilisateur et mot de passe du cluster de stockage
+
+
+. Sélectionnez *Ajouter*.
++
+
+NOTE: Une fois le cluster de stockage ajouté, l'inventaire du cluster peut prendre jusqu'à 2 minutes pour actualiser et afficher le nouvel ajout. Vous devrez peut-être actualiser la page de votre navigateur pour voir les modifications.
+
+. Si vous ajoutez des clusters ESDS Element, entrez ou téléchargez votre clé privée SSH et votre compte utilisateur SSH.
+
+
+
+
+== Confirmation de l'état du cluster de stockage
+
+Vous pouvez contrôler l'état de connexion des ressources des clusters de stockage à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control.
+
+.Étapes
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant des informations d'identification autorité à l'administrateur du cluster de stockage.
+. Dans le Tableau de bord, sélectionnez le menu d'options en haut à droite et sélectionnez *configurer*.
+. Vérifier l'état des clusters de stockage dans l'inventaire.
+. Dans le volet *clusters de stockage*, sélectionnez *Détails du cluster de stockage* pour plus de détails.
+
+
+
+
+== Modifier les informations d'identification du cluster de stockage
+
+Vous pouvez modifier le nom d'utilisateur et le mot de passe de l'administrateur du cluster de stockage à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control.
+
+.Étapes
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant des informations d'identification autorité à l'administrateur du cluster de stockage.
+. Dans le Tableau de bord, sélectionnez le menu d'options en haut à droite et sélectionnez *configurer*.
+. Dans le volet *clusters de stockage*, sélectionnez *Détails du cluster de stockage*.
+. Sélectionnez le menu *actions* pour le cluster et sélectionnez *Modifier les informations d'identification du cluster*.
+. Mettre à jour le nom d'utilisateur et le mot de passe du cluster de stockage.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Retirer un cluster de stockage
+
+Le retrait d'un cluster de stockage de NetApp Hybrid Cloud Control supprime le cluster de l'inventaire des nœuds de gestion. Une fois le cluster de stockage supprimé, le cluster ne peut plus être géré par HCC et vous ne pouvez y accéder qu'en accédant directement à son adresse IP de gestion.
+
+
+IMPORTANT: Vous ne pouvez pas supprimer le cluster faisant autorité de l'inventaire. Pour déterminer le cluster faisant autorité, accédez à *User Management > Users*. Le cluster faisant autorité est indiqué à côté de l'en-tête *utilisateurs*.
+
+.Étapes
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant des informations d'identification autorité à l'administrateur du cluster de stockage.
+. Dans le Tableau de bord, sélectionnez le menu d'options en haut à droite et sélectionnez *configurer*.
+. Dans le volet *clusters de stockage*, sélectionnez *Détails du cluster de stockage*.
+. Sélectionnez le menu *actions* pour le cluster et sélectionnez *Supprimer le cluster de stockage*.
++
+
+CAUTION: Cliquez sur *Oui* suivant pour supprimer le cluster de l'installation.
+
+. Sélectionnez *Oui*.
+
+
+[discrete]
+== Activation et désactivation du mode de maintenance
+
+C'est ça link:concept_hci_storage_maintenance_mode.html["mode maintenance"] les options de fonction vous permettent de ,activer et ,désactiver mode maintenance d'un nœud de cluster de stockage.
+
+.Ce dont vous avez besoin, 8217;ll
+* *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 12.2 ou ultérieure.
+* *Noeud de gestion* : vous avez déployé un noeud de gestion exécutant la version 12.2 ou ultérieure.
+* *Services de gestion*: Vous avez mis à jour votre offre groupée de services de gestion à la version 2.19 ou ultérieure.
+* Vous avez accès pour vous connecter au niveau administrateur.
+
+
+
+
+=== Activer le mode maintenance
+
+Pour activer le mode maintenance d'un nœud de cluster de stockage, vous pouvez utiliser la procédure suivante.
+
+
+NOTE: Un seul nœud peut être en mode maintenance à la fois.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
++
+
+NOTE: Les options des fonctions du mode maintenance sont désactivées en lecture seule.
+
+. Dans la zone de navigation bleue de gauche, sélectionnez l'installation NetApp HCI.
+. Dans le volet de navigation de gauche, sélectionnez *noeuds*.
+. Pour afficher les informations d'inventaire du stockage, sélectionnez *stockage*.
+. Activez le mode maintenance sur un nœud de stockage :
++
+[NOTE]
+====
+Le tableau des nœuds de stockage est mis à jour automatiquement toutes les deux minutes pour les actions lancées par un non-utilisateur. Avant une action, pour vous assurer que vous disposez de l'état le plus à jour, vous pouvez actualiser la table des nœuds à l'aide de l'icône d'actualisation située dans la partie supérieure droite du tableau des nœuds.
+
+image:hcc_enable_maintenance_mode.PNG["Activer le mode maintenance"]
+
+====
++
+.. Sous *actions*, sélectionnez *Activer le mode de maintenance*.
++
+Bien que *Maintenance mode* soit activé, les actions du mode maintenance ne sont pas disponibles pour le nœud sélectionné et tous les autres nœuds du même cluster.
+
++
+Une fois que *l'activation du mode Maintenance* est terminée, la colonne *Node Status* affiche une icône de clé et le texte "*Maintenance mode*" pour le nœud en mode maintenance.
+
+
+
+
+
+
+
+=== Désactiver le mode de maintenance
+
+Une fois qu'un nœud a été placé en mode maintenance, l'action *Désactiver le mode maintenance* est disponible pour ce nœud. Les actions sur les autres nœuds sont indisponibles jusqu'à la désactivation du mode de maintenance sur le nœud en cours de maintenance.
+
+.Étapes
+. Pour le nœud en mode maintenance, sous *actions*, sélectionnez *Désactiver le mode maintenance*.
++
+Bien que *Maintenance mode* soit désactivé, les actions du mode maintenance ne sont pas disponibles pour le nœud sélectionné et tous les autres nœuds du même cluster.
+
++
+Une fois *désactivation du mode de maintenance* terminée, la colonne *Etat du nœud* affiche *actif*.
+
++
+
+NOTE: Lorsqu'un nœud est en mode maintenance, il n'accepte pas les nouvelles données. Par conséquent, la désactivation du mode de maintenance peut être plus longue, car le nœud doit synchroniser ses données avant de quitter le mode de maintenance. Plus vous passez de temps en mode maintenance, plus vous risquez de prendre de désactiver le mode de maintenance.
+
+
+
+
+
+=== Résoudre les problèmes
+
+Si vous rencontrez des erreurs lorsque vous activez ou désactivez le mode de maintenance, une bannière d'erreur s'affiche en haut du tableau des nœuds. Pour plus d'informations sur l'erreur, vous pouvez sélectionner le lien *Afficher les détails* qui se trouve sur la bannière pour afficher les retours de l'API.
+
+
+
+== Trouvez plus d'informations
+
+* link:task_mnode_manage_storage_cluster_assets.html["Créer et gérer les ressources du cluster de stockage"]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: docs/reference_earlier_versions.html 
+keywords: documentation, earlier, previous, versions 
+summary: 'La documentation des versions précédentes de NetApp HCI est disponible si vous n"utilisez pas la dernière version.' 
+---
+= Versions antérieures de la documentation NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, earlier, documentation, versions
+
+
+[role="lead"]
+La documentation des versions précédentes de NetApp HCI est disponible si vous n'utilisez pas la dernière version.
+
+* http://docs.netapp.com/us-en/hci18/docs/index.html["NetApp HCI 1.8P1"^]
+* https://docs.netapp.com/hci/index.jsp["NetApp HCI 1.8 et versions antérieures"^]
+

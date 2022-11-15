@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_storage.html 
+summary: 'NetApp HCI est disponible dans un large éventail d"options de configuration pour le calcul et le stockage. À partir de NetApp HCI 1.8, vous pouvez commencer par configurer au moins deux nœuds de stockage et deux nœuds de calcul. Dans les versions précédentes, la configuration minimale requise était de quatre nœuds de stockage et deux nœuds de calcul.' 
+keywords: netapp, hci, storage nodes, volumes 
+---
+= Stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp HCI est disponible dans un large éventail d'options de configuration pour le calcul et le stockage. Depuis la version NetApp HCI 1.8, la configuration initiale minimale est de deux nœuds de stockage et deux nœuds de calcul. Avant NetApp HCI 1.8, la configuration minimale requise était de quatre nœuds de stockage et deux nœuds de calcul.
+
+* NetApp HCI prend en charge différents modèles de nœuds de stockage H-series, tels que H300S, H500S, H700S, H410S et H610S
++
+Voir https://www.netapp.com/us/products/converged-systems/hyper-converged-infrastructure.aspx#modelsAndSpecs["Modèles et spécifications NetApp HCI"^]
+
+* La couche de stockage de NetApp HCI est fournie par le logiciel NetApp Element et la couche de gestion est fournie par le plug-in NetApp Element pour vCenter Server.
+* Un nœud de stockage est un serveur qui contient un ensemble de disques qui communiquent entre eux via l'interface réseau Bond10G.
+* Chaque nœud de stockage est relié à deux réseaux, au stockage et à la gestion, chacun disposant de deux liens indépendants pour la redondance et les performances. Chaque nœud requiert une adresse IP sur chaque réseau.
+* Vous pouvez créer un cluster avec de nouveaux nœuds de stockage ou ajouter des nœuds de stockage à un cluster existant afin d'augmenter la capacité et les performances de stockage.
+* Dans l'écosystème NetApp HCI et SolidFire, le stockage est provisionné à l'aide de volumes.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

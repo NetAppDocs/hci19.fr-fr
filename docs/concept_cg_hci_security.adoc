@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_cg_hci_security.html 
+summary: Lorsque vous utilisez NetApp HCI, les données sont protégées par des protocoles de sécurité standard. 
+keywords: netapp, hci, security 
+---
+= Sécurité NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous utilisez NetApp HCI, les données sont protégées par des protocoles de sécurité standard.
+
+
+
+== Chiffrement des données au repos pour les nœuds de stockage
+
+NetApp HCI vous permet de chiffrer toutes les données stockées sur le cluster de stockage.
+
+Tous les disques d'un nœud de stockage qui peuvent être chiffrées utilisent le chiffrement AES 256 bits au niveau du disque. Chaque lecteur dispose de sa propre clé de cryptage, qui est créée lors de l'initialisation initiale du lecteur. Lorsque vous activez la fonctionnalité de cryptage, un mot de passe au niveau du cluster de stockage est créé, et des segments de mot de passe sont ensuite distribués à tous les nœuds du cluster. Aucun nœud ne stocke la totalité du mot de passe. Le mot de passe est alors utilisé pour protéger par mot de passe tous les accès aux lecteurs. Vous avez besoin du mot de passe pour déverrouiller le lecteur, et puisque le lecteur cryptage toutes les données, vos données sont sécurisées en permanence.
+
+Lorsque le chiffrement est activé au repos, les performances et l'efficacité du cluster de stockage ne sont pas affectées. En outre, si vous supprimez un disque ou un nœud compatible avec le chiffrement du cluster de stockage avec l'API Element ou l'interface utilisateur d'Element, le chiffrement au repos est désactivé sur les disques et les disques sont supprimés de manière sécurisée, ce qui protège les données précédemment stockées sur ces disques. Après avoir retiré le lecteur, vous pouvez l'effacer en toute sécurité avec le `SecureEraseDrives` Méthode API. Si vous retirez de force un disque ou un nœud du cluster de stockage, les données restent protégées par le mot de passe de tout le cluster et les clés de cryptage individuelles du disque.
+
+Pour plus d'informations sur l'activation et la désactivation du chiffrement au repos, reportez-vous à la section http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-ug/GUID-EE404D52-B621-4DE5-B141-2559768FB1D0.html["Activation et désactivation du cryptage pour un cluster"^] Dans le Centre de documentation SolidFire et Element.
+
+
+
+== Chiffrement logiciel au repos
+
+Le chiffrement logiciel au repos permet le chiffrement de toutes les données écrites sur les disques SSD d'un cluster de stockage. Cela fournit une couche principale de cryptage dans les nœuds SolidFire Enterprise SDS, qui n'incluent pas les disques à autocryptage (SED).
+
+
+
+== Gestion externe des clés
+
+Vous pouvez configurer le logiciel Element pour qu'il gère les clés de chiffrement du cluster de stockage à l'aide d'un service tiers de gestion des clés conforme KMIP. Lorsque vous activez cette fonctionnalité, la clé de chiffrement de mot de passe d'accès au disque au niveau du cluster est gérée par un KMS que vous spécifiez. Element peut utiliser les services de gestion des clés suivants :
+
+* Gemalto SafeNet KeySecure
+* SAFENET CHEZ KeySecure
+* KeyControl HyTrust
+* Gestionnaire de sécurité des données Vormetric
+* IBM Security Key Lifecycle Manager
+
+
+Pour plus d'informations sur la configuration de la gestion externe des clés, reportez-vous à la section http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-ug/GUID-057D852C-9C1C-458A-9161-328EDA349B00.html["Mise en route de la gestion externe des clés"^] Dans le Centre de documentation SolidFire et Element.
+
+
+
+== Authentification multifacteur
+
+L'authentification multifacteur (MFA) vous permet de présenter plusieurs types de preuves à l'utilisateur lors NetApp Element de la connexion. Vous pouvez configurer Element pour qu'il accepte uniquement l'authentification multi-facteurs pour les connexions intégrant votre système de gestion des utilisateurs et votre fournisseur d'identités. Vous pouvez configurer Element pour qu'il s'intègre à un fournisseur d'identités SAML 2.0 existant qui peut appliquer plusieurs schémas d'authentification, tels que les mots de passe et les messages texte, les mots de passe et les e-mails, ou d'autres méthodes.
+
+Vous pouvez coupler l'authentification multi-facteurs avec des fournisseurs d'identité compatibles SAML 2.0 (IDP) courants, tels que Microsoft Active Directory Federation Services (ADFS) et Shiboleeth.
+
+Pour configurer MFA, voir http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-ug/GUID-B1C8D8E2-CE95-41FD-9A3E-A0C424EC84F3.html["Activation de l'authentification multifacteur"^] Dans le Centre de documentation SolidFire et Element.
+
+
+
+== FIPS 140-2 pour le chiffrement HTTPS et des données au repos
+
+Les clusters de stockage NetApp SolidFire et les systèmes NetApp HCI prennent en charge le chiffrement conforme à la norme FIPS 140-2 pour les modules cryptographiques. Vous pouvez activer la conformité FIPS 140-2 sur votre cluster NetApp HCI ou SolidFire pour les communications HTTPS et le chiffrement de disque.
+
+Lorsque vous activez le mode d'exploitation FIPS 140-2 sur votre cluster, le cluster active NetApp Cryptographic Security module (NCSM) et exploite le chiffrement certifié FIPS 140-2 niveau 1 pour toutes les communications via HTTPS vers l'interface utilisateur et l'API de NetApp Element. Vous utilisez le `EnableFeature` API d'Element avec le `fips` Paramètre pour activer le chiffrement FIPS 140-2 HTTPS. Sur les clusters de stockage avec du matériel compatible FIPS, vous pouvez également activer le chiffrement de disque FIPS pour les données au repos à l'aide du `EnableFeature` API d'Element avec le `FipsDrives` paramètre.
+
+Pour plus d'informations sur la préparation d'un nouveau cluster de stockage à des fins de chiffrement FIPS 140-2, reportez-vous à la section http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-ug/GUID-4645FF0D-3FCD-4440-91A9-A47F7BCC5C50.html["Création d'un cluster prenant en charge les disques FIPS"^].
+
+Pour plus d'informations sur l'activation de FIPS 140-2 sur un cluster existant préparé, reportez-vous à la section http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-api/GUID-F2726BCA-D59C-47EE-B86C-DC465C96563B.html["L'API d'élément EnableFeature"^].

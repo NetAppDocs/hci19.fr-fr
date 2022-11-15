@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_configuration_option_B.html 
+summary: 'En savoir plus sur l"option de configuration réseau NetApp HCI B.' 
+keywords: netapp, hci, cabling, network configuration 
+---
+= Configuration du réseau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, cabling, network configuration
+
+
+[role="lead"]
+Le NetApp HCI peut utiliser plusieurs câbles réseau et configurations VLAN différentes. La première configuration, l'option B, utilise six câbles réseau pour chaque nœud de calcul.
+
+
+
+== Configuration B : six câbles pour les nœuds de calcul
+
+En tant qu'option de configuration réseau secondaire, les nœuds de calcul H410C prennent en charge l'utilisation de six câbles réseau pour la connectivité à l'ensemble des réseaux NetApp HCI. Cette configuration nécessite le stockage, vMotion et les réseaux de machines virtuelles utilisent le balisage VLAN. Vous pouvez utiliser cette configuration avec des switchs vSphere standard ou des switchs distribués vSphere (qui nécessitent une licence VMware vSphere Enterprise plus).
+
+La documentation NetApp HCI utilise des lettres pour désigner les ports réseau sur le panneau arrière des nœuds H-Series.
+
+Voici les emplacements et ports réseau sur le nœud de calcul H410C :
+
+[#H35700E_H410C]
+image::HCI_ISI_compute_6cable.png[Ports réseau des nœuds de calcul H410C de NetApp]
+
+
+
+=== Configuration VLAN
+
+Lorsque vous déployez des nœuds de calcul avec six câbles et nœuds de stockage en utilisant quatre câbles, il est recommandé de configurer les segments de réseau requis sur tous les ports de switch utilisés par les nœuds. Par exemple :
+
+|===
+| Nom du réseau | ID VLAN | Configuration des ports du commutateur 
+
+
+| Gestion | 100 | Natif 
+
+
+| Stockage | 105 | Balisé 
+
+
+| VMotion | 107 | Balisé 
+
+
+| Ordinateurs virtuels | 200 février 201 | Balisé 
+|===
+L'illustration suivante montre la configuration de câblage recommandée pour les nœuds de calcul à 6 câbles et les nœuds de stockage à quatre câbles. Tous les ports de commutateur de cet exemple partagent la même configuration.
+
+image::hci_networking_config_scenario_2.png[Image B de l'option de configuration réseau HCI]
+
+
+
+=== Exemple de commandes de commutateur
+
+Vous pouvez utiliser les exemples de commandes suivants pour configurer tous les ports de switch utilisés pour les nœuds NetApp HCI. Ces commandes sont basées sur une configuration Cisco, mais ne nécessitent que de petites modifications pour les commutateurs Mellanox. Reportez-vous à la documentation de votre commutateur pour connaître les commandes spécifiques dont vous avez besoin pour implémenter cette configuration. Remplacez le nom de l'interface, la description et les VLAN par les valeurs de votre environnement.
+
+`interface {interface name, such as EthernetX/Y or GigabitEthernetX/Y/Z}`
+`description {desired description, such as NetApp-HCI-NodeX-PortY}`
+`mtu 9216`
+`switchport mode trunk`
+`switchport trunk native vlan 100`
+`switchport trunk allowed vlan 105,107,200,201`
+`spanning-tree port type edge trunk`
+
+
+NOTE: Certains commutateurs peuvent nécessiter l'inclusion du VLAN natif dans la liste VLAN autorisés. Reportez-vous à la documentation de votre modèle de commutateur et de la version du logiciel.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

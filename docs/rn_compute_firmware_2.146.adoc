@@ -1,0 +1,178 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_compute_firmware_2.146.html 
+summary: Obtenez des liens vers les notes de version pour les packages de firmware que vous pouvez télécharger et appliquer aux nœuds NetApp HCI. 
+keywords: netapp, hci, compute firmware 
+---
+= Notes de version de Compute Firmware Bundle 2.146
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Le bundle de firmware de calcul téléchargeable contient les dernières améliorations de fonctionnalités du BIOS et du BMC, des corrections de bugs et la prise en charge matérielle pour tous les nœuds de calcul NetApp HCI pris en charge.
+
+
+
+== Nouveautés
+
+La version 2.146 contient des corrections de bugs générales.
+
+
+
+=== Composants de firmware mis à jour
+
+Ce pack contient les versions de firmware suivantes pour les composants matériels, avec des versions mises à jour en gras :
+
+|===
+| Composant | H300E, H500E, H700E | H410C | H610C | H615C 
+
+
+| BIOS | *NAT3.4* | *NATP3.10* | *3B07* | *3B12.CO* 
+
+
+| BMC | *6.98.00* | 6.71.20 | *4.04.07* | *4.72.07* 
+
+
+| NIC/Mellanox | 14.25.10.20 | 14.25.10.20 | 14.25.10.20 | 14.25.10.20 
+|===
+
+
+=== Les modifications apportées aux composants de firmware
+
+Voici les détails des améliorations et des changements inclus dans chaque nouveau composant du micrologiciel :
+
+|===
+| Composant de nœud et de firmware | Améliorations et modifications 
+
+
+| *H300E/H500E/H700E NA3.4*  a| 
+* Activer la réparation post-paquet (PPR)
+* Microcode IPU 2020.2
+
+
+
+
+| *NATH410C P3.10*  a| 
+* Microcode IPU 2020.2
+
+
+
+
+| *H610C 3B07*  a| 
+* Améliorer l'enregistrement des événements PPR dans le journal SEL
+* Microcode IPU 2020.2
+
+
+
+
+| *H615C 3B12.CO*  a| 
+* Améliorer l'enregistrement des événements PPR dans le journal SEL
+* Microcode IPU 2020.2
+
+
+
+
+| *H300E/H500E/H700E 6.98.00*  a| 
+* Longueur du champ ID DE LIAISON LDAP à 128 caractères
+* Désactivez TLS 1.0 et TLS 1.1
+
+
+
+
+| *H610C 4.04.07*  a| 
+* Analyse du journal des événements PPR du BIOS dans le journal SEL du contrôleur BMC
+* Longueur du champ ID DE LIAISON LDAP à 128 caractères
+* Domaine de groupe de longueur LDAP à 128 caractères
+
+
+
+
+| *H615C 4.72.07*  a| 
+* Analyse du journal des événements PPR du BIOS dans le journal SEL du contrôleur BMC
+* Domaine de groupe de longueur LDAP à 128 caractères
+
+
+|===
+
+
+=== Compatibilité du pilote du firmware du NIC Mellanox
+
+Les versions 14.25.1020 et 14.24.1000 du firmware Mellanox mises à jour sont uniquement compatibles avec les versions suivantes du pilote VMware ESXi :
+
+* *ESXi 7.0* : H500/H500E/H700E/H410C E/H410C : version 4.19.16.1
+* *ESXi 7.0*: H610C/H615C: Version 4.17.15.16
+* *ESXi 6.7* : version 4.17.15.16
+* *ESXi 6.5* : version 4.16.13.5
+
+
+
+NOTE: Avant de mettre à niveau vers la version 2.146, vérifiez la version actuelle du pilote VMware ESXi. Si le pilote est obsolète, mettez-le d'abord à niveau. Mettez ensuite à niveau le firmware du calcul vers la version 2.146 pour vos nœuds de calcul. Visitez link:task_hcc_upgrade_compute_node_drivers.html["Mettez à jour les pilotes des nœuds de calcul"] Pour obtenir des instructions sur la mise à jour de vos pilotes de nœud de calcul, qui incluent le pilote ESXi.
+
+Bien que le moteur de déploiement NetApp 1.8P1 ne déploie pas la version ESXi 7.0, ESXi 7.0 est pris en charge en tant qu'option d'auto-installation ou de mise à niveau manuelle. Lorsque vous installez ou mettez à niveau manuellement les systèmes d'exploitation hôtes, NetApp ne peut pas contrôler les pilotes et les micrologiciels pour ces systèmes d'exploitation.
+
+
+
+== Téléchargez le pack Compute Firmware 2.146
+
+Pour télécharger le pack Compute Firmware :
+
+. Accédez à https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["La page de téléchargements NetApp HCI"^].
+. Choisissez *Compute_Firmware_Bundle* dans la liste déroulante.
+. Cliquez sur *Go*.
+
+
+Visitez link:task_hcc_upgrade_compute_node_firmware.html#use-the-baseboard-management-controller-bmc-user-interface-ui["Met à jour le firmware du nœud de calcul"] pour obtenir des instructions sur la mise à jour du firmware de votre nœud de calcul.
+
+
+
+== Failles de sécurité résolues
+
+Les failles de sécurité qui ont été résolues dans cette version sont les suivantes :
+
+* CVE-2019-20636
+* CVE-2019-11599, CVE-2020-12826, CVE-2020-12464, CVE-2020-12114
+* CVE-2019-0151, CVE-2019-0123, CVE-2019-0117
+* CVE-2016-3706, CVE-2011-5320, CVE-2015-8984, CVE-2015-8983, CVE-2015-8982, CVE-2006-7254, CVE-2005-3590
+* CVE-2020-20811, CVE-2020-20812
+* CVE-2020-25641
+* CVE-2020-14386, CVE-2020-14314, CVE-2020-25641, CVE-2020-1438, CVE-2020-14314, CVE-2020-25641
+* CVE-2020-8738, CVE-2020-8764, CVE-2020-0590, CVE-2020-8705
+* CVE-2020-0587, CVE-2020-0591, CVE-2020-0592, CVE-2020-8740
+* CVE-2020-0592, CVE-2020-0588, CVE-2020-8696
+
+
+
+
+== Problèmes résolus et connus
+
+Voir la https://mysupport.netapp.com/site/bugs-online/product["Outil en ligne sur les bogues"^] pour obtenir des détails sur les problèmes qui ont été résolus et pour tout nouveau problème.
+
+
+
+=== Accès à l'outil bol
+
+. Accédez au  https://mysupport.netapp.com/site/bugs-online/product["Outil BOL"^] Et sélectionnez *Element Software* dans la liste déroulante :
++
+image::bol_dashboard.png[Notes de version du pack du firmware de stockage]
+
+. Dans le champ de recherche par mot-clé, tapez "Compute Firmware Bundle" et cliquez sur *New Search*:
++
+image::compute_firmware_bundle_choice.png[Notes de version du pack du firmware de stockage]
+
+. La liste des bugs résolus ou ouverts s'affiche. Vous pouvez affiner davantage les résultats comme indiqué :
++
+image::bol_list_bugs_found.png[Notes de version du pack du firmware de stockage]
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

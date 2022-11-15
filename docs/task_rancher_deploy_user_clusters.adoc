@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_deploy_user_clusters.html 
+summary: Une fois Rancher déployé sur NetApp HCI, vous pouvez configurer des clusters utilisateur et ajouter des applications à ces clusters. 
+keywords: netapp, hci, rancher, deploy, cluster, kubernetes, control plane,  user cluster, workload 
+---
+= Déploiement de clusters et d'applications utilisateur
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois Rancher déployé sur NetApp HCI, vous pouvez configurer des clusters utilisateur et ajouter des applications à ces clusters.
+
+
+
+== Déployer les clusters utilisateur
+
+Après le déploiement, les équipes Dev et Ops peuvent ensuite déployer des clusters utilisateur Kubernetes, comme n'importe quel déploiement Rancher, sur lesquels elles peuvent déployer des applications.
+
+. Accédez à l'interface utilisateur Rancher à l'aide de cette URL fournie à la fin du déploiement Rancher.
+. Création de clusters utilisateur. Voir la documentation Rancher à propos de https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/workload/["déploiement des workloads"^].
+. Provisionnez les clusters utilisateur dans Rancher sur NetApp HCI. Voir la documentation Rancher à propos de https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Configuration des clusters Kubernetes dans Rancher"^].
+
+
+
+
+== Déploiement des applications sur les clusters des utilisateurs
+
+Comme tous les déploiements Rancher, vous ajoutez des applications sur les clusters Kubernetes.
+
+Voir la documentation Rancher à propos de https://rancher.com/docs/rancher/v2.x/en/deploy-across-clusters/["déploiement des applications dans les clusters"^].
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentation de l'éleveur sur l'architecture"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminologie Kubernetes pour Rancher"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

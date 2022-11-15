@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_off_storage.html 
+summary: Découvrez comment mettre hors tension les nœuds de calcul NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Désactivez les ressources de stockage d'un système NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Lorsque vous mettez hors tension les ressources de stockage pour NetApp HCI, vous devez utiliser le `Shutdown` Méthode d'API d'Element pour arrêter correctement les nœuds de stockage.
+
+Après la mise hors tension des ressources de calcul, un navigateur Web permet d'arrêter tous les nœuds du cluster de stockage NetApp HCI.
+
+. Connectez-vous au cluster de stockage et vérifiez que vous êtes connecté au MVIP approprié.
+. Vérifiez que le nombre de sessions iSCSI est nul.
+. Accédez à *Cluster > nœuds > Active* et enregistrez les ID de nœud de tous les nœuds actifs du cluster.
+. Pour mettre le cluster de stockage NetApp HCI hors tension, ouvrez un navigateur Web et utilisez l'URL suivante pour appeler la procédure de mise hors tension et d'arrêt, où `{MVIP}` Est l'adresse IP de gestion du système de stockage NetApp HCI et de `nodes=[]` La matrice inclut les ID de nœud que vous avez enregistrés à l'étape 2. Par exemple :
++
+[listing]
+----
+https://{MVIP}/json-rpc/1.0?method=Shutdown&nodes=[1,2,3,4]&option=halt
+----
+. Entrez le nom d'utilisateur et le mot de passe de l'administrateur du cluster.
+. Vérifiez que l'appel d'API a été correctement renvoyé en vérifiant que tous les nœuds du cluster de stockage sont inclus dans le `successful` Section du résultat API.
++
+Vous avez mis hors tension tous les nœuds de stockage NetApp HCI.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

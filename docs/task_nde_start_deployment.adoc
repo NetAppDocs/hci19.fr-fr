@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_start_deployment.html 
+summary: Commencez à déployer NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access 
+---
+= Commencez votre déploiement
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Avant de poursuivre votre déploiement NetApp HCI, vous devez lire et comprendre les contrats de licence de l'utilisateur final.
+
+.Étapes
+. Sur la page *Bienvenue dans NetApp HCI*, cliquez sur *commencer*.
+. Sur la page *prérequis*, procédez comme suit :
++
+.. Assurez-vous que chaque prérequis est rempli et cochez chaque case associée pour confirmer.
+.. Cliquez sur *Continuer*.
+
+
+. Sur la page *licences utilisateur final*, procédez comme suit :
++
+.. Lisez le contrat de licence utilisateur final de NetApp.
+.. Si vous acceptez les termes, cliquez sur *J'accepte* en bas du texte du contrat.
+.. Lisez le contrat de licence de l'utilisateur final VMware.
+.. Si vous acceptez les termes, cliquez sur *J'accepte* en bas du texte du contrat.
+.. Cliquez sur *Continuer*.
+
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

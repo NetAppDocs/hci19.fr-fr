@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_review_deploy.html 
+summary: Découvrez comment vérifier votre configuration finale et déployer NetApp HCI avec ces paramètres. 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Examinez et déployez la configuration
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez vérifier les informations que vous avez fournies avant de commencer le déploiement. Vous pouvez également corriger toute information incorrecte ou incomplète avant de continuer.
+
+
+NOTE: Pendant le déploiement, le processus d'installation du nœud de gestion crée des volumes avec des noms commençant par `NetApp-HCI-` Dans le cluster de stockage Element, et un compte SolidFire commençant par le nom `tenant_`. Ne supprimez pas ces volumes ou comptes, ce qui entraînera une perte de la fonctionnalité de gestion.
+
+.Étapes
+. Facultatif : sélectionnez l'icône *Download* pour télécharger les informations d'installation au format CSV. Vous pouvez enregistrer ce fichier et le consulter ultérieurement pour plus d'informations sur la configuration.
++
+
+NOTE: Vous pouvez importer le fichier CSV en tant que profil d'installation sur la page *profil d'installation* du moteur de déploiement NetApp (NDE) si nécessaire lors d'une prochaine installation.
+
+. Développez chaque section et examinez les informations. Pour développer toutes les sections en même temps, sélectionnez *développer tout*.
+. Facultatif : pour modifier les informations de n'importe quelle section affichée :
++
+.. Sélectionnez *Modifier* dans la section correspondante.
+.. Apportez les modifications nécessaires.
+.. Sélectionnez *Continuer* jusqu'à la page *Revue*. Vos paramètres précédents sont enregistrés sur chaque page.
+.. Répétez les étapes 2 et 3 pour apporter toutes les autres modifications nécessaires.
+
+
+. Pour ne pas envoyer les statistiques de clusters et les informations de support aux serveurs SolidFire Active IQ hébergés par NetApp, décochez la case finale.
++
+Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.
+
+. Si toutes les informations sont correctes, sélectionnez *Démarrer le déploiement*.
++
+Une boîte de dialogue s'affiche. En cas de problèmes de connectivité réseau ou de perte d'alimentation pendant le processus de configuration final ou si votre session de navigateur est perdue, vous pouvez copier l'URL affichée dans la boîte de dialogue et l'utiliser pour accéder à la page de progression de la configuration finale.
+
+. Consultez les informations de la boîte de dialogue et sélectionnez *Copier dans le presse-papiers* pour copier l'URL dans le presse-papiers.
+. Enregistrez l'URL dans un fichier texte sur votre ordinateur.
+. Lorsque vous êtes prêt à poursuivre le déploiement, sélectionnez *OK*.
++
+Le déploiement commence et une page de progression s'affiche. Ne fermez pas la fenêtre du navigateur et ne vous éloignez pas de la page de progression tant que le déploiement n'est pas terminé. Si votre session de navigateur est perdue pour quelque raison que ce soit, vous pouvez accéder à l'URL que vous avez copiée précédemment (et accepter les avertissements de sécurité qui s'affichent) pour revenir à la page de progression de la configuration finale.
+
++
+
+NOTE: Si le déploiement échoue, enregistrez le texte du message d'erreur et contactez le support NetApp.
+
++
+Une fois le déploiement terminé, les nœuds de calcul peuvent redémarrer plus d'une fois avant de devenir prêts pour le service.
+
+
+
+Commencez à utiliser NetApp HCI en sélectionnant *lancer vSphere*.
+
+[NOTE]
+====
+* Pour les installations NetApp HCI utilisant vSphere 6.7, ce lien lance l'interface Web HTML5 vSphere. Pour les installations utilisant vSphere 6.5, ce lien lance l'interface Web Adobe Flash vSphere.
+* Dans deux ou trois configurations de nœud de stockage, le moteur de déploiement NetApp configure les nœuds Witness pour utiliser le datastore local sur les nœuds de calcul. Par conséquent, votre client vSphere affiche deux avertissements relatifs à l'utilisation de *datastore sur le disque*. Pour continuer, sélectionnez le lien *Réinitialiser au vert* dans chaque avertissement.
+
+
+====
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentation SolidFire et Element"^]
+

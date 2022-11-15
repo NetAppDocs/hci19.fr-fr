@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_psurepl.html 
+summary: 'Si un bloc d"alimentation est défectueux, remplacez-le dès que possible pour vous assurer que le châssis dispose d"une source d"alimentation redondante.' 
+keywords: netapp, hci, psu, replace power supply, H410S, H610S, H410C, H610C, H615C 
+---
+= Remplacez les unités d'alimentation
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Chaque châssis comprend deux blocs d'alimentation pour la redondance de l'alimentation. Si un bloc d'alimentation est défectueux, remplacez-le dès que possible pour vous assurer que le châssis dispose d'une source d'alimentation redondante.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez déterminé que l'unité d'alimentation est défectueuse.
+* Vous avez une unité d'alimentation de remplacement.
+* Vous avez vérifié que le second bloc d'alimentation fonctionne.
+* Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
+
+
+La procédure de remplacement s'applique aux modèles de nœuds suivants :
+
+* Châssis NetApp HCI à deux unités de rack (2U) à quatre nœuds
+* Châssis de calcul H610C 2U
+* Un châssis de calcul en unité de rack (1U) H615C
+* Châssis de stockage 1U H610S
++
+
+NOTE: Dans le cas de H610C, H615C et H610S, les termes « nœud » et « châssis » sont utilisés de manière interchangeable, parce que les nœuds et les châssis ne sont pas des composants distincts, contrairement au châssis 2U à quatre nœuds.
+
+
+
+Les alarmes du client Web VMware vSphere fournissent des informations sur l'unité d'alimentation défectueuse, en la faisant référence à PS1 ou PS2. Dans un châssis NetApp HCI 2U à quatre nœuds, PS1 fait référence à l'unité située sur la ligne supérieure du châssis et PS2 à l'unité située sur la ligne inférieure du châssis. Vous pouvez remplacer l'unité d'alimentation défectueuse pendant que votre châssis est sous tension et opérationnel, tant que l'unité d'alimentation redondante fonctionne.
+
+.Étapes
+. Localisez l'unité d'alimentation défectueuse dans le châssis. Le voyant de l'unité défectueuse s'allume en orange.
++
+
+NOTE: Les unités d'alimentation sont situées différemment en fonction du type de châssis.
+
++
+Reportez-vous aux images ci-dessous pour connaître l'emplacement des blocs d'alimentation :
+
++
+[cols="2*"]
+|===
+| Modèle | Emplacement des unités d'alimentation 
+
+
+| Châssis de stockage NetApp HCI 2U à quatre nœuds  a| 
+image::storage_chassis_psu.png[La montre les unités d'alimentation en 2U]
+
+
+NOTE: Les nœuds de votre châssis peuvent paraître différents selon le type de nœuds (stockage ou calcul) dont vous disposez.
+
+
+
+| Châssis H610C  a| 
+image::h610c_psu.png[La montre les unités d'alimentation d'un châssis H610C.]
+
+
+
+| Châssis H615C  a| 
+image::h615c_psu.png[La montre les unités d'alimentation dans un châssis H615C.]
+
+
+
+| Châssis H610S  a| 
+image::h610s_psu.png[Affiche les unités d'alimentation dans un châssis H610S.]
+
+|===
+. Débranchez le cordon d'alimentation de l'unité d'alimentation.
+. Soulevez la poignée de came et appuyez sur le loquet bleu pour faire glisser l'unité d'alimentation.
++
+image::psu-remove.gif[Montre la poignée de came soulevée et l'unité d'alimentation glissée hors du châssis.]
+
++
+
+NOTE: L'illustration en est un exemple. L'emplacement du bloc d'alimentation dans le châssis et la couleur du bouton de déverrouillage varient en fonction du type de châssis que vous avez.
+
++
+
+IMPORTANT: Veillez à utiliser les deux mains pour supporter le poids de l'unité d'alimentation.
+
+. À l'aide des deux mains, alignez les bords de l'unité d'alimentation avec l'ouverture du châssis, poussez doucement l'unité dans le châssis à l'aide de la poignée de came jusqu'à ce qu'elle s'enclenche et remettez la poignée de came en position verticale.
++
+image::psu-install.gif[La illustre l'unité d'alimentation en cours d'installation dans le châssis.]
+
+. Branchez le cordon d'alimentation.
+. Retournez l'unité défectueuse à NetApp en suivant les instructions dans la boîte qui vous a été expédiée.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

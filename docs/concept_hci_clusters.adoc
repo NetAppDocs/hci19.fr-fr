@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_clusters.html 
+summary: 'Un cluster est constitué d"une collection de nœuds de stockage. Un cluster de stockage NetApp HCI doit disposer d"au moins deux nœuds de stockage. Un cluster apparaît sur le réseau comme un seul groupe logique, qui est ensuite accessible en tant que stockage bloc.' 
+keywords: netapp, hci, storage nodes, clusters, two-node cluster, three-node cluster, 2-node cluster, 3-node cluster 
+---
+= Clusters
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un cluster est un groupe de nœuds qui fonctionne comme un ensemble collectif pour fournir des ressources de stockage ou de calcul. Depuis la version NetApp HCI 1.8, vous pouvez disposer d'un cluster de stockage à deux nœuds. Un cluster de stockage apparaît sur le réseau comme un seul groupe logique, qui est ensuite accessible en tant que stockage bloc.
+
+La couche de stockage de NetApp HCI est fournie par le logiciel NetApp Element et la couche de gestion est fournie par le plug-in NetApp Element pour vCenter Server. Un nœud de stockage est un serveur qui contient un ensemble de disques qui communiquent entre eux via l'interface réseau Bond10G. Chaque nœud de stockage est relié à deux réseaux, au stockage et à la gestion, chacun disposant de deux liens indépendants pour la redondance et les performances. Chaque nœud requiert une adresse IP sur chaque réseau. Vous pouvez créer un cluster avec de nouveaux nœuds de stockage ou ajouter des nœuds de stockage à un cluster existant afin d'augmenter la capacité et les performances de stockage.
+
+
+
+== Clusters de stockage faisant autorité
+
+Le cluster de stockage faisant autorité est le cluster de stockage que NetApp Hybrid Cloud Control utilise pour authentifier les utilisateurs.
+
+Si votre nœud de gestion ne dispose que d'un seul cluster de stockage, il fait autorité. Si votre nœud de gestion dispose de deux ou plusieurs clusters de stockage, un de ces clusters est désigné comme cluster qui fait autorité, et seuls les utilisateurs de ce cluster peuvent se connecter au contrôle de cloud hybride NetApp. Pour déterminer le cluster faisant autorité, vous pouvez utiliser le `GET /mnode/about` API. Dans la réponse, l'adresse IP dans `token_url` Champ est l'adresse IP virtuelle de gestion (MVIP) du cluster de stockage faisant autorité. Si vous tentez de vous connecter à NetApp Hybrid Cloud Control en tant qu'utilisateur qui ne se trouve pas sur le cluster qui fait autorité, la tentative de connexion échoue.
+
+De nombreuses fonctionnalités NetApp Hybrid Cloud Control sont conçues pour fonctionner avec plusieurs clusters de stockage, mais l'authentification et l'autorisation disposent de limites. L'authentification et l'autorisation sont limités par le fait que l'utilisateur du cluster qui fait autorité peut exécuter des actions sur d'autres clusters liés à NetApp Hybrid Cloud Control, même s'ils ne sont pas un utilisateur sur les autres clusters de stockage. Avant d'administrer plusieurs clusters de stockage, veillez à ce que les utilisateurs définis sur les clusters qui font autorité soient définis sur tous les autres clusters de stockage avec les mêmes autorisations.
+
+Gérez les utilisateurs avec NetApp Hybrid Cloud Control.
+
+Avant d'administrer plusieurs clusters de stockage, veillez à ce que les utilisateurs définis sur les clusters qui font autorité soient définis sur tous les autres clusters de stockage avec les mêmes autorisations. Voir link:task_mnode_manage_storage_cluster_assets.html["Créer et gérer les ressources du cluster de stockage"] pour plus d'informations sur l'utilisation des ressources du cluster de stockage du nœud de gestion.
+
+
+
+== La capacité inutilisée
+
+Si un nouveau nœud ajouté augmente la capacité totale du cluster de plus de 50 %, une partie de cette capacité devient inutilisable (« bloqué »), afin de lui conformer à la règle de capacité. Ce qui reste le cas jusqu'à ce que de la capacité de stockage supplémentaire soit ajoutée. Si un nœud très volumineux est ajouté qui obéit également à la règle de capacité, le nœud précédemment bloqué ne sera plus bloqué, tandis que le nouveau nœud ajouté est bloqué. La capacité doit toujours être ajoutée par paires pour éviter ce problème. Lorsqu'un nœud est bloqué, une défaillance de cluster appropriée est déclenchée.
+
+
+
+== Clusters de stockage à deux nœuds
+
+Depuis la version NetApp HCI 1.8, vous pouvez configurer un cluster de stockage avec deux nœuds.
+
+* Vous pouvez utiliser certains types de nœuds pour former le cluster de stockage à deux nœuds. Voir https://library.netapp.com/ecm/ecm_download_file/ECMLP2865021["Notes de version de NetApp HCI 1.8"^].
++
+
+NOTE: Dans un cluster à deux nœuds, les nœuds de stockage sont limités aux nœuds avec des disques de 480 Go et 960 Go, et les nœuds doivent être du même type de modèle.
+
+* Les clusters de stockage à deux nœuds sont particulièrement adaptés aux déploiements à petite échelle, avec des charges de travail qui ne dépendent pas d'exigences de capacité et de performances élevées.
+* En plus de deux nœuds de stockage, un cluster de stockage à deux nœuds comprend également deux *NetApp HCI Witness Nodes*.
++
+
+NOTE: En savoir plus sur link:concept_hci_nodes.html["Nœuds témoins."]
+
+* Vous pouvez faire évoluer un cluster de stockage à deux nœuds vers un cluster de stockage à trois nœuds. Les clusters à trois nœuds améliorent la résilience en offrant la possibilité d'effectuer une réparation automatique en cas de défaillance d'un nœud de stockage.
+* Les clusters de stockage à deux nœuds offrent les mêmes fonctionnalités et fonctions de sécurité que les clusters de stockage traditionnels à quatre nœuds.
+* Les clusters de stockage à deux nœuds utilisent les mêmes réseaux que les clusters de stockage à quatre nœuds. Les réseaux sont configurés durant le déploiement NetApp HCI à l'aide de l'assistant du moteur de déploiement NetApp.
+
+
+
+
+=== Quorum du cluster de stockage
+
+Le logiciel Element crée un cluster de stockage à partir de nœuds sélectionnés, qui tient à jour une base de données répliquée de la configuration du cluster. Un minimum de trois nœuds sont nécessaires pour participer à l'ensemble de groupe afin de maintenir le quorum nécessaire pour la résilience du cluster. Les nœuds témoins d'un cluster à deux nœuds sont utilisés pour s'assurer qu'il y a suffisamment de nœuds de stockage pour former un quorum d'ensemble valide. Pour la création d'ensemble, les nœuds de stockage sont préférés par rapport à Witness Nodes. Pour l'ensemble à trois nœuds minimum impliquant un cluster de stockage à deux nœuds, deux nœuds de stockage et un nœud témoin sont utilisés.
+
+
+TIP: Dans un ensemble à trois nœuds avec deux nœuds de stockage et un nœud témoin, si un nœud de stockage se met hors ligne, le cluster passe en état dégradé. Parmi les deux nœuds témoins, un seul peut être actif dans l'ensemble. Le second nœud témoin ne peut pas être ajouté à l'ensemble, car il exécute le rôle de sauvegarde. Le cluster reste en état dégradé jusqu'à ce que le nœud de stockage hors ligne revienne à un état en ligne ou qu'un nœud de remplacement soit ajouté au cluster.
+
+Si un noeud témoin échoue, le noeud témoin restant rejoint l'ensemble pour former un ensemble à trois noeuds. Vous pouvez déployer un nouveau nœud témoin pour remplacer le nœud témoin défectueux.
+
+
+
+=== Auto-rétablissement et gestion des pannes dans les clusters de stockage à deux nœuds
+
+Si un composant matériel échoue dans un nœud faisant partie d'un cluster traditionnel, le cluster peut rééquilibrer les données qui se trouvent sur le composant qui a échoué vers d'autres nœuds disponibles du cluster. Cette fonction d'autorétablissement n'est pas disponible dans un cluster de stockage à deux nœuds, car un minimum de trois nœuds de stockage physiques doivent être disponibles pour le cluster afin d'assurer une réparation automatique. Lorsqu'un nœud d'un cluster à deux nœuds tombe en panne, le cluster à deux nœuds ne nécessite pas la régénération d'une seconde copie des données. Les nouvelles écritures sont répliquées pour les données de bloc dans le nœud de stockage actif restant. Lorsque le nœud défaillant est remplacé et rejoint le cluster, les données sont rééquilibrées entre les deux nœuds de stockage physique.
+
+
+
+== Clusters de stockage avec trois nœuds ou plus
+
+Grâce à l'extension de deux nœuds de stockage à trois nœuds, votre cluster est plus résilient. Il favorise des fonctionnalités d'autorétablissement en cas de panne de nœud et de disque, mais n'offre pas de capacité supplémentaire. Vous pouvez développer à l'aide du link:task_hcc_expand_storage.html["Interface de contrôle du cloud hybride NetApp"]. Lorsque vous étendez votre système d'un cluster à deux nœuds à un cluster à trois nœuds, la capacité peut être inutilisée (voir la  capacity). L'assistant de l'interface utilisateur affiche des avertissements concernant la capacité inutilisée avant l'installation. Un seul nœud témoin est toujours disponible pour conserver le quorum de l'ensemble en cas de défaillance d'un nœud de stockage, avec un second nœud témoin en veille. Lorsque vous étendez un cluster de stockage à trois nœuds à un cluster à quatre nœuds, la capacité et les performances sont améliorées. Dans un cluster à quatre nœuds, Witness Nodes ne sont plus nécessaires pour former le quorum du cluster. Vous pouvez étendre jusqu'à 64 nœuds de calcul et 40 nœuds de stockage.
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Cluster de stockage à deux nœuds NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

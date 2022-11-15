@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_dhcp.html 
+summary: Découvrez comment accéder au moteur de déploiement NetApp dans les environnements qui utilisent DHCP pour attribuer des adresses IP. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access, dhcp 
+---
+= Accès au moteur de déploiement NetApp dans des environnements avec DHCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Dans les environnements dans lesquels les serveurs acquièrent automatiquement une configuration IPv4 à partir de DHCP, vous pouvez accéder au moteur de déploiement NetApp à l'aide de l'adresse IPv4 attribuée à l'interface Bond1G sur l'un des nœuds de stockage. Vous pouvez utiliser une clé USB pour récupérer l'adresse IPv4 à partir de l'un des nœuds de stockage. Le moteur de déploiement NetApp détecte automatiquement les autres nœuds de calcul et de stockage qui utilisent les adresses IPv4 attribuées par DHCP. Vous ne devez pas utiliser cette méthode sauf si votre réseau a des exigences spéciales.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous ou votre administrateur réseau avez terminé les tâches du document instructions d'installation et de configuration.
+* Vous disposez d'un accès physique aux nœuds NetApp HCI.
+* Tous les nœuds NetApp HCI sont sous tension.
+* DHCP est activé sur les réseaux de stockage et de gestion NetApp HCI.
+* Le pool d'adresses DHCP est suffisamment grand pour prendre en charge deux adresses IPv4 par nœud NetApp HCI.
+
+
+
+NOTE: Pour que le déploiement de NetApp HCI soit réussi, tous les nœuds du déploiement doivent avoir des adresses IPv4 acquises par DHCP ou configurées automatiquement (vous ne pouvez pas combiner les méthodes d'affectation d'adresse IPv4).
+
+Si DHCP n'est utilisé que pour le réseau de stockage (interfaces Bond10G), vous devez suivre la procédure décrite sous le lien : link:task_nde_access_no_dhcp.html["Accédez au moteur de déploiement NetApp dans des environnements sans DHCP"] Pour accéder au moteur de déploiement NetApp.
+
+.Étapes
+. Attendez plusieurs minutes que les nœuds demandent des adresses IP.
+. Choisissez un nœud de stockage et insérez une clé USB dans le nœud. Laissez-le dans pendant au moins cinq secondes.
+. Retirez la clé USB et insérez-la dans votre ordinateur.
+. Ouvrez le `readme.html` fichier. Cela vous mène à l'interface utilisateur du moteur de déploiement NetApp.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

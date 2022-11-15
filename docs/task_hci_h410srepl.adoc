@@ -1,0 +1,280 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_h410srepl.html 
+summary: 'Vous devez remplacer un nœud de stockage en cas de défaillance du module de mémoire en ligne (DIMM) double, de défaillance du processeur, de problèmes de carte Radian, d"autres problèmes liés à la carte mère ou s"il ne se met pas sous tension.' 
+keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S 
+---
+= Remplacer les nœuds H410S
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez remplacer un nœud de stockage en cas de défaillance du module de mémoire en ligne (DIMM) double, de défaillance du processeur, de problèmes de carte Radian, d'autres problèmes liés à la carte mère ou s'il ne se met pas sous tension. Les alarmes du client Web VMware vSphere vous avertissent lorsqu'un nœud de stockage est défectueux. Vous devez utiliser l'interface utilisateur du logiciel NetApp Element pour obtenir le numéro de série (numéro de service) du nœud défaillant. Vous avez besoin de ces informations pour localiser le nœud défectueux dans le châssis.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez déterminé que le nœud de stockage doit être remplacé.
+* Vous avez remplacé un nœud de stockage.
+* Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
+* Chaque câble est identifié comme étant connecté au nœud de stockage.
+
+
+La procédure de remplacement s'applique aux nœuds de stockage H410S dans un châssis NetApp HCI à deux unités de rack (2U) à quatre nœuds.
+
+La vue arrière d'un châssis à quatre nœuds avec nœuds H410S :
+
+image::h410s_chassis_rear.png[La illustre l'arrière d'un châssis à quatre nœuds avec des nœuds H410S.]
+
+La vue avant d'un châssis à quatre nœuds avec nœuds H410S présente les baies correspondant à chaque nœud :
+
+image::h410s_ssd_bays.png[La présente les baies associées à chaque nœud dans un châssis à quatre nœuds avec des nœuds H410S.]
+
+Voici une présentation générale des étapes de cette procédure : to replace the storage node
+ the storage node in the chassis
+ the storage node to the cluster
+
+
+
+== Préparez-vous à remplacer le nœud de stockage
+
+Vous devez retirer correctement le nœud de stockage défectueux du cluster avant d'installer le nœud de remplacement. Vous pouvez le faire sans interrompre le service. Pour obtenir le numéro de série du nœud de stockage défectueux dans l'interface d'Element, il est recommandé de le trouver avec le numéro de série sur l'autocollant situé à l'arrière du nœud.
+
+
+NOTE: Dans le cas d'une panne de composant à l'endroit où le nœud est toujours en ligne et fonctionne, par exemple une panne de module de mémoire DIMM (Dual Inline Memory module), vous devez retirer les disques du cluster avant de retirer le nœud défaillant.
+
+.Étapes
+. En cas de panne de module DIMM, retirez les lecteurs associés au nœud que vous allez remplacer du cluster. Avant de supprimer le nœud, vous pouvez utiliser soit l'interface utilisateur du logiciel NetApp Element, soit le point d'extension NetApp Element Management dans le plug-in Element pour vCenter Server.
+. Supprimez les nœuds à l'aide de l'interface utilisateur NetApp Element ou du point d'extension de gestion NetApp Element dans le plug-in Element pour serveur vCenter :
++
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Utilisation de l'interface utilisateur Element  a| 
+.. Dans l'interface utilisateur de l'élément, sélectionnez *Cluster > nœuds*.
+.. Notez le numéro de série (numéro de service) du nœud défectueux. Vous devez trouver ces informations à la correspondance avec le numéro de série indiqué sur l'autocollant à l'arrière du nœud.
+.. Une fois le numéro de série spécifié, supprimez le nœud du cluster comme suit :
+.. Sélectionnez *actions* pour le noeud que vous souhaitez supprimer.
+.. Sélectionnez *Supprimer*.
+
+
+Vous pouvez à présent retirer physiquement le nœud du châssis.
+
+
+
+| Utilisation du plug-in Element pour l'interface utilisateur du serveur vCenter  a| 
+.. Dans le point d'extension NetApp Element Management du client Web vSphere, sélectionnez *NetApp Element Management > Cluster*.
+.. Sélectionnez le sous-onglet *noeuds*.
+.. Dans la vue active, cochez la case pour chaque noeud que vous souhaitez supprimer, sélectionnez *actions > Supprimer*.
+.. Confirmez l'action. Tous les nœuds supprimés d'un cluster apparaissent dans la liste des nœuds en attente.
+
+
+|===
+
+
+
+
+== Remplacez le nœud de stockage dans le châssis
+
+Vous devez installer le nœud de remplacement dans le même slot dans le châssis pour retirer le nœud défectueux. Vous devez utiliser le numéro de série indiqué dans l'interface utilisateur et le faire correspondre au numéro de série indiqué à l'arrière du nœud.
+
+
+NOTE: Assurez-vous d'avoir une protection antistatique avant d'effectuer les étapes ci-dessous.
+
+.Étapes
+. Déballez le nouveau nœud de stockage et placez-le sur une surface plane à proximité du châssis. Conservez les éléments d'emballage pendant toute la renvoie du nœud défaillant à NetApp.
+. Étiquetez chaque câble inséré à l'arrière du nœud de stockage que vous souhaitez supprimer. Une fois le nouveau nœud de stockage installé, vous devez insérer les câbles dans les ports d'origine.
+. Déconnectez tous les câbles du nœud de stockage.
+. Abaissez la poignée de came sur le côté droit du nœud et tirez le nœud vers l'extérieur à l'aide des deux poignées de came. La poignée de came que vous devez tirer possède une flèche sur elle pour indiquer la direction dans laquelle elle se déplace. L'autre poignée de came ne se déplace pas et est là pour vous aider à extraire le nœud.
++
+
+NOTE: Soutenez le nœud avec vos deux mains lorsque vous sortez du châssis.
+
++
+image::HCI_stor_node_camhandles.png[Affiche le nœud de stockage avec les poignées de came appelées.]
+
+. Placez le nœud sur une surface plane.
+. Installez le nœud de remplacement.
+. Poussez le nœud jusqu'à ce qu'un déclic se soit entendre.
++
+
+CAUTION: Veillez à ne pas exercer de force excessive lors de l'insertion du nœud dans le châssis.
+
+. Reconnectez les câbles aux ports à partir desquels vous les avez déconnectés à l'origine. Les étiquettes que vous aviez attachées aux câbles lorsque vous les avez débranchées vous guident.
++
+
+CAUTION: Si les évents d'aération situés à l'arrière du châssis sont bloqués par des câbles ou des étiquettes, ils peuvent provoquer des défaillances prématurées de composants en raison d'une surchauffe. Ne forcez pas les câbles dans les ports ; vous risquez d'endommager les câbles, les ports ou les deux.
+
++
+
+TIP: Assurez-vous que le nœud de remplacement est câblé de la même manière que les autres nœuds du châssis.
+
+. Appuyez sur le bouton situé à l'avant du nœud pour le mettre sous tension.
+
+
+
+
+== Ajoutez le nœud de stockage au cluster
+
+Vous devez réintégrer le nœud de stockage dans le cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
+* Vous disposez de l'un des types suivants de comptes de cluster de stockage SolidFire :
++
+** Compte administrateur natif créé lors du déploiement initial
+** Compte utilisateur personnalisé avec les autorisations Cluster Admin, Drives, volumes et Nodes
+
+
+* Vous avez câblé et mis le nouveau nœud sous tension.
+* L'adresse IPv4 de gestion d'un nœud de stockage est déjà installé. L'adresse IP se trouve dans l'onglet *NetApp Element Management > Cluster > nœuds* du plug-in NetApp Element pour vCenter Server.
+* Vous avez veillé à ce que le nouveau nœud utilise la même topologie réseau et le même câblage que les clusters de stockage existants.
++
+
+TIP: Assurez-vous que la capacité de stockage est répartie uniformément sur tous les châssis pour une fiabilité optimale.
+
+
+
+
+
+=== NetApp HCI 1.6P1 et versions ultérieures
+
+Vous pouvez utiliser NetApp Hybrid Cloud Control uniquement si votre installation NetApp HCI s'exécute à partir de la version 1.6P1 ou ultérieure.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>/manager/login
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Dans le volet développer l'installation, sélectionnez *développer*.
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Sur la page Bienvenue, sélectionnez *non*.
+. Sélectionnez *Continuer*.
+. Sur la page Inventaire disponible, sélectionnez le nœud de stockage à ajouter à l'installation NetApp HCI existante.
+. Sélectionnez *Continuer*.
+. Sur la page Paramètres réseau, certaines informations sur le réseau ont été détectées à partir du déploiement initial. Chaque nouveau nœud de stockage est indiqué par le numéro de série, et vous devez lui attribuer de nouvelles informations sur le réseau. Effectuez les opérations suivantes :
++
+.. Si NetApp HCI a détecté un préfixe de nom, copiez-le depuis le champ préfixe de nom détecté, puis insérez-le comme préfixe du nouveau nom d'hôte unique que vous ajoutez dans le champ Nom d'hôte.
+.. Dans le champ adresse IP de gestion, entrez une adresse IP de gestion pour le nouveau nœud de stockage dans le sous-réseau du réseau de gestion.
+.. Dans le champ adresse IP de stockage (iSCSI), saisissez une adresse IP iSCSI pour le nouveau nœud de stockage qui se trouve dans le sous-réseau du réseau iSCSI.
+.. Sélectionnez *Continuer*.
++
+
+NOTE: NetApp HCI peut prendre un certain temps pour valider les adresses IP que vous entrez. Le bouton Continuer devient disponible lorsque la validation de l'adresse IP est terminée.
+
+
+
+. Sur la page Revue de la section Paramètres réseau, les nouveaux nœuds sont affichés en gras. Si vous devez apporter des modifications aux informations dans une section, effectuez les opérations suivantes :
++
+.. Sélectionnez *Modifier* pour cette section.
+.. Lorsque vous avez terminé d'apporter des modifications, sélectionnez *Continuer* sur les pages suivantes pour revenir à la page Revue.
+
+
+. Facultatif : si vous ne souhaitez pas envoyer les statistiques de clusters et les informations de support aux serveurs Active IQ hébergés par NetApp, décochez la case finale. Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.
+. Sélectionnez *Ajouter des nœuds*. Vous pouvez contrôler la progression pendant l'ajout et la configuration de ressources par NetApp HCI.
+. Facultatif : vérifiez que tous les nouveaux nœuds de stockage sont visibles dans le client Web VMware vSphere.
+
+
+
+
+=== NetApp HCI 1.4 P2, 1.4 et 1.3
+
+Si votre installation de NetApp HCI exécute la version 1.4P2, 1.4 ou 1.3, vous pouvez utiliser le moteur de déploiement NetApp pour ajouter le nœud au cluster.
+
+.Étapes
+. Accéder à l'adresse IP de gestion d'un des nœuds de stockage existants :
+`http://<storage_node_management_IP_address>/`
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Sélectionnez *Elargir votre installation*.
+. Sur la page Bienvenue, sélectionnez *non*.
+. Cliquez sur *Continuer*.
+. Sur la page Inventaire disponible, sélectionnez le nœud de stockage à ajouter à l'installation de NetApp HCI.
+. Sélectionnez *Continuer*.
+. Sur la page Paramètres réseau, effectuez les opérations suivantes :
++
+.. Vérifiez les informations détectées lors du déploiement initial. Chaque nouveau nœud de stockage est indiqué par le numéro de série, et vous devez lui attribuer de nouvelles informations sur le réseau. Pour chaque nouveau nœud de stockage, effectuez les opérations suivantes :
++
+... Si NetApp HCI a détecté un préfixe de nom, copiez-le depuis le champ préfixe de nom détecté, puis insérez-le comme préfixe du nouveau nom d'hôte unique que vous ajoutez dans le champ Nom d'hôte.
+... Dans le champ adresse IP de gestion, entrez une adresse IP de gestion pour le nouveau nœud de stockage dans le sous-réseau du réseau de gestion.
+... Dans le champ adresse IP de stockage (iSCSI), saisissez une adresse IP iSCSI pour le nouveau nœud de stockage qui se trouve dans le sous-réseau du réseau iSCSI.
+
+
+.. Sélectionnez *Continuer*.
+.. Sur la page Revue de la section Paramètres réseau, le nouveau nœud est affiché en gras. Si vous souhaitez modifier les informations d'une section, effectuez les opérations suivantes :
++
+... Sélectionnez *Modifier* pour cette section.
+... Lorsque vous avez terminé d'apporter des modifications, sélectionnez *Continuer* sur les pages suivantes pour revenir à la page Revue.
+
+
+
+
+. Facultatif : si vous ne souhaitez pas envoyer les statistiques de clusters et les informations de support aux serveurs Active IQ hébergés par NetApp, décochez la case finale. Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.
+. Sélectionnez *Ajouter des nœuds*. Vous pouvez contrôler la progression pendant l'ajout et la configuration de ressources par NetApp HCI.
+. Facultatif : vérifiez que tous les nouveaux nœuds de stockage sont visibles dans le client Web VMware vSphere.
+
+
+
+
+=== NetApp HCI 1.2, 1.1 et 1.0
+
+Lorsque vous installez le nœud, l'interface utilisateur du terminal (TUI) affiche les champs nécessaires à la configuration du nœud. Vous devez entrer les informations de configuration nécessaires au nœud avant de poursuivre l'ajout du nœud au cluster.
+
+
+NOTE: Vous devez utiliser la TUI pour configurer les informations de réseau statique ainsi que les informations de cluster. Si vous utilisiez la gestion hors bande, vous devez la configurer sur le nouveau nœud.
+
+Vous devez disposer d'une console ou d'un clavier, d'une vidéo, d'une souris (KVM) pour effectuer ces étapes et disposer des informations réseau et cluster nécessaires pour configurer le nœud.
+
+.Étapes
+. Connectez un clavier et un moniteur au nœud. La TUI apparaît sur le terminal ty1 avec l'onglet Paramètres réseau.
+. Utilisez le système de navigation à l'écran pour configurer les paramètres réseau Bond1G et Bond10G du nœud. Vous devez entrer les informations suivantes pour Bond1G :
++
+** Adresse IP. Vous pouvez réutiliser l'adresse IP de gestion du nœud défaillant.
+** Masque de sous-réseau. Si vous ne savez pas, votre administrateur réseau peut fournir ces informations.
+** Adresse de passerelle. Si vous ne savez pas, votre administrateur réseau peut fournir ces informations. Vous devez saisir les informations suivantes pour Bond10G :
+** Adresse IP. Vous pouvez réutiliser l'adresse IP de stockage à partir du nœud défaillant.
+** Masque de sous-réseau. Si vous ne savez pas, votre administrateur réseau peut fournir ces informations.
+
+
+. Entrez `s` pour enregistrer les paramètres, puis entrez `y` pour accepter les modifications.
+. Entrez `c` Pour naviguer vers l'onglet Cluster.
+. Utilisez le système de navigation à l'écran pour définir le nom d'hôte et le cluster du nœud.
++
+
+NOTE: Si vous souhaitez modifier le nom d'hôte par défaut sur le nom du nœud que vous avez supprimé, vous devez le faire maintenant.
+
++
+
+TIP: Il est préférable d'utiliser le même nom pour le nouveau nœud que le nœud que vous avez remplacé afin d'éviter toute confusion à l'avenir.
+
+. Entrez `s` pour enregistrer les paramètres. L'appartenance au cluster passe de disponible à en attente.
+. Dans le plug-in NetApp Element pour vCenter Server, sélectionnez *NetApp Element Management > Cluster > Nodes*.
+. Sélectionnez *en attente* dans la liste déroulante pour afficher la liste des nœuds disponibles.
+. Sélectionnez le noeud que vous souhaitez ajouter et sélectionnez *Ajouter*.
++
+
+NOTE: L'ajout du nœud au cluster peut prendre jusqu'à 2 minutes et s'afficher sous nœuds > actif.
+
++
+
+IMPORTANT: L'ajout unique de disques peut entraîner des interruptions. Pour connaître les meilleures pratiques relatives à l'ajout et au retrait de disques, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Software/What_is_the_best_practice_on_adding_or_removing_drives_from_a_cluster_on_Element%3F["Article de cette base de connaissances"^] (connexion requise).
+
+. Sélectionnez *lecteurs*.
+. Sélectionnez *Available* dans la liste déroulante pour afficher les lecteurs disponibles.
+. Sélectionnez les lecteurs que vous souhaitez ajouter et sélectionnez *Ajouter*.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

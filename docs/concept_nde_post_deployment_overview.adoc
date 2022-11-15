@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_post_deployment_overview.html 
+summary: Découvrez les tâches post-déploiement que vous devez effectuer après le déploiement de NetApp HCI. 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Tâches post-déploiement
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Selon vos choix lors du déploiement, vous devez effectuer certaines tâches finales avant que votre système NetApp HCI ne soit prêt pour la production, telles que la mise à jour du micrologiciel et des pilotes et les modifications finales nécessaires.
+
+* link:task_nde_supported_net_changes.html["Modifications de mise en réseau prises en charge"]
+* link:task_nde_disable_smartd.html["Désactivez le service smartd sur les nœuds de calcul NetApp HCI"]
+* link:task_nde_disable_lacp_individual.html["Désactiver la commande « lacp-Individual » sur les switchs configurés"]
+* link:task_nde_update_vsphere.html["Mise à jour régulière de VMware vSphere"]
+* link:task_nde_install_GPU_drivers.html["Installation des pilotes GPU pour les nœuds de calcul compatibles avec les GPU"]
+* link:task_nde_access_hcc.html["Accédez au contrôle de cloud hybride NetApp"]
+* link:task_reduce_boot_media_wear.html["Réduisez l'usure des supports de démarrage sur un nœud de calcul NetApp HCI"]
+
+
+
+
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

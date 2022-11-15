@@ -1,0 +1,747 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_h410crepl.html 
+summary: 'Vous devez remplacer un nœud de calcul en cas de défaillance du processeur ou d"autres problèmes liés à la carte mère ou s"il ne s"active pas. Les instructions s"appliquent aux nœuds H410C. Si vous disposez d"un nœud de calcul H410C exécutant la version 1.6P1 ou ultérieure de NetApp HCI Bootstrap OS, vous n"avez pas besoin de remplacer le nœud en cas de panne de la mémoire DIMM. Vous devez remplacer uniquement le module DIMM défectueux. Si les modules DIMM de votre nœud ne sont pas défaillants, vous pouvez les utiliser dans le nœud de remplacement.' 
+keywords: netapp, hci, H410C nodes, replacement, node replacement 
+---
+= Remplacement des nœuds H410C
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez remplacer un nœud de calcul en cas de défaillance du processeur ou d'autres problèmes liés à la carte mère ou s'il ne s'active pas. Les instructions s'appliquent aux nœuds H410C. Si vous disposez d'un nœud de calcul H410C exécutant la version 1.6P1 ou ultérieure de NetApp HCI Bootstrap OS, vous n'avez pas besoin de remplacer le nœud en cas de panne de la mémoire DIMM. Vous devez remplacer uniquement le module DIMM défectueux. Si les modules DIMM de votre nœud ne sont pas défaillants, vous pouvez les utiliser dans le nœud de remplacement.
+
+
+NOTE: La version du nœud de remplacement doit être identique à celle du système d'exploitation NetApp HCI Bootstrap et aux autres nœuds de calcul de l'installation de NetApp HCI.
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez déterminé que le nœud de calcul doit être remplacé.
+* Vous avez remplacé un nœud de calcul. Pour commander un nœud de remplacement, contactez le support NetApp. Le nœud de calcul vous est livré avec le processus de démarrage installé. Les nœuds sont expédiés à partir d'usine avec la dernière version du système d'exploitation Bootstrap. Vous devrez peut-être effectuer le processus de retour à l'image d'usine (RTFI) sur le nœud dans les scénarios suivants :
++
+** Votre installation NetApp HCI actuelle exécute une version de Bootstrap OS antérieure à la dernière version. Dans ce cas, le processus RTFI va rétrograder le nouveau nœud à la version OS exécutée par votre installation NetApp HCI.
+** Le nœud de remplacement qui est livré exécute une version de système d'exploitation de démarrage antérieure à la dernière version, et l'installation de NetApp HCI où le nœud est remplacé exécute déjà la dernière version. Dans ce cas, le processus RTFI mettra à niveau la version du système d'exploitation du nouveau nœud vers la dernière version. Voir link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/HCI_-_How_to_RTFI_using_a_USB_key["Comment RTFI à l'aide d'une clé USB (connexion requise)"^] et link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_RTFI_an_HCI_Compute_Node_via_BMC["Comment RTFI en utilisant le BMC (connexion requise)"^].
+
+
+* Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
+* Vous avez identifié chaque câble connecté au nœud de calcul.
+
+
+Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un nœud. Vous devez correspondre au numéro de série du nœud défaillant du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
+
+Lors du remplacement d'un nœud de calcul H410C, prenez en compte les points suivants :
+
+* Vous pouvez associer le nœud de calcul H410C aux nœuds de stockage et de calcul NetApp HCI existants dans le même châssis et le même cluster.
+* Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à un système NetApp HCI existant, assurez-vous que les besoins en alimentation sont satisfaits.
+
+
+Voici une présentation générale des étapes de cette procédure : to replace the compute node
+ the compute node in the chassis
+ the compute node asset in NetApp HCI 1.7 and later
+ the compute node to the cluster
+ Witness Nodes for two and three-node storage clusters
+
+Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :link:task_hci_removewn.html["Supprimez des nœuds de témoins pour libérer des ressources de calcul"]
+ the password if you received a replacement node with a non-standard BMC password
+ the BMC firmware on your node
+
+
+
+== Préparez-vous à remplacer le nœud de calcul
+
+Vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud défaillant du cluster. Vous devez obtenir des informations détaillées sur le nœud défaillant, par exemple le numéro de série et les informations relatives à la mise en réseau.
+
+.Étapes
+. Dans le client Web VMware vSphere, procédez comme suit pour migrer les machines virtuelles vers un autre hôte disponible.
++
+
+NOTE: Pour connaître les étapes de migration, reportez-vous à la documentation VMware.
+
+. Procédez comme suit pour supprimer le nœud de l'inventaire. La procédure dépend de la version de NetApp HCI de votre installation actuelle :
++
+[cols="2*"]
+|===
+| Numéro de version du NetApp HCI | Étapes 
+
+
+| NetApp HCI 1.3 et versions ultérieures  a| 
+.. Sélectionnez le nœud défaillant et sélectionnez *moniteur > État du matériel > capteurs*.
+.. Notez le numéro de série du nœud défaillant. Cela permet d'identifier le nœud dans le châssis en indiquant le numéro de série qui figure sur l'autocollant à l'arrière du nœud et le numéro de série que vous avez indiqué.
+.. Cliquez avec le bouton droit de la souris sur le noeud défaillant et sélectionnez *connexion > Déconnexion*.
+.. Sélectionnez *Oui* pour confirmer l'action.
+.. Cliquez avec le bouton droit de la souris sur le noeud en échec et sélectionnez *Supprimer de l'inventaire*.
+.. Sélectionnez *Oui* pour confirmer l'action.
+
+
+
+
+| Versions NetApp HCI antérieures à 1.3  a| 
+.. Cliquez avec le bouton droit de la souris sur le nœud et sélectionnez *Supprimer de l'inventaire*.
+.. Sélectionnez le nœud défaillant et sélectionnez *moniteur > État du matériel > capteurs*.
+.. Notez le numéro de série du nœud 0, qui est le numéro de série du nœud défaillant. Cela permet d'identifier le nœud dans le châssis en indiquant le numéro de série qui figure sur l'autocollant à l'arrière du nœud et le numéro de série que vous avez indiqué.
+.. Lorsque le noeud défaillant est sélectionné, sélectionnez *gérer > réseau > adaptateurs VMkernel*, puis copiez les quatre adresses IP répertoriées. Vous pouvez réutiliser ces informations lorsque vous effectuez les étapes de configuration du réseau initiales dans VMware ESXi.
+
+
+|===
+
+
+
+
+== Remplacez le nœud de calcul dans le châssis
+
+Après avoir retiré le nœud défectueux du cluster, vous pouvez supprimer le nœud du châssis et installer le nœud de remplacement.
+
+
+NOTE: Assurez-vous d'avoir une protection antistatique avant d'effectuer les étapes ci-dessous.
+
+.Étapes
+. Mettre en place une protection antistatique.
+. Déballez le nouveau nœud et placez-le sur une surface plane à proximité du châssis. Conservez les éléments d'emballage pendant toute la renvoie du nœud défaillant à NetApp.
+. Étiqueter chaque câble inséré à l'arrière du nœud que vous souhaitez supprimer. Après avoir installé le nouveau nœud, vous devez réinsérer les câbles dans les ports d'origine.
+. Déconnectez tous les câbles du nœud.
+. Si vous souhaitez réutiliser les modules DIMM, retirez-les.
+. Abaissez la poignée de came sur le côté droit du nœud et tirez le nœud vers l'extérieur à l'aide des deux poignées de came. La poignée de came que vous devez tirer possède une flèche sur elle pour indiquer la direction dans laquelle elle se déplace. L'autre poignée de came ne se déplace pas et est là pour vous aider à extraire le nœud.
++
+
+NOTE: Soutenez le nœud avec vos deux mains lorsque vous sortez du châssis.
+
+. Placez le nœud sur une surface plane. Vous devez emballer le nœud et le renvoyer à NetApp.
+. Installez le nœud de remplacement.
+. Poussez le nœud jusqu'à ce qu'un déclic se soit entendre.
++
+
+CAUTION: Veillez à ne pas exercer de force excessive lors de l'insertion du nœud dans le châssis.
+
++
+
+NOTE: Assurez-vous que le nœud est sous tension. S'il ne s'éteint pas automatiquement, appuyez sur le bouton d'alimentation situé à l'avant du nœud.
+
+. Si vous avez précédemment retiré des modules DIMM du nœud défaillant, insérez-les dans le nœud de remplacement.
++
+
+NOTE: Vous devez remplacer les modules DIMM dans les emplacements dont ils ont été retirés dans le nœud défaillant.
+
+. Reconnectez les câbles aux ports à partir desquels vous les avez déconnectés à l'origine. Les étiquettes que vous aviez attachées aux câbles lorsque vous les avez débranchées vous guident.
++
+
+CAUTION: Si les évents d'aération situés à l'arrière du châssis sont bloqués par des câbles ou des étiquettes, ils peuvent provoquer des défaillances prématurées de composants en raison d'une surchauffe. Ne forcez pas les câbles dans les ports ; vous risquez d'endommager les câbles, les ports ou les deux.
+
++
+
+TIP: Assurez-vous que le nœud de remplacement est câblé de la même manière que les autres nœuds du châssis.
+
+
+
+
+
+== Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures
+
+Dans NetApp HCI 1.7 et versions ultérieures, après le remplacement physique du nœud, vous devez supprimer les ressources du nœud de calcul à l'aide des API du nœud de gestion. Pour utiliser des API REST, votre cluster de stockage doit exécuter le logiciel NetApp Element version 11.5 ou ultérieure et vous devez avoir déployé un nœud de gestion exécutant la version 11.5 ou ultérieure.
+
+.Étapes
+. Saisissez l'adresse IP du nœud de gestion suivie de /mnode :
+`https://[IP address]/mnode`
+. Sélectionnez *Authorise* ou toute icône de verrouillage et entrez les informations d'identification d'administrateur de cluster pour les autorisations d'utilisation des API.
++
+.. Saisissez le nom d'utilisateur et le mot de passe du cluster.
+.. Sélectionnez corps de la demande dans la liste déroulante Type si la valeur n'est pas déjà sélectionnée.
+.. Entrez l'ID client en tant que client mNode si la valeur n'est pas déjà renseignée. N'entrez pas de valeur pour le secret client.
+.. Sélectionnez *Autoriser* pour démarrer une session.
++
+
+NOTE: Si vous obtenez le `Auth Error TypeError: Failed to fetch` Message d'erreur après avoir tenté d'autoriser, vous devrez peut-être accepter le certificat SSL pour le MVIP de votre cluster. Copiez l'adresse IP dans l'URL du token, collez l'adresse IP dans un autre onglet du navigateur et autorisez à nouveau. Si vous essayez d'exécuter une commande après l'expiration du token, vous obtenez un `Error: UNAUTHORIZED` erreur. Si vous recevez cette réponse, autorisez à nouveau.
+
+
+
+. Fermez la boîte de dialogue autorisations disponibles.
+. Sélectionnez *OBTENIR/actifs*.
+. Sélectionnez *essayez-le*.
+. Sélectionnez *Exécuter*. Faites défiler le corps de réponse vers le bas jusqu'à la section calcul et copiez les valeurs parent et ID du nœud de calcul défaillant.
+. Sélectionnez *DELETE/ASSET/{ASSET_ID}/Compute-nodes/{Compute_ID}*.
+. Sélectionnez *essayez-le*. Entrez les valeurs parent et ID que vous avez obtenues à l'étape 7.
+. Sélectionnez *Exécuter*.
+
+
+
+
+== Ajoutez le nœud de calcul au cluster
+
+Vous devez réajouter le nœud de calcul au cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.
+
+
+
+=== NetApp HCI 1.6P1 et versions ultérieures
+
+Vous pouvez utiliser NetApp Hybrid Cloud Control uniquement si votre installation NetApp HCI s'exécute à partir de la version 1.6P1 ou ultérieure.
+
+.Ce dont vous avez besoin, 8217;ll
+* Assurez-vous que l'instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.
+* Assurez-vous qu'aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.
+* Assurez-vous que vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
+* Assurez-vous que les informations d'identification du compte administrateur vCenter sont prêtes.
+* Assurez-vous que chaque nouveau nœud utilise la même topologie réseau et le même câblage que les clusters de calcul ou de stockage existants.
+* link:task_hcc_manage_vol_access_groups.html["Gestion des initiateurs et des groupes d'accès aux volumes"] pour le nouveau nœud de calcul.
+
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Dans le volet développer l'installation, sélectionnez *développer*.
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Sur la page Bienvenue, sélectionnez *Oui*.
+. Sur la page Licence utilisateur final, effectuez les opérations suivantes :
++
+.. Lisez le contrat de licence de l'utilisateur final VMware.
+.. Si vous acceptez les termes, sélectionnez *J'accepte* à la fin du texte du contrat.
+
+
+. Sélectionnez *Continuer*.
+. Sur la page vCenter, effectuez les opérations suivantes :
++
+.. Entrez un nom de domaine complet ou une adresse IP et les informations d'identification d'administrateur pour l'instance vCenter associée à votre installation NetApp HCI.
+.. Sélectionnez *Continuer*.
+.. Sélectionnez un centre de données vSphere existant auquel ajouter le nouveau nœud de calcul ou sélectionnez *Créer un nouveau datacenter* pour ajouter les nouveaux nœuds de calcul à un nouveau datacenter.
++
+
+NOTE: Si vous sélectionnez Créer un nouveau centre de données, le champ Cluster est automatiquement renseigné.
+
+.. Si vous avez sélectionné un datacenter existant, sélectionnez un cluster vSphere auquel les nouveaux nœuds de calcul doivent être associés.
++
+
+NOTE: Si NetApp HCI ne parvient pas à reconnaître les paramètres réseau du cluster que vous avez sélectionné, assurez-vous que le mappage vmkernel et vmnic pour les réseaux de gestion, de stockage et vMotion sont définis sur les valeurs par défaut du déploiement.
+
+.. Sélectionnez *Continuer*.
+
+
+. Sur la page d'informations d'identification ESXi, entrez un mot de passe racine ESXi pour le ou les nœuds de calcul que vous ajoutez. Vous devez utiliser le même mot de passe que celui créé lors du déploiement NetApp HCI initial.
+. Sélectionnez *Continuer*.
+. Si vous avez créé un nouveau cluster vSphere Datacenter, sur la page topologie réseau, sélectionnez une topologie réseau correspondant aux nouveaux nœuds de calcul que vous ajoutez.
++
+
+NOTE: Vous pouvez uniquement sélectionner l'option à deux câbles si vos nœuds de calcul utilisent la topologie à deux câbles et si le déploiement NetApp HCI existant est configuré avec des ID de VLAN.
+
+. Sur la page Inventaire disponible, sélectionnez le nœud à ajouter à l'installation NetApp HCI existante.
++
+
+TIP: Pour certains nœuds de calcul, vous devrez peut-être activer EVC au plus haut niveau pris en charge par votre version de vCenter avant de pouvoir les ajouter à votre installation. Vous devez utiliser le client vSphere pour activer EVC pour ces nœuds de calcul. Une fois que vous l'avez activé, actualisez la page *Inventory* et essayez à nouveau d'ajouter les nœuds de calcul.
+
+. Sélectionnez *Continuer*.
+. Facultatif : si vous avez créé un nouveau cluster de datacenter vSphere, sur la page Paramètres réseau, importez les informations réseau à partir d'un déploiement NetApp HCI existant en cochant la case *Copier le paramètre à partir d'un cluster existant*. Ce paramètre renseigne les informations de passerelle et de sous-réseau par défaut pour chaque réseau.
+. Sur la page Paramètres réseau, certaines informations sur le réseau ont été détectées à partir du déploiement initial. Le nouveau nœud de calcul est indiqué par le numéro de série et vous devez lui attribuer des informations relatives au réseau. Pour le nouveau nœud de calcul, effectuez les opérations suivantes :
++
+.. Si NetApp HCI a détecté un préfixe de nom, copiez-le dans le champ préfixe de nom d'hôte détecté et insérez-le comme préfixe du nouveau nom d'hôte unique que vous ajoutez dans le champ *Nom d'hôte*.
+.. Dans le champ *adresse IP de gestion*, entrez une adresse IP de gestion pour le nœud de calcul qui se trouve dans le sous-réseau du réseau de gestion.
+.. Dans le champ adresse IP vMotion, entrez une adresse IP vMotion pour le nœud de calcul situé dans le sous-réseau vMotion.
+.. Dans le champ iSCSI A - IP Address, entrez une adresse IP pour le premier port iSCSI du nœud de calcul qui se trouve dans le sous-réseau du réseau iSCSI.
+.. Dans le champ iSCSI B - IP Address (adresse IP iSCSI B - adresse IP), entrez une adresse IP pour le deuxième port iSCSI du nœud de calcul qui se trouve dans le sous-réseau du réseau iSCSI.
+
+
+. Sélectionnez *Continuer*.
+. Sur la page Revue de la section Paramètres réseau, le nouveau nœud est affiché en gras. Si vous devez modifier les informations d'une section, effectuez les opérations suivantes :
++
+.. Sélectionnez *Modifier* pour cette section.
+.. Lorsque vous avez terminé d'apporter des modifications, cliquez sur Continuer sur les pages suivantes pour revenir à la page Revue.
+
+
+. Facultatif : si vous ne souhaitez pas envoyer les statistiques de clusters et les informations de support aux serveurs SolidFire Active IQ hébergés par NetApp, décochez la case finale. Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.
+. Sélectionnez *Ajouter des nœuds*. Vous pouvez contrôler la progression pendant l'ajout et la configuration de ressources par NetApp HCI.
+. Facultatif : vérifiez que le nouveau nœud de calcul est visible dans vCenter.
+
+
+
+
+=== NetApp HCI 1.4 P2, 1.4 et 1.3
+
+Si votre installation de NetApp HCI exécute la version 1.4P2, 1.4 ou 1.3, vous pouvez utiliser le moteur de déploiement NetApp pour ajouter le nœud au cluster.
+
+.Ce dont vous avez besoin, 8217;ll
+* Assurez-vous que l'instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.
+* Assurez-vous qu'aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.
+* Assurez-vous que vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
+* Assurez-vous que les informations d'identification du compte administrateur vCenter sont prêtes.
+* Assurez-vous que chaque nouveau nœud utilise la même topologie réseau et le même câblage que les clusters de calcul ou de stockage existants.
+
+
+.Étapes
+. Accéder à l'adresse IP de gestion d'un des nœuds de stockage existants :
+`http://<storage_node_management_IP_address>/`
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Sélectionnez *Elargir votre installation*.
+. Sur la page Bienvenue, sélectionnez *Oui*.
+. Sur la page Licence utilisateur final, effectuez les opérations suivantes :
++
+.. Lisez le contrat de licence de l'utilisateur final VMware.
+.. Si vous acceptez les termes, sélectionnez *J'accepte* à la fin du texte du contrat.
+
+
+. Sélectionnez *Continuer*.
+. Sur la page vCenter, effectuez les opérations suivantes :
++
+.. Entrez un nom de domaine complet ou une adresse IP et les informations d'identification d'administrateur pour l'instance vCenter associée à votre installation NetApp HCI.
+.. Sélectionnez *Continuer*.
+.. Sélectionnez un centre de données vSphere existant auquel ajouter le nouveau nœud de calcul.
+.. Sélectionnez un cluster vSphere auquel le nouveau nœud de calcul doit être associé.
++
+
+NOTE: Si vous ajoutez un nœud de calcul avec une génération de CPU différente de la génération de CPU des nœuds de calcul existants et que la compatibilité EVC (Enhanced vMotion Compatibility) est désactivée sur l'instance vCenter contrôlant, vous devez activer EVC avant de continuer. La fonctionnalité vMotion est ainsi garantie une fois l'extension terminée.
+
+.. Sélectionnez *Continuer*.
+
+
+. Sur la page informations d'identification ESXi, créez les informations d'identification de l'administrateur VMware ESXi pour le nœud de calcul que vous ajoutez. Vous devez utiliser les mêmes informations d'identification maître que celles créées lors du déploiement initial de NetApp HCI.
+. Sélectionnez *Continuer*.
+. Sur la page Inventaire disponible, sélectionnez le nœud à ajouter à l'installation NetApp HCI existante.
++
+
+TIP: Pour certains nœuds de calcul, vous devrez peut-être activer EVC au plus haut niveau pris en charge par votre version de vCenter avant de pouvoir les ajouter à votre installation. Vous devez utiliser le client vSphere pour activer EVC pour ces nœuds de calcul. Une fois que vous avez activé cette option, actualisez la page Inventaire et réessayez d'ajouter les nœuds de calcul.
+
+. Sélectionnez *Continuer*.
+. Sur la page Paramètres réseau, effectuez les opérations suivantes :
++
+.. Vérifiez les informations détectées lors du déploiement initial.
+.. Chaque nouveau nœud de calcul est indiqué par le numéro de série et vous devez lui attribuer des informations relatives au réseau. Pour chaque nouveau nœud de stockage, effectuez les opérations suivantes :
++
+... Si NetApp HCI a détecté un préfixe de nom, copiez-le depuis le champ préfixe de nom détecté, puis insérez-le comme préfixe du nouveau nom d'hôte unique que vous ajoutez dans le champ Nom d'hôte.
+... Dans le champ adresse IP de gestion, entrez une adresse IP de gestion pour le nœud de calcul qui se trouve dans le sous-réseau du réseau de gestion.
+... Dans le champ adresse IP vMotion, entrez une adresse IP vMotion pour le nœud de calcul situé dans le sous-réseau vMotion.
+... Dans le champ iSCSI A - IP Address, entrez une adresse IP pour le premier port iSCSI du nœud de calcul qui se trouve dans le sous-réseau du réseau iSCSI.
+... Dans le champ iSCSI B - IP Address (adresse IP iSCSI B - adresse IP), entrez une adresse IP pour le deuxième port iSCSI du nœud de calcul qui se trouve dans le sous-réseau du réseau iSCSI.
+
+
+.. Sélectionnez *Continuer*.
+
+
+. Sur la page Revue de la section Paramètres réseau, le nouveau nœud est affiché en gras. Si vous souhaitez modifier les informations d'une section, effectuez les opérations suivantes :
++
+.. Sélectionnez *Modifier* pour cette section.
+.. Lorsque vous avez terminé d'apporter des modifications, sélectionnez *Continuer* sur les pages suivantes pour revenir à la page Revue.
+
+
+. Facultatif : si vous ne souhaitez pas envoyer les statistiques de clusters et les informations de support aux serveurs Active IQ hébergés par NetApp, décochez la case finale. Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.
+. Sélectionnez *Ajouter des nœuds*. Vous pouvez contrôler la progression pendant l'ajout et la configuration de ressources par NetApp HCI.
+. Facultatif : vérifiez que le nouveau nœud de calcul est visible dans vCenter.
+
+
+
+
+=== NetApp HCI 1.2, 1.1 et 1.0
+
+Après avoir remplacé physiquement le nœud, vous devez l'ajouter au cluster VMware ESXi et effectuer plusieurs configurations réseau de manière à pouvoir utiliser toutes les fonctionnalités disponibles.
+
+
+NOTE: Vous devez disposer d'une console ou d'un clavier, d'une vidéo, d'une souris (KVM) pour effectuer ces opérations.
+
+.Étapes
+. Installez et configurez VMware ESXi version 6.0.0 comme suit :
++
+.. Sur l'écran de la console distante ou du KVM, sélectionnez *Power Control > Set Power Reset*. Le nœud redémarre.
+.. Dans la fenêtre du menu de démarrage qui s'ouvre, sélectionnez *VMware ESXi Install* en appuyant sur la touche fléchée vers le bas.
++
+
+NOTE: Cette fenêtre reste ouverte pendant seulement cinq secondes. Si vous ne faites pas la sélection dans cinq secondes, vous devez redémarrer le nœud.
+
+.. Appuyez sur *entrée* pour lancer le processus d'installation.
+.. Suivez les étapes de l'assistant d'installation.
++
+
+NOTE: Lorsqu'il vous est demandé de sélectionner le disque sur le système ESXi, vous devez sélectionner le deuxième lecteur de disque dans la liste en sélectionnant la touche flèche vers le bas. Lorsque vous êtes invité à saisir un mot de passe root, vous devez saisir le même mot de passe que celui que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI.
+
+.. Une fois l'installation terminée, appuyez sur *entrée* pour redémarrer le nœud.
++
+
+NOTE: Par défaut, le nœud redémarre avec le processus NetApp HCI Bootstrap OS. Vous devez effectuer une configuration ponctuelle sur le nœud pour qu'il utilise VMware ESXi.
+
+
+
+. Configurez VMware ESXi sur le nœud comme suit :
++
+.. Dans la fenêtre de connexion à l'interface utilisateur du terminal NetApp HCI Bootstrap OS, entrez les informations suivantes :
++
+... Nom d'utilisateur : élément
+... Mot de passe: CapTheFire!
+
+
+.. Appuyez sur la touche fléchée vers le bas pour sélectionner *OK*.
+.. Appuyez sur *entrée* pour vous connecter.
+.. Dans le menu principal, utilisez la touche fléchée vers le bas pour sélectionner *tunnel de support > tunnel de support ouvert*.
+.. Dans la fenêtre qui s'affiche, entrez les informations relatives au port.
++
+
+NOTE: Contactez le support NetApp pour obtenir ces informations. Le support NetApp se connecte au nœud pour définir le fichier de configuration de démarrage et effectuer la tâche de configuration.
+
+.. Redémarrez le nœud.
+
+
+. Configurez le réseau de gestion comme suit :
++
+.. Connectez-vous à VMware ESXi en saisissant les informations d'identification suivantes :
++
+... Nom d'utilisateur : root
+... Mot de passe : mot de passe que vous avez défini lors de l'installation de VMware ESXi.
++
+
+NOTE: Le mot de passe doit correspondre à celui que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI.
+
+
+
+.. Sélectionnez *configurer le réseau de gestion* et appuyez sur *entrée*.
+.. Sélectionnez *cartes réseau* et appuyez sur *entrée*.
+.. Sélectionnez *vmnic2* et *vmnic3* et appuyez sur *entrée*.
+.. Sélectionnez *Configuration IPv4*, puis appuyez sur la barre d'espace du clavier pour sélectionner l'option de configuration statique.
+.. Entrez l'adresse IP, le masque de sous-réseau et les informations de passerelle par défaut, puis appuyez sur *entrée*. Vous pouvez réutiliser les informations que vous avez copiées avant de supprimer le nœud. L'adresse IP que vous entrez ici correspond à l'adresse IP du réseau de gestion que vous avez copiée précédemment.
+.. Appuyez sur *Esc* pour quitter la section configurer le réseau de gestion.
+.. Sélectionnez *Oui* pour appliquer les modifications.
+
+
+. Ajoutez le nœud (hôte) au cluster et configurez le réseau de manière à ce que le nœud soit synchronisé avec les autres nœuds du cluster comme suit :
++
+.. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*.
+.. Cliquez avec le bouton droit de la souris sur le cluster auquel vous souhaitez ajouter le nœud, puis sélectionnez *Ajouter hôte*. L'assistant vous guide tout au long de l'ajout de l'hôte.
++
+
+NOTE: Lorsque vous devez saisir le nom d'utilisateur et le mot de passe, utilisez les informations d'identification suivantes : nom d'utilisateur : mot de passe root : le mot de passe que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI
+
++
+L'ajout du nœud au cluster peut prendre quelques minutes. Une fois le processus terminé, le nouveau nœud ajouté est répertorié sous le cluster.
+
+.. Sélectionnez le nœud, puis sélectionnez *gérer > réseau > commutateurs virtuels* et effectuez les opérations suivantes :
++
+... Sélectionnez *vSwitch0*. Vous devez voir uniquement vSwitch0 répertorié dans le tableau qui s'affiche.
+... Dans le graphique qui s'affiche, sélectionnez *VM Network*, puis cliquez sur *X* pour supprimer le groupe de ports réseau VM.
++
+image::h410c-esxi-1.gif[Affiche l'écran permettant de supprimer le groupe de ports réseau VM.]
+
+... Confirmez l'action.
+... Sélectionnez *vSwitch0*, puis sélectionnez l'icône crayon pour modifier les paramètres.
+... Dans la fenêtre vSwitch0 - Modifier les paramètres, sélectionnez *Teaming et Failover*.
+... Assurez-vous que vmnic3 est répertorié sous cartes de secours et sélectionnez *OK*.
+... Dans le graphique qui s'affiche, sélectionnez *Management Network* et sélectionnez l'icône crayon pour modifier les paramètres.
++
+image::h410c-mgmtnetwork.gif[Affiche l'écran où vous modifiez le réseau de gestion.]
+
+... Dans la fenêtre réseau de gestion - Modifier les paramètres, sélectionnez *Teaming et Failover*.
+... Déplacez vmnic3 vers cartes de secours en utilisant l'icône de flèche et sélectionnez *OK*.
+
+
+.. Dans le menu déroulant actions, sélectionnez *Ajouter réseau* et entrez les informations suivantes dans la fenêtre qui s'affiche :
++
+... Pour le type de connexion, sélectionnez *Groupe de ports de machine virtuelle pour un commutateur standard*, puis *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour ajouter un nouveau commutateur standard et sélectionnez *Suivant*.
+... Sélectionnez *+*.
+... Dans la fenêtre Ajouter des adaptateurs physiques au commutateur, sélectionnez vmnic0 et vmnic4, puis sélectionnez *OK*. Vmnic0 et vmnic4 sont désormais répertoriés sous adaptateurs actifs.
+... Sélectionnez *Suivant*.
+... Sous Paramètres de connexion, vérifiez que VM Network est l'étiquette réseau et sélectionnez *Suivant*.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*. VSwitch1 s'affiche dans la liste des commutateurs virtuels.
+
+
+.. Sélectionnez *vSwitch1* et sélectionnez l'icône représentant un crayon pour modifier les paramètres comme suit :
++
+... Sous Propriétés, définissez MTU sur 9000 et sélectionnez *OK*. Dans le graphique qui s'affiche, sélectionnez *VM Network*, puis cliquez sur l'icône crayon pour modifier les paramètres comme suit :
+
+
+.. Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::vswitch1.gif[La présente les sélections de sécurité à effectuer pour le réseau VM.]
+
++
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic0 vers les cartes de secours en utilisant l'icône de flèche.
+... Sélectionnez *OK*.
+
+
+.. Lorsque l'option vSwitch1 est sélectionnée, dans le menu déroulant actions, sélectionnez *Ajouter réseau* et entrez les détails suivants dans la fenêtre qui s'affiche :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour utiliser un commutateur standard existant, naviguez jusqu'au vSwitch1 et sélectionnez *Suivant*.
+... Sous propriétés des ports, définissez l'étiquette réseau sur vMotion, cochez la case trafic vMotion sous Activer les services et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*. L'adresse IP que vous entrez ici correspond à l'adresse IP vMotion que vous avez copiée précédemment.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez vMotion, puis l'icône représentant un crayon pour modifier les paramètres comme suit :
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::vmotion.gif[Le montre les sélections de sécurité pour vMotion.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic4 vers les cartes de secours en utilisant l'icône de flèche.
+... Sélectionnez *OK*.
+
+
+.. Lorsque l'option vSwitch1 est sélectionnée, dans le menu déroulant actions, sélectionnez *Ajouter réseau* et entrez les détails suivants dans la fenêtre qui s'affiche :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour ajouter un nouveau commutateur standard et sélectionnez *Suivant*.
+... Sélectionnez *+*.
+... Dans la fenêtre Ajouter des adaptateurs physiques au commutateur, sélectionnez vmnic1 et vmnic5, puis sélectionnez *OK*. Vmnic1 et vmnic5 sont désormais répertoriés sous adaptateurs actifs.
+... Sélectionnez *Suivant*.
+... Sous Propriétés du port, définissez le libellé réseau sur iSCSI-B et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*. L'adresse IP que vous saisissez ici correspond à l'adresse IP iSCSI-B que vous avez copiée précédemment.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*. VSwitch2 s'affiche dans la liste des commutateurs virtuels.
+
+
+.. Sélectionnez *vSwitch2*, puis l'icône représentant un crayon pour modifier les paramètres comme suit :
++
+... Sous Propriétés, définissez MTU sur 9000 et sélectionnez *OK*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez *iSCSI-B* et sélectionnez l'icône crayon pour modifier les paramètres comme suit :
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::iscsi-b.gif[La présente les sélections de sécurité pour le réseau iSCSI-B.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic1 vers des cartes inutilisées en utilisant l'icône de flèche.
+... Sélectionnez *OK*.
+
+
+.. Dans le menu déroulant actions, sélectionnez *Ajouter réseau* et entrez les informations suivantes dans la fenêtre qui s'affiche :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour utiliser un commutateur standard existant, naviguez jusqu'au vSwitch2 et sélectionnez *Suivant*.
+... Sous Propriétés du port, définissez le libellé réseau sur iSCSI-A et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*. L'adresse IP que vous saisissez ici est l'adresse IP iSCSI-A que vous avez copiée précédemment.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez *iSCSI-A* et sélectionnez l'icône crayon pour modifier les paramètres comme suit :
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::iscsi-a.gif[La présente les sélections de sécurité pour le réseau iSCSI-A.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic5 vers des cartes inutilisées en utilisant l'icône de flèche.
+... Sélectionnez *OK*.
+
+
+.. Lorsque le nouveau nœud ajouté est sélectionné et que l'onglet gérer est ouvert, sélectionnez *stockage > adaptateurs de stockage* et effectuez les opérations suivantes :
++
+... Sélectionnez *+* et *carte iSCSI logicielle*.
+... Pour ajouter la carte iSCSI, sélectionnez *OK* dans la boîte de dialogue.
+... Sous cartes de stockage, sélectionnez la carte iSCSI et, dans l'onglet Propriétés, copiez le nom iSCSI.
++
+image::iscsi adapter name.gif[Affiche la chaîne IQN de l'adaptateur iSCSI.]
+
++
+
+NOTE: Lorsque vous créez l'initiateur, vous avez besoin du nom iSCSI.
+
+
+
+.. Suivez les étapes ci-dessous dans le plug-in NetApp SolidFire vCenter :
++
+... Sélectionnez *gestion > initiateurs > Créer*.
+... Sélectionnez *Créer un seul initiateur*.
+... Entrez l'adresse IQN que vous avez copiée précédemment dans le champ IQN/WWPN.
+... Sélectionnez *OK*.
+... Sélectionnez *actions groupées*, puis *Ajouter au groupe d'accès de volume*.
+... Sélectionnez *NetApp HCI*, puis *Ajouter*.
+
+
+.. Dans le client Web VMware vSphere, sous Storage Adapters, sélectionnez la carte iSCSI et effectuez les opérations suivantes :
++
+... Sous Détails de l'adaptateur, sélectionnez *cibles > découverte dynamique > Ajouter*.
+... Saisissez l'adresse IP SVIP dans le champ serveur iSCSI.
++
+
+NOTE: Pour obtenir l'adresse IP SVIP, sélectionnez *gestion NetApp Element* et copiez l'adresse IP SVIP. Laissez le numéro de port par défaut tel quel. Il devrait être 3260.
+
+... Sélectionnez *OK*. Un message recommandant une nouvelle analyse de la carte de stockage s'affiche.
+... Sélectionnez l'icône de nouvelle analyse.
++
+image::rescan.gif[Affiche l'icône de nouvelle analyse des cartes de stockage.]
+
+... Sous Détails de l'adaptateur, sélectionnez *liaison du port réseau* et sélectionnez *+*.
+... Cochez les cases iSCSI-B et iSCSI-A, puis cliquez sur OK. Un message recommandant une nouvelle analyse de la carte de stockage s'affiche.
+... Sélectionnez l'icône de nouvelle analyse. Une fois l'analyse à nouveau terminée, vérifiez si les volumes du cluster sont visibles sur le nouveau nœud de calcul (hôte).
+
+
+
+
+
+
+
+
+== Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds
+
+Si vous remplacez physiquement le nœud de calcul défaillant, vous devez redéployer la machine virtuelle de NetApp HCI Witness Node si le nœud de calcul défaillant hébertait le nœud de contrôle. Ces instructions s'appliquent uniquement aux nœuds de calcul qui font partie d'une installation NetApp HCI avec des clusters de stockage à deux ou trois nœuds.
+
+.Ce dont vous avez besoin, 8217;ll
+* Rassemblez les informations suivantes :
++
+** Nom du cluster depuis le cluster de stockage
+** Masque de sous-réseau, adresse IP de la passerelle, serveur DNS et informations de domaine pour le réseau de gestion
+** Masque de sous-réseau du réseau de stockage
+
+
+* Assurez-vous que vous avez accès au cluster de stockage pour pouvoir ajouter les nœuds Witness au cluster.
+* Prenez en compte les conditions suivantes pour vous aider à décider si vous souhaitez supprimer le noeud témoin existant du client Web VMware vSphere ou du cluster de stockage :
++
+** Si vous souhaitez utiliser le même nom de machine virtuelle pour le nouveau noeud témoin, vous devez supprimer toutes les références à l'ancien noeud témoin de vSphere.
+** Si vous souhaitez utiliser le même nom d'hôte sur le nouveau nœud témoin, supprimez d'abord l'ancien nœud témoin du cluster de stockage.
++
+
+NOTE: Vous ne pouvez pas supprimer l'ancien nœud témoin si votre cluster ne fonctionne que sur deux nœuds de stockage physiques (et aucun nœud témoin). Dans ce scénario, vous devez d'abord ajouter le nouveau noeud témoin au cluster avant de supprimer l'ancien. Vous pouvez supprimer le nœud témoin du cluster à l'aide du point d'extension NetApp Element Management.
+
+
+
+
+
+Vous devez redéployer des nœuds de témoins dans les scénarios suivants :
+
+* Vous avez remplacé un nœud de calcul défectueux dans le cadre d'une installation NetApp HCI. Ce nœud de stockage comporte un cluster à deux ou trois nœuds et le nœud de calcul défaillant héberge une machine virtuelle Witness Node.
+* Vous avez effectué la procédure de retour à l'image d'usine (RTFI) sur le nœud de calcul.
+* La machine virtuelle du nœud témoin est corrompue.
+* La machine virtuelle du nœud Witness a été accidentellement supprimée de ESXi. La machine virtuelle est configurée à l'aide du modèle créé dans le cadre du déploiement initial à l'aide du moteur de déploiement NetApp. Voici un exemple de ce à quoi ressemble une machine virtuelle de Witness Node :
++
+image::vm-template.png[La montre une capture d'écran du modèle de machine virtuelle du nœud témoin.]
+
+
+
+
+NOTE: Si vous avez supprimé le modèle de machine virtuelle, vous devez contacter le support NetApp pour obtenir l'image .ova du noeud témoin et la redéployer. Vous pouvez télécharger le modèle à partir de link:https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/WN_12.0/downloads["ici (connexion requise)"^]. Cependant, vous devez engager le support pour obtenir des conseils sur la configuration.
+
+.Étapes
+. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*.
+. Cliquez avec le bouton droit de la souris sur le nœud de calcul qui hébergera la VM Witness Node et sélectionnez *Nouvelle machine virtuelle*.
+. Sélectionnez *déployer à partir du modèle* et sélectionnez *Suivant*.
+. Suivez les étapes de l'assistant :
++
+.. Sélectionnez *Data Center*, localisez le modèle VM et sélectionnez *Suivant*.
+.. Entrez un nom pour la machine virtuelle au format suivant : NetApp-Witness-Node-#
++
+
+NOTE: ## doit être remplacé par un numéro.
+
+.. Laissez la sélection par défaut pour l'emplacement VM tel quel et sélectionnez *Suivant*.
+.. Laissez la sélection par défaut de la ressource de calcul de destination telle qu'elle est, puis sélectionnez *Suivant*.
+.. Sélectionnez le datastore local et sélectionnez *Suivant*. L'espace libre sur le datastore local varie en fonction de la plateforme de calcul.
+.. Sélectionnez *Power on Virtual machine après la création* dans la liste des options de déploiement et sélectionnez *Next*.
+.. Vérifiez les sélections et sélectionnez *Terminer*.
+
+
+. Configurez les paramètres de gestion et de stockage du réseau et du cluster pour le nœud Witness comme suit :
++
+.. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*.
+.. Cliquez avec le bouton droit de la souris sur le nœud témoin et mettez-le sous tension s'il n'est pas déjà sous tension.
+.. Dans la vue Résumé du noeud témoin, sélectionnez *lancer la console Web*.
+.. Attendez que le nœud témoin démarre dans le menu avec l'arrière-plan bleu.
+.. Sélectionnez n'importe où dans la console pour accéder au menu.
+.. Configurez le réseau de gestion comme suit :
++
+... Appuyez sur la touche fléchée vers le bas pour accéder à réseau, puis appuyez sur *entrée* pour OK.
+... Accédez à *Configuration réseau*, puis appuyez sur *entrée* pour OK.
+... Accédez à *net0*, puis appuyez sur *entrée* pour OK.
+... Appuyez sur *tab* jusqu'au champ IPv4, puis, le cas échéant, supprimez l'IP existante dans le champ et entrez les informations IP de gestion pour le noeud témoin. Vérifiez également le masque de sous-réseau et la passerelle.
++
+
+NOTE: Aucun marquage VLAN ne sera appliqué au niveau de l'hôte de la machine virtuelle ; le balisage sera géré au vSwitch.
+
+... Appuyez sur *Tab* pour naviguer jusqu'à OK, puis appuyez sur *entrée* pour enregistrer les modifications. Après la configuration du réseau de gestion, l'écran revient au réseau.
+
+
+.. Configurez le réseau de stockage comme suit :
++
+... Appuyez sur la touche fléchée vers le bas pour accéder à réseau, puis appuyez sur *entrée* pour OK.
+... Accédez à *Configuration réseau*, puis appuyez sur *entrée* pour OK.
+... Accédez à *net1*, puis appuyez sur *entrée* pour OK.
+... Appuyez sur *Tab* jusqu'au champ IPv4, puis, le cas échéant, supprimez l'adresse IP existante dans le champ et entrez les informations d'adresse IP de stockage pour le noeud témoin.
+... Appuyez sur *Tab* pour naviguer jusqu'à OK, puis appuyez sur *entrée* pour enregistrer les modifications.
+... Définissez MTU sur 9000.
++
+
+NOTE: Si MTU n'est pas défini avant d'ajouter le noeud témoin au cluster, vous voyez les avertissements de cluster pour les paramètres MTU incohérents. Cela permet d'éviter que la collecte de données superflues soit en cours d'exécution et entraîne des problèmes de performances.
+
+... Appuyez sur *Tab* pour naviguer jusqu'à OK, puis appuyez sur *entrée* pour enregistrer les modifications. Après la configuration du réseau de stockage, l'écran revient au réseau.
+
+
+.. Configurez les paramètres du cluster comme suit :
++
+... Appuyez sur *Tab* pour naviguer jusqu'à Annuler, puis appuyez sur *entrée*.
+... Accédez à *Paramètres du cluster*, puis appuyez sur *entrée* pour OK.
+... Appuyez sur *Tab* pour naviguer jusqu'à Modifier les paramètres, puis appuyez sur *entrée* pour changer les paramètres.
+... Appuyez sur *tab* pour accéder au champ Nom d'hôte et entrer le nom d'hôte.
+... Appuyez sur la touche fléchée vers le bas pour accéder au champ Cluster et saisir le nom du cluster depuis le cluster de stockage.
+... Appuyez sur la touche *Tab* pour naviguer jusqu'au bouton OK, puis appuyez sur *entrée*.
+
+
+
+
+. Ajoutez le nœud Witness au cluster de stockage de la manière suivante :
++
+.. À partir du client Web vSphere, accédez au point d'extension NetApp Element Management à partir de l'onglet *raccourcis* ou du panneau latéral.
+.. Sélectionnez *NetApp Element Management > Cluster*.
+.. Sélectionnez le sous-onglet *noeuds*.
+.. Sélectionnez *en attente* dans la liste déroulante pour afficher la liste des nœuds. Le noeud témoin doit apparaître dans la liste noeuds en attente.
+.. Cochez la case correspondant au nœud que vous souhaitez ajouter et sélectionnez *Ajouter un noeud*. Une fois l'action terminée, le nœud apparaît dans la liste des nœuds actifs du cluster.
+
+
+
+
+
+
+== Modifiez le mot de passe si vous avez reçu un noeud de remplacement avec un mot de passe BMC non standard
+
+Certains nœuds de remplacement peuvent être livrés avec des mots de passe non standard pour l'interface utilisateur du contrôleur de gestion de la carte mère (BMC). Si vous recevez un noeud de remplacement avec un mot de passe BMC non standard, vous devez remplacer le mot de passe par défaut, ADMIN.
+
+.Étapes
+. Identifiez si vous avez reçu un nœud de remplacement avec un mot de passe BMC non standard :
++
+.. Recherchez un autocollant situé sous le port IPMI à l'arrière du nœud de remplacement que vous avez reçu. Si vous trouvez un autocollant sous le port IPMI, cela signifie que vous avez reçu un nœud avec un mot de passe BMC non standard. Consultez l'exemple d'image suivant :
++
+image::bmc pw sticker.png[Indique l'arrière du nœud avec l'autocollant situé sous le port IPMI.]
+
+.. Notez le mot de passe.
+
+
+. Connectez-vous à l'interface utilisateur du BMC à l'aide du mot de passe unique indiqué sur l'autocollant.
+. Sélectionnez *usine par défaut*, puis sélectionnez *Supprimer les paramètres actuels et définissez les paramètres par défaut de l'utilisateur sur LE bouton d'option ADMIN/ADMIN* :
+. Sélectionnez *Restaurer*.
+. Déconnectez-vous puis reconnectez-vous pour confirmer que les informations d'identification sont à présent modifiées.
+
+
+
+
+== Mettez à niveau le micrologiciel BMC de votre nœud
+
+Une fois le nœud de calcul remplacé, la version du firmware peut être nécessaire. Vous pouvez télécharger le fichier de micrologiciel le plus récent à partir du menu déroulant du link:https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Site du support NetApp (identifiant requis)"^].
+
+.Étapes
+. Connectez-vous à l'interface utilisateur du contrôleur de gestion de la carte mère (BMC).
+. Sélectionnez *Maintenance > mise à jour du micrologiciel*.
++
+image::h410c-bmc1.png[La montre la navigation dans l'interface utilisateur du contrôleur BMC pour les mises à jour du micrologiciel.]
+
+. Dans la console BMC, sélectionnez *Maintenance*.
++
+image::h410c-bmc2.png[Affiche l'écran de maintenance dans l'interface utilisateur du contrôleur BMC.]
+
+. Dans l'onglet Maintenance, sélectionnez *Firmware Update* dans le menu de navigation situé à gauche de l'interface utilisateur, puis sélectionnez *entrer le mode de mise à jour*.
++
+image::h410c-bmc3.png[Affiche l'écran de mise à jour du micrologiciel dans l'interface utilisateur du contrôleur BMC.]
+
+. Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
+. Sélectionnez *Parcourir* pour sélectionner l'image du micrologiciel à télécharger et sélectionnez *Télécharger le micrologiciel*. Le chargement du firmware depuis un emplacement en dehors des environs directs du nœud peut entraîner des temps de charge prolongés et des retards potentiels.
+. Autoriser les vérifications de la configuration de conservation et sélectionner *Démarrer la mise à niveau*. La mise à niveau devrait prendre environ 5 minutes. Si le temps de chargement dépasse 60 minutes, annulez le téléchargement et transférez le fichier sur une machine locale à proximité du nœud. Si votre session est expirée, vous pouvez voir un certain nombre d'alertes lors de la tentative de vous reconnecter à la zone de mise à jour du micrologiciel de l'interface utilisateur du contrôleur BMC. Si vous annulez la mise à niveau, vous êtes redirigé vers la page de connexion.
+. Une fois la mise à jour terminée, sélectionnez *OK* et attendez que le nœud redémarre. Connectez-vous après la mise à niveau et sélectionnez *système* pour vérifier que la version *révision du micrologiciel* correspond à la version que vous avez téléchargée.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

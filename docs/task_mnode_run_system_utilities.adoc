@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_run_system_utilities.html 
+summary: Vous pouvez créer ou supprimer des packs de support du cluster, réinitialiser les paramètres de configuration des nœuds ou redémarrer la mise en réseau. 
+keywords: netapp, element, management node ui, mnode ui, system utilities 
+---
+= Exécutez les utilitaires du système à partir du nœud de gestion
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez utiliser l'interface utilisateur par nœud pour le nœud de gestion afin de créer ou de supprimer des bundles de prise en charge du cluster, de réinitialiser les paramètres de configuration des nœuds ou de redémarrer la mise en réseau.
+
+.Étapes
+. Ouvrez l'interface utilisateur de chaque nœud de gestion à l'aide des identifiants d'administrateur du nœud de gestion.
+. Cliquez sur *Utilitaires système*.
+. Cliquez sur le bouton de l'utilitaire que vous souhaitez exécuter :
++
+.. *Control Power* : redémarre, cycles d'alimentation ou arrête le nœud. Spécifiez l'une des options suivantes.
++
+
+IMPORTANT: Cette opération entraîne une perte temporaire de la connectivité réseau.
+
++
+*** *Action*: Les options incluent `Restart` et `Halt` (hors tension).
+*** *Retard de réveil*: Tout temps supplémentaire avant que le nœud ne soit remis en ligne.
+
+
+.. *Créer un Cluster support Bundle* : crée le cluster support bundle pour aider le support NetApp à effectuer les évaluations diagnostic d'un ou plusieurs nœuds d'un cluster. Spécifiez les options suivantes :
++
+*** *Nom du pack* : nom unique pour chaque bundle de support créé. Si aucun nom n'est fourni, « supportbundle » et le nom du nœud sont utilisés comme nom de fichier.
+*** *MVIP* : le MVIP du cluster. Des bundles sont collectés sur tous les nœuds du cluster. Ce paramètre est requis si le paramètre nœuds n'est pas spécifié.
+*** *Noeuds*: Les adresses IP des noeuds à partir desquels rassembler des paquets. Utilisez soit des noeuds, soit des MVIP, mais pas les deux pour spécifier les noeuds à partir desquels vous souhaitez rassembler des bundles. Ce paramètre est requis si MVIP n'est pas spécifié.
+*** *Nom d'utilisateur* : le nom d'utilisateur admin du cluster.
+*** *Mot de passe* : mot de passe d'administration du cluster.
+*** *Autoriser incomplet* : permet au script de continuer à s'exécuter si les bundles ne peuvent pas être rassemblés à partir d'un ou plusieurs nœuds.
+*** *Extra args* : ce paramètre est alimenté au `sf_make_support_bundle` script. Ce paramètre doit être utilisé uniquement à la demande du support NetApp.
+
+
+.. *Supprimer tous les modules de support* : supprime tous les packs de support actuels sur le nœud de gestion.
+.. *Réinitialiser le nœud* : réinitialise le nœud de gestion sur une nouvelle image d'installation. Tous les paramètres, à l'exception de la configuration réseau, sont alors modifiés par défaut. Spécifiez les options suivantes :
++
+*** *Build* : URL d'une image logicielle d'élément distant vers laquelle le nœud sera réinitialisé.
+*** *Options* : spécifications pour l'exécution des opérations de réinitialisation. Les informations sont fournies par le support NetApp, le cas échéant.
++
+
+IMPORTANT: Cette opération entraîne une perte temporaire de la connectivité réseau.
+
+
+
+.. *Redémarrer réseau* : redémarre tous les services réseau sur le noeud de gestion.
++
+
+IMPORTANT: Cette opération entraîne une perte temporaire de la connectivité réseau.
+
+
+
+
+
+[discrete]
+== En savoir plus
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hcc_expandoverview.html 
+summary: 'Vous pouvez étendre votre système NetApp HCI à l"aide de NetApp Hybrid Cloud Control.' 
+keywords: NetApp, HCI, on premise, expand, hcc, hybrid cloud control 
+---
+= Présentation de l'extension
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, cloud, onprem, documentation, help
+
+
+[role="lead"]
+Vous pouvez étendre votre système NetApp HCI à l'aide de NetApp Hybrid Cloud Control. Vous pouvez développer les ressources de stockage ou de calcul de manière indépendante ou les développer simultanément.
+
+
+NOTE: Les nœuds de stockage nouveaux et H610S de rechange peuvent avoir des exigences d'installation supplémentaires en fonction de la version logicielle Element existante du cluster de stockage. Contactez le support NetApp pour plus d'informations.
+
+Une fois le nœud installé dans le châssis NetApp HCI, configurez NetApp HCI en vue d'utiliser les nouvelles ressources à l'aide de NetApp Hybrid Cloud Control. NetApp HCI détecte la configuration réseau existante et propose, le cas échéant, des options de configuration au sein des réseaux et VLAN existants.
+
+
+NOTE: Si vous avez récemment étendu votre installation et que les nouvelles ressources n'ont pas été ajoutées automatiquement à votre configuration, vous devrez peut-être ajouter les ressources manuellement. Voir link:task_mnode_work_overview.html["Présentation du nœud de gestion"].
+
+NetApp HCI utilise VMware Enhanced vMotion Compatibility (EVC) pour garantir la fonctionnalité vMotion lorsqu'il existe des nœuds de calcul avec différentes générations de processeurs dans le cluster vSphere. Lorsque EVC est nécessaire pour l'extension, NetApp HCI l'active automatiquement lorsque cela est possible.
+
+Dans les situations suivantes, vous devrez peut-être modifier manuellement les paramètres EVC dans le client vSphere pour terminer l'extension :
+
+* Les nœuds de calcul existants disposent d'une génération de CPU plus récente que les nœuds de calcul que vous essayez d'ajouter.
+* L'instance vCenter de contrôle ne prend pas en charge le niveau EVC requis.
+* Les nœuds de calcul que vous essayez d'ajouter ont une génération de CPU plus ancienne que le paramètre EVC de l'instance vCenter de contrôle.
+
+
+
+NOTE: Lors de l'extension des ressources de calcul ou de stockage NetApp HCI dans le moteur de déploiement NetApp, vous devez vous connecter à l'instance vCenter qui gère vos nœuds de calcul NetApp HCI existants.
+
+[discrete]
+== Trouvez plus d'informations
+
+* link:task_hcc_expand_compute.html["Étendez les ressources de calcul NetApp HCI"]
+* link:task_hcc_expand_storage.html["L'extension des ressources de stockage NetApp HCI"]
+* link:task_hcc_expand_compute_and_storage.html["Étendez simultanément les ressources de stockage et de calcul NetApp HCI"]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

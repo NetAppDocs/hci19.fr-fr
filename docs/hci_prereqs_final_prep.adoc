@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_final_prep.html 
+summary: Découvrez les préparations finales et la configuration dont vous avez besoin avant de déployer NetApp HCI. 
+keywords: netapp, hci, final preparations, requirements 
+---
+= Configurez IPMI pour chaque nœud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, final preparations, IPMI
+
+
+[role="lead"]
+Une fois que vous avez mis en rack, câblé et sous tension votre matériel NetApp HCI, vous pouvez configurer l'accès à l'interface de gestion de plateforme intelligente pour chaque nœud. Attribuez une adresse IP à chaque port IPMI et modifiez le mot de passe d'administrateur IPMI par défaut dès que vous disposez d'un accès IPMI distant au nœud.
+
+
+
+== Prérequis
+
+Une fois que vous avez confirmé que votre environnement est prêt à prendre en charge NetApp HCI et à résoudre tout problème potentiel, vous devez effectuer quelques tâches finales avant le déploiement.
+
+* Assurez-vous d'avoir un rapport réussi de Active IQ Config Advisor.
+* Collectez toutes les informations pertinentes concernant votre réseau, l'infrastructure VMware actuelle ou planifiée et les informations d'identification des utilisateurs planifiés.
+* Installez le NetApp HCI dans un rack, un câble ou un sous tension.
+
+
+
+
+== Attribuez manuellement l'adresse IP du port IPMI
+
+Le protocole DHCP (Dynamic Host Configuration Protocol) est activé par défaut pour le port IPMI de chaque nœud NetApp HCI. Si votre réseau IPMI n'utilise pas DHCP, vous pouvez attribuer manuellement une adresse IPv4 statique au port IPMI.
+
+Assurez-vous que vous disposez d'un commutateur KVM (clavier, vidéo et souris) ou d'un moniteur et d'un clavier que vous pouvez utiliser pour accéder au BIOS de chaque nœud.
+
+Utilisez les touches fléchées pour naviguer dans le BIOS. Sélectionnez un onglet ou une option en appuyant sur `Enter`. Pour revenir aux écrans précédents, appuyez sur `ESC`.
+
+.Étapes
+. Mettez le nœud sous tension.
+. Au démarrage, entrez dans le BIOS en appuyant sur `Del` clé.
+. Sélectionnez l'onglet IPMI.
+. Sélectionnez *BMC Network Configuration* et appuyez sur `Enter`.
+. Choisissez *Oui* et appuyez sur `Enter`.
+. Sélectionnez *Source adresse de configuration* et appuyez sur `Enter`.
+. Choisissez *statique* et appuyez sur `Enter`.
+. Sélectionnez *adresse IP Station* et entrez une nouvelle adresse IP pour le port IPMI. Appuyez sur `Enter` lorsque vous avez terminé.
+. Sélectionnez *masque de sous-réseau* et entrez un nouveau masque de sous-réseau pour le port IPMI. Appuyez sur `Enter` lorsque vous avez terminé.
+. Sélectionnez *adresse IP de passerelle* et entrez une nouvelle adresse IP de passerelle pour le port IPMI. Appuyez sur `Enter` lorsque vous avez terminé.
+. Connectez une extrémité d'un câble Ethernet au port IPMI et l'autre extrémité à un commutateur.
++
+Le port IPMI de ce nœud est prêt à être utilisé.
+
+. Répétez cette procédure pour tous les autres nœuds NetApp HCI dont les ports IPMI ne sont pas configurés.
+
+
+
+
+== Modifiez le mot de passe IPMI par défaut pour les nœuds H410C et H410S
+
+Vous devez modifier le mot de passe par défaut du compte administrateur IPMI sur chaque nœud de calcul et de stockage dès que vous configurez le port réseau IPMI.
+
+Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockage.
+
+.Étapes
+. Ouvrez un navigateur Web sur un ordinateur qui peut atteindre le réseau IPMI et naviguez jusqu'à l'adresse IP IPMI du nœud.
+. Entrez le nom d'utilisateur `ADMIN` et mot de passe `ADMIN` dans l'invite de connexion.
+. Lorsque vous vous connectez, cliquez sur l'onglet *Configuration*.
+. Cliquez sur *utilisateurs*.
+. Sélectionner `ADMIN` Et cliquez sur *Modifier l'utilisateur*.
+. Cochez la case *Modifier le mot de passe*.
+. Entrez un nouveau mot de passe dans les champs *Mot de passe* et *confirmer le mot de passe*.
+. Cliquez sur *Modifier*, puis sur *OK*.
+. Répétez cette procédure pour tous les autres nœuds NetApp HCI H410C et H410S avec des mots de passe IPMI par défaut.
+
+
+
+
+== Modifiez le mot de passe IPMI par défaut pour les nœuds H610C, H615C et H610S
+
+Vous devez modifier le mot de passe par défaut du compte administrateur IPMI sur chaque nœud de calcul et de stockage dès que vous configurez le port réseau IPMI.
+
+Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockage.
+
+.Étapes
+. Ouvrez un navigateur Web sur un ordinateur qui peut atteindre le réseau IPMI et naviguez jusqu'à l'adresse IP IPMI du nœud.
+. Entrez le nom d'utilisateur `root` et mot de passe `calvin` dans l'invite de connexion.
+. Lorsque vous vous connectez, cliquez sur l'icône de navigation dans le menu en haut à gauche de la page pour ouvrir le tiroir de la barre latérale.
+. Cliquez sur *Paramètres*.
+. Cliquez sur *gestion des utilisateurs*.
+. Sélectionnez l'utilisateur *Administrateur* dans la liste.
+. Activez la case à cocher *Modifier le mot de passe*.
+. Saisissez un nouveau mot de passe fort dans les champs *Mot de passe* et *confirmer le mot de passe*.
+. Cliquez sur *Enregistrer* en bas de la page.
+. Répétez cette procédure pour tous les autres nœuds NetApp HCI H615C, H610C ou H610S avec des mots de passe IPMI par défaut.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/solidfire-active-iq/index.html["Documentation NetApp SolidFire Active IQ"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

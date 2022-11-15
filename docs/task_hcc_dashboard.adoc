@@ -1,0 +1,190 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_dashboard.html 
+summary: 'Vous pouvez consulter les ressources de stockage et de calcul sur le tableau de bord NetApp de contrôle du cloud hybride. Vous pouvez également surveiller la capacité de stockage, les performances de stockage et l"utilisation du calcul.' 
+keywords: netapp, hci, on premise, hcc, hybrid cloud control, storage, compute, storage performance, utilization, capacity 
+---
+= Surveillez les ressources de stockage et de calcul dans le tableau de bord Cloud Control
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grâce au tableau de bord NetApp de contrôle du cloud hybride, vous pouvez visualiser en un coup d'œil toutes les ressources de stockage et de calcul. Vous pouvez également surveiller la capacité de stockage, les performances de stockage et l'utilisation du calcul.
+
+
+NOTE: Lorsque vous lancez une nouvelle session NetApp Hybrid Cloud Control pour la première fois, il peut y avoir un retard dans le chargement de la vue du tableau de bord NetApp Hybrid Cloud Control lorsque le nœud de gestion gère de nombreux clusters. La durée de chargement varie en fonction du nombre de clusters gérés activement par le nœud de gestion. Pour les lancements suivants, vous aurez des temps de chargement plus courts.
+
+Seuls les nœuds de calcul gérés et les clusters avec au moins un nœud géré dans le matériel H-Series apparaissent sur le tableau de bord Cloud Control.
+
+*  the NetApp HCC Dashboard
+*  storage resources
+*  compute resources
+*  storage capacity
+*  storage performance
+*  compute utilization
+
+
+
+
+== Accédez au tableau de bord NetApp HCC
+
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Consultez le tableau de bord de contrôle du cloud hybride.
++
+image::hcc_dashboard_all.png[Tableau de bord HCC]
+
+
+
+
+TIP: En fonction de votre installation, il est possible que certains ou tous ces volets s'affichent. Par exemple, pour les installations avec stockage uniquement, le tableau de bord contrôle du cloud hybride affiche uniquement le volet stockage, le volet capacité de stockage et le volet performances du stockage.
+
+
+
+== Surveillance des ressources de stockage
+
+Utilisez le volet *Storage* pour afficher votre environnement de stockage total. Vous pouvez surveiller le nombre de clusters de stockage, de nœuds de stockage et de volumes totaux.
+
+Pour afficher les détails, dans le volet stockage, sélectionnez *Afficher les détails*.
+
+image::hcc_dashboard_storage_node_number.PNG[Vue stockage]
+
+
+NOTE: Le nombre total de nœuds de stockage n'inclut pas les nœuds témoins des clusters de stockage à deux nœuds. Les nœuds témoin sont inclus dans le numéro des nœuds dans la section des détails de ce cluster.
+
+
+TIP: Pour afficher les données les plus récentes du cluster de stockage, consultez la page Storage clusters (clusters de stockage), où l'interrogation se produit plus fréquemment que sur le tableau de bord.
+
+
+
+== Surveiller les ressources de calcul
+
+Utilisez le volet *calcul* pour consulter l'ensemble de votre environnement de calcul NetApp H-Series. Vous pouvez surveiller le nombre de clusters de calcul et de nœuds de calcul totaux.
+
+Pour afficher les détails, dans les volets calcul, sélectionnez *Afficher les détails*.
+
+
+NOTE: Vos instances vCenter ne s'affichent que dans le volet calcul lorsqu'au moins un nœud de calcul NetApp HCI est associé à cette instance. Pour lister les instances vCenter liées dans NetApp Hybrid Cloud Control, vous pouvez utiliser le link:task_mnode_edit_vcenter_assets.html["Via les API"].
+
+
+NOTE: Pour gérer un nœud de calcul dans le contrôle de cloud hybride NetApp, vous devez https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/How_to_set_up_compute_node_management_in_NetApp_Hybrid_Cloud_Control["Ajoutez le nœud de calcul à un cluster hôte vCenter"^].
+
+
+
+== Surveiller la capacité de stockage
+
+La surveillance de la capacité de stockage de votre environnement est primordiale. Le volet capacité de stockage vous permet de déterminer les gains en termes d'efficacité de votre capacité de stockage avec ou sans les fonctions de compression, de déduplication et de provisionnement fin activées.
+
+Vous pouvez voir l'espace de stockage physique total disponible dans votre cluster dans l'onglet *RAW* et des informations sur le stockage provisionné dans l'onglet *EFFECTIF*.
+
+image::hcc_dashboard_storage_capacity_effective.png[Tableau de bord HCC > volet capacité de stockage]
+
+
+TIP: Pour afficher l'état du cluster, consultez également le tableau de bord de SolidFire Active IQ. Voir link:task_hcc_activeiq.html["Surveillez les performances, la capacité et l'état du cluster dans NetApp SolidFire Active IQ"].
+
+.Étapes
+. Sélectionnez l'onglet *RAW* pour afficher l'espace de stockage physique total utilisé et disponible dans votre cluster.
++
+Examinez les lignes verticales pour déterminer si votre capacité utilisée est inférieure ou inférieure au total des seuils Avertissement, erreur ou critique. Passez le curseur sur les lignes pour voir les détails.
+
++
+
+NOTE: Vous pouvez définir le seuil d'avertissement, qui est par défaut inférieur de 3 % au seuil d'erreur. Les seuils erreur et critique sont prédéfinis et ne peuvent pas être configurés par conception. Le seuil d'erreur indique que moins d'un nœud de capacité reste dans le cluster. Pour connaître les étapes de réglage du seuil, reportez-vous à la section https://docs.netapp.com/us-en/element-software/storage/task_system_manage_cluster_set_the_cluster_full_threshold.html["Configuration du seuil maximum du cluster"^].
+
++
+
+TIP: Pour plus d'informations sur l'API d'élément des seuils de cluster associés, reportez-vous à la section https://docs.netapp.com/us-en/element-software/api/reference_element_api_getclusterfullthreshold.html["« GetClusterFullThreshold »"^] Dans la documentation de l'API du logiciel _element_. Pour afficher des détails sur la capacité du bloc et des métadonnées, voir https://docs.netapp.com/us-en/element-software/storage/concept_monitor_understand_cluster_fullness_levels.html["Présentation des niveaux de remplissage du cluster"^] Dans la documentation du logiciel _Element_.
+
+. Sélectionnez l'onglet *EFFECTIF* pour afficher des informations sur le stockage total provisionné sur les hôtes connectés et pour afficher les indices d'efficacité.
++
+.. Éventuellement, cochez *inclure le provisionnement fin* pour voir les taux d'efficacité du provisionnement fin dans le tableau à barres capacité effective.
+.. *Tableau à barres capacité effective* : regardez les lignes verticales pour déterminer si votre capacité utilisée est inférieure ou inférieure aux seuils d'avertissement, d'erreur ou critiques. À l'instar de l'onglet Raw, vous pouvez passer le curseur sur les lignes verticales pour afficher les détails.
+.. *Efficacité* : consultez ces évaluations pour déterminer les gains en termes d'efficacité de votre capacité de stockage avec les fonctionnalités de compression, de déduplication et de provisionnement fin activées. Par exemple, si la compression affiche le ratio “1,3”, cela signifie que l'efficacité du stockage avec la compression activée est 1.3 fois plus efficace que si elle n'est pas activée.
++
+
+NOTE: L'efficacité totale est égale (facteur d'efficacité maxUseeSpace *) / 2, où efficaceFactor = (thinprovisionning provisionningFactor * deduplicationFactor * compressionFactor). Lorsque le provisionnement fin n'est pas coché, il n'est pas inclus dans l'efficacité totale.
+
+.. Si la capacité de stockage effective arrive à un seuil d'erreur ou critique, envisagez de supprimer les données de votre système. Vous pouvez également envisager d'étendre votre système.
++
+Voir link:concept_hcc_expandoverview.html["Présentation de l'extension"].
+
+
+
+. Pour plus d'informations sur l'analyse et le contexte historique, consultez https://activeiq.solidfire.com/["Détails sur la baie NetApp SolidFire Active IQ"^].
+
+
+
+
+== Contrôle des performances du stockage
+
+Vous pouvez examiner le niveau d'IOPS ou de débit que vous pouvez obtenir d'un cluster sans dépasser les performances utiles de cette ressource à l'aide du volet Performance du stockage. La performance du stockage correspond au point d'utilisation maximale avant que la latence ne devienne un problème.
+
+Le volet performances du stockage vous permet d'identifier si les performances atteignent le point où elles peuvent se dégrader si les charges de travail augmentent.
+
+Les informations de ce volet sont rémises à jour toutes les 10 secondes et affichent une moyenne de tous les points du graphique.
+
+Pour plus d'informations sur la méthode de l'API d'élément associé, reportez-vous au https://docs.netapp.com/us-en/element-software/api/reference_element_api_getclusterstats.html["GetClusterStats"^] Méthode dans la documentation de l'API du logiciel _element_.
+
+.Étapes
+. Affichez le volet performances du stockage. Pour plus de détails, passez le curseur sur les points du graphique.
++
+.. *Onglet IOPS* : voir les opérations en cours par seconde. Recherchez les tendances en matière de données ou de pics d'activité. Par exemple, si vous constatez que les IOPS maximales sont de 160 000 et 100 000 IOPS disponibles ou libres, vous pouvez envisager d'ajouter d'autres charges de travail à ce cluster. En revanche, si vous constatez que seule 140 000 sont disponibles, vous pouvez prendre en compte le déchargement des charges de travail ou l'extension de votre système.
++
+image::hcc_dashboard_storage_perform_iops.png[Onglet performances du stockage > IOPS]
+
+.. *Onglet débit* : surveillance des modèles ou des pics de débit. Surveillez également les valeurs de débit élevé et continu, ce qui peut indiquer que vous approchez du maximum de performances utiles de la ressource.
++
+image::hcc_dashboard_storage_perform_throughput.png[Onglet performances du stockage > débit]
+
+.. *Onglet utilisation* : surveiller l'utilisation des IOPS par rapport au nombre total d'IOPS disponibles additionné au niveau du cluster.
++
+image::hcc_dashboard_storage_perform_utlization.png[Onglet performances du stockage > utilisation]
+
+
+
+. Pour une analyse plus approfondie, vérifiez les performances du stockage à l'aide du plug-in NetApp Element pour vCenter Server.
++
+https://docs.netapp.com/us-en/vcp/vcp_task_reports_volume_performance.html["Performances indiquées dans le plug-in NetApp Element pour vCenter Server"^].
+
+
+
+
+
+== Surveillance de l'utilisation du calcul
+
+Outre la surveillance des IOPS et du débit de vos ressources de stockage, vous pouvez également afficher l'utilisation du processeur et de la mémoire de vos ressources de calcul. Le nombre total d'IOPS qu'un nœud peut fournir est basé sur les caractéristiques physiques du nœud, par exemple le nombre de processeurs, la vitesse du processeur et la quantité de RAM.
+
+.Étapes
+. Affichez le volet *Compute Utilization*. Utilisez les onglets CPU et mémoire pour rechercher des modèles ou des pics d'utilisation. Recherchez également une utilisation élevée en continu, ce qui indique que vous approchez d'un taux d'utilisation maximal des clusters de calcul.
++
+
+NOTE: Ce volet affiche les données uniquement pour les clusters de calcul gérés par cette installation.
+
++
+image::hcc_dashboard_compute_util_cpu.png[Volets Compute Utilization]
+
++
+.. *Onglet CPU* : consultez la moyenne actuelle de l'utilisation du CPU sur le cluster de calcul.
+.. *Onglet mémoire* : consultez l'utilisation moyenne actuelle de la mémoire sur le cluster de calcul.
+
+
+. Pour plus d'analyses sur les informations de calcul, voir https://activeiq.solidfire.com["NetApp SolidFire Active IQ pour les données historiques"^].
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/solidfire-active-iq/index.html["Documentation NetApp SolidFire Active IQ"^]
+

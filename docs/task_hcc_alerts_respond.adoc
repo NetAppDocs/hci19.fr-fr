@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/hcc_dashboard.html 
+summary: Vous pouvez répondre aux alertes dans le tableau de bord de contrôle du cloud hybride. 
+keywords: netapp, hci, hcc, on premise, alerts, warnings 
+---
+= Répondez aux alertes sur le tableau de bord de contrôle du cloud hybride
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez visualiser les alertes et y répondre rapidement via le tableau de bord de contrôle du cloud hybride.
+
+
+
+== Étapes
+
+. Accédez au https://fabric.netapp.io["NetApp Fabric Orchestrator"^] Page de connexion.
+. Entrez vos identifiants de connexion Cloud Central et cliquez sur *Login*.
++
+
+TIP: Si vous ne voyez aucun système dans cette liste, vérifiez que l'administrateur NetApp HCI est ajouté à votre compte NetApp Cloud Central.
+
+. Si vous ne possédez pas de compte Cloud Central, cliquez sur *Sign Up* sur la page de connexion Cloud Central.
++
+Avec Cloud Central, vous pouvez configurer des comptes en tant que comptes individuels ou en tant que comptes fédérés :
+
++
+.. Vous pouvez créer un nouveau compte avec nom, e-mail et mot de passe, puis vous serez connecté. C'est le type de compte le plus simple.
+.. Si vous faites partie d'une organisation fédérée de Cloud Central, vous entrez votre e-mail et êtes ensuite dirigé vers l'ouverture de session de l'entreprise.
+
+
+. Depuis les autres produits Cloud Central, sélectionnez *produits* > *NetApp Fabric Orchestrator*.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://cloud.netapp.com/home["NetApp Cloud Central"^]
+* https://docs.netapp.com/us-en/cloud/["Documentation cloud NetApp"^]
+

@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_ip_address.html 
+summary: 'En savoir plus sur les conditions requises pour l"adresse IP NetApp HCI.' 
+keywords: netapp, hci, IP address, requirements 
+---
+= Exigences relatives à l'adresse IP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, IP address, requirements
+
+
+[role="lead"]
+Les exigences d'adresse IP spécifiques de NetApp HCI dépendent de la taille de votre déploiement. Notez que par défaut, les adresses IP initiales que vous attribuez à chaque nœud avant d'utiliser le moteur de déploiement NetApp pour déployer le système sont temporaires et ne peuvent pas être réutilisées. Vous devez mettre de côté un second ensemble permanent d'adresses IP inutilisées que vous pouvez attribuer lors du déploiement final.
+
+
+
+== Nombre d'adresses IP requises par déploiement NetApp HCI
+
+Le réseau de stockage et le réseau de gestion NetApp HCI doivent chacun utiliser des plages contiguës d'adresses IP distinctes. Utilisez le tableau suivant pour déterminer le nombre d'adresses IP nécessaires à votre déploiement :
+
+|===
+| Composant du système | Adresses IP du réseau de gestion requises | Adresses IP du réseau de stockage requises | Adresses IP du réseau VMotion requises | Nombre total d'adresses IP requises par composant 
+
+
+| Nœud de calcul | 1 | 2 | 1 | 4 
+
+
+| Nœud de stockage | 1 | 1 |  | 2 
+
+
+| Cluster de stockage | 1 | 1 |  | 2 
+
+
+| VMware vCenter | 1 |  |  | 1 
+
+
+| Nœud de gestion | 1 | 1 |  | 2 
+
+
+| Nœud témoin | 1 | 1 |  | 2 par nœud témoin (deux nœuds témoin sont déployés pour chaque cluster de stockage à deux ou trois nœuds) 
+|===
+
+
+== Adresses IP réservées par NetApp HCI
+
+NetApp HCI se réserve les plages d'adresses IP suivantes pour les composants système. Lors de la planification de votre réseau, évitez d'utiliser ces adresses IP :
+
+|===
+| Plage d'adresses IP | Description 
+
+
+| 10.0.0.0/24 | Réseau de superposition Docker 
+
+
+| 10.0.1.0/24 | Réseau de superposition Docker 
+
+
+| 10.255.0.0/16 | Réseau d'entrée Docker essaim 
+
+
+| 169.254.100.1/22 | Réseau Bridge Docker 
+
+
+| 169.254.104.0/22 | Réseau Bridge Docker 
+|===
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

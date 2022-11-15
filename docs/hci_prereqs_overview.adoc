@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_overview.html 
+summary: Découvrez les exigences de déploiement de NetApp HCI. 
+keywords: netapp, hci, deployment, requirements 
+---
+= Configuration requise pour le déploiement de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, environment, requirements
+
+
+[role="lead"]
+NetApp HCI répond à des exigences physiques et réseau spécifiques pour garantir le bon fonctionnement de votre data Center. Avant de commencer le déploiement, veillez à mettre en œuvre les exigences et recommandations suivantes.
+
+Avant de recevoir le matériel NetApp HCI, vérifiez que vous complétez la liste de contrôle fournie dans le manuel de pré-déploiement des Services professionnels NetApp. Ce document contient une liste complète des tâches à effectuer pour préparer votre réseau et votre environnement à un déploiement NetApp HCI réussi.
+
+Voici les liens vers les exigences et les tâches de prédéploiement :
+
+* link:hci_prereqs_required_network_ports.html["Configuration requise pour les ports réseau"]
+* link:hci_prereqs_network_switch.html["Configuration requise pour le réseau et les commutateurs"]
+* link:hci_prereqs_network_cables.html["Exigences en matière de câblage réseau"]
+* link:hci_prereqs_ip_address.html["Exigences relatives à l'adresse IP"]
+* link:hci_prereqs_network_configuration.html["Configuration du réseau"]
+* link:hci_prereqs_timekeeping.html["Exigences relatives au DNS et à la tenue de temps"]
+* link:hci_prereqs_environmental.html["Exigences environnementales"]
+* link:hci_prereqs_protection_domains.html["Domaines de protection"]
+* link:hci_prereqs_witness_nodes.html["Connaître les besoins en ressources des nœuds pour les clusters de stockage à deux nœuds"]
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

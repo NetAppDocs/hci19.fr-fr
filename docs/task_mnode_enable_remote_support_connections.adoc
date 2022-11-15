@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_enable_remote_support_connections.html 
+summary: 'Vous pouvez utiliser le nœud de gestion pour activer l"accès au support NetApp à des fins de dépannage.' 
+keywords: netapp, mnode, management node, connect to support, support tunnel, rst 
+---
+= Démarrer une session de support NetApp à distance
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous avez besoin d'un support technique pour votre système NetApp HCI, le support NetApp peut vous connecter à distance à votre système. Pour démarrer une session et obtenir un accès à distance, le support NetApp peut ouvrir une connexion SSH (reverse Secure Shell) à votre environnement.
+
+Vous pouvez ouvrir un port TCP pour une connexion en tunnel SSH inversé avec le support NetApp. Cette connexion permet au support NetApp de se connecter à votre nœud de gestion.
+
+.Avant de commencer
+* Pour les services de gestion version 2.18 ou ultérieure, la fonctionnalité d'accès à distance est désactivée par défaut sur le nœud de gestion. Pour activer la fonctionnalité d'accès à distance, reportez-vous à la section link:task_mnode_ssh_management.html["Gérez la fonctionnalité SSH sur le nœud de gestion"].
+* Si votre nœud de gestion est derrière un serveur proxy, les ports TCP suivants sont requis dans le fichier sshd.config :
++
+[cols="15,25,60"]
+|===
+| Port TCP | Description | Direction de la connexion 
+
+
+| 443 | Appels API/HTTPS pour le transfert du port inversé via le tunnel de support ouvert vers l'interface utilisateur Web | Nœud de gestion vers nœuds de stockage 
+
+
+| 22 | Accès connexion SSH | Nœud de gestion, vers nœuds de stockage ou depuis les nœuds de stockage vers le nœud de gestion 
+|===
+
+
+.Étapes
+* Connectez-vous à votre nœud de gestion et ouvrez une session de terminal.
+* À l'invite, entrez les informations suivantes :
++
+`rst -r  sfsupport.solidfire.com -u element -p <port_number>`
+
+* Pour fermer le tunnel de support à distance, entrez ce qui suit :
++
+`rst --killall`
+
+* (Facultatif) Désactiver link:task_mnode_ssh_management.html["fonctionnalité d'accès à distance"] encore.
++
+
+NOTE: SSH reste activé si vous ne le désactivez pas. La configuration SSH activée persiste sur le nœud de gestion via des mises à jour et des mises à niveau jusqu'à ce qu'elle soit désactivée manuellement.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

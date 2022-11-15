@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_createcluster.html 
+summary: 'Après le déploiement Rancher, vous pouvez créer des clusters utilisateur Kubernetes à l"aide de l"interface utilisateur Rancher.' 
+keywords: netapp, hci, rancher, kubernetes clusters, create cluster 
+---
+= Création de clusters utilisateur
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après le déploiement Rancher, vous pouvez créer des clusters utilisateur Kubernetes à l'aide de l'interface utilisateur Rancher. Vous pouvez créer des clusters hébergés par différents fournisseurs Kubernetes (par exemple, Google Kubernetes Engine) ou par le programme d'installation de Rancher Kubernetes Engine (RKE), qui est le programme d'installation Kubernetes de Rancher.
+
+
+TIP: Pour plus d'informations sur les exigences de création des clusters, reportez-vous à la section https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Documentation de l'éleveur"^].
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez installé Rancher sur NetApp HCI.
+* Vous disposez des adresses IP statiques nécessaires. Chaque cluster utilisateur nécessite trois adresses IP statiques.
+* Vous vous êtes familiarisé avec les conditions répertoriées dans le https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Documentation de l'éleveur"^].
+
+
+.Étapes
+. Dans le contrôle de cloud hybride NetApp, sélectionnez l'URL fournie à la fin du déploiement Rancher.
+. Dans l'interface utilisateur Rancher, créez le cluster utilisateur.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentation de l'éleveur sur l'architecture"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminologie Kubernetes pour Rancher"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

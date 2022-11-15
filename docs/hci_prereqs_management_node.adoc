@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_management_node.html 
+summary: Découvrez les meilleures pratiques relatives au nœud de gestion NetApp HCI. 
+keywords: netapp, hci, management node, mnode, best practice 
+---
+= Configuration requise pour les nœuds de gestion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, management node, mnode, best practice
+
+
+[role="lead"]
+Il est recommandé d'associer un seul nœud de gestion à une instance VMware vCenter et d'éviter de définir les mêmes ressources de stockage et de calcul ou instances vCenter dans plusieurs nœuds de gestion. La définition des mêmes ressources dans plusieurs nœuds de gestion peut entraîner des problèmes, tels que la création de rapports sur les ressources incorrects dans NetApp ActiveIQ.

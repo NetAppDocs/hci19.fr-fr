@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_removewn.html 
+summary: Lorsque vous développez un cluster de stockage à deux nœuds sur quatre nœuds ou plus, vous pouvez supprimer la paire de nœuds Witness pour libérer des ressources de calcul dans votre installation NetApp HCI. 
+keywords: netapp, hci, witness nodes, two-node cluster, four-node cluster, compute nodes, virtual machine, vm 
+---
+= Supprimez les nœuds témoins après l'extension du cluster
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous développez un cluster de stockage à deux nœuds sur quatre nœuds ou plus, vous pouvez supprimer la paire de nœuds Witness pour libérer des ressources de calcul dans votre installation NetApp HCI. Les nœuds témoins précédemment utilisés par le cluster de stockage sont toujours visibles en tant que serveurs virtuels de secours dans le client Web vSphere.
+
+Les nœuds témoins ne sont pas requis dans les clusters dotés de plus de quatre nœuds de stockage. Cette procédure est facultative si vous souhaitez libérer le CPU et la mémoire après avoir déployé votre cluster à deux nœuds sur au moins quatre nœuds.
+
+
+TIP: Vérifier qu'aucune défaillance ou erreur du bloc d'instruments n'est signalée. Pour plus d'informations sur les alertes système, cliquez sur *Rapport > alertes* dans le point d'extension NetApp Element Management de vSphere.
+
+.Étapes
+. Depuis vSphere, accédez au point d'extension NetApp Element Management à partir de l'onglet *raccourcis* ou du panneau latéral.
+. Sélectionnez *NetApp Element Management > Cluster > nœuds*.
++
+image::vcp-witnessnode.gif[Affiche la page NetApp Element Management > clusters avec les nœuds répertoriés.]
+
+. Cochez la case correspondant au noeud témoin que vous souhaitez supprimer, puis cliquez sur *actions > Supprimer*.
+. Confirmez l'action dans l'invite.
+. Cliquez sur *hôtes et clusters*.
+. Accédez à la machine virtuelle Witness Node que vous avez supprimée précédemment.
+. Cliquez avec le bouton droit de la souris sur la machine virtuelle et mettez-la hors tension.
+. Cliquez avec le bouton droit de la souris sur la machine virtuelle que vous avez mise hors tension, puis cliquez sur *Supprimer du disque*.
+. Confirmez l'action dans l'invite.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Cluster de stockage à deux nœuds NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

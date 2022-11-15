@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_configuration.html 
+summary: Découvrez les options de configuration réseau pour NetApp HCI. 
+keywords: netapp, hci, cabling, network configuration 
+---
+= Configuration du réseau
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, cabling, network configuration
+
+
+[role="lead"]
+Le NetApp HCI peut utiliser plusieurs câbles réseau et configurations VLAN différentes. Il est important de planifier la configuration de votre réseau pour garantir un déploiement réussi.
+
+
+
+== Segments de réseau requis
+
+NetApp HCI nécessite au moins trois segments de réseau : la gestion, le stockage et le trafic de virtualisation (qui inclut des machines virtuelles et le trafic VMware vMotion). Vous pouvez également séparer le trafic des machines virtuelles et vMotion. Ces segments de réseau existent généralement en tant que VLAN séparés logiquement dans l'infrastructure réseau NetApp HCI.
+
+La façon dont les nœuds de calcul et de stockage se connectent à ces réseaux dépend du mode de conception du réseau et des câbles des nœuds. Les exemples d'illustrations réseau de ce guide supposent les réseaux suivants :
+
+|===
+| Nom du réseau | ID VLAN 
+
+
+| Gestion | 100 
+
+
+| Stockage | 105 
+
+
+| VMotion | 107 
+
+
+| Ordinateurs virtuels | 200 février 201 
+|===
+Pour la détection et la configuration automatiques de vos nœuds NetApp HCI dans le moteur de déploiement NetApp, vous devez disposer d'un segment réseau disponible en tant que VLAN non balisé ou natif sur tous les ports de switch utilisés pour les interfaces SFP+/SFP28 sur les nœuds. Cela fournira la communication de couche 2 entre tous les nœuds pour la découverte et le déploiement. Sans VLAN natif, vous devez configurer manuellement les interfaces SFP+/SFP28 de tous les nœuds avec un VLAN et une adresse IPv4 pour être découvrables. Dans les exemples de configuration réseau de ce document, le réseau de gestion (ID VLAN 100) est utilisé à cette fin.
+
+Le moteur de déploiement NetApp vous permet de configurer rapidement les réseaux des nœuds de calcul et de stockage lors du déploiement initial. Vous pouvez placer certains composants de gestion intégrés tels que vCenter et le nœud de gestion sur leur propre segment de réseau. Ces segments de réseau doivent être acheminés pour permettre à vCenter et au nœud de gestion de communiquer avec les réseaux de gestion du stockage et du calcul. Dans la plupart des déploiements, ces composants utilisent le même réseau de gestion (VLAN ID 100 dans cet exemple).
+
+
+NOTE: Vous pouvez configurer les réseaux de machines virtuelles à l'aide de vCenter. Le réseau de machines virtuelles par défaut (groupe de ports « VM_Network ») dans les déploiements NetApp HCI est configuré sans ID de VLAN. Si vous prévoyez d'utiliser plusieurs réseaux de machines virtuelles balisées (ID VLAN 200 et 201 dans l'exemple précédent), veillez à les inclure dans la planification réseau initiale.
+
+
+
+== Options de configuration réseau et de câblage
+
+Vous pouvez utiliser une configuration réseau à deux câbles pour les nœuds de calcul H410C, simplifiant ainsi le routage des câbles. Cette configuration utilise deux interfaces SFP+/SFP28 et une interface RJ45 facultative (mais recommandée) pour la communication IPMI. Ces nœuds peuvent également utiliser une configuration à six câbles avec deux ports RJ45 et quatre interfaces SFP28/SFP+.
+
+Les nœuds de stockage H410S et H610S prennent en charge une topologie réseau utilisant quatre ports réseau (ports A à D).
+
+Les nœuds de calcul prennent en charge trois topologies réseau, selon la plateforme matérielle :
+
+|===
+| Option de configuration | Câblage pour les nœuds H410C | Câblage des nœuds H610C | Câblage des nœuds H615C 
+
+
+| Option A | Deux câbles utilisant les ports D et E | Deux câbles utilisant les orifices C et D | Deux câbles utilisant les ports A et B 
+
+
+| Option B | Six câbles utilisant les ports A à F | Non disponible | Non disponible 
+
+
+| Option C 3+| Similaire à l'option B, mais avec des VLAN natifs (ou « ports d'accès ») sur le switch pour les réseaux de gestion, de stockage et vMotion 
+|===
+Les nœuds qui ne disposent pas du nombre correct de câbles connectés ne peuvent pas participer au déploiement. Par exemple, vous ne pouvez pas déployer un nœud de calcul dans une configuration à six câbles si seuls les ports D et E sont connectés.
+
+
+NOTE: Vous pouvez ajuster la configuration réseau NetApp HCI après le déploiement pour répondre aux besoins de l'infrastructure. Cependant, lorsque vous développez les ressources NetApp HCI, n'oubliez pas que les nouveaux nœuds doivent disposer de la même configuration de câbles que les nœuds de calcul et de stockage existants.
+
+[NOTE]
+====
+Si le moteur de déploiement NetApp tombe en panne parce que votre réseau ne prend pas en charge les trames Jumbo, vous pouvez effectuer l'une des solutions de contournement suivantes :
+
+* Utilisez une adresse IP statique et définissez manuellement une unité de transmission maximale (MTU) de 9000 octets sur le réseau Bond10G.
+* Configurez le protocole Dynamic Host Configuration Protocol pour annoncer une interface MTU de 9 9000 octets sur le réseau Bond10G.
+
+
+====
+.Options de configuration du réseau
+* link:hci_prereqs_network_configuration_option_A.html["Option de configuration réseau A"]
+* link:hci_prereqs_network_configuration_option_B.html["Option de configuration réseau B"]
+* link:hci_prereqs_network_configuration_option_C.html["Option de configuration réseau C"]
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

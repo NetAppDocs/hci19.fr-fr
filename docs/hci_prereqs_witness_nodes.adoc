@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_witness_nodes.html 
+summary: En savoir plus sur les exigences de NetApp HCI Witness Node. 
+keywords: netapp, hci, element, Witness Node 
+---
+= Connaître les besoins en ressources des nœuds pour les clusters de stockage à deux nœuds
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, element, Witness Node
+
+
+[role="lead"]
+NetApp HCI prend en charge une taille d'installation minimale de deux nœuds de stockage et deux nœuds de calcul. Lorsque vous installez NetApp HCI avec un cluster de stockage à deux ou trois nœuds, vous devez connaître les besoins en ressources des nœuds NetApp HCI Witness et de leurs machines virtuelles.
+
+Lorsqu'un cluster de stockage utilise deux ou trois nœuds, il déploie également une paire de nœuds Witness avec chaque cluster de stockage. Les nœuds témoins présentent les exigences de ressources VM suivantes :
+
+|===
+| Ressource | Conditions requises 
+
+
+| VCPU | 4 
+
+
+| Mémoire | 12 GO 
+
+
+| Taille du disque | 67 GO/S 
+|===
+NetApp HCI ne prend en charge que certains modèles de nœuds de stockage dans des clusters de stockage à deux ou trois nœuds. Pour plus d'informations, consultez les notes de version de votre version NetApp HCI.
+
+|===
+
+
+ a| 
+*Meilleure pratique :* configurer les machines virtuelles du nœud témoin pour utiliser le datastore local du nœud de calcul (défini par défaut par NDE), ne les configurer pas sur du stockage partagé, comme les volumes de stockage SolidFire. Pour empêcher la migration automatique des machines virtuelles, définissez le niveau d'automatisation DRS (Distributed Resource Scheduler) de la machine virtuelle Witness Node sur *Disabled*. Cela empêche les deux nœuds témoin de s'exécuter sur le même nœud de calcul et de créer une configuration de paire haute disponibilité.
+
+|===
+
+NOTE: Lorsque le processus d'installation de NetApp HCI installe Witness Nodes, un modèle de machine virtuelle est stocké dans VMware vCenter que vous pouvez utiliser pour redéployer un nœud témoin s'il est accidentellement retiré, perdu ou corrompu. Vous pouvez également utiliser le modèle pour redéployer un nœud témoin si vous devez remplacer un nœud de calcul défaillant qui héberge le nœud Witness. Pour obtenir des instructions, consultez la section *Redeploy Witness Nodes clusters de stockage à deux et trois nœuds* link:task_hci_h410crepl.html["ici"^].
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

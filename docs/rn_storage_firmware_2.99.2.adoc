@@ -1,0 +1,161 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_storage_firmware_2.99.2.html 
+summary: Obtenez des liens vers les notes de version pour les packages de firmware que vous pouvez télécharger et appliquer aux nœuds NetApp HCI. 
+keywords: netapp, hci, storage firmware 
+---
+= Notes de version du pack de firmware de stockage 2.99.2
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+À partir d'Element 12.0 et des services de gestion version 2.14, vous pouvez effectuer des mises à niveau firmware uniquement sur vos nœuds de stockage à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control et de l'API REST. Cette procédure ne met pas à niveau le logiciel Element et vous permet de mettre à niveau le firmware du stockage en dehors de la version d'un élément majeur.
+
+
+
+== Nouveautés
+
+La version 2.99.2 du pack du firmware de stockage contient plusieurs correctifs de bogues et de nouvelles fonctionnalités, notamment des correctifs de sécurité. Vous pouvez mettre à niveau le micrologiciel de stockage en suivant les instructions de la section link:task_hcc_upgrade_storage_firmware.html["Mettre à niveau le firmware du stockage"].
+
+
+
+=== Composants de firmware mis à jour
+
+Ce pack contient les versions de firmware suivantes pour les composants matériels, avec des versions mises à jour en gras :
+
+|===
+| Composant | SolidFire SF-Series | H410S | H610S 
+
+
+| BIOS | Non inclus | NA2.1 | 3B06 
+
+
+| BMC | Non inclus | 6.84.00 | *3.91.07* 
+
+
+| NIC/Mellanox | Non inclus | 14.25.1020 | 14.25.1020 
+
+
+| RMS200 | ae3b8cc | ae3b8cc | - 
+
+
+| RMS300 | 7d8422bc | 7d8422bc | - 
+
+
+| NVDIMM, Smart | - | - | 3.1 
+
+
+| BPM, intelligent | - | - | 2.16 
+
+
+| NVDIMM, Micron Gen1 | - | - | 26.2c 
+
+
+| NVDIMM, Micron Gen2 | - | - | 25.3c 
+
+
+| PGEM, Micron | - | - | 1.40 
+
+
+| PM863, SED | GXT5404Q | GXT5404Q | - 
+
+
+| PM863, NSED | GXT5103Q | GXT5103Q | - 
+
+
+| PM883, SED | HXT7904Q | HXT7904Q | - 
+
+
+| Hawk-4, SED | 8ENP7101 | 8ENP7101 | - 
+
+
+| Hawk-4, non-SED | 8ENP6101 | 8ENP6101 | - 
+
+
+| PM963, SED | - | - | CXV8202Q 
+
+
+| PM963, NSED | - | - | CXV8501Q 
+
+
+| PM983, SED | - | - | EDA5402Q 
+
+
+| PM983, NSED | - | - | EDA5700Q 
+
+
+| CD5, SED | - | - | 0109 
+
+
+| CD5, NON-SED | - | - | 0109 
+
+
+| CD5, FIPS | - | - | 0108 
+|===
+
+
+== Modifications des composants du micrologiciel de stockage
+
+|===
+
+
+| Composant | Amélioration/changement 
+
+
+| BMC H610S 3.91.07  a| 
+* Améliorez l'utilisation de l'usure de la mémoire Flash de BMC
+
+
+|===
+
+
+== Problèmes résolus et connus
+
+Voir la https://mysupport.netapp.com/site/bugs-online/product["Outil en ligne sur les bogues"^] pour obtenir des détails sur les problèmes qui ont été résolus et pour tout nouveau problème.
+
+
+
+=== Accéder à l'outil en ligne bogues
+
+. Accédez au  https://mysupport.netapp.com/site/bugs-online/product["Outil en ligne sur les bogues"^] Et sélectionnez *Element Software* dans la liste déroulante :
++
+image::bol_dashboard.png[Notes de version du pack du firmware de stockage]
+
+. Dans le champ de recherche par mot-clé, tapez "Storage Firmware Bundle" et cliquez sur *New Search*:
++
+image::storage_firmware_bundle_choice.png[Notes de version du pack du firmware de stockage]
+
+. La liste des bugs résolus ou ouverts s'affiche. Vous pouvez affiner davantage les résultats comme indiqué :
++
+image::bol_list_bugs_found.png[Notes de version du pack du firmware de stockage]
+
+
+
+
+
+== Failles de sécurité résolues
+
+Les failles de sécurité qui ont été résolues dans cette version sont les suivantes :
+
+
+
+=== BMC H610S 3.91.07
+
+* CVE-2019-20636
+* CVE-2019-11599, CVE-2020-12826, CVE-2020-12464, CVE-2020-12114
+* CVE-2016-3706, CVE-2011-5320, CVE-2015-8984, CVE-2015-8983, CVE-2015-8982, CVE-2006-7254, CVE-2005-3590
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/hci/index.jsp["Centre de documentation NetApp HCI"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/SF_Series/How_to_update_iDRAC%2F%2FBIOS_firmware_on_SF_Series_nodes["KB : mise à jour du micrologiciel iDRAC/BIOS sur les nœuds SF Series"^]
+

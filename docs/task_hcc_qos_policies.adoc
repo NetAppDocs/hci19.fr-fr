@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_qos_policies.html 
+summary: 'Vous pouvez configurer et modifier des règles de qualité de service pour s"appliquer aux volumes du cluster de stockage.' 
+keywords: netapp, qos policy, quality of service, qos policies, volumes, element 
+---
+= Création et gestion de règles de QoS pour les volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une règle de QoS (QoS) vous permet de créer et de sauvegarder un paramètre de qualité de service standardisé qui peut être appliqué à de nombreux volumes. Le cluster sélectionné doit être Element 10.0 ou version ultérieure pour utiliser les règles de QoS ; sinon, les fonctions de politique de QoS ne sont pas disponibles.
+
+
+NOTE: Consultez le contenu des concepts NetApp HCI pour plus d'informations sur l'utilisation link:concept_hci_performance.html#qos-policies["Des règles de QoS"] au lieu d'un volume individuel link:concept_hci_performance.html["La QoS"].
+
+NetApp Hybrid Cloud Control vous permet de créer et de gérer des règles de qualité de service en exécutant les tâches suivantes :
+
+*  a QoS policy
+*  a QoS policy to a volume
+*  the QoS policy assignment of a volume
+*  a QoS policy
+*  a QoS policy
+
+
+
+
+== Création d'une règle de QoS
+
+Vous pouvez créer des règles de QoS et les appliquer aux volumes qui doivent avoir des performances équivalentes.
+
+
+NOTE: Si vous utilisez des règles de QoS, n'utilisez pas la QoS personnalisée sur un volume. La QoS personnalisée remplace et ajuste les valeurs des règles de QoS pour les paramètres de QoS du volume.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le menu du cluster de stockage.
+. Sélectionnez *stockage > volumes*.
+. Cliquez sur l'onglet *QoS Policies*.
+. Cliquez sur *Créer une stratégie*.
+. Entrez *Nom de la stratégie*.
++
+
+TIP: Utilisez les bonnes pratiques descriptives en matière de dénomination. Ceci est particulièrement important si plusieurs clusters ou serveurs vCenter sont utilisés dans votre environnement.
+
+. Saisissez les valeurs d'IOPS minimales, d'IOPS maximales et en rafale.
+. Cliquez sur *Créer une stratégie QoS*.
++
+Un ID système est généré pour la règle et cette règle s'affiche sur la page QoS Policies avec les valeurs QoS attribuées.
+
+
+
+
+
+== Appliquer une policy QoS à un volume
+
+Vous pouvez affecter une politique de QoS existante à un volume à l'aide de NetApp Hybrid Cloud Control.
+
+La stratégie QoS que vous souhaitez attribuer a été  a QoS policy,créé.
+
+Cette tâche explique comment affecter une policy de QoS à un volume individuel en modifiant ses paramètres. La dernière version de NetApp Hybrid Cloud Control ne propose pas d'option d'affectation en bloc pour plusieurs volumes. Jusqu'à ce que la fonctionnalité d'attribution en bloc soit disponible dans une prochaine version, vous pouvez utiliser l'interface utilisateur web d'Element ou l'interface du plug-in vCenter pour attribuer des règles de QoS en bloc.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le menu du cluster de stockage.
+. Sélectionnez *stockage > volumes*.
+. Cliquez sur le menu *actions* en regard du volume que vous souhaitez modifier.
+. Dans le menu qui s'affiche, sélectionnez *Modifier*.
+. Dans la boîte de dialogue, activez *Assign QoS Policy* et sélectionnez la stratégie QoS dans la liste déroulante à appliquer au volume sélectionné.
++
+
+NOTE: L'affectation de la QoS remplacera toutes les valeurs QoS individuelles des volumes qui ont été appliquées précédemment.
+
+. Cliquez sur *Enregistrer*.
++
+Le volume mis à jour avec la règle QoS attribuée s'affiche sur la page Overview.
+
+
+
+
+
+== Modifier l'affectation de la politique de QoS d'un volume
+
+Vous pouvez supprimer l'affectation d'une policy de QoS d'un volume ou sélectionner une autre politique de QoS ou une QoS personnalisée.
+
+Le volume que vous voulez modifier est  a QoS policy to a volume,affecté Une règle de QoS.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le menu du cluster de stockage.
+. Sélectionnez *stockage > volumes*.
+. Cliquez sur le menu *actions* en regard du volume que vous souhaitez modifier.
+. Dans le menu qui s'affiche, sélectionnez *Modifier*.
+. Dans la boîte de dialogue, effectuez l'une des opérations suivantes :
++
+** Désactivez *Assign QoS Policy* et modifiez les valeurs *min IOPS*, *Max IOPS* et *Burst IOPS* pour chaque QoS de volume.
++
+
+NOTE: Lorsque les politiques de QoS sont désactivées, le volume utilise des valeurs d'IOPS par défaut de QoS, sauf en cas de modification contraire.
+
+** Sélectionnez une autre politique de QoS dans la liste déroulante à appliquer au volume sélectionné.
+
+
+. Cliquez sur *Enregistrer*.
++
+Le volume mis à jour apparaît sur la page vue d'ensemble.
+
+
+
+
+
+== Modifiez une règle QoS
+
+Vous pouvez modifier le nom d'une stratégie de QoS existante ou modifier les valeurs associées à cette règle. La modification des valeurs de performances de la politique de QoS affecte la QoS pour tous les volumes associés à la règle.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le menu du cluster de stockage.
+. Sélectionnez *stockage > volumes*.
+. Cliquez sur l'onglet *QoS Policies*.
+. Cliquez sur le menu *actions* en regard de la stratégie de qualité de service que vous souhaitez modifier.
+. Cliquez sur *Modifier*.
+. Dans la boîte de dialogue *Modifier la stratégie QoS*, modifiez une ou plusieurs des options suivantes :
++
+** *Nom* : nom défini par l'utilisateur pour la stratégie QoS.
+** *Min IOPS* : nombre minimum d'IOPS garanties pour le volume. Valeur par défaut = 50.
+** *IOPS max* : nombre maximal d'IOPS autorisé pour le volume. Valeur par défaut = 15,000.
+** *IOPS en rafale* : le nombre maximal d'IOPS autorisé sur une courte période pour le volume. Valeur par défaut = 15,000.
+
+
+. Cliquez sur *Enregistrer*.
++
+La mise à jour de la règle de QoS apparaît sur la page des règles de QoS.
+
++
+
+TIP: Vous pouvez cliquer sur le lien dans la colonne *Active volumes* pour qu'une stratégie affiche une liste filtrée des volumes affectés à cette stratégie.
+
+
+
+
+
+== Suppression d'une règle QoS
+
+Vous pouvez supprimer une règle QoS s'il n'est plus nécessaire. Lorsque vous supprimez une règle de QoS, tous les volumes affectés à la règle gèrent les valeurs de QoS précédemment définies par la règle, mais également la QoS individuelle du volume. Toute association avec la politique de QoS supprimée est supprimée.
+
+.Étapes
+. Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
+. Dans le tableau de bord, développez le menu du cluster de stockage.
+. Sélectionnez *stockage > volumes*.
+. Cliquez sur l'onglet *QoS Policies*.
+. Cliquez sur le menu *actions* en regard de la stratégie de qualité de service que vous souhaitez modifier.
+. Cliquez sur *Supprimer*.
+. Confirmez l'action.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentation SolidFire et Element"^]
+

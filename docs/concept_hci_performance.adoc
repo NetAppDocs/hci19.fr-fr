@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_performance.html 
+summary:  
+keywords: netapp, hci, on premise, concept_hci_performance 
+---
+= La performance et la qualité de service
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, onprem, documentation,
+
+
+[role="lead"]
+Un cluster de stockage SolidFire propose des paramètres de qualité de service (QoS) par volume. Vous pouvez garantir les performances des clusters mesurées en entrées et sorties par seconde (IOPS) à l'aide de trois paramètres configurables pour définir la QoS : IOPS min, IOPS max et IOPS en rafale.
+
+
+NOTE: SolidFire Active IQ dispose d'une page de recommandations de QoS qui fournit des conseils sur la configuration optimale et la configuration des paramètres de QoS.
+
+
+
+== Paramètres de qualité de service
+
+Les paramètres IOPS sont définis de l'une des manières suivantes :
+
+* *IOPS minimum* - le nombre minimal d'entrées et de sorties soutenues par seconde (IOPS) que le cluster de stockage fournit à un volume. La valeur d'IOPS minimale configurée pour un volume correspond au niveau de performance garanti pour un volume. Les performances ne tombent pas en dessous de ce niveau.
+* *Nombre maximal d'IOPS* - nombre maximal d'IOPS en continu que le cluster de stockage fournit à un volume. Lorsque les niveaux d'IOPS du cluster sont extrêmement élevés, ce niveau de performance d'IOPS n'est pas dépassé.
+* *IOPS en rafale* - le nombre maximal d'IOPS autorisé dans un scénario en rafale courte. Si un volume s'exécute en dessous du nombre maximal d'IOPS, les crédits de bursting sont cumulés. Lorsque les niveaux de performance deviennent très élevés et vont jusqu'à des niveaux maximum, de courtes IOPS sont autorisées sur le volume.
++
+Le logiciel Element utilise IOPS en rafale lorsqu'un cluster fonctionne à faible taux d'utilisation des IOPS du cluster.
+
++
+Un seul volume peut augmenter le nombre d'IOPS en rafale et utiliser les crédits pour dépasser ses IOPS max. Jusqu'à son niveau d'IOPS en rafale pour une « période définie ». Un volume peut monter en charge jusqu'à 60 secondes si le cluster est capable de répondre aux besoins en rafale. Un volume atteint une seconde de crédit en rafale (jusqu'à 60 secondes maximum) par seconde que le volume s'exécute en dessous de sa limite IOPS max.
+
++
+Les IOPS en rafale sont limitées de deux manières :
+
++
+** Un volume peut augmenter de plusieurs secondes au-dessus de ses IOPS max., ce qui équivaut au nombre de crédits de bursting que le volume a courus.
+** Lorsqu'un volume dépasse sa valeur d'IOPS max, il est limité par son paramètre d'IOPS en rafale. Par conséquent, les IOPS en rafale ne dépassent jamais le paramètre d'IOPS de rafale pour le volume.
+
+
+* *Bande passante effective max* - la bande passante maximale est calculée en multipliant le nombre d'IOPS (sur la base de la courbe QoS) par la taille d'E/S.
++
+Exemple : les paramètres de QoS de 100 IOPS min, de 1000 IOPS max et de 1500 000 IOPS en rafale ont plusieurs effets sur la qualité de performance :
+
++
+** Les charges de travail peuvent atteindre et maintenir un maximum de 1000 000 IOPS jusqu'à ce que les conflits entre charges de travail pour les IOPS apparaissent sur le cluster. Les IOPS sont ensuite réduites de manière incrémentielle jusqu'à ce que les IOPS sur tous les volumes se situent dans les plages de QoS désignées, et les conflits pour les performances sont éliminés.
+** Les performances de tous les volumes sont poussées vers le IOPS minimum de 100. Les niveaux ne tombent pas en dessous du paramètre min. D'IOPS, mais peuvent rester supérieurs à 100 000 IOPS en cas de conflit de charge de travail.
+** Les performances ne sont jamais supérieures à 1000 100 IOPS, ou inférieures à 80 000 IOPS pendant une période prolongée. Les performances de 1500 000 IOPS (IOPS en rafale) sont autorisées, mais uniquement pour les volumes qui ont accumulé des crédits de bursting, car ils sont inférieurs aux IOPS max. Et ne sont autorisés que sur de courtes périodes. Les niveaux en rafale ne sont jamais durables.
+
+
+
+
+
+
+== Limites de valeur de QoS
+
+Voici les valeurs minimales et maximales possibles pour la QoS.
+
+[cols="7*"]
+|===
+| Paramètres | Valeur min | Valeur par défaut | 4 KO | 5 8 KO | 6 16 KO | 262KO 
+
+
+| IOPS min | 50 | 50 | 15,000 | 9,375* | 5556* | 385* 
+
+
+| IOPS max | 100 | 15,000 | 200,000** | 125,000 | 74,074 | 5128 
+
+
+| IOPS en rafale | 100 | 15,000 | 200,000** | 125,000 | 74.074 | 5128 
+|===
+*Ces estimations sont approximatives. **IOPS max et IOPS en rafale peuvent être définis sur 200,000 ; cependant, ce paramètre est uniquement autorisé à uncaréellement les performances d'un volume. Les performances maximales réelles d'un volume sont limitées par l'utilisation du cluster et les performances par nœud.
+
+
+
+== Performances de QoS
+
+La courbe des performances de QoS indique la relation entre la taille de bloc et le pourcentage d'IOPS.
+
+La taille et la bande passante des blocs ont un impact direct sur le nombre d'IOPS qu'une application peut obtenir. Pour le logiciel Element, il prend en compte la taille des blocs reçus en normalisant ces tailles à la taille des blocs jusqu'à la taille 4 ko. En fonction des charges de travail, le système peut augmenter la taille des blocs. Lorsque la taille de bloc augmente, le système augmente la bande passante jusqu'au niveau nécessaire pour traiter les tailles de bloc de taille supérieure. Plus la bande passante augmente le nombre d'IOPS, plus le système peut atteindre une baisse.
+
+La courbe des performances de QoS indique la relation entre l'augmentation de la taille des blocs et la diminution du pourcentage d'IOPS :
+
+image::hci_performance_curve.png[Courbe des performances de QoS]
+
+Par exemple, si les tailles de bloc sont de 4 ko et que la bande passante est de 4000 kbit/s, le nombre d'IOPS est de 1000. Si les tailles de bloc augmentent à 8 Ko, la bande passante augmente à 5000 kbit/s et les IOPS diminuent à 625. En prenant en compte la taille des blocs, le système s'assure que des charges de travail moins prioritaires qui utilisent des tailles de blocs plus élevées, comme les sauvegardes et les activités de l'hyperviseur, n'utilisent pas trop les performances requises par le trafic prioritaire utilisant des blocs de tailles plus petite.
+
+
+
+== Des règles de QoS
+
+Une règle de QoS vous permet de créer et d'enregistrer des paramètres de qualité de service standardisés qui peuvent être appliqués à de nombreux volumes.
+
+Les règles de qualité de service sont idéales pour les environnements de services, par exemple avec des serveurs de bases de données, d'applications ou d'infrastructure qui ne redémarrent pas et ont besoin d'un accès constant égal au stockage. La qualité de service des volumes individuels est optimale pour les machines virtuelles à utilisation légère, telles que les postes de travail virtuels ou les machines virtuelles de type kiosque spécialisées, qui peuvent être redémarrés, mis sous tension ou arrêtées tous les jours ou plusieurs fois par jour.
+
+Les règles de QoS et de QoS ne doivent pas être combinées. Si vous utilisez des règles de QoS, n'utilisez pas la QoS personnalisée sur un volume. La QoS personnalisée remplace et ajuste les valeurs des règles de QoS pour les paramètres de QoS du volume.
+
+
+NOTE: Le cluster sélectionné doit être Element 10.0 ou version ultérieure pour utiliser les règles de QoS ; sinon, les fonctions de politique de QoS ne sont pas disponibles.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

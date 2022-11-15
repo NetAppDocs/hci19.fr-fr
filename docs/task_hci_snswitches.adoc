@@ -1,0 +1,294 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_snswitches.html 
+summary: Vous pouvez remplacer un commutateur de la gamme SN2000 défectueux sans interruption en suivant les meilleures pratiques et étapes fournies par NetApp. 
+keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S 
+---
+= Remplacer les commutateurs SN2010, SN2100 et SN2700
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez remplacer un commutateur de la gamme SN2000 défectueux sans interruption en suivant les meilleures pratiques et étapes fournies par NetApp.
+
+.Ce dont vous avez besoin, 8217;ll
+* Assurez-vous que Putty est installé sur l'ordinateur portable et que vous capturez la sortie. Voir cette vidéo pour savoir comment configurer Putty pour capturer la session de sortie.
+
+
+video::2LZfWH8HffA[youtube]
+* Assurez-vous d'utiliser NetApp Config Advisor avant et après le remplacement. Cela peut aider à identifier d'autres problèmes avant le début de la maintenance. Téléchargez et installez Config Advisor, et accédez au guide de démarrage rapide à partir de link:https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor/download["ici (connexion requise)"^].
+* Se procurer un câble d'alimentation, les outils manuels de base et les étiquettes.
+* Assurez-vous que vous avez planifié une fenêtre de maintenance de deux à quatre heures.
+* Familiarisez-vous avec les ports de commutateurs ci-dessous :
+
+
+[#img-sn2010]
+.Cache et ports du commutateur SN2010
+image::sn2010.png[SN2010,600,400]
+
+[#img-sn2100]
+.Face avant et ports du commutateur SN2100
+image::sn2100.png[SN2100,600,400]
+
+[#img-sn2010/2100]
+.Interrupteur arrière SN2010 et SN2100
+image::sn2010_rear.png[SN2010 et SN2100 à l'arrière,600,400]
+
+[#img-sn2700]
+.Interrupteur SN2700 avant et arrière
+image::SN2700.png[SN2700 avant et arrière,600,400]
+
+Vous devez effectuer les étapes de cette procédure dans l'ordre ci-dessous. Cela permet de s'assurer que les temps d'arrêt sont minimes et que le commutateur de remplacement est préconfiguré avant le remplacement du commutateur.
+
+
+NOTE: Contactez le support NetApp si vous avez besoin d'aide.
+
+Voici un aperçu des étapes de la procédure : to replace the faulty switch
+ the configuration file
+ the faulty switch and install the replacement
+ the operating system version on the switch
+ the replacement switch
+ the replacement
+
+
+
+== Préparez-vous à remplacer le commutateur défectueux
+
+Effectuez les opérations suivantes avant de remplacer le commutateur défectueux.
+
+.Étapes
+. Vérifier que le commutateur de remplacement est du même modèle que le commutateur défectueux.
+. Etiqueter tous les câbles connectés au commutateur défectueux.
+. Identifiez le serveur de fichiers externe sur lequel les fichiers de configuration du commutateur sont enregistrés.
+. Assurez-vous d'avoir obtenu les informations suivantes :
++
+.. Interface utilisée pour la configuration initiale : port RJ-45 ou interface de terminal série.
+.. Les informations d'identification requises pour l'accès au commutateur : adresse IP du port de gestion du commutateur non défectueux et du commutateur défectueux.
+.. Les mots de passe pour l'accès administrateur.
+
+
+
+
+
+
+== Créez le fichier de configuration
+
+Vous pouvez configurer un commutateur à l'aide des fichiers de configuration que vous créez. Choisissez l'une des options suivantes pour créer le fichier de configuration du commutateur.
+
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Créez le fichier de configuration de sauvegarde à partir du commutateur défectueux  a| 
+. Connectez-vous à votre commutateur à distance à l'aide de SSH comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+ssh admin@<switch_IP_address
+----
+. Passez en mode Configuration comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+switch > enable
+switch # configure terminal
+----
+. Recherchez les fichiers de configuration disponibles comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+switch (config) #
+switch (config) # show configuration files
+----
+. Enregistrez le fichier de configuration DE BAC actif sur un serveur externe :
++
+[listing]
+----
+switch (config) # configuration upload my-filename scp://myusername@my-server/path/to/my/<file>
+----
+
+
+
+
+| Créez le fichier de configuration de sauvegarde en modifiant le fichier à partir d'un autre commutateur  a| 
+. Connectez-vous à votre commutateur à distance à l'aide de SSH comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+ssh admin@<switch_IP_address
+----
+. Passez en mode Configuration comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+switch > enable
+switch # configure terminal
+----
+. Télécharger un fichier de configuration basé sur du texte du commutateur vers un serveur externe, comme illustré dans l'exemple suivant :
++
+[listing]
+----
+switch (config) #
+switch (config) # configuration text file my-filename upload scp://root@my-server/root/tmp/my-filename
+----
+. Modifiez les champs suivants dans le fichier texte pour qu'ils correspondent au commutateur défectueux :
++
+[listing]
+----
+## Network interface configuration
+##
+no interface mgmt0 dhcp
+   interface mgmt0 ip address XX.XXX.XX.XXX /22
+
+##
+## Other IP configuration
+##
+   hostname oldhostname
+----
+
+
+|===
+
+
+== Déposer le commutateur défectueux et le remplacer
+
+Effectuer les étapes nécessaires pour déposer le commutateur défectueux et installer le remplacement.
+
+.Étapes
+. Localiser les câbles d'alimentation sur le commutateur défectueux.
+. Etiqueter et débrancher les câbles d'alimentation après le redémarrage du commutateur.
+. Etiqueter et débrancher tous les câbles du commutateur défectueux et les fixer afin d'éviter tout dommage lors du remplacement du commutateur.
+. Retirez le commutateur du rack.
+. Installez le commutateur de remplacement dans le rack.
+. Branchez les câbles d'alimentation et les câbles du port de gestion.
++
+
+NOTE: L'interrupteur s'allume automatiquement lorsque l'alimentation secteur est appliquée. Il n'y a pas de bouton d'alimentation. La LED d'état du système peut prendre jusqu'à cinq minutes.
+
+. Connectez-vous au commutateur à l'aide du port de gestion RJ-45 ou de l'interface du terminal série.
+
+
+
+
+== Vérifiez la version du système d'exploitation sur le commutateur
+
+Vérifiez la version du logiciel du système d'exploitation sur le commutateur. La version de l'interrupteur défectueux et l'interrupteur en bon état doivent correspondre.
+
+.Étapes
+. Connectez-vous à votre commutateur à distance à l'aide de SSH.
+. Passez en mode Configuration.
+. Exécutez le `show version` commande. Voir l'exemple suivant :
++
+[listing]
+----
+SFPS-HCI-SW02-A (config) #show version
+Product name:      Onyx
+Product release:   3.7.1134
+Build ID:          #1-dev
+Build date:        2019-01-24 13:38:57
+Target arch:       x86_64
+Target hw:         x86_64
+Built by:          jenkins@e4f385ab3f49
+Version summary:   X86_64 3.7.1134 2019-01-24 13:38:57 x86_64
+
+Product model:     x86onie
+Host ID:           506B4B3238F8
+System serial num: MT1812X24570
+System UUID:       27fe4e7a-3277-11e8-8000-506b4b891c00
+
+Uptime:            307d 3h 6m 33.344s
+CPU load averages: 2.40 / 2.27 / 2.21
+Number of CPUs:    4
+System memory:     3525 MB used / 3840 MB free / 7365 MB total
+Swap:              0 MB used / 0 MB free / 0 MB total
+
+----
+. Si les versions ne correspondent pas, mettez à niveau le système d'exploitation. Voir la link:https://community.mellanox.com/s/article/howto-upgrade-switch-os-software-on-mellanox-switch-systems["Guide de mise à niveau logicielle Mellanox"^] pour plus d'informations.
+
+
+
+
+== Configurer le commutateur de remplacement
+
+Effectuez les étapes de configuration du commutateur de remplacement. Voir link:https://docs.mellanox.com/display/MLNXOSv381000/Configuration+Management["Gestion de la configuration Mellanox"^] pour plus d'informations.
+
+.Étapes
+. Choisissez l'une des options qui vous concernent :
+
+
+[cols="2*"]
+|===
+| Option | Étapes 
+
+
+| Dans le fichier de configuration BIN  a| 
+. Extraire le fichier de configuration BIN comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+switch (config) # configuration fetch scp://myusername@my-server/path/to/my/<file>
+----
+. Chargez le fichier de configuration DE BAC que vous avez extrait à l'étape précédente comme indiqué dans l'exemple suivant :
++
+[listing]
+----
+switch (config) # configuration switch-to my-filename
+----
+. Type `yes` pour confirmer le redémarrage.
+
+
+
+
+| À partir du fichier texte  a| 
+. Réinitialiser le commutateur sur les valeurs d'usine par défaut :
++
+[listing]
+----
+switch (config) # reset factory keep-basic
+----
+. Appliquer le fichier de configuration texte :
++
+[listing]
+----
+switch (config) # configuration text file my-filename apply
+----
+. Télécharger un fichier de configuration basé sur du texte du commutateur vers un serveur externe, comme illustré dans l'exemple suivant :
++
+[listing]
+----
+switch (config) #
+switch (config) # configuration text file my-filename upload scp://root@my-server/root/tmp/my-filename
+----
++
+
+NOTE: Un redémarrage n'est pas nécessaire lorsque vous appliquez le fichier texte.
+
+
+
+|===
+
+
+== Terminez le remplacement
+
+Effectuez les étapes nécessaires pour terminer la procédure de remplacement.
+
+.Étapes
+. Insérez les câbles en utilisant les étiquettes pour vous guider.
+. Exécutez NetApp Config Advisor. Accédez au guide de démarrage rapide à partir de link:https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor/download["ici (connexion requise)"^].
+. Vérifiez votre environnement de stockage.
+. Renvoyer le commutateur défectueux à NetApp.
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+

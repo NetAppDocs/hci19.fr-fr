@@ -1,0 +1,39 @@
+---
+permalink: docs/concept_hcc_custom_protection_domains.html 
+sidebar: sidebar 
+keywords: protection domain layout,user-defined,custom layout 
+summary: Vous pouvez définir une disposition de domaine de protection personnalisée, où chaque nœud est associé à un seul et unique domaine de protection personnalisé. Par défaut, chaque nœud est affecté au même domaine de protection personnalisé par défaut. 
+---
+= Domaines de protection personnalisés
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez définir une disposition de domaine de protection personnalisée, où chaque nœud est associé à un seul et unique domaine de protection personnalisé. Par défaut, chaque nœud est affecté au même domaine de protection personnalisé par défaut.
+
+Si aucun domaine de protection personnalisé n'est attribué :
+
+* L'opération de cluster n'est pas affectée.
+* Le niveau personnalisé n'est ni tolérant ni résilient.
+
+
+Si plusieurs domaines de protection personnalisés sont affectés, chaque sous-système attribue des doublons à des domaines de protection personnalisés distincts. Si ce n'est pas possible, il revient à attribuer des doublons à des nœuds distincts. Chaque sous-système (par exemple, bacs, tranches, fournisseurs de points de terminaison de protocole et ensemble) le fait indépendamment.
+
+
+NOTE: L'utilisation de domaines de protection personnalisés suppose qu'aucun nœud ne partage de châssis.
+
+Les méthodes d'API Element suivantes exposent ces nouveaux domaines de protection :
+
+* GetProtectionDomainLayout - affiche le châssis et le domaine de protection personnalisé de chaque nœud.
+* SetProtectionDomainLayout - permet d'affecter un domaine de protection personnalisé à chaque nœud.
+
+
+Contactez la prise en charge de NetApp pour plus d'informations sur l'utilisation de domaines de protection personnalisés.
+
+
+
+== Trouvez plus d'informations
+
+link:api/index.html["Gérez le stockage avec l'API Element"]

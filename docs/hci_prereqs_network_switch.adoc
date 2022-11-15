@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_switch.html 
+summary: 'Découvrez les nouveautés de cette version d"NetApp HCI.' 
+keywords: netapp, hci, network, switch, requirements 
+---
+= Configuration requise pour le réseau et les commutateurs
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, network, switch, requirements
+
+
+[role="lead"]
+Les switchs que vous utilisez pour NetApp HCI nécessitent une configuration spécifique pour assurer la réussite du déploiement. Reportez-vous à la documentation de votre commutateur pour obtenir des instructions spécifiques sur la mise en œuvre de chacune des exigences suivantes pour votre environnement.
+
+Un déploiement NetApp HCI nécessite au moins trois segments de réseau, un pour chaque type de trafic suivant :
+
+* Gestion
+* VMware vMotion
+* Stockage/données
+
+
+Selon les modèles de nœuds de stockage et de calcul NetApp H-Series et la configuration de câblage planifiée, vous pouvez séparer physiquement ces réseaux à l'aide de commutateurs distincts ou les séparer logiquement à l'aide de VLAN. Dans la plupart des déploiements, cependant, il est nécessaire de séparer logiquement ces réseaux (et tous les autres réseaux de machines virtuelles supplémentaires) à l'aide de VLAN.
+
+Les nœuds de calcul et de stockage doivent pouvoir communiquer avant, pendant et après le déploiement. Si vous implémentez des réseaux de gestion distincts pour les nœuds de stockage et de calcul, assurez-vous que ces réseaux de gestion disposent de routes réseau entre ces nœuds. Ces réseaux doivent avoir des passerelles attribuées et il doit y avoir une route entre les passerelles. Assurez-vous que chaque nouveau nœud dispose d'une passerelle attribuée pour faciliter la communication entre les nœuds et les réseaux de gestion.
+
+NetApp HCI présente les caractéristiques suivantes en termes de commutateurs :
+
+* Tous les ports de switch connectés aux nœuds NetApp HCI doivent être configurés comme des ports de périphérie Spanning Tree.
++
+** Sur les commutateurs Cisco, en fonction du modèle du commutateur, de la version logicielle et du type de port, vous pouvez effectuer cette opération à l'aide de l'une des commandes suivantes :
++
+*** `spanning-tree port type edge`
+*** `spanning-tree port type edge trunk`
+*** `spanning-tree portfast`
+*** `spanning-tree portfast trunk`
+
+
+** Sur les switchs Mellanox, vous pouvez le faire avec `spanning-tree port type edge` commande.
+
+
+* Les nœuds NetApp HCI disposent de ports redondants pour toutes les fonctions réseau, à l'exception de la gestion hors bande. Pour une résilience optimale, divisez ces ports sur deux commutateurs avec des liaisons montantes redondantes vers une architecture hiérarchique traditionnelle ou une architecture colonne 2.
+* Les commutateurs qui gèrent le trafic de stockage, de machines virtuelles et de vMotion doivent prendre en charge des débits d'au moins 10 GbE par port (jusqu'à 25 GbE par port).
+* Les commutateurs qui gèrent le trafic de gestion doivent prendre en charge des vitesses d'au moins 1 GbE par port.
+* Vous devez configurer des trames Jumbo sur les ports du commutateur qui gèrent le stockage et le trafic vMotion. Les hôtes doivent pouvoir envoyer des paquets de 9000 octets de bout en bout pour une installation réussie.
+* Vous devez configurer les ports de commutateur de réseau de gestion pour permettre aux ports de carte réseau de gestion sur chaque hôte de connaître la taille de MTU configurée. Par exemple, si les ports réseau de gestion d'hôtes utilisent une taille MTU de 1 1750 octets, les ports de commutation de réseau de gestion doivent être configurés pour permettre au moins un MTU de 1 1750 octets (le réseau de gestion ne nécessite pas une MTU de 1 9000 octets). Les paramètres MTU doivent être cohérents de bout en bout
+* La latence réseau aller-retour entre tous les nœuds de stockage et de calcul ne doit pas dépasser 2 ms.
+
+
+Tous les nœuds NetApp HCI offrent des fonctionnalités de gestion hors bande supplémentaires via un port de gestion dédié. NETAPP H300S, H500S, H500S, H500E, H700S, Les nœuds H700E et H410C permettent également l'accès IPMI via le port A. Il est recommandé de simplifier la gestion à distance de NetApp HCI en configurant la gestion hors bande de tous les nœuds de votre environnement.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_environmental.html 
+summary: En savoir plus sur les conditions environnementales de NetApp HCI. 
+keywords: netapp, hci, environment, requirements 
+---
+= Exigences environnementales
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, environment, requirements
+
+
+[role="lead"]
+Assurez-vous que l'alimentation du rack utilisé pour installer NetApp HCI est fournie par les prises secteur et que votre centre de données fournit un refroidissement adapté à la taille de votre installation NetApp HCI.
+
+Pour obtenir des informations détaillées sur chaque composant de NetApp HCI, consultez le NetApp HCI http://www.netapp.com/us/media/ds-3881.pdf["fiche technique"^].
+
+
+NOTE: Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à une installation NetApp HCI, vous devez vous assurer que les besoins en alimentation sont satisfaits.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+

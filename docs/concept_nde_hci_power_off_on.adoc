@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_hci_power_off_on.html 
+summary: Découvrez comment configurer VMware vSphere lors du déploiement de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Mettez le système NetApp HCI hors tension ou sous tension
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Vous pouvez mettre votre système NetApp HCI hors tension ou sous tension en cas de panne planifiée, d'intervention de maintenance matérielle ou de besoin d'étendre le système. Utilisez les tâches suivantes pour mettre votre système NetApp HCI hors tension ou sous tension si nécessaire.
+
+Il peut être nécessaire de mettre votre système NetApp HCI hors tension dans plusieurs circonstances, notamment :
+
+* Des interruptions planifiées
+* Remplacement du ventilateur du châssis
+* Mises à niveau du micrologiciel
+* L'extension des ressources de stockage ou de calcul
+
+
+Voici une présentation des tâches à effectuer pour mettre un système NetApp HCI hors tension :
+
+* Mettez hors tension toutes les machines virtuelles à l'exception du serveur VMware vCenter (vCSA).
+* Mettez tous les serveurs ESXi hors tension, à l'exception de celui qui héberge le vCSA.
+* Mettez le vCSA hors tension.
+* Met le système de stockage NetApp HCI hors tension.
+
+
+Voici une présentation des tâches à effectuer pour mettre sous tension un système NetApp HCI :
+
+* Mettez tous les nœuds de stockage physique sous tension.
+* Mettez tous les nœuds de calcul physique sous tension.
+* Mettez le vCSA sous tension.
+* Vérification du système et mise sous tension d'autres machines virtuelles
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

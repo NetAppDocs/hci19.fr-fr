@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_off_compute.html 
+summary: Découvrez comment mettre hors tension les nœuds de calcul NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Désactivez les ressources de calcul d'un système NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Pour mettre hors tension les ressources de calcul NetApp HCI, vous devez mettre hors tension les hôtes VMware ESXi individuels et l'appliance VMware vCenter Server dans un ordre donné.
+
+.Étapes
+. Connectez-vous à l'instance vCenter contrôlant le système NetApp HCI et déterminez la machine ESXi hébergeant l'appliance virtuelle vCenter Server (vCSA).
+. Après avoir déterminé l'hôte ESXi exécutant le vCSA, mettez toutes les autres machines virtuelles hors tension comme suit :
++
+.. Sélectionnez une machine virtuelle.
+.. Cliquez avec le bouton droit de la souris et sélectionnez *alimentation > Arrêter le système d'exploitation invité*.
+
+
+. Mettez hors tension tous les hôtes ESXi qui ne sont pas l'hôte ESXi exécutant vCSA.
+. Mettez le vCSA hors tension.
++
+La session vCenter se terminera parce que le vCSA se déconnecte lors du processus de mise hors tension. Toutes les machines virtuelles doivent maintenant être arrêtées avec un seul hôte ESXi mis sous tension.
+
+. Connectez-vous à l'hôte ESXi en cours d'exécution.
+. Vérifier que toutes les machines virtuelles de l'hôte sont hors tension.
+. Arrêtez l'hôte ESXi.
++
+Cette action déconnecte toutes les sessions iSCSI ouvertes au cluster de stockage NetApp HCI.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+

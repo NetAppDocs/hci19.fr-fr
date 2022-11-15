@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_upgrade_compute_node_drivers.html 
+summary: 'Lors de la mise à niveau d"un système NetApp HCI, les pilotes de nœud de calcul sont mis à niveau.' 
+keywords: netapp, hci, on premise, cluster, element, compute node 
+---
+= Mettez à jour les pilotes des nœuds de calcul
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour tout nœud de calcul H-Series, vous pouvez mettre à jour les pilotes utilisés sur les nœuds à l'aide de VMware Update Manager.
+
+Reportez-vous à la matrice du micrologiciel et du pilote de votre matériel dans la section https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Cet article de la base de connaissances NetApp"^] (connexion requise).
+
+Effectuez une seule opération de mise à jour à la fois.
+
+Vous devez vérifier la version actuelle du pilote VMware ESXi avant de tenter de calculer les mises à niveau du micrologiciel. Si le pilote est obsolète, mettez-le d'abord à niveau. Mettez ensuite à niveau le firmware de calcul de vos nœuds de calcul.
+
+.Étapes
+. Accédez au https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Les téléchargements de logiciels NetApp HCI"^] Page et sélectionnez le lien de téléchargement pour obtenir la version correcte de NetApp HCI.
+. Sélectionnez *ESXI_drivers* dans la liste déroulante.
+. Acceptez le contrat de licence de l'utilisateur final.
+. Téléchargez le package de pilotes pour votre type de nœud et la version ESXi.
+. Extrayez le kit de pilotes téléchargé sur votre ordinateur local.
++
+
+NOTE: Le pack de pilotes NetApp inclut un ou plusieurs fichiers ZIP Pack hors ligne VMware ; ne extrayez pas ces fichiers ZIP.
+
+. Accédez à *VMware Update Manager* dans VMware vCenter.
+. Importez le fichier de bundle hors ligne du pilote pour les nœuds de calcul dans *Patch Repository*.
++
+** Pour VMware ESXi 7.0, tous les pilotes nécessaires aux nœuds de calcul NetApp H610C, H615C, H410C et Hx00E et à leur système de développement sont inclus dans l'image ISO d'installation standard de VMware ESXi 7.0. Aucun pilote supplémentaire ou mis à jour n'est nécessaire pour les nœuds de calcul NetApp HCI exécutant VMware ESXi 7.0 (et les mises à jour).
+** Pour VMware ESXi 6.x, procédez comme suit pour importer le fichier bundle hors ligne du pilote :
++
+... Sélectionnez l'onglet *mises à jour*.
+... SÉLECTIONNEZ *TÉLÉCHARGER À PARTIR DU FICHIER*.
+... Naviguez jusqu'au bundle hors ligne qui a été téléchargé précédemment et sélectionnez *IMPORT*.
+
+
+
+
+. Créer une nouvelle base d'hôte pour le nœud de calcul.
+. Choisissez *extension hôte* pour Nom et Type et sélectionnez tous les packages de pilotes importés à inclure dans la nouvelle ligne de base.
+. Dans le menu *hôte et clusters* de vCenter, sélectionnez le cluster avec les nœuds de calcul que vous souhaitez mettre à jour et accédez à l'onglet *Update Manager*.
+. Sélectionnez *remédier* et sélectionnez la ligne de base de l'hôte nouvellement créée. Assurez-vous que les pilotes inclus dans la ligne de base sont sélectionnés.
+. Passez par l'assistant à *Options de correction hôte* et assurez-vous que l'option *ne pas modifier l'état d'alimentation VM* est sélectionnée pour que les machines virtuelles restent en ligne pendant la mise à jour du pilote.
++
+
+NOTE: Si VMware Distributed Resource Scheduler (DRS) est activé sur le cluster (il s'agit de la valeur par défaut dans les installations NetApp HCI), les machines virtuelles seront automatiquement migrées vers d'autres nœuds du cluster.
+
+. Passez à la page *Ready to Complete* de l'assistant et sélectionnez *Finish*.
++
+Les pilotes de tous les nœuds de calcul du cluster sont mis à jour un nœud à la fois pendant que les machines virtuelles restent en ligne.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

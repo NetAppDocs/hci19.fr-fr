@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_rancher_product_overview.html 
+summary: Déployez Rancher sur NetApp HCI pour déployer le plan de contrôle Rancher, également appelé serveur Rancher, ce qui vous permet de créer des clusters Kubernetes sur site. 
+keywords: netapp, hci, rancher, architecture, kubernetes, cluster 
+---
+= Présentation du rancher sur NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Rancher est une pile logicielle complète qui permet aux équipes d'adopter des conteneurs. Éleveur relève les défis en matière de sécurité et d'exploitation liés à la gestion de plusieurs clusters Kubernetes dans différentes infrastructures, tout en offrant aux équipes DevOps des outils intégrés pour l'exécution de workloads conteneurisés.
+
+Déployer Rancher sur NetApp HCI déploie le plan de contrôle Rancher, également appelé _Rancher Server_, et vous permet de créer des clusters Kubernetes sur site. Déployez le plan de contrôle Rancher à l'aide de NetApp Hybrid Cloud Control.
+
+Une fois le déploiement effectué, en utilisant le plan de contrôle Rancher, vous provisionnez, gérez et surveillez les clusters Kubernetes utilisés par les équipes de développement et des opérations. Les équipes de développement et des opérations peuvent utiliser Rancher pour effectuer des activités sur des clusters utilisateur qui résident sur NetApp HCI lui-même, un fournisseur de cloud public ou toute autre infrastructure qu'autorise Rancher.
+
+
+
+== Avantages de Rancher sur NetApp HCI
+
+* Facilité d'installation : inutile d'apprendre à installer et à configurer Rancher. Vous pouvez déployer une implémentation basée sur des modèles, qui a été développée conjointement par NetApp HCI et Rancher.
+* Gestion du cycle de vie : dans une implémentation Rancher manuelle, les mises à jour pour l'application serveur Rancher ou le cluster Rancher Kubernetes Engine (RKE) ne sont pas automatisées. Rancher sur NetApp HCI offre la possibilité de mettre à jour le cluster de gestion, qui comprend le serveur Rancher et le RKE.
+
+
+
+
+== Ce que vous pouvez faire avec Rancher sur NetApp HCI
+
+Avec Rancher sur NetApp HCI, vous pouvez :
+
+* Déployez les services des différents fournisseurs cloud et votre cloud privé.
+* Port des applications et des données dans une architecture de cloud hybride, quel que soit l'emplacement du cloud, sans compromettre les niveaux de service.
+* Déployez vos applications cloud vous-même.
+* Centralisation de la gestion de plusieurs clusters (nouveaux et existants).
+* Orchestration des applications basées sur Kubernetes de cloud hybride
+
+
+
+
+== Option de support technique
+
+L'utilisation de Rancher sur des logiciels open source NetApp HCI et Kubernetes inclut un déploiement et une utilisation gratuits. Les clés de licence ne sont pas requises.
+
+Vous pouvez choisir une option de support NetApp Rancher pour obtenir un support d'entreprise basé sur des cœurs et Rancher.
+
+
+NOTE: Le support rancher n'est pas inclus dans votre contrat NetApp support Edge. Contactez le service commercial de NetApp ou votre revendeur pour plus d'informations. Si vous achetez le support Rancher auprès de NetApp, vous recevrez un e-mail avec des instructions.
+
+
+
+== Ranger sur l'architecture et les composants NetApp HCI
+
+Voici un aperçu des différents composants de Rancher sur NetApp HCI :
+
+image::rancher_architecture_diagram1.png[Conçue sur l'architecture NetApp HCI]
+
+* *Contrôle de cloud hybride NetApp* : cette interface vous permet de déployer Rancher sur des logiciels NetApp HCI et NetApp Element, requis pour Rancher sur NetApp HCI.
++
+
+TIP: Vous pouvez utiliser NetApp Hybrid Cloud Control pour mettre à niveau vos services de gestion, développer votre système, collecter des journaux et surveiller l'installation.
+
+* *Services de gestion* : les services de gestion s'exécutent sur le nœud de gestion et vous permettent de déployer Rancher sur NetApp HCI avec le contrôle de cloud hybride NetApp.
+* *Cluster de gestion* : rancher sur NetApp HCI déploie trois machines virtuelles sur le cluster de gestion Rancher, ce qui vous permet d'utiliser le contrôle de cloud hybride NetApp, vCenter Server ou l'interface utilisateur Rancher. Les machines virtuelles des clusters de gestion hébergent le serveur Rancher, le moteur RKE Rancher Kubernetes et le système d'exploitation Linux.
+
+
+
+TIP: Pour des performances optimales et une sécurité accrue, envisagez l'utilisation d'un cluster Kubernetes dédié pour le serveur de gestion Rancher. Vous ne devez pas exécuter vos workloads utilisateurs sur le cluster de gestion.
+
+* *Clusters d'utilisateurs* : les clusters d'utilisateurs Kubernetes en aval exécutent vos applications et services. Tout cluster que vous déployez depuis Rancher ou que vous importez dans Rancher est un cluster utilisateur.
+* *Trident* : un catalogue Trident est disponible pour Rancher sur NetApp HCI et s'exécute dans les clusters utilisateur. L'inclusion de ce catalogue simplifie le déploiement Trident dans les clusters utilisateur.
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentation de l'éleveur sur l'architecture"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

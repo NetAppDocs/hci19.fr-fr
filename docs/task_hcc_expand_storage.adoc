@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_expand_storage.html 
+summary: 'Une fois le déploiement NetApp HCI terminé, vous pouvez étendre et configurer les ressources de stockage NetApp HCI à l"aide de NetApp Hybrid Cloud Control.' 
+keywords: netapp, hci, on premise, expand, storage, cluster 
+---
+= L'extension des ressources de stockage NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois le déploiement NetApp HCI terminé, vous pouvez étendre et configurer les ressources de stockage NetApp HCI à l'aide de NetApp Hybrid Cloud Control.
+
+.Avant de commencer
+* Assurez-vous que vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
+* Assurez-vous que vous disposez de l'un des types suivants de comptes de cluster de stockage SolidFire :
++
+** Compte administrateur natif créé lors du déploiement initial
+** Compte utilisateur personnalisé avec les autorisations Cluster Admin, Drives, volumes et Nodes
+
+
+* Vérifiez que vous avez effectué les actions suivantes avec chaque nouveau nœud :
++
+** Installez le nouveau nœud dans le châssis NetApp HCI en suivant la link:task_hci_installhw.html["instructions d'installation"].
+** Câblage et mise sous tension du nouveau nœud
+
+
+* Vérifiez que vous disposez de l'adresse IPv4 de gestion d'un nœud de stockage déjà installé. L'adresse IP se trouve dans l'onglet *NetApp Element Management* > *Cluster* > *Nodes* du plug-in NetApp Element pour vCenter Server.
+* Assurez-vous que chaque nouveau nœud utilise la même topologie réseau et le même câblage que les clusters de calcul ou de stockage existants.
+
+
+
+TIP: Lorsque vous étendez vos ressources de stockage, la capacité de stockage doit être répartie de façon homogène dans tous les châssis pour une fiabilité optimale.
+
+.Étapes
+. Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web. Par exemple :
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Cliquez sur *Expand* dans le coin supérieur droit de l'interface.
++
+Le navigateur ouvre le moteur de déploiement NetApp.
+
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Sur la page *Bienvenue*, cliquez sur *non* et cliquez sur *Continuer*.
+. Sur la page *Inventaire disponible*, sélectionnez les nœuds de stockage que vous souhaitez ajouter et cliquez sur *Continuer*.
+. Sur la page *Paramètres réseau*, certaines informations sur le réseau ont été détectées à partir du déploiement initial. Chaque nouveau nœud de stockage est répertorié par numéro de série, et vous devez lui attribuer les nouvelles informations réseau. Pour chaque nouveau nœud de stockage, procédez comme suit :
++
+.. *Nom d'hôte* : si NetApp HCI a détecté un préfixe de nom d'hôte, copiez-le à partir du champ préfixe de nom d'hôte détecté et insérez-le comme préfixe du nouveau nom d'hôte unique que vous ajoutez dans le champ Nom d'hôte.
+.. *Adresse de gestion* : saisissez une adresse IP de gestion pour le nouveau nœud de stockage dans le sous-réseau du réseau de gestion.
+.. *Adresse IP de stockage (iSCSI)* : saisissez une adresse IP iSCSI pour le nouveau nœud de stockage qui se trouve dans le sous-réseau du réseau iSCSI.
+.. Cliquez sur *Continuer*.
++
+
+NOTE: NetApp HCI peut prendre un certain temps pour valider les adresses IP que vous entrez. Le bouton Continuer devient disponible une fois la validation de l'adresse IP terminée.
+
+
+
+. Sur la page *Revue* de la section Paramètres réseau, les nouveaux nœuds sont affichés en gras. Pour apporter des modifications dans n'importe quelle section, procédez comme suit :
++
+.. Cliquez sur *Modifier* pour cette section.
+.. Une fois que vous avez terminé, cliquez sur *Continuer* sur les pages suivantes pour revenir à la page Revue.
+
+
+. *Facultatif* : si vous ne souhaitez pas envoyer les statistiques de cluster et les informations de support aux serveurs Active IQ hébergés par NetApp, décochez la case finale.
++
+Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'en soit affectée.
+
+. Cliquez sur *Ajouter des nœuds*.
++
+Vous pouvez contrôler la progression pendant l'ajout et la configuration de ressources par NetApp HCI.
+
+. *Facultatif* : vérifiez que tous les nouveaux nœuds de stockage sont visibles dans le plug-in Element pour vCenter Server.
++
+
+NOTE: Si vous avez étendu un cluster de stockage à deux nœuds à quatre nœuds ou plus, la paire de nœuds témoins précédemment utilisés par le cluster de stockage est toujours visible en tant que serveurs virtuels de secours dans vSphere. Le cluster de stockage étendu ne les utilise pas ; si vous souhaitez récupérer des ressources de machines virtuelles, vous pouvez link:task_hci_removewn.html["suppression manuelle"] Machines virtuelles Witness Node.
+
+
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

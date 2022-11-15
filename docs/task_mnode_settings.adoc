@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_settings.html 
+summary: Vous pouvez modifier et tester les paramètres réseau, cluster et système du nœud de gestion. 
+keywords: netapp, management node ui, mnode ui, network settings, test network, cluster settings 
+---
+= Modifiez et testez les paramètres réseau, cluster et système du nœud de gestion
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous pouvez modifier et tester les paramètres réseau, cluster et système du nœud de gestion.
+
+*  management node network settings
+*  management node cluster settings
+*  the management node settings
+
+
+
+
+== Mettre à jour les paramètres réseau du nœud de gestion
+
+Dans l'onglet Paramètres réseau de l'interface utilisateur du nœud de gestion par nœud, vous pouvez modifier les champs d'interface réseau du nœud de gestion.
+
+. Ouvrez l'interface utilisateur de nœud de gestion par nœud.
+. Cliquez sur l'onglet *Paramètres réseau*.
+. Afficher ou saisir les informations suivantes :
++
+.. *Méthode* : choisissez l'une des méthodes suivantes pour configurer l'interface :
++
+*** `loopback`: Utilisez pour définir l'interface de bouclage IPv4.
+*** `manual`: Permet de définir les interfaces pour lesquelles aucune configuration n'est effectuée par défaut.
+*** `dhop`: Utilisez pour obtenir une adresse IP via DHCP.
+*** `static`: Permet de définir des interfaces Ethernet avec des adresses IPv4 allouées statiquement.
+
+
+.. *Vitesse de liaison* : vitesse négociée par la carte réseau virtuelle.
+.. *Adresse IPv4* : adresse IPv4 pour le réseau eth0.
+.. *Masque de sous-réseau IPv4* : sous-divisions d'adresse du réseau IPv4.
+.. *Adresse de passerelle IPv4* : adresse de réseau du routeur pour envoyer des paquets hors du réseau local.
+.. *Adresse IPv6* : adresse IPv6 pour le réseau eth0.
+.. *Adresse de passerelle IPv6* : adresse de réseau du routeur pour envoyer des paquets hors du réseau local.
++
+
+IMPORTANT: Les options IPv6 ne sont pas prises en charge pour les versions 11.3 ou ultérieures du nœud de gestion.
+
+.. *MTU* : la plus grande taille de paquet qu'un protocole réseau peut transmettre. Doit être supérieur ou égal à 1500. Si vous ajoutez une deuxième carte réseau de stockage, la valeur doit être 9000.
+.. *Serveurs DNS* : interface réseau utilisée pour la communication en cluster.
+.. *Domaines de recherche* : recherchez des adresses MAC supplémentaires disponibles pour le système.
+.. *Statut* : valeurs possibles :
++
+*** `UpAndRunning`
+*** `Down`
+*** `Up`
+
+
+.. *Routes* : routes statiques vers des hôtes ou des réseaux spécifiques via l'interface associée, les routes sont configurées pour être utilisées.
+
+
+
+
+
+
+== Mettez à jour les paramètres du cluster du nœud de gestion
+
+Dans l'onglet Paramètres du cluster de l'interface utilisateur par nœud pour le nœud de gestion, vous pouvez modifier les champs d'interface du cluster lorsqu'un nœud est à l'état disponible, en attente, PendingActive et Active.
+
+. Ouvrez l'interface utilisateur de nœud de gestion par nœud.
+. Cliquez sur l'onglet *Paramètres du cluster*.
+. Afficher ou saisir les informations suivantes :
++
+** *Rôle* : rôle du nœud de gestion dans le cluster. Valeur possible : `Management`.
+** *Version* : version du logiciel Element s'exécutant sur le cluster.
+** *Interface par défaut* : interface réseau par défaut utilisée pour la communication de nœud de gestion avec le cluster exécutant le logiciel Element.
+
+
+
+
+
+
+== Testez les paramètres du nœud de gestion
+
+Après avoir modifié les paramètres de gestion et de réseau du nœud de gestion et validé les modifications, vous pouvez exécuter des tests pour valider les modifications effectuées.
+
+. Ouvrez l'interface utilisateur de nœud de gestion par nœud.
+. Dans l'interface utilisateur du nœud de gestion, cliquez sur *tests système*.
+. Effectuez l'une des opérations suivantes :
++
+.. Pour vérifier que les paramètres réseau que vous avez configurés sont valides pour le système, cliquez sur *Tester la configuration réseau*.
+.. Pour tester la connectivité réseau à tous les nœuds du cluster sur les interfaces 1G et 10G à l'aide de paquets ICMP, cliquez sur *Test Ping*.
+
+
+. Afficher ou saisir les informations suivantes :
++
+** *Hôtes* : spécifiez une liste séparée par des virgules d'adresses ou de noms d'hôte de périphériques à envoyer par ping.
+** *Tentatives* : spécifiez le nombre de fois que le système doit répéter le test ping. Valeur par défaut : 5.
+** *Packet Size* : spécifiez le nombre d'octets à envoyer dans le paquet ICMP envoyé à chaque adresse IP. Le nombre d'octets doit être inférieur au MTU maximal spécifié dans la configuration réseau.
+** *Timeout msec* : spécifiez le nombre de millisecondes à attendre pour chaque réponse ping individuelle. Valeur par défaut : 500 ms.
+** *Délai total sec* : spécifiez le temps en secondes pendant laquelle la commande ping doit attendre une réponse du système avant de lancer la prochaine tentative ping ou de mettre fin au processus. Valeur par défaut : 5.
+** *Interdire la fragmentation* : activez l'indicateur DF (ne pas fragmenter) pour les paquets ICMP.
+
+
+
+
+[discrete]
+== En savoir plus
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
+

@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_monitor.html 
+summary: Découvrez comment contrôler Rancher sur NetApp HCI. 
+keywords: netapp, hci, rancher, deploy, cluster, kubernetes, control plane, monitor, user cluster, workload 
+---
+= Surveillez un Rancher sur l'implémentation de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il existe plusieurs façons de surveiller les serveurs Rancher, les clusters de gestion et d'autres détails.
+
+* Le contrôle des clouds hybrides NetApp
+* Interface utilisateur du rancher
+* NetApp Active IQ
+* Serveur vCenter
+
+
+
+
+== Surveillez Rancher avec le contrôle des clouds hybrides NetApp
+
+En utilisant le contrôle de cloud hybride NetApp, vous pouvez afficher l'état des clusters des serveurs Rancher et Rancher. Vous pouvez également surveiller les nœuds dans lesquels Rancher fonctionne.
+
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le tableau de bord, cliquez sur l'icône Options en haut à droite et sélectionnez *configurer*.
++
+image::hcc_configure.png[Page Configuration du rancher]
+
+. Pour afficher les informations sur les nœuds, développez le nom de votre cluster de stockage à partir du tableau de bord de contrôle du cloud hybride, puis cliquez sur *noeuds*.
+
+
+
+
+== Moniteur Rancher en utilisant l'interface utilisateur Rancher
+
+Grâce à l'interface utilisateur Rancher, vous pouvez afficher des informations sur Rancher sur les clusters de gestion NetApp HCI et les clusters utilisateurs.
+
+
+TIP: Dans l'interface utilisateur Rancher, les clusters de gestion sont appelés « clusters locaux ».
+
+. Accédez à l'interface utilisateur Rancher à l'aide de cette URL fournie à la fin du déploiement Rancher.
+. Voir https://rancher.com/docs/rancher/v2.x/en/monitoring-alerting/v2.5/["Surveillance dans Rancher v2.5"^].
+
+
+
+
+== Surveillez Rancher à l'aide de NetApp Active IQ
+
+Avec NetApp Active IQ, vous pouvez afficher les données de télémétrie Rancher, notamment des informations sur l'installation, des nœuds, des clusters, l'état, des informations sur l'espace de noms, entre autres.
+
+. Connectez-vous à NetApp Hybrid Cloud Control en fournissant les identifiants de l'administrateur du cluster de stockage Element.
+. Dans le menu supérieur droit, sélectionnez *NetApp Active IQ*.
+
+
+
+
+== Surveillez Rancher à l'aide de vCenter Server
+
+Avec vCenter Server, vous pouvez surveiller les machines virtuelles Rancher.
+
+[discrete]
+== Trouvez plus d'informations
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentation de l'éleveur sur l'architecture"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminologie Kubernetes pour Rancher"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+

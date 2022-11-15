@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_h610srepl.html 
+summary: 'Vous devrez peut-être remplacer le châssis si le ventilateur, l"unité de traitement centrale (CPU) ou le module de mémoire DIMM (Dual Inline Memory module) tombe en panne, ou si vous devez résoudre les problèmes de surchauffe ou de démarrage. Le voyant orange clignotant à l"avant du châssis indique qu"il est possible de remplacer le châssis. Contactez le support NetApp avant de continuer.' 
+keywords: netapp, hci, h610s, chassis replacement, node replacement 
+---
+= Remplacer les nœuds H610S
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être remplacer le châssis si le ventilateur, l'unité de traitement centrale (CPU) ou le module de mémoire DIMM (Dual Inline Memory module) tombe en panne, ou si vous devez résoudre les problèmes de surchauffe ou de démarrage. Le voyant orange clignotant à l'avant du châssis indique qu'il est possible de remplacer le châssis. Contactez le support NetApp avant de continuer.
+
+
+NOTE: Voir la link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Software/NetApp_H610S_installation_requirements_for_replacement_or_expansion_nodes["Article de la base de connaissances"^] Pour plus d'informations sur les conditions d'installation des nœuds H610S Les nœuds de stockage nouveaux et H610S de rechange peuvent avoir des exigences d'installation supplémentaires en fonction de la version logicielle Element existante du cluster de stockage. Contactez le support NetApp pour plus d'informations.
+
+
+TIP: Les termes « nœud » et « châssis » sont utilisés de manière interchangeable dans les cas d'H610S, qui est un châssis 1U.
+
+
+
+== Pratiques d'excellence pour l'ajout et la suppression de disques
+
+Pour ajouter des disques au cluster, il est recommandé de suivre les meilleures pratiques suivantes :
+
+* Ajoutez toutes les unités de bloc et assurez-vous que la synchronisation des blocs est terminée avant d'ajouter les unités de coupe.
+* Pour le logiciel Element 10.x et versions ultérieures, ajoutez tous les disques de bloc à la fois. Assurez-vous de ne pas le faire pour plus de trois nœuds à la fois.
+* Pour le logiciel Element 9.x et les versions antérieures, ajoutez trois disques à la fois. Vous pouvez ainsi synchroniser complètement vos données avant d'ajouter le groupe suivant de trois disques.
+* Retirez l'entraînement de coupe et assurez-vous que la synchronisation de coupe est terminée avant de retirer les lecteurs de bloc.
+* Supprimez tous les disques de bloc d'un seul nœud à la fois. Assurez-vous que la synchronisation des blocs est terminée avant de passer au nœud suivant.
+
+
+.Ce dont vous avez besoin, 8217;ll
+* Vous avez contacté le service de support NetApp. Si vous commandez une solution de remplacement, vous devez ouvrir un dossier auprès du support NetApp.
+* Vous avez obtenu le noeud de remplacement.
+* Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
+* Si vous devez effectuer le processus de retour à l'image d'usine (RTFI), vous avez obtenu la clé USB. Le support NetApp peut vous aider à choisir si vous avez besoin d'effectuer le processus de retour sur IP.
+* Vous avez un clavier et un moniteur.
+* Vous avez correctement supprimé le nœud défectueux du cluster.
+* Si un module DIMM est en panne, vous avez retiré les disques avant de retirer le nœud du cluster.
+
+
+Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un hôte. Vous devez correspondre au numéro de série de l'hôte défaillant à partir du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
+
+.Étapes
+. Localisez le numéro de service à l'avant du châssis défectueux.
++
+image::h610s-servicetag.gif[Affiche le numéro de service à l'avant du châssis H610S.]
+
+. Vérifiez que le numéro de série indiqué sur le numéro de série correspond au numéro de dossier de support NetApp lors de la commande du châssis de remplacement.
+. Branchez le clavier et le moniteur à l'arrière du châssis défectueux.
+. Vérifiez le numéro de série du nœud défaillant avec le support NetApp.
+. Mettez le châssis hors tension.
+. Etiqueter les disques à l'avant et les câbles à l'arrière de leur emplacement de manière à ce que vous puissiez les replacer aux mêmes emplacements après le remplacement.
++
+Pour connaître le positionnement des disques dans le châssis, reportez-vous à l'image suivante :
+
++
+image::h610s-drives.gif[Affiche l'avant du châssis H610S avec les lecteurs étiquetés.]
+
+. Déposer les câbles.
+. Retirez le châssis en dévissant les vis moletées sur les oreilles de montage. Vous devez emballer le châssis défectueux et renvoyer à NetApp.
+. Installez le châssis de remplacement.
+. Retirez soigneusement les disques du châssis défectueux et insérez-les dans le châssis de remplacement.
++
+
+NOTE: Vous devez insérer les lecteurs dans les emplacements où ils se trouvaient avant de les retirer.
+
+. Retirez les blocs d'alimentation du châssis défectueux et insérez-les dans le châssis de remplacement.
+. Insérez les câbles d'alimentation et les câbles réseau dans leurs ports d'origine.
+. Des émetteurs-récepteurs SFP (Small form-factor pluggable) peuvent être insérés dans les ports 10GbE du nœud de remplacement. Vous devez les retirer avant de brancher les ports 10GbE.
++
+
+NOTE: Consultez la documentation du fournisseur de votre commutateur si votre commutateur ne reconnaît pas les câbles.
+
+. Mettez le châssis sous tension en appuyant sur le bouton d'alimentation situé à l'avant. Le démarrage du nœud prend environ cinq minutes et 30 secondes.
+. Effectuez les étapes de configuration.
++
+** Si le nœud H610S fait partie de l'installation de NetApp HCI, utilisez le contrôle du cloud hybride NetApp pour configurer la ressource de stockage. Voir link:task_hcc_expand_storage.html["L'extension des ressources de stockage NetApp HCI"].
+** Si le nœud H610S fait partie d'une installation du stockage 100 % Flash de SolidFire, configurez le nœud à l'aide de l'interface utilisateur du logiciel NetApp Element. Contactez le support NetApp pour obtenir de l'aide.
+
+
+
+
+
+
+== Trouvez plus d'informations
+
+* https://www.netapp.com/us/documentation/hci.aspx["Page Ressources NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
+
