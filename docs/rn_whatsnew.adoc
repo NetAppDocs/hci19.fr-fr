@@ -21,7 +21,7 @@ NetApp met régulièrement à jour NetApp HCI afin de vous proposer de nouvelles
 ====
 L'élément 12.3.2 contient l'atténuation qui ferme l'exposition du logiciel Element à la vulnérabilité Apache Log4j. Les clusters de stockage NetApp SolidFire dont la fonctionnalité de volumes virtuels (VVol) est activée sont exposés à cette vulnérabilité.
 
-Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est activée, nous vous recommandons de mettre à niveau le logiciel Element 12.3.2.
+Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est activée, nous vous recommandons la mise à niveau vers le logiciel Element 12.3.2.
 
 Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est désactivée, la mise à niveau du logiciel Element 12.3.2 est facultative.
 

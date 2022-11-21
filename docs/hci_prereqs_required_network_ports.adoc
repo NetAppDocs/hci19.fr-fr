@@ -212,13 +212,25 @@ Téléchargement de logiciels :
 | PC administrateur système | MIP du nœud de stockage | 442 | L'interface utilisateur HTTPS et l'API d'accès au nœud de stockage, (NetApp HCI uniquement) et à la surveillance du déploiement dans le moteur de déploiement NetApp 
 
 
+| PC administrateur système | Nœud de calcul BMC/IPMI séries H410 et H600 | 443 | L'interface HTTPS et l'API permettent d'accéder au contrôle à distance des nœuds 
+
+
 | PC administrateur système | Nœud de gestion | 443 | L'interface et l'API HTTPS accèdent au nœud de gestion 
 
 
 | PC administrateur système | Cluster de stockage MVIP | 443 | L'interface HTTPS et l'accès API au cluster de stockage 
 
 
+| PC administrateur système | Nœud de stockage BMC/IPMI séries H410 et H600 | 443 | L'interface HTTPS et l'API permettent d'accéder au contrôle à distance des nœuds 
+
+
 | PC administrateur système | MIP du nœud de stockage | 443 | Création du cluster de stockage HTTPS, accès d'interface post-déploiement au cluster de stockage 
+
+
+| PC administrateur système | Nœud de calcul BMC/IPMI séries H410 et H600 | 623 UDP | Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI. 
+
+
+| PC administrateur système | Nœud de stockage BMC/IPMI séries H410 et H600 | 623 UDP | Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI. 
 
 
 | PC administrateur système | Nœud témoin | 8080 | Interface utilisateur Web par nœud témoin 
@@ -238,7 +250,8 @@ Téléchargement de logiciels :
 
 | Serveur vCenter | Nœud de gestion | 9443 | Enregistrement du plug-in vCenter. Le port peut être fermé une fois l'enregistrement terminé. 
 |===
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]

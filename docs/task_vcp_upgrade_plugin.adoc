@@ -91,16 +91,15 @@ image::vcp_registration_utility_ui_qossioc.png[La illustre l'interface utilisate
 
 . Sélectionnez *enregistrement du plug-in vCenter*.
 +
-Depuis le plug-in Element pour vCenter Server 5:0 :
-
+** La page d'inscription du plug-in vCenter pour le plug-in Element pour vCenter Server 5.0 :
 +
 image::vcp_remote_plugin_registration_ui.png[Illustre l'interface utilisateur de l'utilitaire d'enregistrement pour un plug-in distant]
 
-+
-Plug-in Element pour vCenter Server 4.10 ou version antérieure :
-
+** La page d'inscription du plug-in vCenter pour le plug-in Element pour vCenter Server 4.10 ou version antérieure :
 +
 image::vcp_registration_utility_ui.png[Illustre l'interface utilisateur de l'utilitaire d'enregistrement pour un plug-in local]
+
+
 
 . Dans *Manage vCenter Plug-in*, sélectionnez *Update Plug-in*.
 . Confirmez ou mettez à jour les informations suivantes :
@@ -112,7 +111,7 @@ image::vcp_registration_utility_ui.png[Illustre l'interface utilisateur de l'uti
 NOTE: Le nom d'utilisateur et les informations d'identification du mot de passe que vous entrez doivent correspondre à un utilisateur disposant des privilèges de rôle d'administrateur vCenter.
 
 .. Mot de passe de l'administrateur vCenter.
-.. (Pour les serveurs internes/sites distants) selon la version du plug-in Element pour vCenter, une URL personnalisée pour le fichier JSON de plug-in ou le plug-in ZIP :
+.. (Pour les serveurs internes/sites distants) selon la version du plug-in Element pour vCenter, une URL personnalisée pour le fichier JSON ou le plug-in ZIP :
 +
 ... Depuis le plug-in Element pour vCenter Server 5.0, une URL personnalisée pour le fichier JSON du plug-in.
 +
@@ -140,14 +139,11 @@ NOTE: Cette action crée une nouvelle base de données et termine l'installation
 . Dans le client Web vSphere, recherchez les tâches terminées suivantes dans le moniteur des tâches pour vous assurer que l'installation est terminée : `Download plug-in` et `Deploy plug-in`.
 . Vérifiez que les points d'extension du plug-in apparaissent dans l'onglet *raccourcis* de vSphere Web client et dans le panneau latéral.
 +
-Depuis le plug-in Element pour vCenter Server 5.0, le point d'extension du plug-in distant NetApp Element :
-
+** Depuis le plug-in Element pour vCenter Server 5.0, le point d'extension du plug-in distant NetApp Element apparaît :
 +
 image::vcp_remote_plugin_icons_home_page.png[Illustre le point d'extension du plug-in après une mise à niveau ou une installation réussie pour le plug-in Element 5.10 ou version ultérieure]
 
-+
-Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, NetApp Element Configuration and Management points d'extension :
-
+** Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, les points d'extension NetApp Element Configuration and Management apparaissent :
 +
 image::vcp_shortcuts_page_accessing_plugin.png[La illustre les points d'extension du plug-in après une mise à niveau ou une installation réussie pour le plug-in Element 4.10 ou version antérieure]
 
@@ -159,17 +155,20 @@ Si les icônes du plug-in vCenter ne sont pas visibles, reportez-vous à la sect
 Après la mise à niveau vers le plug-in NetApp Element pour vCenter Server 4.8 ou version ultérieure avec VMware vCenter Server 6.7U1, si les clusters de stockage ne sont pas répertoriés ou si une erreur de serveur apparaît dans les sections *clusters* et *Paramètres QoSSIOC* de la configuration NetApp Element, voir link:https://docs.netapp.com/us-en/vcp/vcp_reference_troubleshoot_vcp.html#error_vcp48_67u1["Plug-in Element pour vCenter Server"^] documentation sur le dépannage de ces erreurs.
 
 ====
+
+
 . Vérifiez le changement de version dans l'onglet *About* du point d'extension *NetApp Element Configuration* du plug-in.
 +
 Vous devriez voir les détails de la version suivante ou les détails d'une version plus récente :
 
-
-
++
 [listing]
 ----
 NetApp Element Plug-in Version: 5.0
 NetApp Element Plug-in Build Number: 37
 ----
+
+
 
 NOTE: Le plug-in vCenter contient du contenu de l'aide en ligne. Pour vous assurer que votre aide contient le contenu le plus récent, effacez le cache de votre navigateur après la mise à niveau de votre plug-in.
 

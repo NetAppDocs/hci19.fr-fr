@@ -1190,7 +1190,6 @@
   <block id="9cea15d48c9b5a9632827b358396e207" category="doc">Nouveautés NetApp HCI</block>
   <block id="952a75d126e98ba5478f36fbc2ab0dc7" category="paragraph">NetApp met régulièrement à jour NetApp HCI afin de vous proposer de nouvelles fonctionnalités, améliorations et correctifs. La gamme NetApp HCI 1.9P1 inclut le logiciel NetApp Element 12.3.1 pour les clusters de stockage.</block>
   <block id="0c4f4dd60edc4c07fed8b2fe182601ed" category="paragraph">L'élément 12.3.2 contient l'atténuation qui ferme l'exposition du logiciel Element à la vulnérabilité Apache Log4j. Les clusters de stockage NetApp SolidFire dont la fonctionnalité de volumes virtuels (VVol) est activée sont exposés à cette vulnérabilité.</block>
-  <block id="286f53b31c582a023d851a7a85dcda06" category="paragraph">Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est activée, nous vous recommandons de mettre à niveau le logiciel Element 12.3.2.</block>
   <block id="020d0c8ed47be3265d5e4d14710220c7" category="paragraph">Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est désactivée, la mise à niveau du logiciel Element 12.3.2 est facultative.</block>
   <block id="9cab9a3759d7c0a148a1a18b1897acc2" category="paragraph">NetApp ne recommande pas d'exécuter des versions d'éléments mixtes dans un cluster, sauf pendant la durée de la mise à niveau.</block>
   <block id="d6d2b79e6ba2037bd02bb8dc96a0070a" category="list-text">Le <block ref="15276d500e7181fc56781568a7378926" category="inline-xref-macro-rx"></block> La section décrit les nouvelles fonctionnalités et mises à jour de la version 1.9P1 de NetApp HCI.</block>
@@ -5161,9 +5160,7 @@
   <block id="c13fa68b55894aaf612067aa7455ac53" category="list-text">Entrez l'adresse IP de votre nœud de gestion dans un navigateur, y compris le port TCP pour l'enregistrement :<block ref="95eed0d846a235b32511f995c34bae39" prefix=" " category="inline-code"></block>L'interface utilisateur de l'utilitaire d'enregistrement s'ouvre sur la page *Manage QoSSIOC Service Credentials* du plug-in.</block>
   <block id="26fc450c5cd9b7f28b10cff7659b479d" category="image-alt">La illustre l'interface utilisateur de l'utilitaire d'enregistrement pour le plug-in</block>
   <block id="0bd0c7dc69df55cee394b64eebcd27ab" category="list-text">Sélectionnez *enregistrement du plug-in vCenter*.</block>
-  <block id="e8b1bdd38a7601206cf400f05fbdc57d" category="paragraph">Depuis le plug-in Element pour vCenter Server 5:0 :</block>
   <block id="f1b4824619210c84aa04d2783d1f908e" category="image-alt">Illustre l'interface utilisateur de l'utilitaire d'enregistrement pour un plug-in distant</block>
-  <block id="05c0e13a813e930c3eab807f98959379" category="paragraph">Plug-in Element pour vCenter Server 4.10 ou version antérieure :</block>
   <block id="cbe647d2b7e55a533fb2f01689441181" category="image-alt">Illustre l'interface utilisateur de l'utilitaire d'enregistrement pour un plug-in local</block>
   <block id="5c8b8f78ed09c86ecda3569ee8c3a3f0" category="list-text">Dans *Manage vCenter Plug-in*, sélectionnez *Update Plug-in*.</block>
   <block id="8d8ce4b808495ff41a197ebd82fa0d15" category="list-text">Confirmez ou mettez à jour les informations suivantes :</block>
@@ -5171,7 +5168,6 @@
   <block id="d5fcc07cbc4a070c18d26103f54f3f58" category="list-text">Nom d'utilisateur de vCenter Administrator.</block>
   <block id="b1e24f0b2fb8f66a9c2444bf0e385f97" category="admonition">Le nom d'utilisateur et les informations d'identification du mot de passe que vous entrez doivent correspondre à un utilisateur disposant des privilèges de rôle d'administrateur vCenter.</block>
   <block id="c2611280cf76890b83743a67ac6478e2" category="list-text">Mot de passe de l'administrateur vCenter.</block>
-  <block id="23fa7915a24406758b2d7b2b274fe1f3" category="list-text">(Pour les serveurs internes/sites distants) selon la version du plug-in Element pour vCenter, une URL personnalisée pour le fichier JSON de plug-in ou le plug-in ZIP :</block>
   <block id="1e35767408ad5bd29ecc61c301c556ef" category="list-text">Depuis le plug-in Element pour vCenter Server 5.0, une URL personnalisée pour le fichier JSON du plug-in.</block>
   <block id="b9d11c83e937a9ece9e8b7051bc68606" category="admonition">Vous pouvez sélectionner *URL personnalisée* pour personnaliser l'URL si vous utilisez un serveur HTTP ou HTTPS (site sombre) ou si vous avez modifié le nom de fichier JSON ou les paramètres réseau. Pour plus d'informations sur la configuration d'une URL, reportez-vous à la documentation du plug-in Element pour vCenter Server sur la modification des propriétés vCenter d'un serveur HTTP interne (site sombre).</block>
   <block id="ba85baaa049f62983a89ac7da1647abd" category="list-text">Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, une URL personnalisée pour le plug-in ZIP.</block>
@@ -5182,9 +5178,7 @@
   <block id="f523905d48a1db956815565365a5a6ad" category="admonition">Cette action crée une nouvelle base de données et termine l'installation dans vSphere Web client.</block>
   <block id="9b572df8237d34b7c32142ac15f1325f" category="list-text">Dans le client Web vSphere, recherchez les tâches terminées suivantes dans le moniteur des tâches pour vous assurer que l'installation est terminée :<block ref="ec6215521ab965944e6a3eeb6b9ab6f1" prefix=" " category="inline-code"></block> et<block ref="0f5814fb45e88fb5a7d984788675e425" prefix=" " category="inline-code"></block>.</block>
   <block id="d471727ba1fb423986701d5307906d08" category="list-text">Vérifiez que les points d'extension du plug-in apparaissent dans l'onglet *raccourcis* de vSphere Web client et dans le panneau latéral.</block>
-  <block id="290b380ec7760347344e9055b68f217d" category="paragraph">Depuis le plug-in Element pour vCenter Server 5.0, le point d'extension du plug-in distant NetApp Element :</block>
   <block id="a00eed84eaa5a9a20d9aaa7f39c5e19e" category="image-alt">Illustre le point d'extension du plug-in après une mise à niveau ou une installation réussie pour le plug-in Element 5.10 ou version ultérieure</block>
-  <block id="7bf63d049a5ff0e7522ac0eb51350e50" category="paragraph">Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, NetApp Element Configuration and Management points d'extension :</block>
   <block id="85406fb94df2ff523b7477f229b1c9c8" category="image-alt">La illustre les points d'extension du plug-in après une mise à niveau ou une installation réussie pour le plug-in Element 4.10 ou version antérieure</block>
   <block id="a0abd6db969f497b63a29f8fbd1771df" category="inline-link-macro">Plug-in Element pour vCenter Server</block>
   <block id="5e98629f8afe2eee1c27355eb45a80e0" category="paragraph">Si les icônes du plug-in vCenter ne sont pas visibles, reportez-vous à la section <block ref="ab9b282dbdbe327f4195d1f5d71c406f" category="inline-link-macro-rx"></block> documentation sur le dépannage du plug-in.</block>
@@ -6293,4 +6287,14 @@
   <block id="a310588c148d934b9b30c31802d4a30b" category="sidebar">Communauté NetApp</block>
   <block id="213686afc3803be7caa09348765467fe" category="sidebar">Où obtenir de l'aide</block>
   <block id="389672366ff11f72a82c5c495b9b5159" category="sidebar">Documentation sur NetApp HCI 1.8</block>
+  <block id="2e4fe9cef5b49ad23180da86877e63cb" category="cell">Nœud de calcul BMC/IPMI séries H410 et H600</block>
+  <block id="59f1e3a87c5b329f2a5a951d9bf325f8" category="cell">L'interface HTTPS et l'API permettent d'accéder au contrôle à distance des nœuds</block>
+  <block id="1381491a5bb8087f95db0601150c5c28" category="cell">Nœud de stockage BMC/IPMI séries H410 et H600</block>
+  <block id="291dd45cc603b1047e92bf5a13259357" category="cell">Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI.</block>
+  <block id="7b62456477fe482fad0de3c51aabd5d1" category="paragraph">Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionnalité VVol est activée, nous vous recommandons la mise à niveau vers le logiciel Element 12.3.2.</block>
+  <block id="3ef00ef1af91bf9fe0b72f4052a67f59" category="list-text">La page d'inscription du plug-in vCenter pour le plug-in Element pour vCenter Server 5.0 :</block>
+  <block id="1875d143de1e9be70dc9e780b41377fe" category="list-text">La page d'inscription du plug-in vCenter pour le plug-in Element pour vCenter Server 4.10 ou version antérieure :</block>
+  <block id="b8b146fd1e1ecdf074536a02bfe40871" category="list-text">(Pour les serveurs internes/sites distants) selon la version du plug-in Element pour vCenter, une URL personnalisée pour le fichier JSON ou le plug-in ZIP :</block>
+  <block id="1993643c12bb4ee547f04d8d85f8c4bf" category="list-text">Depuis le plug-in Element pour vCenter Server 5.0, le point d'extension du plug-in distant NetApp Element apparaît :</block>
+  <block id="1c63b3cd9a6d3bdf8b9b31aca68672d7" category="list-text">Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, les points d'extension NetApp Element Configuration and Management apparaissent :</block>
 </blocks>
