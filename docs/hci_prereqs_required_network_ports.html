@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-11-21 14:37:55 +0000">11/21/2022</time>
     
   
 
@@ -2672,6 +2672,8 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph lead">
 <p>Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de bord de votre centre de données afin de pouvoir gérer le système à distance, permettre aux clients externes à votre centre de données de se connecter aux ressources et de vous assurer que les services internes fonctionnent correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système. Tous les ports sont TCP, sauf indication contraire.</p>
 </div>
@@ -3085,6 +3087,12 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nœud de calcul BMC/IPMI séries H410 et H600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;interface HTTPS et l&#8217;API permettent d&#8217;accéder au contrôle à distance des nœuds</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nœud de gestion</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;interface et l&#8217;API HTTPS accèdent au nœud de gestion</p></td>
@@ -3097,9 +3105,27 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nœud de stockage BMC/IPMI séries H410 et H600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;interface HTTPS et l&#8217;API permettent d&#8217;accéder au contrôle à distance des nœuds</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MIP du nœud de stockage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Création du cluster de stockage HTTPS, accès d&#8217;interface post-déploiement au cluster de stockage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nœud de calcul BMC/IPMI séries H410 et H600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">623 UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nœud de stockage BMC/IPMI séries H410 et H600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">623 UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PC administrateur système</p></td>
@@ -3139,7 +3165,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="trouvez-plus-dinformations" class="discrete">Trouvez plus d&#8217;informations</h2>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouvez-plus-dinformations">Trouvez plus d&#8217;informations</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -3149,6 +3179,8 @@
 <p><a href="https://docs.netapp.com/us-en/vcp/index.html" target="_blank" rel="noopener">"Plug-in NetApp Element pour vCenter Server"</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 
     </article>
