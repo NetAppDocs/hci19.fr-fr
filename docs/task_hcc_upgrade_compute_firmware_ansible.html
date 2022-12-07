@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-12-07 15:25:44 +0000">12/07/2022</time>
     
   
 
@@ -2700,7 +2700,7 @@ Le rôle Ansible pour les mises à niveau fonctionne uniquement sur les nœuds d
 </table>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p><strong>Préparation et conditions préalables pour les mises à niveau du micrologiciel</strong> : votre installation NetApp HCI doit être prête pour la mise à niveau du micrologiciel, comme indiqué dans les instructions pour <a href="task_hcc_upgrade_compute_node_firmware.html">"effectuer des mises à niveau du firmware"</a>.</p>
@@ -2711,9 +2711,11 @@ Le rôle Ansible pour les mises à niveau fonctionne uniquement sur les nœuds d
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Dans un environnement de production, il est recommandé de mettre à jour les nœuds de calcul d&#8217;un cluster d&#8217;installation NetApp HCI de manière propagée. Les nœuds de calcul de cette installation sont installés à la fois, sur un nœud après l&#8217;autre. Les API de NetApp Hybrid Cloud Control permettent d&#8217;orchestrer la mise à niveau du firmware du nœud de calcul en général pour un nœud de calcul unique, notamment en exécutant des vérifications de l&#8217;état, en plaçant ESXi sur les nœuds de calcul en maintenance et en redémarrant le nœud de calcul afin d&#8217;appliquer les mises à niveau du firmware. Le rôle Ansible offre la possibilité d&#8217;orchestrer la mise à niveau de firmware pour un groupe de nœuds de calcul ou de clusters entiers.</p>
 </div>
 <div class="paragraph">
+<div class="title">Commencez par l&#8217;automatisation des mises à niveau des firmwares</div>
 <p>Pour commencer, accédez au <a href="https://github.com/NetApp-Automation/nar_compute_firmware_upgrade" target="_blank" rel="noopener">"Référentiel NetApp Ansible sur GitHub"</a> et téléchargez le <code>nar_compute_nodes_firmware_upgrades</code> rôle et documentation.</p>
 </div>
 <h2 id="trouvez-plus-dinformations" class="discrete">Trouvez plus d&#8217;informations</h2>

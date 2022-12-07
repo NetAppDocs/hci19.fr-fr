@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-12-07 15:25:44 +0000">12/07/2022</time>
     
   
 
@@ -2681,7 +2681,7 @@
 <p>Vous pouvez déployer une nouvelle OVA et exécuter un script de redéploiement pour extraire les données de configuration à partir d&#8217;un nœud de gestion précédemment installé, exécutant la version 11.3 et les versions ultérieures.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Votre ancien nœud de gestion exécutait la version 11.3 ou ultérieure du logiciel NetApp Element avec <a href="concept_hci_volumes.html#persistent-volumes">"volumes persistants"</a> fonctionnalité engagée.</p>
@@ -2741,16 +2741,16 @@
 <div class="title">Étapes</div>
 <ol class="arabic">
 <li>
-<p>ISO or OVA and deploy the VM</p>
+<p><a href="#téléchargez-iso-ou-ova-et-déployez-la-vm">Téléchargez ISO ou OVA et déployez la VM</a></p>
 </li>
 <li>
-<p>the network</p>
+<p><a href="#configurez-le-réseau">Configurez le réseau</a></p>
 </li>
 <li>
-<p>time sync</p>
+<p><a href="Configurer la synchronisation de l&.html#8217;heure">Configurer la synchronisation de l&.html</a></p>
 </li>
 <li>
-<p>the management node</p>
+<p><a href="#configurez-le-nœud-de-gestion">Configurez le nœud de gestion</a></p>
 </li>
 </ol>
 </div>
@@ -2906,7 +2906,7 @@ Si vous avez besoin d&#8217;une carte réseau supplémentaire pour isoler le tra
 <img src="/us-en/hci19/images/note.svg" alt="Note">
 </td>
 <td class="content">
-À partir de l&#8217;élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section ,sous-étape (f) pour terminer la configuration de synchronisation de l&#8217;heure.
+À partir de l&#8217;élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section <a href="#substep_f_recover_config_time_sync">sous-étape (f)</a> pour terminer la configuration de synchronisation de l&#8217;heure.
 </td>
 </tr>
 </table>
@@ -3026,7 +3026,7 @@ N&#8217;activez pas cette option si vous apportez de futures modifications à la
 <img src="/us-en/hci19/images/note.svg" alt="Note">
 </td>
 <td class="content">
-Ne modifiez pas le NTP après avoir terminé la configuration de synchronisation de l&#8217;heure car elle affecte le NTP lorsque vous exécutez le ,commande redeploy sur le nœud de gestion.
+Ne modifiez pas le NTP après avoir terminé la configuration de synchronisation de l&#8217;heure car elle affecte le NTP lorsque vous exécutez le <a href="#step_6_recover_mnode_redeploy">commande redeploy</a> sur le nœud de gestion.
 </td>
 </tr>
 </table>

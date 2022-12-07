@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-12-07 15:25:44 +0000">12/07/2022</time>
     
   
 
@@ -2678,7 +2678,7 @@
 <p>Vous devez remplacer un nœud de stockage en cas de défaillance du module de mémoire en ligne (DIMM) double, de défaillance du processeur, de problèmes de carte Radian, d&#8217;autres problèmes liés à la carte mère ou s&#8217;il ne se met pas sous tension. Les alarmes du client Web VMware vSphere vous avertissent lorsqu&#8217;un nœud de stockage est défectueux. Vous devez utiliser l&#8217;interface utilisateur du logiciel NetApp Element pour obtenir le numéro de série (numéro de service) du nœud défaillant. Vous avez besoin de ces informations pour localiser le nœud défectueux dans le châssis.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Vous avez déterminé que le nœud de stockage doit être remplacé.</p>
@@ -2695,6 +2695,7 @@
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>La procédure de remplacement s&#8217;applique aux nœuds de stockage H410S dans un châssis NetApp HCI à deux unités de rack (2U) à quatre nœuds.</p>
 </div>
 <div class="paragraph">
@@ -2714,9 +2715,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Voici une présentation générale des étapes de cette procédure : to replace the storage node<br>
- the storage node in the chassis<br>
- the storage node to the cluster</p>
+<div class="title">Présentation des étapes</div>
+<p>Voici une présentation générale des étapes de cette procédure :<a href="#préparez-vous-à-remplacer-le-nœud-de-stockage">Préparez-vous à remplacer le nœud de stockage</a><br>
+<a href="#remplacez-le-nœud-de-stockage-dans-le-châssis">Remplacez le nœud de stockage dans le châssis</a><br>
+<a href="#ajoutez-le-nœud-de-stockage-au-cluster">Ajoutez le nœud de stockage au cluster</a></p>
 </div>
 </div>
 </div>
@@ -2921,7 +2923,7 @@ Assurez-vous que le nœud de remplacement est câblé de la même manière que l
 <p>Vous devez réintégrer le nœud de stockage dans le cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Vous disposez d&#8217;adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).</p>

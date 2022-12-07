@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-12-07 15:25:44 +0000">12/07/2022</time>
     
   
 
@@ -2686,28 +2686,28 @@
 <div class="ulist">
 <ul>
 <li>
-<p>a volume</p>
+<p><a href="#créer-un-volume">Créer un volume</a></p>
 </li>
 <li>
-<p>a QoS policy to a volume</p>
+<p><a href="#appliquer-une-policy-qos-à-un-volume">Appliquer une policy QoS à un volume</a></p>
 </li>
 <li>
-<p>a volume</p>
+<p><a href="#modifier-un-volume">Modifier un volume</a></p>
 </li>
 <li>
-<p>volumes</p>
+<p><a href="#clones-de-volumes">Clones de volumes</a></p>
 </li>
 <li>
-<p>volumes to a volume access group</p>
+<p><a href="Ajout de volumes à un groupe d&.html#8217;accès de volume">Ajout de volumes à un groupe d&.html</a></p>
 </li>
 <li>
-<p>a volume</p>
+<p><a href="#supprimer-un-volume">Supprimer un volume</a></p>
 </li>
 <li>
-<p>a deleted volume</p>
+<p><a href="#restaurer-un-volume-supprimé">Restaurer un volume supprimé</a></p>
 </li>
 <li>
-<p>a deleted volume</p>
+<p><a href="#purger-un-volume-supprimé">Purger un volume supprimé</a></p>
 </li>
 </ul>
 </div>
@@ -2808,7 +2808,7 @@ S&#8217;il y a plus de 50 comptes, la liste n&#8217;apparaît pas. Commencez à 
 <h2 id="appliquer-une-policy-qos-à-un-volume">Appliquer une policy QoS à un volume</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vous pouvez appliquer une politique de QoS aux volumes de stockage existants à l&#8217;aide de NetApp Hybrid Cloud Control. Si au lieu de cela vous devez définir des valeurs QoS personnalisées pour un volume, vous pouvez  a volume. Pour créer une nouvelle règle de QoS, reportez-vous à la section <a href="task_hcc_qos_policies.html" target="_blank" rel="noopener">"Création et gestion de règles de QoS pour les volumes"</a>.</p>
+<p>Vous pouvez appliquer une politique de QoS aux volumes de stockage existants à l&#8217;aide de NetApp Hybrid Cloud Control. Si au lieu de cela vous devez définir des valeurs QoS personnalisées pour un volume, vous pouvez <a href="#modifier-un-volume">Modifier un volume</a>. Pour créer une nouvelle règle de QoS, reportez-vous à la section <a href="task_hcc_qos_policies.html" target="_blank" rel="noopener">"Création et gestion de règles de QoS pour les volumes"</a>.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Étapes</div>
@@ -2854,6 +2854,7 @@ Si vous utilisez des règles de QoS sur un volume, vous pouvez définir une QoS 
 <p>Avec NetApp Hybrid Cloud Control, vous pouvez modifier les attributs de volume tels que les valeurs QoS, la taille du volume et l&#8217;unité de mesure en fonction de laquelle les valeurs d&#8217;octet sont calculées. Vous pouvez également modifier l&#8217;accès au compte pour l&#8217;utilisation de la réplication ou restreindre l&#8217;accès au volume.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Vous pouvez redimensionner un volume lorsque l&#8217;espace est suffisant sur le cluster dans les conditions suivantes :</p>
 </div>
 <div class="ulist">
@@ -3029,6 +3030,7 @@ Si vous modifiez les valeurs d&#8217;IOPS, vous devez augmenter l&#8217;incréme
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Le cluster prend en charge jusqu&#8217;à deux demandes de clones en cours d&#8217;exécution par volume et jusqu&#8217;à 8 opérations de clonage de volumes actifs à la fois. Les demandes dépassant ces limites sont placées en file d&#8217;attente pour traitement ultérieur.</p>
 </div>
 <div class="paragraph">
@@ -3171,6 +3173,7 @@ La durée d&#8217;une opération de clonage est affectée par la taille du volum
 <p>Vous pouvez supprimer un ou plusieurs volumes d&#8217;un cluster de stockage Element.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Le système ne purge pas immédiatement les volumes supprimés ; ils restent disponibles pendant environ huit heures. Après huit heures, ils sont purgés et ne sont plus disponibles. Si vous restaurez un volume avant que le système ne le purge, le volume est à nouveau en ligne et les connexions iSCSI sont restaurées.</p>
 </div>
 <div class="paragraph">

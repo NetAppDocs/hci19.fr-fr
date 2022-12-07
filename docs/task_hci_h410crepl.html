@@ -2662,7 +2662,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-15 19:53:44 +0000">11/15/2022</time>
+    <time datetime="2022-12-07 15:25:44 +0000">12/07/2022</time>
     
   
 
@@ -2690,7 +2690,7 @@ La version du nœud de remplacement doit être identique à celle du système d&
 </table>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Vous avez déterminé que le nœud de calcul doit être remplacé.</p>
@@ -2717,6 +2717,7 @@ La version du nœud de remplacement doit être identique à celle du système d&
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d&#8217;un nœud. Vous devez correspondre au numéro de série du nœud défaillant du client Web VMware vSphere avec le numéro de série indiqué sur l&#8217;autocollant situé à l&#8217;arrière du nœud.</p>
 </div>
 <div class="paragraph">
@@ -2733,16 +2734,17 @@ La version du nœud de remplacement doit être identique à celle du système d&
 </ul>
 </div>
 <div class="paragraph">
-<p>Voici une présentation générale des étapes de cette procédure : to replace the compute node<br>
- the compute node in the chassis<br>
- the compute node asset in NetApp HCI 1.7 and later<br>
- the compute node to the cluster<br>
- Witness Nodes for two and three-node storage clusters</p>
+<div class="title">Présentation des étapes</div>
+<p>Voici une présentation générale des étapes de cette procédure :<a href="#préparez-vous-à-remplacer-le-nœud-de-calcul">Préparez-vous à remplacer le nœud de calcul</a><br>
+<a href="#remplacez-le-nœud-de-calcul-dans-le-châssis">Remplacez le nœud de calcul dans le châssis</a><br>
+<a href="#supprimez-le-nœud-de-calcul-dans-netapp-hci-1-7-et-versions-ultérieures">Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures</a><br>
+<a href="#ajoutez-le-nœud-de-calcul-au-cluster">Ajoutez le nœud de calcul au cluster</a><br>
+<a href="#redéployez-des-nœuds-witness-pour-les-clusters-de-stockage-à-deux-et-trois-nœuds">Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds</a></p>
 </div>
 <div class="paragraph">
 <p>Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :<a href="task_hci_removewn.html">"Supprimez des nœuds de témoins pour libérer des ressources de calcul"</a><br>
- the password if you received a replacement node with a non-standard BMC password<br>
- the BMC firmware on your node</p>
+<a href="#modifiez-le-mot-de-passe-si-vous-avez-reçu-un-noeud-de-remplacement-avec-un-mot-de-passe-bmc-non-standard">Modifiez le mot de passe si vous avez reçu un noeud de remplacement avec un mot de passe BMC non standard</a><br>
+<a href="#mettez-à-niveau-le-micrologiciel-bmc-de-votre-nœud">Mettez à niveau le micrologiciel BMC de votre nœud</a></p>
 </div>
 </div>
 </div>
@@ -3046,7 +3048,7 @@ Si vous obtenez le <code>Auth Error TypeError: Failed to fetch</code> Message d&
 <p>Vous pouvez utiliser NetApp Hybrid Cloud Control uniquement si votre installation NetApp HCI s&#8217;exécute à partir de la version 1.6P1 ou ultérieure.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Assurez-vous que l&#8217;instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.</p>
@@ -3251,7 +3253,7 @@ Pour certains nœuds de calcul, vous devrez peut-être activer EVC au plus haut 
 <p>Si votre installation de NetApp HCI exécute la version 1.4P2, 1.4 ou 1.3, vous pouvez utiliser le moteur de déploiement NetApp pour ajouter le nœud au cluster.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Assurez-vous que l&#8217;instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.</p>
@@ -4005,7 +4007,7 @@ Pour obtenir l&#8217;adresse IP SVIP, sélectionnez <strong>gestion NetApp Eleme
 <p>Si vous remplacez physiquement le nœud de calcul défaillant, vous devez redéployer la machine virtuelle de NetApp HCI Witness Node si le nœud de calcul défaillant hébertait le nœud de contrôle. Ces instructions s&#8217;appliquent uniquement aux nœuds de calcul qui font partie d&#8217;une installation NetApp HCI avec des clusters de stockage à deux ou trois nœuds.</p>
 </div>
 <div class="ulist">
-<div class="title">Ce dont vous avez besoin, 8217;ll</div>
+<div class="title">Ce dont vous avez besoin</div>
 <ul>
 <li>
 <p>Rassemblez les informations suivantes :</p>
@@ -4054,6 +4056,7 @@ Vous ne pouvez pas supprimer l&#8217;ancien nœud témoin si votre cluster ne fo
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">Quand faut-il redéployer des nœuds témoin ?</div>
 <p>Vous devez redéployer des nœuds de témoins dans les scénarios suivants :</p>
 </div>
 <div class="ulist">
