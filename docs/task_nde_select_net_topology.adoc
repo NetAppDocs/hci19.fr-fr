@@ -17,6 +17,7 @@ keywords: netapp, hci, netapp deployment engine, deployment, vsphere
 [role="lead"]
 Lors du câblage des nœuds NetApp HCI, vous avez la possibilité d'utiliser différentes configurations de câbles réseau en fonction de vos besoins. Pour chaque nœud de calcul, vous pouvez utiliser les six ports réseau, avec différents types de trafic attribués à chaque paire de ports, ou utiliser deux ports avec tous les types de trafic attribués aux ports. Les nœuds de stockage utilisent la configuration standard à quatre câbles. Votre choix affecte les nœuds de calcul que vous pouvez sélectionner dans l'inventaire.
 
+.Ce dont vous avez besoin
 Si vous choisissez la topologie réseau à deux câbles pour les nœuds de calcul, prenez en compte les exigences suivantes :
 
 * Une fois le déploiement terminé, vous disposez d'une licence VMware vSphere Enterprise plus prête à être appliquée.

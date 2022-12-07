@@ -16,7 +16,7 @@ keywords: netapp, hci, api, REST, remove, compute, asset
 [role="lead"]
 Si vous remplacez physiquement un nœud de calcul ou que vous devez le supprimer du cluster NetApp HCI, vous devez supprimer cette ressource à l'aide des API de nœud de gestion.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre cluster de stockage exécute NetApp Element version 11.3 ou ultérieure.
 * Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 

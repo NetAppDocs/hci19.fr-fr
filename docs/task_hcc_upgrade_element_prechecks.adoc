@@ -16,7 +16,7 @@ keywords: netapp, storage prechecks, element upgrade, healthtools, sfupgradechec
 [role="lead"]
 Vous devez exécuter des vérifications de l'état avant de mettre à niveau le stockage Element pour garantir que tous les nœuds de stockage du cluster sont prêts pour la prochaine mise à niveau du stockage Element.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Services de gestion*: Vous avez mis à jour le dernier bundle de services de gestion (2.10.27 ou version ultérieure).
 +
 
@@ -43,16 +43,17 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de vérification de l'état
 Vous pouvez exécuter des vérifications de l'état à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control (HCC), de l'API HCC ou de la suite HealthTools :
 
-*  NetApp Hybrid Cloud Control to run Element storage health checks prior to upgrading storage (Méthode préférée)
-*  API to run Element storage health checks prior to upgrading storage
-*  HealthTools to run Element storage health checks prior to upgrading storage
+* <<Avec NetApp Hybrid Cloud Control, exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage>> (Méthode préférée)
+* <<Exécutez des vérifications de l'état du stockage Element avant la mise à niveau du stockage>>
+* <<Utilisez HealthTools pour exécuter les vérifications de l'état du stockage Element avant la mise à niveau du stockage>>
 
 
 Vous pouvez également en savoir plus sur les vérifications de l'état du stockage exécutées par ce service :
 
-*  health checks made by the service
+* <<Vérifications de l'état du stockage effectuées par le service>>
 
 
 
@@ -223,6 +224,7 @@ Vous pouvez vérifier que le cluster de stockage est prêt à être mis à nivea
 
 Si votre nœud de gestion se trouve sur un site sombre sans connectivité externe, la vérification de l'état de préparation de la mise à niveau a besoin de `metadata.json` fichier que vous avez téléchargé pendant link:task_upgrade_element_latest_healthtools.html["Mises à niveau de HealthTools"] pour réussir l'exécution.
 
+.Description de la tâche
 Cette procédure explique comment gérer les contrôles de mise à niveau qui produisent l'un des résultats suivants :
 
 * Exécution du `sfupgradecheck` exécution de la commande réussie. Votre cluster est prêt à être mis à niveau.

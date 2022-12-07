@@ -18,8 +18,8 @@ Dans les systèmes de stockage basés sur des éléments, il est possible de cr�
 
 Gérez les types de comptes suivants :
 
-*  authoritative cluster accounts
-*  volume accounts
+* <<Gérez les comptes de cluster qui font autorité>>
+* <<Gérer les comptes de volume>>
 
 
 
@@ -62,7 +62,7 @@ Ce compte peut être utilisé pour vous connecter au contrôle de cloud hybride,
 ** Si vous avez sélectionné LDAP, entrez le DN.
 +
 
-TIP: Pour utiliser LDAP, vous devez d'abord activer LDAP ou LDAPS. Voir  LDAP.
+TIP: Pour utiliser LDAP, vous devez d'abord activer LDAP ou LDAPS. Voir <<Activez LDAP>>.
 
 ** Si vous avez sélectionné Cluster comme Type d'autorisation, entrez un nom et un mot de passe pour le nouveau compte.
 

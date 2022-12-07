@@ -16,15 +16,17 @@ keywords: netapp, hci, BMC, connection, credentials, monitor
 [role="lead"]
 Vous pouvez modifier les identifiants d'administrateur BMC (Baseboard Management Controller) dans NetApp Hybrid Cloud Control pour chacun de vos nœuds de calcul. Vous devrez peut-être modifier les informations d'identification avant de mettre à niveau le micrologiciel BMC ou de résoudre un problème `Hardware ID not available` ou `Unable to Detect` Erreur indiquée dans le contrôle du cloud hybride NetApp.
 
+.Ce dont vous avez besoin
 Autorisations d'administrateur de cluster pour modifier les informations d'identification BMC.
 
 
 NOTE: Si vous définissez les informations d'identification du contrôleur BMC lors d'une vérification de l'état de fonctionnement, il peut y avoir un délai de 2 minutes avant que la modification ne soit reflétée dans la page *Nodes*.
 
+.Options
 Choisissez l'une des options suivantes pour modifier les informations d'identification BMC :
 
-*  NetApp Hybrid Cloud Control to edit BMC information
-*  the REST API to edit BMC information
+* <<Utilisez NetApp Hybrid Cloud Control pour modifier les informations BMC>>
+* <<Utilisez l'API REST pour modifier les informations BMC>>
 
 
 

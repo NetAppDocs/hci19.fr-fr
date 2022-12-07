@@ -17,7 +17,7 @@ keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, acc
 [role="lead"]
 Dans les environnements dans lesquels les serveurs acquièrent automatiquement une configuration IPv4 à partir de DHCP, vous pouvez accéder au moteur de déploiement NetApp à l'aide de l'adresse IPv4 attribuée à l'interface Bond1G sur l'un des nœuds de stockage. Vous pouvez utiliser une clé USB pour récupérer l'adresse IPv4 à partir de l'un des nœuds de stockage. Le moteur de déploiement NetApp détecte automatiquement les autres nœuds de calcul et de stockage qui utilisent les adresses IPv4 attribuées par DHCP. Vous ne devez pas utiliser cette méthode sauf si votre réseau a des exigences spéciales.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous ou votre administrateur réseau avez terminé les tâches du document instructions d'installation et de configuration.
 * Vous disposez d'un accès physique aux nœuds NetApp HCI.
 * Tous les nœuds NetApp HCI sont sous tension.
@@ -28,6 +28,7 @@ Dans les environnements dans lesquels les serveurs acquièrent automatiquement u
 
 NOTE: Pour que le déploiement de NetApp HCI soit réussi, tous les nœuds du déploiement doivent avoir des adresses IPv4 acquises par DHCP ou configurées automatiquement (vous ne pouvez pas combiner les méthodes d'affectation d'adresse IPv4).
 
+.Description de la tâche
 Si DHCP n'est utilisé que pour le réseau de stockage (interfaces Bond10G), vous devez suivre la procédure décrite sous le lien : link:task_nde_access_no_dhcp.html["Accédez au moteur de déploiement NetApp dans des environnements sans DHCP"] Pour accéder au moteur de déploiement NetApp.
 
 .Étapes

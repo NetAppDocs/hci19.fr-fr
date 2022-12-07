@@ -19,13 +19,14 @@ Découvrez comment installer Trident après l'installation de Rancher sur NetApp
 
 TIP: Pour plus d'informations sur Trident, consultez le https://netapp-trident.readthedocs.io/en/stable-v20.10/introduction.html["Documentation Trident"^].
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez installé Rancher sur NetApp HCI.
 * Vous avez déployé vos clusters utilisateur.
 * Vous avez configuré les réseaux de clusters utilisateur pour Trident. Voir link:task_trident_configure_networking.html["Activez la prise en charge de Trident pour les clusters utilisateur"] pour obtenir des instructions.
 * Vous avez terminé les étapes de prérequis pour la préparation du nœud de travail pour Trident. Voir la https://netapp-trident.readthedocs.io/en/stable-v20.10/kubernetes/operations/tasks/worker.html["Documentation Trident"^].
 
 
+.Description de la tâche
 Le catalogue d'installation de Trident est installé dans le cadre de l'installation de Rancher avec NetApp Hybrid Cloud Control. Dans cette tâche, vous utilisez le catalogue d'installation pour installer et configurer Trident. Dans le cadre de l'installation Rancher, NetApp fournit un modèle de nœuds. Si vous n'envisagez pas d'utiliser le modèle de nœud fourni par NetApp et que vous souhaitez provisionner sur RHEL ou CentOS, des exigences supplémentaires peuvent être possibles. Si vous remplacez le nœud de travail par RHEL ou CentOS, plusieurs conditions doivent être respectées. Voir la https://netapp-trident.readthedocs.io/en/stable-v20.10/kubernetes/operations/tasks/worker.html["Documentation Trident"^].
 
 .Étapes

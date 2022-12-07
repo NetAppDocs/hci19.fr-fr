@@ -21,11 +21,11 @@ NOTE: Consultez le contenu des concepts NetApp HCI pour plus d'informations sur 
 
 NetApp Hybrid Cloud Control vous permet de créer et de gérer des règles de qualité de service en exécutant les tâches suivantes :
 
-*  a QoS policy
-*  a QoS policy to a volume
-*  the QoS policy assignment of a volume
-*  a QoS policy
-*  a QoS policy
+* <<Création d'une règle de QoS>>
+* <<Appliquer une policy QoS à un volume>>
+* <<Modifier l'affectation de la politique de QoS d'un volume>>
+* <<Modifiez une règle QoS>>
+* <<Suppression d'une règle QoS>>
 
 
 
@@ -61,8 +61,10 @@ Un ID système est généré pour la règle et cette règle s'affiche sur la pag
 
 Vous pouvez affecter une politique de QoS existante à un volume à l'aide de NetApp Hybrid Cloud Control.
 
-La stratégie QoS que vous souhaitez attribuer a été  a QoS policy,créé.
+.Ce dont vous avez besoin
+La stratégie QoS que vous souhaitez attribuer a été <<Création d'une règle de QoS,créé>>.
 
+.Description de la tâche
 Cette tâche explique comment affecter une policy de QoS à un volume individuel en modifiant ses paramètres. La dernière version de NetApp Hybrid Cloud Control ne propose pas d'option d'affectation en bloc pour plusieurs volumes. Jusqu'à ce que la fonctionnalité d'attribution en bloc soit disponible dans une prochaine version, vous pouvez utiliser l'interface utilisateur web d'Element ou l'interface du plug-in vCenter pour attribuer des règles de QoS en bloc.
 
 .Étapes
@@ -88,7 +90,8 @@ Le volume mis à jour avec la règle QoS attribuée s'affiche sur la page Overvi
 
 Vous pouvez supprimer l'affectation d'une policy de QoS d'un volume ou sélectionner une autre politique de QoS ou une QoS personnalisée.
 
-Le volume que vous voulez modifier est  a QoS policy to a volume,affecté Une règle de QoS.
+.Ce dont vous avez besoin
+Le volume que vous voulez modifier est <<Appliquer une policy QoS à un volume,affecté>> Une règle de QoS.
 
 .Étapes
 . Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.

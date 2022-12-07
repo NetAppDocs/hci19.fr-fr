@@ -19,19 +19,21 @@ Vous devez remplacer un châssis pour réparer les pannes du nœud de calcul li�
 
 NOTE: Pour H610C et H615C, les termes « nœud » et « châssis » sont utilisés de manière interchangeable, car les nœuds et les châssis ne sont pas des composants distincts.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez vérifié que le nœud a échoué.
 * Vous avez un châssis de remplacement. Pour commander un produit de remplacement, contactez le support NetApp.
 * Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
 * Vous avez identifié chaque câble connecté au châssis.
 
 
+.Description de la tâche
 Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un hôte. Vous devez correspondre au numéro de série de l'hôte défaillant à partir du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
 
-Voici une présentation générale des étapes de cette procédure : to replace the node
- the node
- the node to the cluster
- the GPU drivers
+.Présentation des étapes
+Voici une présentation générale des étapes de cette procédure :<<Préparez-vous à remplacer le nœud>>
+<<Remplacer le nœud>>
+<<Ajoutez le nœud au cluster>>
+<<Installez les pilotes GPU>>
 
 
 
@@ -101,7 +103,7 @@ CAUTION: Si les évents d'aération situés à l'arrière du châssis sont bloqu
 
 Vous devez configurer NetApp HCI de manière à utiliser le nouveau nœud de calcul.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * L'instance vSphere NetApp HCI utilise avec une licence vSphere Enterprise plus si vous ajoutez le nœud à un déploiement avec des commutateurs virtuels distribués.
 * Aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.
 * Vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (le nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).

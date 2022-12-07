@@ -22,8 +22,8 @@ Cette action ne supprime pas les clusters utilisateur.
 TIP: Vous pouvez conserver les clusters utilisateur. Si vous les conservez, vous pouvez les migrer ultérieurement vers une autre implémentation Rancher. Si vous souhaitez supprimer les clusters d'utilisateurs, vous devez le faire avant de supprimer le serveur Rancher ; sinon, la suppression des clusters d'utilisateurs après la suppression du serveur Rancher est plus difficile.
 
 .Options
-*  Rancher on NetApp HCI using NetApp Hybrid Cloud Control (Recommandé)
-*  Rancher on NetApp HCI using the REST API
+* <<Optimisez le Rancher sur NetApp HCI avec le contrôle des clouds hybrides NetApp>> (Recommandé)
+* <<Supprimez Rancher sur NetApp HCI à l'aide de l'API REST>>
 
 
 

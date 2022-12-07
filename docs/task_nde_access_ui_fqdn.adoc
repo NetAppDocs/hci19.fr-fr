@@ -18,7 +18,7 @@ NetApp HCI avec le logiciel Element 12.2 ou version ultérieure vous permet d'ac
 
 Vous pouvez désormais accéder aux interfaces Web du cluster de stockage à l'aide du nom de domaine complet (FQDN). Si vous souhaitez utiliser le FQDN pour accéder aux interfaces utilisateur Web telles que l'interface utilisateur Web d'Element, l'interface utilisateur par nœud ou l'interface utilisateur du nœud de gestion, vous devez d'abord ajouter un paramètre de cluster de stockage pour identifier le FQDN utilisé par le cluster. Cela permet au cluster de rediriger correctement une session de connexion et améliore l'intégration avec les services externes tels que les gestionnaires de clés et les fournisseurs d'identité pour l'authentification multi-facteurs.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Cette fonctionnalité requiert Element 12.2 ou version ultérieure.
 * La configuration de cette fonctionnalité à l'aide des API REST de NetApp Hybrid Cloud Control nécessite des services de gestion version 2.15 ou ultérieure.
 * La configuration de cette fonctionnalité à l'aide de l'interface de contrôle du cloud hybride NetApp nécessite des services de gestion version 2.19 ou ultérieure.
@@ -28,11 +28,11 @@ Vous pouvez désormais accéder aux interfaces Web du cluster de stockage à l'a
 
 Vous pouvez configurer ou supprimer l'accès à l'interface utilisateur Web du FQDN à l'aide de NetApp Hybrid Cloud Control et de l'API REST. Vous pouvez également dépanner des FQDN mal configurés.
 
-*  FQDN web UI access using NetApp Hybrid Cloud Control
-*  FQDN web UI access using the REST API
-*  FQDN web UI access using NetApp Hybrid Cloud Control
-*  FQDN web UI access using the REST API
-* 
+* <<Configurez l'accès à l'interface utilisateur Web du FQDN à l'aide de NetApp Hybrid Cloud Control>>
+* <<Configurez l'accès à l'interface utilisateur Web du FQDN à l'aide de l'API REST>>
+* <<Supprimez l'accès à l'interface utilisateur Web du FQDN à l'aide de NetApp Hybrid Cloud Control>>
+* <<Supprimez l'accès à l'interface utilisateur Web du FQDN à l'aide de l'API REST>>
+* <<Dépannage>>
 
 
 

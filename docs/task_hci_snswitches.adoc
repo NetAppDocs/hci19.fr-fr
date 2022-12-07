@@ -16,7 +16,7 @@ keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S
 [role="lead"]
 Vous pouvez remplacer un commutateur de la gamme SN2000 défectueux sans interruption en suivant les meilleures pratiques et étapes fournies par NetApp.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Assurez-vous que Putty est installé sur l'ordinateur portable et que vous capturez la sortie. Voir cette vidéo pour savoir comment configurer Putty pour capturer la session de sortie.
 
 
@@ -43,17 +43,18 @@ image::sn2010_rear.png[SN2010 et SN2100 à l'arrière,600,400]
 .Interrupteur SN2700 avant et arrière
 image::SN2700.png[SN2700 avant et arrière,600,400]
 
+.Description de la tâche
 Vous devez effectuer les étapes de cette procédure dans l'ordre ci-dessous. Cela permet de s'assurer que les temps d'arrêt sont minimes et que le commutateur de remplacement est préconfiguré avant le remplacement du commutateur.
 
 
 NOTE: Contactez le support NetApp si vous avez besoin d'aide.
 
-Voici un aperçu des étapes de la procédure : to replace the faulty switch
- the configuration file
- the faulty switch and install the replacement
- the operating system version on the switch
- the replacement switch
- the replacement
+Voici un aperçu des étapes de la procédure :<<Préparez-vous à remplacer le commutateur défectueux>>
+<<Créez le fichier de configuration>>
+<<Déposer le commutateur défectueux et le remplacer>>
+<<Vérifiez la version du système d'exploitation sur le commutateur>>
+<<Configurer le commutateur de remplacement>>
+<<Terminez le remplacement>>
 
 
 

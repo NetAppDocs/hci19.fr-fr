@@ -35,7 +35,7 @@ Pour ajouter des disques au cluster, il est recommandé de suivre les meilleures
 * Supprimez tous les disques de bloc d'un seul nœud à la fois. Assurez-vous que la synchronisation des blocs est terminée avant de passer au nœud suivant.
 
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez contacté le service de support NetApp. Si vous commandez une solution de remplacement, vous devez ouvrir un dossier auprès du support NetApp.
 * Vous avez obtenu le noeud de remplacement.
 * Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
@@ -45,6 +45,7 @@ Pour ajouter des disques au cluster, il est recommandé de suivre les meilleures
 * Si un module DIMM est en panne, vous avez retiré les disques avant de retirer le nœud du cluster.
 
 
+.Description de la tâche
 Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un hôte. Vous devez correspondre au numéro de série de l'hôte défaillant à partir du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
 
 .Étapes

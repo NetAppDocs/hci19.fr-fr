@@ -16,14 +16,14 @@ keywords: netapp, hci, management node, management services, version, bundle ver
 [role="lead"]
 Vous pouvez vérifier les numéros de version de l'OS du nœud de gestion, les packs de services de gestion et les services individuels exécutés sur le nœud de gestion à l'aide de l'API REST dans le nœud de gestion.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre cluster exécute le logiciel NetApp Element version 11.3 ou ultérieure.
 * Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 
 
 .Options
-*  commands
-*  API UI steps
+* <<Commandes d'API>>
+* <<ÉTAPES DE L'INTERFACE UTILISATEUR DE L'API REST>>
 
 
 

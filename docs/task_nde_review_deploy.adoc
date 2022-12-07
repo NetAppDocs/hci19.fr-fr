@@ -57,6 +57,7 @@ Une fois le déploiement terminé, les nœuds de calcul peuvent redémarrer plus
 
 
 
+.Une fois que vous avez terminé
 Commencez à utiliser NetApp HCI en sélectionnant *lancer vSphere*.
 
 [NOTE]

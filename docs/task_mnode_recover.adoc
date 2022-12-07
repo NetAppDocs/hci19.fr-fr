@@ -18,7 +18,7 @@ Vous pouvez récupérer et redéployer manuellement le nœud de gestion de votre
 
 Vous pouvez déployer une nouvelle OVA et exécuter un script de redéploiement pour extraire les données de configuration à partir d'un nœud de gestion précédemment installé, exécutant la version 11.3 et les versions ultérieures.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre ancien nœud de gestion exécutait la version 11.3 ou ultérieure du logiciel NetApp Element avec link:concept_hci_volumes.html#persistent-volumes["volumes persistants"] fonctionnalité engagée.
 * Vous connaissez le MVIP et le SVIP du cluster contenant les volumes persistants.
 * Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
@@ -48,10 +48,10 @@ Vous pouvez déployer une nouvelle OVA et exécuter un script de redéploiement 
 
 
 .Étapes
-.  ISO or OVA and deploy the VM
-.  the network
-.  time sync
-.  the management node
+. <<Téléchargez ISO ou OVA et déployez la VM>>
+. <<Configurez le réseau>>
+. <<Configurer la synchronisation de l'heure>>
+. <<Configurez le nœud de gestion>>
 
 
 
@@ -119,7 +119,7 @@ NOTE: Si vous avez besoin d'une carte réseau supplémentaire pour isoler le tra
 
 
 
-NOTE: À partir de l'élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section ,sous-étape (f) pour terminer la configuration de synchronisation de l'heure.
+NOTE: À partir de l'élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section <<substep_f_recover_config_time_sync,sous-étape (f)>> pour terminer la configuration de synchronisation de l'heure.
 
 . Connectez-vous au nœud de gestion à l'aide de SSH ou de la console fournie par votre hyperviseur.
 . Stop NTPD :
@@ -186,7 +186,7 @@ NOTE: N'activez pas cette option si vous apportez de futures modifications à la
 
 
 
-NOTE: Ne modifiez pas le NTP après avoir terminé la configuration de synchronisation de l'heure car elle affecte le NTP lorsque vous exécutez le ,commande redeploy sur le nœud de gestion.
+NOTE: Ne modifiez pas le NTP après avoir terminé la configuration de synchronisation de l'heure car elle affecte le NTP lorsque vous exécutez le <<step_6_recover_mnode_redeploy,commande redeploy>> sur le nœud de gestion.
 
 
 

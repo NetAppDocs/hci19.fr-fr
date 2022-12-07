@@ -16,7 +16,7 @@ keywords: netapp, compute prechecks, compute node upgrade, netapp hci
 [role="lead"]
 Vous devez exécuter des vérifications de l'état avant de mettre à niveau le firmware du calcul afin de vous assurer que tous les nœuds de calcul du cluster sont prêts à être mis à niveau. Les vérifications de l'état des nœuds de calcul ne peuvent être exécutées que sur des clusters de calcul d'un ou de plusieurs nœuds de calcul NetApp HCI gérés.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Services de gestion*: Vous avez mis à jour le dernier bundle de services de gestion (2.11 ou version ultérieure).
 * *Noeud de gestion* : vous exécutez le noeud de gestion 11.3 ou ultérieur.
 * *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 11.3 ou ultérieure.
@@ -39,15 +39,16 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de vérification de l'état
 Vous pouvez exécuter des vérifications de l'état avec l'interface de contrôle du cloud hybride NetApp ou l'API de contrôle du cloud hybride NetApp :
 
-*  NetApp Hybrid Cloud Control to run compute node health checks prior to upgrading firmware (Méthode préférée)
-*  API to run compute node health checks prior to upgrading firmware
+* <<Utilisez NetApp Hybrid Cloud Control pour exécuter des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware>> (Méthode préférée)
+* <<Utilisez l'API pour exécuter des vérifications de l'état du nœud de calcul avant la mise à niveau du firmware>>
 
 
 Vous pouvez également en savoir plus sur les vérifications de l'état des nœuds de calcul exécutées par le service :
 
-*  node health checks made by the service
+* <<Vérifications de l'état du nœud de calcul effectuées par le service>>
 
 
 

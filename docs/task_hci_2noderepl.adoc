@@ -16,7 +16,7 @@ keywords: netapp, hci, H610C, H615C, chassis replacement, node replacement
 [role="lead"]
 Avant de remplacer un nœud de stockage faisant partie d'un cluster à deux nœuds, vous devez d'abord ajouter un troisième nœud de stockage (qui nécessite un nouvel ensemble d'adresses IP), autoriser la synchronisation et supprimer le nœud défectueux. Le cluster reste dans l'état dégradé jusqu'à ce qu'un nœud de remplacement soit ajouté au cluster.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous disposez de nouvelles adresses IP de gestion et d'adresses IP de stockage.
 * Vous avez vérifié que le cluster affiche `ClusterCannotSync` alerte après la mise hors ligne du nœud. Cela vous permet de vous assurer que le cluster effectue une resynchronisation complète lorsque le nouveau nœud est ajouté au cluster. Cette alerte s'affiche environ six minutes après la mise hors ligne du nœud de stockage.
 * Vous avez contacté le service de support NetApp. Si vous commandez une solution de remplacement, vous devez ouvrir un dossier auprès du support NetApp.
@@ -24,6 +24,7 @@ Avant de remplacer un nœud de stockage faisant partie d'un cluster à deux nœu
 * Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
 
 
+.Description de la tâche
 Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un hôte. Vous devez correspondre au numéro de série de l'hôte défaillant à partir du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
 
 .Étapes

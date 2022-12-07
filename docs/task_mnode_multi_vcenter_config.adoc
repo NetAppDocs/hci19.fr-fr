@@ -18,7 +18,7 @@ Vous pouvez configurer le contrôle des clouds hybrides NetApp pour gérer les r
 
 Vous devez utiliser ce processus après votre installation initiale lorsque vous devez ajouter des ressources pour une installation récemment mise à l'échelle ou lorsque de nouvelles ressources n'ont pas été ajoutées automatiquement à votre configuration. Utilisez ces API pour ajouter des ressources qui sont des ajouts récents à votre installation.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
 * Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 

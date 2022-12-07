@@ -28,8 +28,8 @@ Si votre cluster de stockage est au niveau d'Element 12.3.1 et que la fonctionna
 NetApp ne recommande pas d'exécuter des versions d'éléments mixtes dans un cluster, sauf pendant la durée de la mise à niveau.
 
 ====
-* Le  HCI 1.9P1 La section décrit les nouvelles fonctionnalités et mises à jour de la version 1.9P1 de NetApp HCI.
-* Le  12.3.1 Cette section décrit les nouvelles fonctionnalités et mises à jour d'NetApp Element 12.3.1.
+* Le <<NetApp HCI 1,9 P1>> La section décrit les nouvelles fonctionnalités et mises à jour de la version 1.9P1 de NetApp HCI.
+* Le <<Élément 12.3.1>> Cette section décrit les nouvelles fonctionnalités et mises à jour d'NetApp Element 12.3.1.
 
 
 

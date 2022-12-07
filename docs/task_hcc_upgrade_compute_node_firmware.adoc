@@ -18,7 +18,7 @@ Pour les nœuds de calcul H-Series, vous pouvez mettre à niveau le micrologicie
 
 Une fois la mise à niveau effectuée, le nœud de calcul démarre dans ESXi et fonctionne comme avant, en conservant la configuration.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Pilotes de calcul* : vous avez mis à niveau vos pilotes de nœud de calcul. Si les pilotes de nœud de calcul ne sont pas compatibles avec le nouveau micrologiciel, la mise à niveau ne démarre pas. Voir la https://mysupport.netapp.com/matrix["Matrice d'interopérabilité (IMT)"^] pour obtenir des informations sur la compatibilité des pilotes et des micrologiciels, et vérifiez la dernière version link:rn_relatedrn.html["notes de version du firmware du nœud de calcul"] pour obtenir des informations importantes concernant le micrologiciel et le pilote de dernière minute.
 * *Privilèges d'administrateur* : vous disposez des autorisations d'administrateur de cluster et d'administrateur BMC pour effectuer la mise à niveau.
 * *Ports système* : si vous utilisez le contrôle du cloud hybride NetApp pour les mises à niveau, vous avez vérifié que les ports nécessaires sont ouverts. Voir link:hci_prereqs_required_network_ports.html["Ports réseau"] pour en savoir plus.
@@ -70,6 +70,7 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Description de la tâche
 Dans les environnements de production, mettez à niveau le firmware sur un nœud de calcul à la fois.
 
 
@@ -80,12 +81,13 @@ Pour les mises à niveau de l'interface ou des API de contrôle de cloud hybride
 
 NOTE: Avant de procéder à la mise à niveau, vérifiez la version actuelle du pilote VMware ESXi. Si le pilote est obsolète, mettez-le d'abord à niveau. Mettez ensuite à niveau le firmware de calcul de vos nœuds de calcul.
 
+.Options de mise à niveau
 Choisissez l'option qui correspond à votre scénario de mise à niveau :
 
-*  NetApp Hybrid Cloud Control UI to upgrade a compute node (Recommandé)
-*  NetApp Hybrid Cloud Control API to upgrade a compute node
-*  a USB drive imaged with the latest compute firmware bundle
-*  the Baseboard Management Controller (BMC) user interface (UI)
+* <<Utilisez l'interface de contrôle du cloud hybride NetApp pour mettre à niveau un nœud de calcul>> (Recommandé)
+* <<Utilisez l'API de contrôle de cloud hybride NetApp pour mettre à niveau un nœud de calcul>>
+* <<Utilisez un lecteur USB imagé avec la dernière offre de microprogramme de calcul>>
+* <<Utilisation de l'interface utilisateur (UI) du contrôleur de gestion de la carte mère (BMC)>>
 
 
 
@@ -104,9 +106,9 @@ TIP: Pour les mises à niveau vers des sites sombres, vous pouvez réduire le te
 NOTE: La mise à niveau de la carte réseau, du BIOS et du contrôleur BMC peut prendre environ 60 minutes par nœud en fonction de la vitesse de la connectivité réseau entre le nœud de gestion et l'hôte BMC.
 
 
-NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un ,Lecteur USB ou le ,INTERFACE UTILISATEUR BMC pour monter le bundle de firmware de calcul.
+NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un <<manual_method_USB,Lecteur USB>> ou le <<manual_method_BMC,INTERFACE UTILISATEUR BMC>> pour monter le bundle de firmware de calcul.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Si votre nœud de gestion n'est pas connecté à Internet, vous avez téléchargé le bundle du firmware de calcul à partir du https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Site de support NetApp"^].
 +
 
@@ -167,7 +169,7 @@ L'interface utilisateur affiche un message une fois la mise à niveau terminée.
 
 TIP: Le téléchargement du fichier se fera en arrière-plan si vous vous éloignez de la fenêtre du navigateur.
 
-Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section  status changes.
+Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section <<Modifications du statut des mises à niveau>>.
 
 |===
 
@@ -210,8 +212,9 @@ Voici les différents États que l'interface utilisateur affiche avant, pendant 
 Vous pouvez utiliser des API pour mettre à niveau chaque nœud de calcul d'un cluster vers la version la plus récente du firmware. Vous pouvez utiliser l'outil d'automatisation de votre choix pour exécuter les API. Le workflow d'API documenté ici utilise l'interface d'API REST disponible sur le nœud de gestion, par exemple.
 
 
-NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un ,Lecteur USB ou le ,INTERFACE UTILISATEUR BMC pour monter le bundle de firmware de calcul.
+NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce à l'interface utilisateur NetApp Hybrid Cloud Control. Pour mettre à niveau, vous devez utiliser un <<manual_method_USB,Lecteur USB>> ou le <<manual_method_BMC,INTERFACE UTILISATEUR BMC>> pour monter le bundle de firmware de calcul.
 
+.Ce dont vous avez besoin
 Les ressources de nœud de calcul, y compris vCenter et matérielles, doivent être connues des ressources de nœud de gestion. Vous pouvez utiliser les API du service d'inventaire pour vérifier les ressources (`https://<ManagementNodeIP>/inventory/1/`).
 
 .Étapes
@@ -471,7 +474,7 @@ https://<ManagementNodeIP>/hardware/2/
 
 Vous pouvez insérer un lecteur USB avec le dernier pack de firmware de calcul téléchargé sur un port USB du nœud de calcul. Au lieu d'utiliser la méthode de la clé USB décrite dans cette procédure, vous pouvez monter l'ensemble du micrologiciel de calcul sur le nœud de calcul à l'aide de l'option *Virtual CD/DVD* de la console virtuelle dans l'interface BMC (Baseboard Management Controller). La méthode du contrôleur BMC prend beaucoup plus de temps que la méthode du lecteur USB. Assurez-vous que votre poste de travail ou serveur dispose de la bande passante réseau nécessaire et que votre session de navigateur avec le contrôleur BMC ne s'arrête pas.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Si votre nœud de gestion n'est pas connecté à Internet, vous avez téléchargé le bundle du firmware de calcul à partir du https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Site de support NetApp"^].
 +
 
@@ -510,8 +513,8 @@ TIP: Il est recommandé de disposer du système ou de la machine virtuelle et du
 
 NOTE: La mise à niveau via l'interface utilisateur BMC prend environ 25 à 30 minutes.
 
-*  firmware on H410C and H300E/H500E/H700E nodes
-*  firmware on H610C/H615C nodes
+* <<Mise à niveau du firmware sur les nœuds H410C/H500E/H700E>>
+* <<Mise à niveau du firmware sur les nœuds H610C/H615C>>
 
 
 

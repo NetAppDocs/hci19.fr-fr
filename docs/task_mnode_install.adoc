@@ -18,7 +18,7 @@ Vous pouvez installer manuellement le nœud de gestion de votre cluster exécuta
 
 Ce processus manuel est destiné aux administrateurs NetApp HCI qui n'utilisent pas le moteur de déploiement NetApp pour l'installation du nœud de gestion.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
 * Votre installation utilise IPv4. Le nœud de gestion 11.3 ne prend pas en charge IPv6.
 +
@@ -50,17 +50,18 @@ NOTE: Si vous devez prendre en charge IPv6, vous pouvez utiliser le nœud de ges
 * (Nœud de gestion 12.0 et versions ultérieures avec serveur proxy) vous avez mis à jour le contrôle du cloud hybride NetApp vers la version 2.16 des services de gestion avant de configurer un serveur proxy.
 
 
+.Description de la tâche
 Le nœud de gestion Element 12.2 est une mise à niveau optionnelle. Elle n'est pas requise pour les déploiements existants.
 
 Avant de suivre cette procédure, vous devez comprendre link:concept_hci_volumes.html#persistent-volumes["volumes persistants"] et si vous voulez ou non les utiliser. Les volumes persistants sont facultatifs, mais recommandés pour la restauration des données de configuration du nœud de gestion en cas de perte de VM.
 
 .Étapes
-.  ISO or OVA and deploy the VM
-.  the management node admin and configure the network
-.  time sync
-.  up the management node
-.  controller assets
-.  compute node assets,(NetApp HCI uniquement) configurer les ressources du nœud de calcul
+. <<Téléchargez ISO ou OVA et déployez la VM>>
+. <<Créez le noeud de gestion admin et configurez le réseau>>
+. <<Configurer la synchronisation de l'heure>>
+. <<Configurez le nœud de gestion>>
+. <<Configurer les actifs du contrôleur>>
+. <<Configure compute node assets,(NetApp HCI uniquement) configurer les ressources du nœud de calcul>>
 
 
 
@@ -132,7 +133,7 @@ NOTE: Si vous avez besoin d'une carte réseau supplémentaire pour isoler le tra
 . Assurez-vous que le temps est synchronisé entre le nœud de gestion et le cluster de stockage à l'aide de NTP :
 +
 
-NOTE: À partir de l'élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section ,sous-étape (f) pour terminer la configuration de synchronisation de l'heure.
+NOTE: À partir de l'élément 12.3.1, les sous-étapes (a) à (e) sont exécutées automatiquement. Pour le nœud de gestion 12.3.1, passez à la section <<substep_f_install_config_time_sync,sous-étape (f)>> pour terminer la configuration de synchronisation de l'heure.
 
 +
 .. Connectez-vous au nœud de gestion à l'aide de SSH ou de la console fournie par votre hyperviseur.

@@ -17,7 +17,7 @@ keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, acc
 [role="lead"]
 Lorsque DHCP n'est pas utilisé sur le réseau, vous devez définir une adresse IPv4 statique sur l'interface Bond1G de l'un des nœuds de stockage (également appelé nœud de stockage de contrôle) que vous utiliserez pour accéder au moteur de déploiement NetApp. Le moteur de déploiement NetApp sur le nœud de stockage de contrôle détecte et communique avec les autres nœuds de calcul et de stockage à l'aide d'adresses IPv4 qui ont été configurées automatiquement sur les interfaces Bond10G de tous les nœuds. Vous devez utiliser cette méthode à moins que votre réseau ne présente des exigences particulières.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous ou votre administrateur réseau avez terminé les tâches du document instructions d'installation et de configuration.
 * Vous disposez d'un accès physique aux nœuds NetApp HCI.
 * Tous les nœuds NetApp HCI sont sous tension.

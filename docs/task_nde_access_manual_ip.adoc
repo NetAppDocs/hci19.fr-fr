@@ -17,13 +17,14 @@ keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, acc
 [role="lead"]
 Vous pouvez attribuer manuellement des adresses IPv4 statiques aux interfaces Bond1G et Bond10G sur tous les nœuds NetApp HCI pour accéder au moteur de déploiement NetApp et déployer NetApp HCI. Vous ne devez pas utiliser cette méthode sauf si votre réseau a des exigences spéciales.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous ou votre administrateur réseau avez terminé les tâches du document instructions d'installation et de configuration.
 * Vous disposez d'un accès physique aux nœuds NetApp HCI.
 * Tous les nœuds NetApp HCI sont sous tension.
 * DHCP n'est pas activé pour les réseaux NetApp HCI et les nœuds NetApp HCI n'ont pas obtenu d'adresses IP auprès des serveurs DHCP. REMARQUE : toutes les adresses IP que vous attribuez manuellement avant d'utiliser le moteur de déploiement NetApp pour déployer le système sont temporaires et ne peuvent pas être réutilisées. Si vous choisissez d'attribuer manuellement des adresses IP, vous devez mettre de côté un deuxième ensemble permanent d'adresses IP inutilisées que vous pouvez attribuer lors du déploiement final.
 
 
+.Description de la tâche
 Dans cette configuration, les nœuds de calcul et de stockage utiliseront des adresses IPv4 statiques pour découvrir et communiquer avec d'autres nœuds pendant le déploiement. Cette configuration n'est pas recommandée.
 
 .Étapes

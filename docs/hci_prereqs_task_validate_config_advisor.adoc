@@ -48,11 +48,13 @@ Après un bref délai, l'interface utilisateur de Active IQ Config Advisor s'ouv
 
 Active IQ Config Advisor s'exécute dans une fenêtre de navigateur, collecte des informations sur votre réseau et votre environnement et génère un rapport que vous pouvez utiliser pour résoudre tout problème de réseau ou de configuration qui pourrait interférer avec le déploiement de NetApp HCI.
 
+.Avant de commencer
 Vous avez installé Active IQ Config Advisor sur un périphérique permettant d'accéder au réseau de gestion, à la mise en réseau de VMware vCenter Server (si vous rejoignez une installation VMware existante) et aux commutateurs qui seront utilisés pour NetApp HCI.
 
 
 NOTE: Si vous utilisez des switchs Mellanox et que les services professionnels de NetApp les configurent dans le cadre du déploiement, vous n'avez pas besoin de fournir des informations de switch.
 
+.Description de la tâche
 Active IQ Config Advisor effectue uniquement des vérifications en lecture seule afin de collecter les informations. Aucune configuration n'est modifiée dans le cadre de la collection.
 
 .Étapes

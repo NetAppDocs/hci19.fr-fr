@@ -15,4 +15,5 @@ Outre la communication des composants matériels et logiciels fournis par NetApp
 
 Si vous dépassez ces limites testées, la commande de cloud hybride NetApp peut rencontrer des problèmes avec une interface utilisateur et des réponses d'API plus lentes ou fonctionnalité n'étant pas disponible. Si vous faites appel à NetApp pour la prise en charge des produits avec NetApp Cloud Control dans des environnements configurés en dehors des limites de configuration, le support NetApp vous demande de modifier la configuration afin qu'elle respecte les valeurs maximales de configuration documentées.
 
+.Valeurs maximales de configuration
 NetApp Hybrid Cloud Control prend en charge les environnements VMware vSphere avec jusqu'à 500 nœuds de calcul NetApp. Il prend en charge jusqu'à 20 clusters de stockage NetApp Element avec 40 nœuds de stockage par cluster.

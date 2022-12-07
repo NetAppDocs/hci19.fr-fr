@@ -16,13 +16,14 @@ keywords: netapp, hci, psu, replace power supply, H410S, H610S, H410C, H610C, H6
 [role="lead"]
 Chaque châssis comprend deux blocs d'alimentation pour la redondance de l'alimentation. Si un bloc d'alimentation est défectueux, remplacez-le dès que possible pour vous assurer que le châssis dispose d'une source d'alimentation redondante.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez déterminé que l'unité d'alimentation est défectueuse.
 * Vous avez une unité d'alimentation de remplacement.
 * Vous avez vérifié que le second bloc d'alimentation fonctionne.
 * Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
 
 
+.Description de la tâche
 La procédure de remplacement s'applique aux modèles de nœuds suivants :
 
 * Châssis NetApp HCI à deux unités de rack (2U) à quatre nœuds

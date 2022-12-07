@@ -16,7 +16,7 @@ keywords: netapp, element, hcc, firmware, storage firmware
 [role="lead"]
 À partir d'Element 12.0 et des services de gestion version 2.14, vous pouvez effectuer des mises à niveau firmware uniquement sur vos nœuds de stockage à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control et de l'API REST. Cette procédure ne met pas à niveau le logiciel Element et vous permet de mettre à niveau le firmware du stockage en dehors de la version d'un élément majeur.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Privilèges d'administrateur* : vous disposez des autorisations d'administrateur du cluster de stockage pour effectuer la mise à niveau.
 * *Synchronisation de l'heure du système* : vous avez vérifié que l'heure du système sur tous les nœuds est synchronisée et que NTP est correctement configuré pour le cluster de stockage et les nœuds. Chaque nœud doit être configuré avec un serveur de noms DNS dans l'interface utilisateur Web par nœud (`https://[IP address]:442`) sans erreurs de cluster non résolues liées à l'inclinaison temporelle.
 * *Ports système* : si vous utilisez le contrôle du cloud hybride NetApp pour les mises à niveau, vous avez vérifié que les ports nécessaires sont ouverts. Voir link:hci_prereqs_required_network_ports.html["Ports réseau"] pour en savoir plus.
@@ -59,10 +59,11 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de mise à niveau
 Choisissez l'une des options de mise à niveau du micrologiciel de stockage suivantes :
 
-*  NetApp Hybrid Cloud Control UI to upgrade storage firmware
-*  NetApp Hybrid Cloud Control API to upgrade storage firmware
+* <<Utilisez l'interface de contrôle du cloud hybride NetApp pour la mise à niveau du firmware du stockage>>
+* <<Utilisez l'API de contrôle de cloud hybride NetApp pour mettre à niveau le firmware du stockage>>
 
 
 
@@ -71,6 +72,7 @@ Choisissez l'une des options de mise à niveau du micrologiciel de stockage suiv
 
 Vous pouvez utiliser l'interface utilisateur de NetApp Hybrid Cloud Control pour mettre à niveau le firmware des nœuds de stockage dans votre cluster.
 
+.Ce dont vous avez besoin
 Si votre nœud de gestion n'est pas connecté à Internet, vous l'avez https://mysupport.netapp.com/site/products/all/details/element-software/downloads-tab/download/62654/Storage_Firmware_Bundle["Le pack du firmware de stockage des clusters de stockage NetApp HCI a été téléchargé"^].
 
 
@@ -107,7 +109,7 @@ NOTE: L'onglet *Storage* répertorie les clusters de stockage qui font partie de
 
 
 
-TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir  status changes.
+TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir <<Modifications du statut des mises à niveau>>.
 
 
 NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. La page ne met pas à jour dynamiquement l'état et la version actuelle si la ligne du cluster est réduite. La ligne du cluster doit être développée pour mettre à jour la table ou vous pouvez actualiser la page.
@@ -125,7 +127,7 @@ Vous pouvez télécharger les journaux une fois la mise à niveau terminée.
 
 CAUTION: Le téléchargement du fichier sera perdu si vous vous éloignez de la fenêtre du navigateur.
 
-Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Si vous ne vous éloignez pas de la fenêtre du navigateur à ce stade, le téléchargement du fichier est conservé. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section  status changes.
+Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Si vous ne vous éloignez pas de la fenêtre du navigateur à ce stade, le téléchargement du fichier est conservé. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section <<Modifications du statut des mises à niveau>>.
 
 |===
 

@@ -16,6 +16,7 @@ keywords: netapp, hci, witness nodes, two-node cluster, four-node cluster, compu
 [role="lead"]
 Lorsque vous développez un cluster de stockage à deux nœuds sur quatre nœuds ou plus, vous pouvez supprimer la paire de nœuds Witness pour libérer des ressources de calcul dans votre installation NetApp HCI. Les nœuds témoins précédemment utilisés par le cluster de stockage sont toujours visibles en tant que serveurs virtuels de secours dans le client Web vSphere.
 
+.Description de la tâche
 Les nœuds témoins ne sont pas requis dans les clusters dotés de plus de quatre nœuds de stockage. Cette procédure est facultative si vous souhaitez libérer le CPU et la mémoire après avoir déployé votre cluster à deux nœuds sur au moins quatre nœuds.
 
 

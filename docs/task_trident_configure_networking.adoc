@@ -16,6 +16,7 @@ keywords: netapp, hci, netapp, networking, clusters, user, trident, rancher
 [role="lead"]
 Si votre environnement NetApp HCI ne dispose pas d'un itinéraire entre les réseaux de stockage et de gestion et que vous déployez les clusters utilisateur nécessitant une prise en charge de Trident, vous devez configurer davantage les réseaux de clusters utilisateur après l'installation de Trident. Pour chaque cluster utilisateur, il faut activer la communication entre les réseaux de stockage et de gestion. Pour ce faire, vous pouvez modifier la configuration réseau de chaque nœud du cluster utilisateur.
 
+.Description de la tâche
 Procédez comme suit pour modifier la configuration réseau de chaque nœud du cluster utilisateur. Ces étapes supposent que vous avez créé le cluster utilisateur avec le modèle de nœud par défaut installé avec Rancher sur NetApp HCI.
 
 

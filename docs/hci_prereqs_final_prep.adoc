@@ -34,8 +34,10 @@ Une fois que vous avez confirmé que votre environnement est prêt à prendre en
 
 Le protocole DHCP (Dynamic Host Configuration Protocol) est activé par défaut pour le port IPMI de chaque nœud NetApp HCI. Si votre réseau IPMI n'utilise pas DHCP, vous pouvez attribuer manuellement une adresse IPv4 statique au port IPMI.
 
+.Avant de commencer
 Assurez-vous que vous disposez d'un commutateur KVM (clavier, vidéo et souris) ou d'un moniteur et d'un clavier que vous pouvez utiliser pour accéder au BIOS de chaque nœud.
 
+.Description de la tâche
 Utilisez les touches fléchées pour naviguer dans le BIOS. Sélectionnez un onglet ou une option en appuyant sur `Enter`. Pour revenir aux écrans précédents, appuyez sur `ESC`.
 
 .Étapes
@@ -62,6 +64,7 @@ Le port IPMI de ce nœud est prêt à être utilisé.
 
 Vous devez modifier le mot de passe par défaut du compte administrateur IPMI sur chaque nœud de calcul et de stockage dès que vous configurez le port réseau IPMI.
 
+.Avant de commencer
 Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockage.
 
 .Étapes
@@ -82,6 +85,7 @@ Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockag
 
 Vous devez modifier le mot de passe par défaut du compte administrateur IPMI sur chaque nœud de calcul et de stockage dès que vous configurez le port réseau IPMI.
 
+.Avant de commencer
 Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockage.
 
 .Étapes

@@ -16,6 +16,7 @@ keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S
 [role="lead"]
 Si un entraînement est défectueux ou si le niveau d'usure de l'entraînement tombe en dessous d'un seuil, vous devez le remplacer. Les alarmes de l'interface utilisateur du logiciel Element et de VMware vSphere Web client vous avertissent en cas de défaillance ou d'échec d'un disque. Vous pouvez remplacer à chaud un disque défectueux.
 
+.Description de la tâche
 Cette procédure est destinée au remplacement des disques dans les nœuds de stockage H410S et H610S Le retrait d'un lecteur met le lecteur hors ligne. Toutes les données du disque sont supprimées et migrées vers d'autres disques du cluster. La migration des données vers d'autres disques actifs du système peut prendre quelques minutes à une heure selon l'utilisation de la capacité et les E/S actives sur le cluster.
 
 

@@ -16,7 +16,7 @@ keywords: netapp, hci, deployment, compatibility, nodes
 [role="lead"]
 NetApp HCI fournit une page de paramètres réseau comportant plusieurs sections afin de simplifier la configuration du réseau. Vous pouvez passer par chaque section et entrer des informations ou attribuer des adresses IP pour les hôtes et les nœuds de chaque réseau.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez obtenu les informations suivantes :
 +
 ** Préfixe de nom planifié pour les hôtes et le cluster de stockage
@@ -31,6 +31,7 @@ NetApp HCI fournit une page de paramètres réseau comportant plusieurs sections
 * Vous avez vérifié que la configuration de votre commutateur réseau est correcte. Des configurations de commutateur incorrectes (par exemple, des VLAN ou une taille MTU incorrecte) causeront des erreurs de déploiement.
 
 
+.Description de la tâche
 Si vous avez sélectionné la topologie réseau à deux câbles pour les nœuds de calcul, vous devez utiliser des ID VLAN pour les réseaux vMotion et de stockage pour tous les nœuds de calcul et de stockage du déploiement (les ID VLAN sont facultatifs pour les réseaux de gestion). Notez que NetApp HCI valide les adresses IP que vous entrez au cours de ces étapes, mais vous pouvez désactiver cette validation à l'aide du bouton *validation réseau en direct est*. NetApp HCI vérifie également les autres informations saisies lors de ces étapes : par exemple, s'assurer qu'aucun sous-réseau ne se chevauchent, s'assurant qu'aucun ID de VLAN n'est attribué à plusieurs réseaux et d'autres validations de base.
 
 
@@ -41,6 +42,7 @@ Si vous déployez un cluster de stockage à deux ou trois nœuds, vous pouvez co
 
 NOTE: Dans les pages d'affectation d'adresse IP, les informations saisies en mode *attribuer automatiquement des adresses IP* n'affectent pas les informations saisies en mode *attribuer manuellement des adresses IP*, et vice versa. Si vous entrez des adresses IP dans les deux modes, NetApp HCI utilise les informations d'adresse IP dans n'importe quel mode actif lorsque vous cliquez sur *Continuer* en bas de la page.
 
+.Résolution des problèmes courants
 NetApp HCI vérifie les informations saisies sur ces pages. Voici quelques problèmes courants et solutions de contournement :
 
 |===
@@ -94,6 +96,7 @@ Sur la page *ID de VLAN*, vous pouvez attribuer des ID de VLAN aux réseaux NetA
 
 NOTE: Lorsque vous attribuez des ID de VLAN, vous configurez des balises VLAN que NetApp HCI appliquera au trafic réseau. Il n'est pas nécessaire de saisir votre VLAN natif comme ID VLAN ; pour utiliser le VLAN natif pour un réseau, laissez le champ approprié vide.
 
+.Étapes
 Choisissez l'une des options suivantes :
 
 |===
@@ -123,6 +126,7 @@ Le trafic vMotion de calcul et le trafic iSCSI doivent utiliser un ID VLAN non p
 
 Sur la page *Management*, vous pouvez choisir de renseigner NetApp HCI automatiquement les plages d'adresses IP des réseaux de gestion en fonction d'une adresse IP de départ ou de saisir manuellement toutes les informations d'adresse IP.
 
+.Étapes
 Choisissez l'une des options suivantes :
 
 |===
@@ -158,6 +162,7 @@ NetApp HCI remplit automatiquement les adresses IP de fin pour chaque hôte ou g
 
 Sur la page *vMotion*, vous pouvez choisir de renseigner NetApp HCI automatiquement les plages d'adresses IP pour le réseau vMotion en fonction d'une adresse IP de départ. Vous pouvez également choisir de saisir manuellement toutes les informations d'adresse IP.
 
+.Étapes
 Choisissez l'une des options suivantes :
 
 |===
@@ -192,6 +197,7 @@ NetApp HCI remplit automatiquement les adresses IP de fin pour chaque hôte ou g
 
 Sur la page *iSCSI*, vous pouvez choisir de faire remplir automatiquement les plages d'adresses IP du réseau iSCSI par NetApp HCI en fonction d'une adresse IP de départ, ou de saisir manuellement toutes les informations d'adresse IP.
 
+.Étapes
 Choisissez l'une des options suivantes :
 
 |===
@@ -229,6 +235,7 @@ NetApp HCI remplit automatiquement les adresses IP de fin pour chaque hôte ou g
 
 Sur la page *Naming*, vous pouvez choisir d'indiquer automatiquement le nom du cluster et les noms des nœuds du cluster dans NetApp HCI, en fonction d'un préfixe de nom, ou d'entrer manuellement tous les noms du cluster et des nœuds.
 
+.Étapes
 Choisissez l'une des options suivantes :
 
 |===

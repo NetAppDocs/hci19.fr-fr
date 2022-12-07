@@ -17,6 +17,7 @@ keywords: netapp, hci, netapp deployment engine, deployment, vsphere
 [role="lead"]
 Lorsque vous mettez hors tension les ressources de stockage pour NetApp HCI, vous devez utiliser le `Shutdown` Méthode d'API d'Element pour arrêter correctement les nœuds de stockage.
 
+.Étapes
 Après la mise hors tension des ressources de calcul, un navigateur Web permet d'arrêter tous les nœuds du cluster de stockage NetApp HCI.
 
 . Connectez-vous au cluster de stockage et vérifiez que vous êtes connecté au MVIP approprié.

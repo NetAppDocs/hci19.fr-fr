@@ -96,7 +96,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP
-.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `NetApp Role`.
 +
 
@@ -124,7 +124,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `ReadOnly role`.
 +
 
@@ -152,7 +152,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `Administrator role`.
 .. Sélectionnez *Propager aux enfants*.
 
@@ -174,7 +174,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur HCC que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `NetApp Role` ou `Administrator`.
 .. Sélectionnez *Propager aux enfants*.
 
@@ -203,7 +203,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `NetApp Role` ou `Administrator`.
 
 
@@ -225,7 +225,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `NetApp Role`.
 +
 
@@ -241,7 +241,7 @@ Ajoutez les détails suivants dans la fenêtre *Ajouter permission* :
 
 +
 .. Sélectionnez `vsphere.local` Ou votre domaine LDAP.
-.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans  up a new user account in vCenter.
+.. Utilisez la recherche pour trouver le nouvel utilisateur que vous avez créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>.
 .. Sélectionnez `NetApp Role` ou `Administrator`.
 .. Sélectionnez *Propager aux enfants*.
 
@@ -273,7 +273,7 @@ Si une ressource de contrôleur existe déjà sur le nœud de gestion, procédez
 
 == Ajoutez une ressource ou un nœud de calcul au nœud de gestion
 
-Si vous devez ajouter manuellement une nouvelle ressource ou un nœud de calcul (et des ressources BMC) après l'installation, utilisez le nouveau compte utilisateur HCC créé dans  up a new user account in vCenter. Pour plus d'informations, voir link:task_mnode_add_assets.html["Ajoutez des ressources de calcul et de contrôleur au nœud de gestion"].
+Si vous devez ajouter manuellement une nouvelle ressource ou un nœud de calcul (et des ressources BMC) après l'installation, utilisez le nouveau compte utilisateur HCC créé dans <<Configurez un nouveau compte utilisateur dans vCenter>>. Pour plus d'informations, voir link:task_mnode_add_assets.html["Ajoutez des ressources de calcul et de contrôleur au nœud de gestion"].
 
 
 

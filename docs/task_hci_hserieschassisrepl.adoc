@@ -16,6 +16,7 @@ keywords: netapp, hci, chassis replacement,2U chassis replacement, h-series
 [role="lead"]
 Si votre châssis présente une panne de ventilateur ou un problème d'alimentation, vous devez le remplacer dès que possible. Les étapes de la procédure de remplacement du châssis dépendent de la capacité du cluster et de la configuration NetApp HCI, qui nécessite une analyse approfondie et une planification minutieuse. Vous devez contacter le support NetApp pour obtenir des conseils et commander un châssis de remplacement.
 
+.Description de la tâche
 Avant de remplacer le châssis, tenez compte des points suivants :
 
 * Votre rack dispose-t-il d'espace supplémentaire pour un nouveau châssis ?
@@ -25,8 +26,9 @@ Avant de remplacer le châssis, tenez compte des points suivants :
 * Vos machines virtuelles et votre cluster ESXi sont-ils en mesure de gérer la charge de travail lorsque vous supprimez les nœuds de calcul qui font partie du châssis défaillant ?
 
 
-Choisissez l'une des options suivantes : the chassis when additional unused space is available in the rack
- the chassis when additional unused space is not available in the rack
+.Options de remplacement
+Choisissez l'une des options suivantes :<<Remplacez le châssis lorsque de l'espace inutilisé supplémentaire est disponible dans le rack>>
+<<Remplacez le châssis lorsque de l'espace non utilisé supplémentaire n'est pas disponible dans le rack>>
 
 
 
@@ -43,7 +45,7 @@ NOTE: Les étapes de déplacement des nœuds de calcul sont différentes des ét
 
 Vous pouvez installer le nouveau châssis dans l'espace rack disponible, et y déplacer les nœuds.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez un bracelet antistatique (ESD) ou vous avez pris une autre protection antistatique.
 * Vous avez le châssis de remplacement.
 * Vous avez un ascenseur ou deux personnes ou plus pour effectuer les étapes.
@@ -172,6 +174,7 @@ NOTE: L'ajout du nœud peut prendre jusqu'à 2 minutes et s'afficher sous *noeud
 
 Si votre rack ne dispose pas d'espace supplémentaire et si aucun châssis ne comporte de logements de nœud inutilisés dans votre déploiement, vous devez déterminer ce qui peut rester en ligne, le cas échéant, avant de procéder au remplacement.
 
+.Description de la tâche
 Prenez en compte les points suivants avant d'effectuer le remplacement du châssis :
 
 * Votre cluster de stockage peut-il rester en ligne sans les nœuds de stockage du châssis défaillant ? Si la réponse est non, arrêtez tous les nœuds (à la fois de calcul et de stockage) dans votre déploiement NetApp HCI. Si la réponse est oui, vous pouvez arrêter uniquement les nœuds de stockage du châssis en panne.
@@ -200,7 +203,7 @@ NOTE: Pour connaître les étapes de migration, reportez-vous à la documentatio
 
 === Arrêtez un nœud de stockage
 
-Voir les étapes  a storage node,ici.
+Voir les étapes <<move a storage node,ici>>.
 
 
 

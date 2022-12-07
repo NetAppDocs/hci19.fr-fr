@@ -15,14 +15,14 @@ Vous pouvez spécifier les paramètres QoS d'un volume lors de sa création.
 
 Vous pouvez gérer les volumes de NetApp Hybrid Cloud Control de l'une des manières suivantes :
 
-*  a volume
-*  a QoS policy to a volume
-*  a volume
-*  volumes
-*  volumes to a volume access group
-*  a volume
-*  a deleted volume
-*  a deleted volume
+* <<Créer un volume>>
+* <<Appliquer une policy QoS à un volume>>
+* <<Modifier un volume>>
+* <<Clones de volumes>>
+* <<Ajout de volumes à un groupe d'accès de volume>>
+* <<Supprimer un volume>>
+* <<Restaurer un volume supprimé>>
+* <<Purger un volume supprimé>>
 
 
 
@@ -71,7 +71,7 @@ Pour les volumes dont la valeur IOPS max ou Burst supérieure à 20,000, il faut
 
 == Appliquer une policy QoS à un volume
 
-Vous pouvez appliquer une politique de QoS aux volumes de stockage existants à l'aide de NetApp Hybrid Cloud Control. Si au lieu de cela vous devez définir des valeurs QoS personnalisées pour un volume, vous pouvez  a volume. Pour créer une nouvelle règle de QoS, reportez-vous à la section link:task_hcc_qos_policies.html["Création et gestion de règles de QoS pour les volumes"^].
+Vous pouvez appliquer une politique de QoS aux volumes de stockage existants à l'aide de NetApp Hybrid Cloud Control. Si au lieu de cela vous devez définir des valeurs QoS personnalisées pour un volume, vous pouvez <<Modifier un volume>>. Pour créer une nouvelle règle de QoS, reportez-vous à la section link:task_hcc_qos_policies.html["Création et gestion de règles de QoS pour les volumes"^].
 
 .Étapes
 . Connectez-vous au cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage NetApp HCI ou Element.
@@ -92,6 +92,7 @@ NOTE: Si vous utilisez des règles de QoS sur un volume, vous pouvez définir un
 
 Avec NetApp Hybrid Cloud Control, vous pouvez modifier les attributs de volume tels que les valeurs QoS, la taille du volume et l'unité de mesure en fonction de laquelle les valeurs d'octet sont calculées. Vous pouvez également modifier l'accès au compte pour l'utilisation de la réplication ou restreindre l'accès au volume.
 
+.Description de la tâche
 Vous pouvez redimensionner un volume lorsque l'espace est suffisant sur le cluster dans les conditions suivantes :
 
 * Conditions de fonctionnement normales.
@@ -167,6 +168,7 @@ Vous pouvez créer un clone d'un seul volume de stockage ou cloner un groupe de 
 * L'espace non provisionné disponible doit être égal ou supérieur à la taille du volume.
 
 
+.Description de la tâche
 Le cluster prend en charge jusqu'à deux demandes de clones en cours d'exécution par volume et jusqu'à 8 opérations de clonage de volumes actifs à la fois. Les demandes dépassant ces limites sont placées en file d'attente pour traitement ultérieur.
 
 Le clonage de volumes est un processus asynchrone. La durée de ce processus dépend de la taille du volume que vous clonez et de la charge actuelle du cluster.
@@ -225,6 +227,7 @@ Vous pouvez ajouter un seul volume ou un groupe de volumes à un groupe d'accès
 
 Vous pouvez supprimer un ou plusieurs volumes d'un cluster de stockage Element.
 
+.Description de la tâche
 Le système ne purge pas immédiatement les volumes supprimés ; ils restent disponibles pendant environ huit heures. Après huit heures, ils sont purgés et ne sont plus disponibles. Si vous restaurez un volume avant que le système ne le purge, le volume est à nouveau en ligne et les connexions iSCSI sont restaurées.
 
 Si un volume utilisé pour créer un snapshot est supprimé, ses snapshots associés deviennent inactifs. Lorsque les volumes source supprimés sont purgés, les snapshots inactifs associés sont également supprimés du système.

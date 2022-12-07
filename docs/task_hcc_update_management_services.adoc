@@ -29,6 +29,7 @@ Depuis la version Element 11.3, la conception du nœud de gestion a été modifi
 
 
 ====
+.Ce dont vous avez besoin
 Depuis les services de gestion 2.20.69, vous devez accepter et enregistrer le contrat de licence utilisateur final (CLUF) avant d'utiliser l'interface utilisateur ou l'API de contrôle du cloud hybride NetApp pour mettre à niveau les services de gestion :
 
 . Ouvrez l'adresse IP du nœud de gestion dans un navigateur Web :
@@ -46,11 +47,12 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de mise à jour
 Vous pouvez mettre à jour les services de gestion via l'interface utilisateur NetApp de contrôle du cloud hybride ou l'API REST de nœud de gestion :
 
-*  management services using Hybrid Cloud Control (Méthode recommandée)
-*  management services using the management node API
-*  management services using the management node API for dark sites
+* <<Mise à jour des services de gestion via le contrôle dans le cloud hybride>> (Méthode recommandée)
+* <<Mettre à jour les services de gestion à l'aide de l'API de nœud de gestion>>
+* <<Mettez à jour les services de gestion à l'aide de l'API de nœud de gestion pour les sites sombres>>
 
 
 

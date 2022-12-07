@@ -42,9 +42,9 @@ Chaque machine virtuelle est affectée à tous les rôles Kubernetes du plan de 
 
 == Étapes de déploiement de Rancher sur NetApp HCI
 
-*  the NetApp Hybrid Cloud Control
-*  Rancher on NetApp HCI
-*  your deployment by using vCenter Server
+* <<Accédez au contrôle du cloud hybride NetApp>>
+* <<Déployez Rancher sur NetApp HCI>>
+* <<Vérifiez votre déploiement à l'aide de vCenter Server>>
 
 
 

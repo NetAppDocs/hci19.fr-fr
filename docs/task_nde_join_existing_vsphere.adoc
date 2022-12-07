@@ -17,13 +17,14 @@ keywords: netapp, hci, netapp deployment engine, deployment, vsphere
 [role="lead"]
 Vous pouvez configurer NetApp HCI pour tirer parti d'un déploiement vSphere existant en fournissant les informations d'identification et le réseau de vCenter Server.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Si vous rejoignez un déploiement vSphere 6.7 existant, assurez-vous que vCenter Server exécute la mise à jour 1 de la version 6.7.
 * Si vous rejoignez un déploiement vSphere 6.5 existant, assurez-vous que vCenter Server exécute la version 6.5 mise à jour 2 ou ultérieure.
 * Obtenez les détails du réseau et les informations d'identification de l'administrateur pour votre déploiement vSphere existant.
 * Si le plug-in NetApp Element pour vCenter Server est enregistré sur l'instance vCenter existante, vous devez le faire https://docs.netapp.com/us-en/vcp/task_vcp_unregister.html["annuler l'enregistrement"^] avant de continuer. Le plug-in est à nouveau enregistré une fois le déploiement de NetApp HCI terminé.
 
 
+.Description de la tâche
 Si vous rejoignez plusieurs systèmes vCenter Server connectés à l'aide du mode lié vCenter, NetApp HCI ne reconnaît qu'un des systèmes vCenter Server.
 
 [NOTE]

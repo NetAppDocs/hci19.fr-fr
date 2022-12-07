@@ -18,12 +18,12 @@ Les termes de la protection des données NetApp HCI incluent différents types d
 
 La protection des données NetApp HCI comprend les concepts suivants :
 
-*  replication types
-*  snapshots for data protection
-*  clones
-*  and restore process overview for SolidFire storage
-*  domains
-*  Helix high availability
+* <<Types de réplication distante>>
+* <<Snapshots de volumes pour la protection des données>>
+* <<Clones de volumes>>
+* <<Présentation des processus de sauvegarde et de restauration pour le stockage SolidFire>>
+* <<Les domaines de protection>>
+* <<Double haute disponibilité Helix>>
 
 
 
@@ -32,9 +32,9 @@ La protection des données NetApp HCI comprend les concepts suivants :
 
 La réplication à distance des données peut prendre les formes suivantes :
 
-*  and asynchronous replication between clusters
-*  replication
-*  between Element and ONTAP clusters using SnapMirror
+* <<Réplication synchrone et asynchrone entre les clusters>>
+* <<Réplication snapshot uniquement>>
+* <<Réplication entre les clusters Element et ONTAP à l'aide de SnapMirror>>
 
 
 Voir https://www.netapp.com/us/media/tr-4741.pdf["Tr-4741 : réplication à distance du logiciel NetApp Element"^].

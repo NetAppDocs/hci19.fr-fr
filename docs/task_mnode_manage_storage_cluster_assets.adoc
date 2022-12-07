@@ -16,17 +16,18 @@ keywords: netapp, mnode, management node, rest api, hci, assets
 [role="lead"]
 Vous pouvez ajouter de nouvelles ressources de cluster de stockage au nœud de gestion, modifier les informations d'identification stockées des ressources de cluster de stockage connues et supprimer des ressources de cluster de stockage du nœud de gestion à l'aide de l'API REST.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vérifiez que votre cluster de stockage exécute la version 11.3 ou ultérieure du logiciel NetApp Element.
 * Vérifiez que vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 
 
+.Options de gestion des ressources du cluster de stockage
 Choisissez l'une des options suivantes :
 
-*  the installation ID and cluster ID of a storage cluster asset
-*  a new storage cluster asset
-*  the stored credentials for a storage cluster asset
-*  a storage cluster asset
+* <<Récupérer l'ID d'installation et l'ID de cluster d'une ressource de cluster de stockage>>
+* <<Ajoutez un nouveau actif de cluster de stockage>>
+* <<Modifiez les informations d'identification enregistrées pour une ressource de cluster de stockage>>
+* <<Supprimer une ressource de cluster de stockage>>
 
 
 
@@ -101,8 +102,8 @@ L'API renvoie la liste de tous les clusters de stockage connus dans cette instal
 
 Vous pouvez utiliser l'API REST pour ajouter une ou plusieurs nouvelles ressources du cluster de stockage à l'inventaire des nœuds de gestion. Lorsque vous ajoutez un nouveau actif de cluster de stockage, il est automatiquement enregistré auprès du nœud de gestion.
 
-.Ce dont vous avez besoin, 8217;ll
-* Vous avez copié le  the installation ID and cluster ID of a storage cluster asset,ID de cluster de stockage et ID d'installation si vous souhaitez ajouter des clusters de stockage,
+.Ce dont vous avez besoin
+* Vous avez copié le <<Récupérer l'ID d'installation et l'ID de cluster d'une ressource de cluster de stockage,ID de cluster de stockage et ID d'installation>> si vous souhaitez ajouter des clusters de stockage,
 * Si vous ajoutez plusieurs nœuds de stockage, vous avez lu et compris les limites du link:concept_hci_clusters.html#authoritative-storage-clusters["cluster faisant autorité"] et de nombreux clusters de stockage.
 +
 
@@ -167,7 +168,7 @@ L'API renvoie un objet contenant des informations sur l'actif de cluster de stoc
 Vous pouvez modifier les informations d'identification stockées utilisées par le nœud de gestion pour vous connecter à un cluster de stockage. L'utilisateur que vous choisissez doit disposer d'un accès admin du cluster.
 
 
-NOTE: Assurez-vous d'avoir suivi les étapes de la section  the installation ID and cluster ID of a storage cluster asset avant de continuer.
+NOTE: Assurez-vous d'avoir suivi les étapes de la section <<Récupérer l'ID d'installation et l'ID de cluster d'une ressource de cluster de stockage>> avant de continuer.
 
 .Étapes
 . Accédez à l'interface d'API REST pour le service de stockage en entrant l'adresse IP du nœud de gestion suivie de `/storage/1/`:
@@ -216,7 +217,7 @@ https://<ManagementNodeIP>/storage/1/
 Vous pouvez supprimer une ressource du cluster de stockage si le cluster de stockage n'est plus en service. Lorsque vous supprimez un actif de cluster de stockage, il n'est pas enregistré automatiquement du nœud de gestion.
 
 
-NOTE: Assurez-vous d'avoir suivi les étapes de la section  the installation ID and cluster ID of a storage cluster asset avant de continuer.
+NOTE: Assurez-vous d'avoir suivi les étapes de la section <<Récupérer l'ID d'installation et l'ID de cluster d'une ressource de cluster de stockage>> avant de continuer.
 
 .Étapes
 . Accédez à l'interface d'API REST pour le service de stockage en entrant l'adresse IP du nœud de gestion suivie de `/storage/1/`:

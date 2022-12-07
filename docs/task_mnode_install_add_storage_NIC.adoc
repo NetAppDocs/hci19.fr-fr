@@ -22,10 +22,11 @@ Si vous utilisez une carte réseau supplémentaire pour le stockage, vous pouvez
 * Vous avez déployé un nœud de gestion 11.3 ou version ultérieure.
 
 
+.Options de configuration
 Choisissez l'option la mieux adaptée à votre environnement :
 
-*  a storage Network Interface Controller (NIC) for an untagged network interface
-*  a storage Network Interface Controller (NIC) for a tagged network interface
+* <<Configurez un contrôleur d'interface réseau de stockage (NIC) pour une interface réseau non balisée>>
+* <<Configurez un contrôleur d'interface réseau de stockage (NIC) pour une interface réseau marquée>>
 
 
 

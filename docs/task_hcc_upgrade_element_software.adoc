@@ -16,7 +16,7 @@ keywords: netapp, hci, HealthTools, cluster, element, H610S upgrade, hcc
 [role="lead"]
 Pour mettre à niveau le logiciel NetApp Element, vous pouvez utiliser l'interface utilisateur de contrôle du cloud hybride NetApp, l'API REST ou la suite d'outils HealthTools. Certaines opérations sont supprimées lors de la mise à niveau du logiciel Element, telles que l'ajout et la suppression de nœuds, l'ajout et la suppression de disques, ainsi que les commandes associées aux initiateurs, aux groupes d'accès aux volumes et aux réseaux virtuels, entre autres.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Privilèges d'administrateur* : vous disposez des autorisations d'administrateur du cluster de stockage pour effectuer la mise à niveau.
 * *Chemin de mise à niveau valide* : vous avez vérifié les informations de chemin de mise à niveau pour la version d'élément vers laquelle vous effectuez la mise à niveau et vérifié que le chemin de mise à niveau est valide.https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Software/What_is_the_upgrade_matrix_for_storage_clusters_running_NetApp_Element_software%3F["Base de connaissances NetApp : matrice de mise à niveau pour les clusters de stockage exécutant le logiciel NetApp Element"^]
 * *Synchronisation de l'heure du système* : vous avez vérifié que l'heure du système sur tous les nœuds est synchronisée et que NTP est correctement configuré pour le cluster de stockage et les nœuds. Chaque nœud doit être configuré avec un serveur de noms DNS dans l'interface utilisateur Web par nœud (`https://[IP address]:442`) sans erreurs de cluster non résolues liées à l'inclinaison temporelle.
@@ -49,16 +49,17 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de mise à niveau
 Sélectionnez l'une des options de mise à niveau du logiciel Element suivantes :
 
-*  NetApp Hybrid Cloud Control UI to upgrade Element storage
-*  NetApp Hybrid Cloud Control API to upgrade Element storage
-*  Element software at connected sites using HealthTools
-*  Element software at dark sites using HealthTools
+* <<Utilisez l'interface de contrôle du cloud hybride NetApp pour mettre à niveau le stockage Element>>
+* <<Utilisez l'API de contrôle de cloud hybride NetApp pour mettre à niveau le stockage Element>>
+* <<Mettez à niveau le logiciel Element sur des sites connectés à l'aide de HealthTools>>
+* <<Mettez à niveau le logiciel Element sur des sites sombres à l'aide de HealthTools>>
 
 
 
-IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires ( H610S storage nodes to Element 12.3.x (phase 2),phase 2) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
+IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires (<<Mise à niveau des nœuds de stockage H610S vers Element 12.3.x (phase 2),phase 2>>) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
 
 
 
@@ -66,6 +67,7 @@ IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.
 
 Avec l'interface utilisateur de NetApp Hybrid Cloud Control, vous pouvez mettre à niveau un cluster de stockage.
 
+.Ce dont vous avez besoin
 Si votre noeud de gestion n'est pas connecté à Internet, vous avez téléchargé le https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Pack logiciel NetApp HCI pour les clusters de stockage NetApp HCI"^].
 
 
@@ -100,7 +102,7 @@ L'onglet *Storage* répertorie les clusters de stockage qui font partie de votre
 
 
 
-TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir  status changes.
+TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir <<Modifications du statut des mises à niveau>>.
 
 
 NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. La page ne met pas à jour dynamiquement l'état et la version actuelle si la ligne du cluster est réduite. La ligne du cluster doit être développée pour mettre à jour la table ou vous pouvez actualiser la page.
@@ -127,7 +129,7 @@ Un message à l'écran s'affiche une fois le fichier téléchargé et validé. L
 .. Effectuez les étapes supplémentaires requises (phase 2) dans le https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/H_Series/NetApp_H610S_storage_node_power_off_and_on_procedure["Article de la base de connaissances"^], Et reconnaissez dans l'interface utilisateur que vous avez terminé la phase 2.
 
 
-Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section  status changes.
+Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section <<Modifications du statut des mises à niveau>>.
 
 |===
 
@@ -420,7 +422,7 @@ La réponse doit indiquer l'état comme `initializing`:
 
 
 | Si vous mettez à niveau un cluster H610S exécutant une version d'Element antérieure à 11.8, vous voyez l'état `finishedNeedsAck` dans le corps de réponse. Vous devez effectuer des étapes de mise à niveau supplémentaires (phase 2) pour chaque nœud de stockage H610S.  a| 
-... Voir  H610S storage nodes to Element 12.3.x or later (phase 2) et terminez le processus pour chaque nœud.
+... Voir <<Upgrading H610S storage nodes to Element 12.3.x or later (phase 2)>> et terminez le processus pour chaque nœud.
 ... Réauthentifier si nécessaire et sélectionner *PUT ​/upgrades/{upseId}*.
 ... Sélectionnez *essayez-le*.
 ... Saisissez l'ID de mise à niveau de l'étape précédente dans *mise à niveau Id*.
@@ -633,7 +635,7 @@ Starting light cluster block service check
 
 
 
-IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires ( H610S storage nodes to Element 12.3.x (phase 2),phase 2) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
+IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires (<<Mise à niveau des nœuds de stockage H610S vers Element 12.3.x (phase 2),phase 2>>) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
 
 
 
@@ -641,7 +643,7 @@ IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.
 
 Vous pouvez utiliser la suite d'outils HealthTools pour mettre à jour le logiciel NetApp Element sur un site sombre qui n'a pas de connectivité externe.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 . Accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["page de téléchargements"^].
 . Sélectionnez la version correcte du logiciel et téléchargez la dernière image du noeud de stockage sur un ordinateur qui n'est pas le noeud de gestion.
 +
@@ -701,7 +703,7 @@ sfinstall -u admin 10.117.78.244 /tmp/solidfire-rtfi-11.3.0.345.iso --metadata=/
 
 
 
-IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires ( H610S storage nodes to Element 12.3.x (phase 2),phase 2) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
+IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.3.x et que le nœud exécute une version d'Element antérieure à 11.8, vous devrez effectuer des étapes de mise à niveau supplémentaires (<<Mise à niveau des nœuds de stockage H610S vers Element 12.3.x (phase 2),phase 2>>) pour chaque nœud de stockage. Si vous exécutez Element 11.8 ou version ultérieure, les étapes de mise à niveau supplémentaires (phase 2) ne sont pas requises.
 
 
 

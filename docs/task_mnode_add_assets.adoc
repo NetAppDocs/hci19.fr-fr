@@ -18,7 +18,7 @@ Vous pouvez ajouter des ressources de calcul et de contrôleur à la configurati
 
 Vous devrez peut-être ajouter une ressource si vous avez récemment fait évoluer votre installation et que de nouvelles ressources n'ont pas été ajoutées automatiquement à votre configuration. Utilisez ces API pour ajouter des ressources qui sont des ajouts récents à votre installation.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
 * Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 * Vous avez link:task_mnode_create_netapp_hcc_role_vcenter.html["Création d'un nouveau rôle NetApp HCC dans vCenter"] Limiter l'affichage des services de nœud de gestion aux ressources NetApp uniquement.
@@ -27,6 +27,7 @@ Vous devrez peut-être ajouter une ressource si vous avez récemment fait évolu
 * Vous disposez de l'adresse IP de gestion du matériel (BMC) et des informations d'identification de l'administrateur.
 
 
+.Description de la tâche
 (NetApp HCI uniquement) si vous ne voyez pas de nœuds de calcul dans le contrôle du cloud hybride (HCC) après avoir fait évoluer votre système NetApp HCI, vous pouvez ajouter un nœud de calcul à l'aide du `POST /assets/{asset_id}/compute-nodes` décrit dans cette procédure.
 
 

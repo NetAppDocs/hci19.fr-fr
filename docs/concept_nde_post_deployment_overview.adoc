@@ -19,6 +19,7 @@ Selon vos choix lors du déploiement, vous devez effectuer certaines tâches fin
 * link:task_nde_supported_net_changes.html["Modifications de mise en réseau prises en charge"]
 * link:task_nde_disable_smartd.html["Désactivez le service smartd sur les nœuds de calcul NetApp HCI"]
 * link:task_nde_disable_lacp_individual.html["Désactiver la commande « lacp-Individual » sur les switchs configurés"]
+* link:task_mnode_create_netapp_hcc_role_vcenter.html["Créez un rôle NetApp HCC dans vCenter"]
 * link:task_nde_update_vsphere.html["Mise à jour régulière de VMware vSphere"]
 * link:task_nde_install_GPU_drivers.html["Installation des pilotes GPU pour les nœuds de calcul compatibles avec les GPU"]
 * link:task_nde_access_hcc.html["Accédez au contrôle de cloud hybride NetApp"]

@@ -17,6 +17,7 @@ keywords: netapp, hci, netapp deployment engine, deployment, vsphere
 [role="lead"]
 Vous pouvez déployer un nouvel environnement vSphere dans le cadre du processus d'installation de NetApp HCI en fournissant certaines des informations réseau que vSphere doit utiliser. Notez que si vous configurez vSphere à l'aide d'une adresse IP, celle-ci ne peut pas être modifiée après l'installation.
 
+.Ce dont vous avez besoin
 Vous avez obtenu les informations réseau pour l'environnement vSphere planifié.
 
 .Étapes

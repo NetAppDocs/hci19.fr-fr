@@ -21,6 +21,7 @@ La mise à niveau du système d'exploitation du nœud de gestion n'est plus néc
 
 NOTE: Le plug-in vCenter 4.4 ou version ultérieure requiert un nœud de gestion 11.3 ou version ultérieure créé avec une architecture modulaire et fournissant des services individuels.
 
+.Options de mise à niveau
 Choisissez l'une des options de mise à niveau de nœud de gestion suivantes :
 
 [NOTE]
@@ -36,11 +37,11 @@ Choisissez l'une des options de mise à niveau de nœud de gestion suivantes :
 
 NOTE: Si vous choisissez de continuer à effectuer une mise à niveau sur un nœud de gestion 12.3 déployé à l'aide de NDE, la mise à niveau vers la version 12.3.x sera terminée. Toutefois, la mise à niveau peut rencontrer une erreur lors du redémarrage. Dans ce cas, redémarrez le nœud de gestion pour qu'il affiche correctement la version 12.3.x.
 
-* Si vous mettez à niveau à partir du nœud de gestion 12.2 : a management node to version 12.3.x from 12.2
-* Si vous mettez à niveau à partir du nœud de gestion 12.0 : a management node to version 12.3.x from 12.0
-* Si vous mettez à niveau à partir du nœud de gestion 11.3, 11.5, 11.7 ou 11.8 : a management node to version 12.3.x from 11.3 through 11.8
-* Si vous mettez à niveau à partir du nœud de gestion 11.0 ou 11.1 : a management node to version 12.3.x from 11.1 or 11.0
-* Si vous effectuez une mise à niveau à partir d'un noeud de gestion version 10.x : from management node version 10.x to 11.x
+* Si vous mettez à niveau à partir du nœud de gestion 12.2 :<<Mettez à niveau un nœud de gestion vers la version 12.3.x à partir de la version 12.2>>
+* Si vous mettez à niveau à partir du nœud de gestion 12.0 :<<Mettez à niveau un nœud de gestion vers la version 12.3.x à partir de la version 12.0>>
+* Si vous mettez à niveau à partir du nœud de gestion 11.3, 11.5, 11.7 ou 11.8 :<<Mettez à niveau un nœud de gestion vers la version 12.3.x de 11.3 à 11.8>>
+* Si vous mettez à niveau à partir du nœud de gestion 11.0 ou 11.1 :<<Mettez à niveau un nœud de gestion vers la version 12.3.x à partir de la version 11.1 ou 11.0>>
+* Si vous effectuez une mise à niveau à partir d'un noeud de gestion version 10.x :<<Migration du nœud de gestion version 10.x vers 11.x>>
 
 
 Choisissez l'option suivante si vous avez mis à jour *séquentiellement* (1) votre version de services de gestion et (2) votre version de stockage Element et que vous souhaitez *conserver* votre noeud de gestion existant :
@@ -48,7 +49,7 @@ Choisissez l'option suivante si vous avez mis à jour *séquentiellement* (1) vo
 
 NOTE: Si vous ne mettez pas à jour les services de gestion suivis par le stockage Element, vous ne pouvez pas reconfigurer la reauthentification à l'aide de cette procédure. Suivez plutôt la procédure de mise à niveau appropriée.
 
-* Si vous gardez un nœud de gestion existant : authentication using the management node REST API
+* Si vous gardez un nœud de gestion existant :<<Reconfigurez l'authentification à l'aide de l'API REST de nœud de gestion>>
 
 
 
@@ -60,7 +61,7 @@ Vous pouvez effectuer une mise à niveau sans déplacement du nœud de gestion d
 
 NOTE: Le nœud de gestion Element 12.3.x est une mise à niveau facultative. Elle n'est pas requise pour les déploiements existants.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * La mémoire RAM de la machine virtuelle du nœud de gestion est de 24 Go.
 * Le nœud de gestion que vous souhaitez mettre à niveau est la version 12.0 et utilise la mise en réseau IPv4. Le nœud de gestion version 12.3.x ne prend pas en charge IPv6.
 +
@@ -153,7 +154,7 @@ Vous pouvez effectuer une mise à niveau sans déplacement du nœud de gestion d
 
 NOTE: Le nœud de gestion Element 12.3.x est une mise à niveau facultative. Elle n'est pas requise pour les déploiements existants.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Le nœud de gestion que vous souhaitez mettre à niveau est la version 12.0 et utilise la mise en réseau IPv4. Le nœud de gestion version 12.3.x ne prend pas en charge IPv6.
 +
 
@@ -252,7 +253,7 @@ Vous pouvez effectuer une mise à niveau sans déplacement du nœud de gestion d
 
 NOTE: Le nœud de gestion Element 12.3.x est une mise à niveau facultative. Elle n'est pas requise pour les déploiements existants.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Le nœud de gestion que vous souhaitez mettre à niveau est la version 11.3, 11.5, 11.7 ou 11.8 et utilise la mise en réseau IPv4. Le nœud de gestion version 12.3.x ne prend pas en charge IPv6.
 +
 
@@ -348,7 +349,7 @@ IMPORTANT: Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_
 
 Vous pouvez effectuer une mise à niveau sans déplacement du nœud de gestion de la version 11.0 ou 11.1 vers la version 12.3.x sans avoir à provisionner une nouvelle machine virtuelle de nœud de gestion.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Les nœuds de stockage exécutent Element 11.3 ou une version ultérieure.
 +
 

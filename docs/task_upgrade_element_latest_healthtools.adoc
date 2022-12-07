@@ -19,7 +19,7 @@ Avant de commencer la mise à niveau du stockage Element à partir de la version
 
 IMPORTANT: Le logiciel Element 12.3.2 est la dernière version que vous pouvez mettre à niveau vers à l'aide de NetApp HealthTools. Si vous exécutez le logiciel Element 11.3 ou version ultérieure, nous vous recommandons d'utiliser NetApp Hybrid Cloud Control pour mettre à niveau le logiciel Element. Vous pouvez mettre à niveau Element version 11.1 ou antérieure à l'aide de NetApp HealthTools.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous exécutez le nœud de gestion 11.0, 11.1 ou version ultérieure.
 * Vous avez mis à niveau vos services de gestion vers au moins la version 2.1.326.
 +
@@ -38,6 +38,7 @@ TIP: Vous pouvez vérifier la version installée localement de HealthTools en ex
 
 
 
+.Description de la tâche
 Les commandes de la suite HealthTools nécessitent des privilèges escaladés pour s'exécuter. Soit des commandes de préface avec `sudo` ou faites remonter votre utilisateur aux privilèges root.
 
 

@@ -11,16 +11,16 @@ keywords: netapp, hci, initiator, storage, element, access group
 [role="lead"]
 Vous pouvez utiliser link:concept_hci_initiators.html["initiateurs"] Pour l'accès CHAP aux volumes plutôt que basé sur les comptes. Vous pouvez créer et supprimer des initiateurs, et leur donner des alias conviviaux pour simplifier l'administration et l'accès aux volumes. Lorsque vous ajoutez un initiateur à un groupe d'accès de volume, cet initiateur permet d'accéder à tous les volumes du groupe.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous disposez des informations d'identification d'administrateur de cluster.
 * Vous avez mis à niveau vos services de gestion vers au moins la version 2.17. La gestion de l'initiateur NetApp Hybrid Cloud Control n'est pas disponible dans les versions précédentes de packs de services.
 
 
 .Options
-*  an initiator
-*  initiators to a volume access group
-*  an initiator alias
-*  initiators
+* <<Créer un initiateur>>
+* <<Ajoutez des initiateurs à un groupe d'accès de volume>>
+* <<Modifier un alias d'initiateur>>
+* <<Supprimer les initiateurs>>
 
 
 
@@ -29,6 +29,7 @@ Vous pouvez utiliser link:concept_hci_initiators.html["initiateurs"] Pour l'acc�
 
 Vous pouvez créer des initiateurs iSCSI ou Fibre Channel et éventuellement leur attribuer des alias.
 
+.Description de la tâche
 Le format accepté d'un IQN initiateur est `iqn.yyyy-mm` où y et m sont des chiffres suivis d'un texte qui ne doit contenir que des chiffres, des caractères alphabétiques minuscules et un point (`.`), deux points (`:`) ou tiret (`-`). Voici un exemple de format :
 
 [listing]

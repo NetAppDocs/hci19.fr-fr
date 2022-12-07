@@ -19,15 +19,15 @@ Avant de commencer à utiliser NetApp HCI, vous devez installer correctement les
 
 TIP: Voir la link:../media/hseries-isi.pdf["affiche"^] pour une représentation visuelle des instructions.
 
-*  diagrams
-*  for installation
-*  the rails
-*  the node/chassis
-*  the switches
-*  the nodes
-*  on the nodes
-*  NetApp HCI
-*  post-configuration tasks
+* <<Diagrammes de flux de travail>>
+* <<Avant l'installation>>
+* <<Installer les rails>>
+* <<Installez le nœud/châssis>>
+* <<Poser les commutateurs>>
+* <<Câconnectez les nœuds>>
+* <<Mettez les nœuds sous tension>>
+* <<Configurez NetApp HCI>>
+* <<Exécution de tâches post-configuration>>
 
 
 
@@ -36,9 +36,9 @@ TIP: Voir la link:../media/hseries-isi.pdf["affiche"^] pour une représentation 
 
 Les schémas de flux de travail présentés ici fournissent un aperçu général des étapes d'installation. Les étapes varient légèrement selon le modèle de la série H.
 
-*  and H410S
-*  and H615C
-* 
+* <<H410C et H410S>>
+* <<H610C et H615C>>
+* <<H610S>>
 
 
 
@@ -110,9 +110,9 @@ La commande de matériel qui vous a été expédiée comprend un jeu de rails co
 
 TIP: Installez le matériel de fixation du bas du rack jusqu'en haut pour éviter que l'équipement ne se renverse. Si votre rack comprend des dispositifs de stabilisation, installez-les avant d'installer le matériel.
 
-*  and H410S
-* 
-*  and H615C
+* <<H410C et H410S>>
+* <<H610C>>
+* <<H610S et H615C>>
 
 
 
@@ -168,9 +168,9 @@ TIP: Depuis la version NetApp HCI 1.8, vous pouvez configurer un cluster de stoc
 
 CAUTION: Retirez tous les matériaux d'emballage et d'emballage de l'unité. Cela empêche la surchauffe et l'arrêt des nœuds.
 
-*  and H410S nodes
-*  node/chassis
-*  and H615C node/chassis
+* <<Nœuds H410C et H410S>>
+* <<Nœud/châssis H610C>>
+* <<Nœud/châssis H610S et H615C>>
 
 
 
@@ -227,10 +227,10 @@ Si vous ajoutez des nœuds à une installation NetApp HCI existante, assurez-vou
 
 CAUTION: Assurez-vous que les évents d'aération situés à l'arrière du châssis ne sont pas obstrués par des câbles ou des étiquettes. Cela peut entraîner des défaillances prématurées des composants en raison d'une surchauffe.
 
-*  compute node and H410S storage node
-*  compute node
-*  compute node
-*  storage node
+* <<Nœud de calcul H410C et nœud de stockage H410S>>
+* <<Nœud de calcul H610C>>
+* <<Nœud de calcul H615C>>
+* <<Nœud de stockage H610S>>
 
 
 
@@ -345,8 +345,8 @@ image::H600S_ISI_nodefront.png[Affiche le bouton d'alimentation du nœud/châssi
 
 Choisissez l'une des options suivantes :
 
-*  NetApp HCI installation
-*  an existing NetApp HCI installation
+* <<Nouvelle installation de NetApp HCI>>
+* <<Développez une installation NetApp HCI existante>>
 
 
 
@@ -396,8 +396,8 @@ NOTE: Les nœuds NetApp HCI récemment installés sur le même réseau sont dét
 
 Selon le type de nœud dont vous disposez, vous devrez peut-être effectuer des étapes supplémentaires après avoir installé le matériel et configuré NetApp HCI.
 
-*  node
-*  and H610S nodes
+* <<Nœud H610C>>
+* <<Nœuds H615C et H610S>>
 
 
 

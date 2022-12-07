@@ -19,7 +19,7 @@ Après le déploiement Rancher, vous pouvez créer des clusters utilisateur Kube
 
 TIP: Pour plus d'informations sur les exigences de création des clusters, reportez-vous à la section https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Documentation de l'éleveur"^].
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez installé Rancher sur NetApp HCI.
 * Vous disposez des adresses IP statiques nécessaires. Chaque cluster utilisateur nécessite trois adresses IP statiques.
 * Vous vous êtes familiarisé avec les conditions répertoriées dans le https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Documentation de l'éleveur"^].

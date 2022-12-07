@@ -50,7 +50,7 @@ Vous pouvez lister les contrôleurs vCenter existants enregistrés auprès du n�
 +
 L'API renvoie la liste de tous les contrôleurs vCenter connus, ainsi que l'adresse IP, l'ID de contrôleur, le nom d'hôte et l'ID utilisateur utilisés pour communiquer avec chaque contrôleur.
 
-. Si vous souhaitez que l'état de connexion d'un contrôleur particulier soit défini, copiez l'ID du contrôleur à partir du `id` champ de ce contrôleur dans le presse-papiers et voir  the status of an existing controller.
+. Si vous souhaitez que l'état de connexion d'un contrôleur particulier soit défini, copiez l'ID du contrôleur à partir du `id` champ de ce contrôleur dans le presse-papiers et voir <<Afficher l'état d'un contrôleur existant>>.
 
 
 

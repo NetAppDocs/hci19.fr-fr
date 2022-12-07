@@ -16,7 +16,7 @@ keywords: netapp, hci, psu, replace power supply, H610S, H615C, DC
 [role="lead"]
 Les nœuds H615C et H610S prennent en charge deux unités d'alimentation c.c. de –48 à –60 V. Ces unités sont disponibles en tant qu'add-ons facultatifs lorsque vous commandez des nœuds H615C ou H610S. Vous pouvez utiliser ces instructions pour retirer les unités d'alimentation CA du châssis et les remplacer par des unités d'alimentation CC, ou pour remplacer une unité d'alimentation CC défectueuse par une nouvelle unité d'alimentation CC.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Si vous remplacez une unité d'alimentation CC défectueuse, vous avez acheté une unité d'alimentation CC de remplacement.
 * Si vous échangez les blocs d'alimentation CA de votre châssis avec des unités CC, vous avez pris en compte les temps d'arrêt de la procédure.
 * Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
@@ -37,6 +37,7 @@ Les nœuds H615C et H610S prennent en charge deux unités d'alimentation c.c. de
 
 
 
+.Description de la tâche
 La procédure s'applique aux modèles de nœud suivants :
 
 * Un châssis de calcul en unité de rack (1U) H615C

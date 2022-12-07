@@ -21,12 +21,12 @@ NOTE: Lorsque vous lancez une nouvelle session NetApp Hybrid Cloud Control pour 
 
 Seuls les nœuds de calcul gérés et les clusters avec au moins un nœud géré dans le matériel H-Series apparaissent sur le tableau de bord Cloud Control.
 
-*  the NetApp HCC Dashboard
-*  storage resources
-*  compute resources
-*  storage capacity
-*  storage performance
-*  compute utilization
+* <<Accédez au tableau de bord NetApp HCC>>
+* <<Surveillance des ressources de stockage>>
+* <<Surveiller les ressources de calcul>>
+* <<Surveiller la capacité de stockage>>
+* <<Contrôle des performances du stockage>>
+* <<Surveillance de l'utilisation du calcul>>
 
 
 

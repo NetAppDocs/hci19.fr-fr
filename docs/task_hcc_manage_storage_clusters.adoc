@@ -15,7 +15,7 @@ Après l'ajout d'un cluster de stockage, vous pouvez surveiller les performances
 
 À partir de l'élément 12.2, vous pouvez utiliser le link:concept_hci_storage_maintenance_mode.html["mode maintenance"] options d'activation et de désactivation du mode de maintenance pour les nœuds de cluster de stockage.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Autorisations d'administrateur de cluster* : vous disposez des autorisations en tant qu'administrateur sur le link:concept_hci_clusters.html#authoritative-storage-clusters["cluster de stockage faisant autorité"]. Le cluster faisant autorité est le premier cluster ajouté à l'inventaire des nœuds de gestion au cours de la configuration du système.
 * *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 11.3 ou ultérieure.
 * *Noeud de gestion* : vous avez déployé un noeud de gestion exécutant la version 11.3 ou ultérieure.
@@ -23,11 +23,11 @@ Après l'ajout d'un cluster de stockage, vous pouvez surveiller les performances
 
 
 .Options
-*  a storage cluster
-*  storage cluster status
-*  storage cluster credentials
-*  a storage cluster
-*  and disable maintenance mode
+* <<Ajout d'un cluster de stockage>>
+* <<Confirmation de l'état du cluster de stockage>>
+* <<Modifier les informations d'identification du cluster de stockage>>
+* <<Retirer un cluster de stockage>>
+* <<Activation et désactivation du mode de maintenance>>
 
 
 
@@ -111,9 +111,9 @@ CAUTION: Cliquez sur *Oui* suivant pour supprimer le cluster de l'installation.
 [discrete]
 == Activation et désactivation du mode de maintenance
 
-C'est ça link:concept_hci_storage_maintenance_mode.html["mode maintenance"] les options de fonction vous permettent de ,activer et ,désactiver mode maintenance d'un nœud de cluster de stockage.
+C'est ça link:concept_hci_storage_maintenance_mode.html["mode maintenance"] les options de fonction vous permettent de <<enable_main_mode,activer>> et <<disable_main_mode,désactiver>> mode maintenance d'un nœud de cluster de stockage.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Logiciel Element* : votre cluster de stockage exécute le logiciel NetApp Element version 12.2 ou ultérieure.
 * *Noeud de gestion* : vous avez déployé un noeud de gestion exécutant la version 12.2 ou ultérieure.
 * *Services de gestion*: Vous avez mis à jour votre offre groupée de services de gestion à la version 2.19 ou ultérieure.
@@ -122,7 +122,7 @@ C'est ça link:concept_hci_storage_maintenance_mode.html["mode maintenance"] les
 
 
 
-=== Activer le mode maintenance
+=== [[enable_main_mode]]activez le mode de maintenance
 
 Pour activer le mode maintenance d'un nœud de cluster de stockage, vous pouvez utiliser la procédure suivante.
 
@@ -167,7 +167,7 @@ Une fois que *l'activation du mode Maintenance* est terminée, la colonne *Node 
 
 
 
-=== Désactiver le mode de maintenance
+=== [[disable_main_mode]]Désactiver le mode de maintenance
 
 Une fois qu'un nœud a été placé en mode maintenance, l'action *Désactiver le mode maintenance* est disponible pour ce nœud. Les actions sur les autres nœuds sont indisponibles jusqu'à la désactivation du mode de maintenance sur le nœud en cours de maintenance.
 

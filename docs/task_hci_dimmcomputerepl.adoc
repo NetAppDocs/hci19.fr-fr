@@ -16,11 +16,12 @@ keywords: netapp, hci, dimm, compute nodes
 [role="lead"]
 Vous pouvez remplacer un module DIMM (Dual Inline Memory module) défectueux dans les nœuds de calcul NetApp HCI au lieu de remplacer le nœud entier.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Avant de commencer cette procédure, vous devez avoir contacté le support NetApp et reçu une pièce de rechange. Le support sera impliqué pendant l'installation du remplacement. Si ce n'est déjà fait, contactez https://www.netapp.com/us/contact-us/support.aspx["Assistance"^].
 * Vous avez planifié de temps d'indisponibilité du système, car vous devez mettre le nœud hors tension ou le mettre hors tension puis sous tension et démarrer le nœud en mode sans échec NetApp pour accéder à l'interface utilisateur du terminal (TUI).
 
 
+.Description de la tâche
 Cette procédure s'applique aux modèles de nœud de calcul suivants :
 
 * Nœuds H410C. Un nœud H410C est inséré dans un châssis NetApp HCI 2U.
@@ -38,8 +39,8 @@ NOTE: Les termes « châssis » et « nœud » sont utilisés de manière interc
 
 Voici les étapes du remplacement des modules DIMM dans les nœuds de calcul :
 
-*  to replace the DIMM
-*  the DIMM from the chassis
+* <<Préparez-vous à remplacer le module DIMM>>
+* <<Remplacez le module DIMM du châssis>>
 
 
 
@@ -264,6 +265,7 @@ IMPORTANT: Assurez-vous que vous ne touchez que les extrémités arrière du mod
 
 
 
+.Et la suite
 Lorsque le nœud revient à un fonctionnement normal, dans vCenter, vérifiez l'onglet Résumé pour vous assurer que la capacité de mémoire est la bonne.
 
 

@@ -19,7 +19,7 @@ Vous devez remplacer un nœud de calcul en cas de défaillance du processeur ou 
 
 NOTE: La version du nœud de remplacement doit être identique à celle du système d'exploitation NetApp HCI Bootstrap et aux autres nœuds de calcul de l'installation de NetApp HCI.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez déterminé que le nœud de calcul doit être remplacé.
 * Vous avez remplacé un nœud de calcul. Pour commander un nœud de remplacement, contactez le support NetApp. Le nœud de calcul vous est livré avec le processus de démarrage installé. Les nœuds sont expédiés à partir d'usine avec la dernière version du système d'exploitation Bootstrap. Vous devrez peut-être effectuer le processus de retour à l'image d'usine (RTFI) sur le nœud dans les scénarios suivants :
 +
@@ -31,6 +31,7 @@ NOTE: La version du nœud de remplacement doit être identique à celle du syst�
 * Vous avez identifié chaque câble connecté au nœud de calcul.
 
 
+.Description de la tâche
 Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un nœud. Vous devez correspondre au numéro de série du nœud défaillant du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.
 
 Lors du remplacement d'un nœud de calcul H410C, prenez en compte les points suivants :
@@ -39,15 +40,16 @@ Lors du remplacement d'un nœud de calcul H410C, prenez en compte les points sui
 * Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à un système NetApp HCI existant, assurez-vous que les besoins en alimentation sont satisfaits.
 
 
-Voici une présentation générale des étapes de cette procédure : to replace the compute node
- the compute node in the chassis
- the compute node asset in NetApp HCI 1.7 and later
- the compute node to the cluster
- Witness Nodes for two and three-node storage clusters
+.Présentation des étapes
+Voici une présentation générale des étapes de cette procédure :<<Préparez-vous à remplacer le nœud de calcul>>
+<<Remplacez le nœud de calcul dans le châssis>>
+<<Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures>>
+<<Ajoutez le nœud de calcul au cluster>>
+<<Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds>>
 
 Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :link:task_hci_removewn.html["Supprimez des nœuds de témoins pour libérer des ressources de calcul"]
- the password if you received a replacement node with a non-standard BMC password
- the BMC firmware on your node
+<<Modifiez le mot de passe si vous avez reçu un noeud de remplacement avec un mot de passe BMC non standard>>
+<<Mettez à niveau le micrologiciel BMC de votre nœud>>
 
 
 
@@ -178,7 +180,7 @@ Vous devez réajouter le nœud de calcul au cluster. Les étapes varient en fonc
 
 Vous pouvez utiliser NetApp Hybrid Cloud Control uniquement si votre installation NetApp HCI s'exécute à partir de la version 1.6P1 ou ultérieure.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Assurez-vous que l'instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.
 * Assurez-vous qu'aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.
 * Assurez-vous que vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
@@ -263,7 +265,7 @@ TIP: Pour certains nœuds de calcul, vous devrez peut-être activer EVC au plus 
 
 Si votre installation de NetApp HCI exécute la version 1.4P2, 1.4 ou 1.3, vous pouvez utiliser le moteur de déploiement NetApp pour ajouter le nœud au cluster.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Assurez-vous que l'instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.
 * Assurez-vous qu'aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.
 * Assurez-vous que vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
@@ -578,7 +580,7 @@ image::rescan.gif[Affiche l'icône de nouvelle analyse des cartes de stockage.]
 
 Si vous remplacez physiquement le nœud de calcul défaillant, vous devez redéployer la machine virtuelle de NetApp HCI Witness Node si le nœud de calcul défaillant hébertait le nœud de contrôle. Ces instructions s'appliquent uniquement aux nœuds de calcul qui font partie d'une installation NetApp HCI avec des clusters de stockage à deux ou trois nœuds.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Rassemblez les informations suivantes :
 +
 ** Nom du cluster depuis le cluster de stockage
@@ -599,6 +601,7 @@ NOTE: Vous ne pouvez pas supprimer l'ancien nœud témoin si votre cluster ne fo
 
 
 
+.Quand faut-il redéployer des nœuds témoin ?
 Vous devez redéployer des nœuds de témoins dans les scénarios suivants :
 
 * Vous avez remplacé un nœud de calcul défectueux dans le cadre d'une installation NetApp HCI. Ce nœud de stockage comporte un cluster à deux ou trois nœuds et le nœud de calcul défaillant héberge une machine virtuelle Witness Node.

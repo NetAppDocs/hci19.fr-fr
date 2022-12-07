@@ -18,14 +18,14 @@ Suivez ces instructions pour installer et déployer NetApp HCI. Ces instructions
 
 Voici un aperçu du processus :
 
-*  for installation
-*  network readiness with NetApp Active IQ Config Advisor
-*  with your NetApp team
-*  NetApp HCI hardware
-*  optional tasks after installing hardware
-*  NetApp HCI using the NetApp Deployment Engine (NDE)
-*  NetApp HCI using the vCenter Plug-in
-*  or upgrade NetApp HCI with the Hybrid Cloud Control
+* <<Avant l'installation>>
+* <<Validez la préparation du réseau avec NetApp Active IQ Config Advisor>>
+* <<Travaillez avec votre équipe NetApp>>
+* <<Installation du matériel NetApp HCI>>
+* <<Effectuez les tâches facultatives après l'installation du matériel>>
+* <<Déploiement de NetApp HCI à l'aide du moteur de déploiement NetApp>>
+* <<Gérez NetApp HCI à l'aide du plug-in vCenter>>
+* <<Contrôle ou mise à niveau de NetApp HCI avec Cloud Control>>
 
 
 

@@ -18,7 +18,7 @@ Vous pouvez désactiver, réactiver ou déterminer l'état de la fonctionnalité
 
 Depuis les services de gestion 2.20.69, vous pouvez activer et désactiver la fonctionnalité SSH sur le nœud de gestion à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Permissions de contrôle de cloud hybride NetApp* : vous disposez d'autorisations en tant qu'administrateur.
 * *Autorisations d'administrateur de cluster* : vous disposez d'autorisations en tant qu'administrateur sur le cluster de stockage.
 * *Logiciel Element* : votre cluster exécute le logiciel NetApp Element version 11.3 ou ultérieure.
@@ -32,13 +32,13 @@ Depuis les services de gestion 2.20.69, vous pouvez activer et désactiver la fo
 
 
 .Options
-*  or enable the SSH capability on the management node using NetApp Hybrid Cloud Control UI
+* <<Désactivez ou activez la fonctionnalité SSH sur le nœud de gestion à l'aide de l'interface utilisateur NetApp Hybrid Cloud Control>>
 
 
 Vous pouvez effectuer l'une des tâches suivantes après vous link:task_mnode_api_get_authorizationtouse.html["authentifier"]:
 
-*  or enable the SSH capability on the management node using APIs
-*  status of the SSH capability on the management node using APIs
+* <<Désactivez ou activez la fonctionnalité SSH sur le nœud de gestion à l'aide d'API>>
+* <<Détermination de l'état de la fonctionnalité SSH sur le nœud de gestion à l'aide d'API>>
 
 
 
@@ -62,6 +62,7 @@ NOTE: Pour activer ou désactiver l'accès au support à l'aide de SSH pour un c
 
 Vous pouvez désactiver ou réactiver la fonctionnalité SSH sur le nœud de gestion. Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_connections.html["Accès à la session de tunnel de support à distance (RST) de NetApp"] est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure. La désactivation de SSH ne met pas fin ou ne déconnecte pas les sessions client SSH existantes vers le nœud de gestion. Si vous désactivez SSH et choisissez de le réactiver ultérieurement, vous pouvez le faire à l'aide de la même API.
 
+.Commande API
 Pour les services de gestion version 2.18 ou ultérieure :
 
 [listing]
@@ -107,6 +108,7 @@ https://<ManagementNodeIP>/mnode/
 
 Vous pouvez déterminer si la fonctionnalité SSH est activée ou non sur le nœud de gestion à l'aide d'une API de service de nœud de gestion. SSH est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 ou version ultérieure.
 
+.Commande API
 Pour les services de gestion version 2.18 ou ultérieure :
 
 [listing]

@@ -16,7 +16,7 @@ keywords: netapp, element, management node, management services, mnode, logs
 [role="lead"]
 Vous pouvez récupérer des journaux à partir des services exécutés sur le nœud de gestion à l'aide de l'API REST. Vous pouvez extraire des journaux de tous les services publics ou spécifier des services spécifiques et utiliser les paramètres de requête pour mieux définir les résultats de retour.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Votre version du cluster exécute NetApp Element 11.3 ou une version ultérieure.
 * Vous avez déployé un nœud de gestion exécutant la version 11.3 ou ultérieure.
 

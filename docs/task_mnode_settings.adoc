@@ -11,9 +11,9 @@ keywords: netapp, management node ui, mnode ui, network settings, test network, 
 [role="lead"]
 Vous pouvez modifier et tester les paramètres réseau, cluster et système du nœud de gestion.
 
-*  management node network settings
-*  management node cluster settings
-*  the management node settings
+* <<Mettre à jour les paramètres réseau du nœud de gestion>>
+* <<Mettez à jour les paramètres du cluster du nœud de gestion>>
+* <<Testez les paramètres du nœud de gestion>>
 
 
 

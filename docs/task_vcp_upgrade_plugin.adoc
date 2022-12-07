@@ -63,7 +63,7 @@ IMPORTANT: Le plug-in n'est pas compatible avec la version 6.7 U2 build 13007421
 
 --
 ====
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Privilèges d'administrateur* : vous disposez des privilèges de rôle d'administrateur vCenter pour installer un plug-in.
 * *Mises à niveau vSphere* : vous avez effectué toutes les mises à niveau vCenter nécessaires avant de mettre à niveau le plug-in NetApp Element pour vCenter Server. Cette procédure suppose que les mises à niveau de vCenter sont déjà terminées.
 * *VCenter Server* : votre plug-in vCenter version 5.x ou 4.x est enregistré auprès d'un serveur vCenter. À partir de l'utilitaire d'enregistrement (`https://[management node IP]:9443`), sélectionnez *Statut d'enregistrement*, renseignez les champs nécessaires et sélectionnez *vérifier l'état* pour vérifier que le plug-in vCenter est déjà enregistré et le numéro de version de l'installation actuelle.

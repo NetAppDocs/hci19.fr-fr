@@ -16,6 +16,7 @@ keywords: netapp, hci, deployment, compatibility, nodes
 [role="lead"]
 Sur la page *Inventory*, le moteur de déploiement NetApp détecte automatiquement les nœuds de calcul et de stockage disponibles. Vous pouvez ainsi sélectionner et ajouter toutes les ressources NetApp HCI au déploiement. Si un nœud ne répond pas aux exigences de déploiement, il n'est pas sélectionnable et des problèmes sont indiqués comme des erreurs. Vous pouvez positionner votre curseur sur l'erreur dans la ligne du nœud pour afficher une explication. Lorsque vous sélectionnez l'inventaire des nœuds sur la page Inventaire, le nœud de stockage hébergeant le moteur de déploiement NetApp est automatiquement sélectionné et vous ne pouvez pas le désélectionner.
 
+.Ce dont vous avez besoin
 Les trames Jumbo doivent être activées pour assurer une détection correcte de l'inventaire. Si aucun nœud ou qu'un seul sous-ensemble de nœuds n'apparaît dans l'inventaire, vérifiez que les ports de switchs utilisés pour les nœuds NetApp HCI (toutes les interfaces SFP+/SFP28) sont configurés avec des trames jumbo.
 
 .Étapes

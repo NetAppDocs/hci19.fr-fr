@@ -18,7 +18,7 @@ Pour mettre à niveau le logiciel Rancher, vous pouvez utiliser l'interface util
 
 Les mises à niveau sont disponibles par composant au lieu d'un package cumulatif. En tant que telles, certaines mises à niveau de composants telles que le système d'exploitation Ubuntu sont disponibles dans une cadence plus rapide. Les mises à niveau n'affectent que votre instance de serveur Rancher et le cluster de gestion sur lequel Rancher Server est déployé. Les mises à niveau vers le système d'exploitation Ubuntu du nœud de cluster de gestion ne concernent que les correctifs de sécurité critiques et ne mettent pas à niveau le système d'exploitation. Les clusters d'utilisateurs ne peuvent pas être mis à niveau à partir de NetApp Hybrid Cloud Control.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * *Privilèges d'administrateur* : vous disposez des autorisations d'administrateur du cluster de stockage pour effectuer la mise à niveau.
 * *Services de gestion*: Vous avez mis à jour votre bundle de services de gestion à la dernière version.
 
@@ -46,10 +46,11 @@ NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à
 
 
 
+.Options de mise à niveau
 Choisissez l'un des processus de mise à niveau suivants :
 
-*  NetApp Hybrid Cloud Control UI to upgrade a Rancher deployment
-*  NetApp Hybrid Cloud Control API to upgrade a Rancher deployment
+* <<Utilisez l'interface utilisateur de contrôle de cloud hybride NetApp pour mettre à niveau un déploiement Rancher>>
+* <<Utilisez l'API de contrôle de cloud hybride NetApp pour mettre à niveau un déploiement Rancher>>
 
 
 
@@ -63,7 +64,7 @@ Grâce à l'interface utilisateur de contrôle des clouds hybrides NetApp, vous 
 * Mises à jour de sécurité du système d'exploitation des nœuds
 
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Une bonne connexion Internet. Les mises à niveau des sites sombres (mises à niveau sur un site sans connectivité externe) ne sont pas disponibles.
 
 
@@ -107,9 +108,9 @@ Vous pouvez utiliser des API pour mettre à niveau tous ces composants dans votr
 Vous pouvez utiliser un outil d'automatisation de votre choix pour exécuter les API ou l'interface utilisateur de l'API REST disponible sur le nœud de gestion.
 
 .Options
-*  Rancher Server
-*  RKE
-*  node OS security updates
+* <<Mettre à niveau Rancher Server>>
+* <<Mise à niveau de la télécommande RKE>>
+* <<Appliquer les mises à jour de sécurité du système d'exploitation des nœuds>>
 +
 
 NOTE: Pour le système d'exploitation de nœud, les mises à niveau sans surveillance des correctifs de sécurité sont exécutées quotidiennement, mais le nœud n'est pas redémarré automatiquement. En appliquant des mises à niveau, vous redémarrez chaque nœud pour que les mises à jour de sécurité prennent effet.

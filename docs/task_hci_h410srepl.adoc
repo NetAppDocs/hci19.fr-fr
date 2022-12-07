@@ -16,13 +16,14 @@ keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S
 [role="lead"]
 Vous devez remplacer un nœud de stockage en cas de défaillance du module de mémoire en ligne (DIMM) double, de défaillance du processeur, de problèmes de carte Radian, d'autres problèmes liés à la carte mère ou s'il ne se met pas sous tension. Les alarmes du client Web VMware vSphere vous avertissent lorsqu'un nœud de stockage est défectueux. Vous devez utiliser l'interface utilisateur du logiciel NetApp Element pour obtenir le numéro de série (numéro de service) du nœud défaillant. Vous avez besoin de ces informations pour localiser le nœud défectueux dans le châssis.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous avez déterminé que le nœud de stockage doit être remplacé.
 * Vous avez remplacé un nœud de stockage.
 * Vous avez un bracelet antistatique (ESD), ou vous avez pris d'autres précautions antistatiques.
 * Chaque câble est identifié comme étant connecté au nœud de stockage.
 
 
+.Description de la tâche
 La procédure de remplacement s'applique aux nœuds de stockage H410S dans un châssis NetApp HCI à deux unités de rack (2U) à quatre nœuds.
 
 La vue arrière d'un châssis à quatre nœuds avec nœuds H410S :
@@ -33,9 +34,10 @@ La vue avant d'un châssis à quatre nœuds avec nœuds H410S présente les baie
 
 image::h410s_ssd_bays.png[La présente les baies associées à chaque nœud dans un châssis à quatre nœuds avec des nœuds H410S.]
 
-Voici une présentation générale des étapes de cette procédure : to replace the storage node
- the storage node in the chassis
- the storage node to the cluster
+.Présentation des étapes
+Voici une présentation générale des étapes de cette procédure :<<Préparez-vous à remplacer le nœud de stockage>>
+<<Remplacez le nœud de stockage dans le châssis>>
+<<Ajoutez le nœud de stockage au cluster>>
 
 
 
@@ -123,7 +125,7 @@ TIP: Assurez-vous que le nœud de remplacement est câblé de la même manière 
 
 Vous devez réintégrer le nœud de stockage dans le cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (chaque nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).
 * Vous disposez de l'un des types suivants de comptes de cluster de stockage SolidFire :
 +
