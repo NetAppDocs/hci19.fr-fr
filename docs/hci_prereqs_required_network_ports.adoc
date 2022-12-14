@@ -125,6 +125,9 @@ Téléchargement de logiciels :
 | Nœud de gestion | Nœud de calcul BMC/IPMI | 623 UDP | Port RMCP (Remote Management Control Protocol). Requis pour les mises à niveau du firmware des ressources de calcul NetApp Cloud Control. 
 
 
+| Nœud de gestion | Nœud de stockage BMC/IPMI | 623 UDP | Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI. 
+
+
 | Nœud de gestion | VMware vCenter | 5988-5989 | Communications HTTPS de NetApp Hybrid Cloud Control 
 
 
@@ -138,6 +141,9 @@ Téléchargement de logiciels :
 
 
 | Serveur SNMP | MIP du nœud de stockage | 161 UDP | Interrogation SNMP 
+
+
+| Nœud de stockage BMC/IPMI | Nœud de gestion | 623 UDP | Port RMCP. Ceci est nécessaire pour gérer les systèmes compatibles IPMI. 
 
 
 | MIP du nœud de stockage | Serveurs DNS | 53 TCP/UDP | Recherche DNS 
