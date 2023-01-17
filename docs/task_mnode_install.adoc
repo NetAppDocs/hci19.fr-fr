@@ -217,7 +217,7 @@ NOTE: Vous serez invité à saisir des mots de passe dans une invite sécurisée
 +
 [listing]
 ----
-/sf/packages/mnode/setup-mnode --mnode_admin_user [username] --storage_mvip [mvip] --storage_username [username] --telemetry_active [true]
+sudo /sf/packages/mnode/setup-mnode --mnode_admin_user [username] --storage_mvip [mvip] --storage_username [username] --telemetry_active [true]
 ----
 +
 .. Remplacer la valeur entre crochets [ ] (y compris les crochets) pour chacun des paramètres requis suivants :

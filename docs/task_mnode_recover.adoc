@@ -234,7 +234,7 @@ NOTE: Vous serez invité à saisir des mots de passe dans une invite sécurisée
 +
 [listing]
 ----
-/sf/packages/mnode/redeploy-mnode --mnode_admin_user [username]
+sudo /sf/packages/mnode/redeploy-mnode --mnode_admin_user [username]
 ----
 +
 .. Remplacez la valeur entre crochets [ ] (y compris les crochets) par le nom d'utilisateur du compte administrateur du nœud de gestion. Il s'agit probablement du nom d'utilisateur du compte utilisateur que vous avez utilisé pour vous connecter au nœud de gestion.
