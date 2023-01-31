@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: docs/firmware_driver_versions.html 
+keywords: documentation, earlier, previous, versions 
+summary: Versions de micrologiciel et de pilote prises en charge dans les logiciels NetApp HCI et NetApp Element. 
+---
+= Versions de firmware et de pilote ESXi prises en charge pour les versions de NetApp HCI et de firmware pour les nœuds de stockage NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, earlier, documentation, versions
+
+
+[role="lead"]
+Versions de firmware et de pilote ESXi prises en charge pour les versions de NetApp HCI et de firmware pour les nœuds de stockage NetApp HCI.
+
+link:fw_storage_nodes.html["Nœuds de stockage"]* H610S * H410S
+
+link:fw_compute_nodes.html["Nœuds de calcul"]* H615C * H610C * H410C * H300E/H500E/H700E

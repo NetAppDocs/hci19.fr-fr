@@ -391,6 +391,8 @@ homepage:
     links:
     - title: Présentation du produit
       url: "/docs/concept_hci_product_overview.html"
+    - title: Versions de micrologiciel et de pilote ESXi prises en charge
+      url: docs/firmware_driver_versions.html
     - title: Notes de mise à jour
       url: "/docs/rn_relatedrn.html"
     - title: Quoi de neuf

@@ -26,5 +26,5 @@ Vous pouvez mettre NetApp HCI sous tension à la fin du temps d'arrêt planifié
 [discrete]
 == Trouvez plus d'informations
 
-* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Versions du micrologiciel et du pilote dans les logiciels NetApp HCI et NetApp Element"^]
+* link:firmware_driver_versions.html["Versions de firmware et de pilote ESXi prises en charge pour les versions de NetApp HCI et de firmware pour les nœuds de stockage NetApp HCI"]
 

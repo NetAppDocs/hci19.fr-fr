@@ -43,7 +43,7 @@ NOTE: Les nœuds de calcul H615C doivent mettre à jour le firmware du BMC vers 
 
 +
 
-NOTE: Pour obtenir une matrice complète de micrologiciel et de micrologiciel de pilote pour votre matériel, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Article de cette base de connaissances"^] (connexion requise).
+NOTE: Pour obtenir une matrice complète de micrologiciel et de micrologiciel de pilote pour votre matériel, reportez-vous à la section link:firmware_driver_versions.html["Versions de micrologiciel et de pilote ESXi prises en charge"].
 
 * *Ordre de démarrage du BIOS* : modifiez manuellement l'ordre de démarrage dans la configuration du BIOS pour chaque nœud pour vous assurer `USB CD/DVD` apparaît dans la liste de démarrage. Voir ceci link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades#BootOrder["article"^] pour en savoir plus.
 * *Informations d'identification BMC* : mettez à jour les informations d'identification utilisées par NetApp Hybrid Cloud Control pour se connecter au nœud de calcul BMC. Pour ce faire, vous pouvez utiliser NetApp Hybrid Cloud Control link:task_hcc_edit_bmc_info.html#use-netapp-hybrid-cloud-control-to-edit-bmc-information["INTERFACE UTILISATEUR"] ou link:task_hcc_edit_bmc_info.html#use-the-rest-api-to-edit-bmc-information["API"]. La mise à jour des informations BMC avant la mise à niveau actualise l'inventaire et garantit que les services de nœud de gestion connaissent tous les paramètres matériels nécessaires à la mise à niveau.

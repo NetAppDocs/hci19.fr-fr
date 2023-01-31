@@ -38,7 +38,7 @@ IMPORTANT: Pour mettre à jour le micrologiciel iDRAC/BIOS, contactez le support
 
 
 
-NOTE: Pour obtenir une matrice complète de micrologiciel et de micrologiciel de pilote pour votre matériel, reportez-vous à ce document https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Firmware_and_driver_versions_in_NetApp_HCI_and_NetApp_Element_software["Article de la base de connaissances"^] (connexion requise).
+NOTE: Pour obtenir une matrice complète de micrologiciel et de micrologiciel de pilote pour votre matériel, reportez-vous à la section link:firmware_driver_versions.html["Versions de firmware prises en charge pour les nœuds de stockage NetApp HCI"].
 
 * *Contrat de licence utilisateur final (CLUF)* : à partir des services de gestion 2.20.69, vous devez accepter et enregistrer le CLUF avant d'utiliser l'interface utilisateur ou l'API de contrôle du cloud hybride NetApp pour mettre à niveau le micrologiciel de stockage :
 +
