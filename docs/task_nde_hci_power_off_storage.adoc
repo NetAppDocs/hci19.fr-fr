@@ -21,22 +21,47 @@ Lorsque vous mettez hors tension les ressources de stockage pour NetApp HCI, vou
 Après la mise hors tension des ressources de calcul, un navigateur Web permet d'arrêter tous les nœuds du cluster de stockage NetApp HCI.
 
 . Connectez-vous au cluster de stockage et vérifiez que vous êtes connecté au MVIP approprié.
+. (Facultatif) Vérifiez que toutes les opérations d'E/S des hôtes ont cessé :
++
+.. Mettez en veille les E/S côté hôte à l'aide des commandes appropriées pour un ou plusieurs hyperviseurs utilisés.
+.. Dans l'interface utilisateur du cluster, sélectionnez *Reporting* > *Overview*. Il ne doit y avoir aucune activité sur le graphique « entrée/sortie du cluster ».
+.. Une fois toutes les opérations d'E/S arrêtées, patientez 20 minutes avant de mettre le cluster hors tension.
+
+
 . Vérifiez que le nombre de sessions iSCSI est nul.
 . Accédez à *Cluster > nœuds > Active* et enregistrez les ID de nœud de tous les nœuds actifs du cluster.
-. Pour mettre le cluster de stockage NetApp HCI hors tension, ouvrez un navigateur Web et utilisez l'URL suivante pour appeler la procédure de mise hors tension et d'arrêt, où `{MVIP}` Est l'adresse IP de gestion du système de stockage NetApp HCI et de `nodes=[]` La matrice inclut les ID de nœud que vous avez enregistrés à l'étape 2. Par exemple :
+. Pour mettre le cluster de stockage NetApp HCI hors tension, ouvrez un navigateur Web et utilisez l'URL suivante pour appeler la procédure de mise hors tension et d'arrêt, où `{MVIP}` Est l'adresse IP de gestion du système de stockage NetApp HCI et de `nodes=[]` Array inclut les ID de nœud que vous avez enregistrés à l'étape 4. Par exemple :
 +
 [listing]
 ----
 https://{MVIP}/json-rpc/1.0?method=Shutdown&nodes=[1,2,3,4]&option=halt
 ----
++
+
+NOTE: Vous pouvez exécuter la commande dans une fenêtre incognito pour éviter de l'exécuter à nouveau ultérieurement à partir de l'URL enregistrée.
+
 . Entrez le nom d'utilisateur et le mot de passe de l'administrateur du cluster.
 . Vérifiez que l'appel d'API a été correctement renvoyé en vérifiant que tous les nœuds du cluster de stockage sont inclus dans le `successful` Section du résultat API.
 +
 Vous avez mis hors tension tous les nœuds de stockage NetApp HCI.
 
+. Fermez le navigateur ou l'onglet pour éviter de sélectionner le bouton « back » et de répéter l'appel de l'API.
 
 
-[discrete]
+[NOTE]
+====
+Lorsque vous redémarrez le cluster, vous devez suivre certaines étapes pour vérifier que tous les nœuds sont mis en ligne :
+
+. Vérifiez que tous les niveaux de gravité critiques et `volumesOffline` les défaillances de cluster ont été résolues.
+. Attendez 10 à 15 minutes que le cluster se stabilise.
+. Commencez à amener les hôtes pour accéder aux données.
+
+
+Si vous souhaitez consacrer plus de temps à la mise sous tension des nœuds et à la vérification de leur bon fonctionnement après la maintenance, contactez le support technique pour obtenir de l'aide afin de retarder la synchronisation des données et d'éviter une synchronisation inutile des bacs.
+
+====
+
+
 == Trouvez plus d'informations
 
 * link:firmware_driver_versions.html["Versions de firmware et de pilote ESXi prises en charge pour les versions de NetApp HCI et de firmware pour les nœuds de stockage NetApp HCI"]
