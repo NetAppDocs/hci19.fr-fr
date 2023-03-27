@@ -23,7 +23,7 @@ Lorsque vous mettez à niveau les composants VMware vSphere de votre installatio
 +
 [IMPORTANT]
 ====
-Nous vous recommandons de mettre à niveau vers le plug-in NetApp Element pour vCenter Server 5.0 pour vous permettre de déployer le plug-in avec VMware vCenter 7.0 Update 3 sans appliquer de solution.
+Vous devez effectuer une mise à niveau vers le plug-in NetApp Element pour vCenter Server 5.0 ou version ultérieure pour pouvoir déployer le plug-in avec VMware vCenter 7.0 Update 3 sans avoir à appliquer de solution de contournement.
 
 Avec le plug-in Element pour vCenter Server 4.x, lorsque vous effectuez une mise à niveau vers VMware vCenter Server 7.0 Update 3, le plug-in 4.x ne parvient pas à se déployer. Pour résoudre ce problème à l'aide de Spring Framework 4, voir https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/vCenter_plug-in_deployment_fails_after_upgrading_vCenter_to_version_7.0_U3["Article de cette base de connaissances"^].
 

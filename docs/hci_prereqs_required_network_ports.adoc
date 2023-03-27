@@ -17,22 +17,6 @@ keywords: netapp, hci, ports, tcp, udp
 [role="lead"]
 Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de bord de votre centre de données afin de pouvoir gérer le système à distance, permettre aux clients externes à votre centre de données de se connecter aux ressources et de vous assurer que les services internes fonctionnent correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système. Tous les ports sont TCP, sauf indication contraire.
 
-[NOTE]
-====
-L'interface Web NetApp Hybrid Cloud Control et les packages logiciels de téléchargement d'API depuis le référentiel logiciel en ligne NetApp. Pour cette raison, certaines adresses URL ou IP peuvent se résoudre à d'autres adresses URL ou adresses IP basées sur le réseau de diffusion de contenu. Si possible, vous devez travailler avec un ingénieur réseau pour ajouter ces URL ou adresses IP aux règles de pare-feu, en procédant comme suit :
-
-.Étapes
-. Utilisez les utilitaires wget ou curl pour accéder à une URL (support-sg-nawest.netapp.com, par exemple).
-. Vérifiez la connectivité comme indiqué dans l'exemple suivant :
-+
-image::network_ports.PNG[Vérifiez la connectivité des ports]
-
-. Échec de réception de l'accès à l'URL (différent de support-sg-nawest.netapp.com).
-. Modifiez les règles de pare-feu pour autoriser la nouvelle URL.
-. Répétez les étapes ci-dessus jusqu'à ce que la tentative d'accès réussisse.
-
-
-====
 Les abréviations suivantes sont utilisées dans le tableau :
 
 * MIP : adresse IP de gestion, une adresse par nœud
@@ -99,21 +83,6 @@ Tous les ports du tableau sont TCP, sauf indication contraire.
 
 
 | Nœud de gestion | `monitoring.solidfire.com` | 443 | Reporting sur le cluster de stockage Active IQ 
-
-
-| Nœud de gestion  a| 
-Notification de nouvelle version :
-
-* `https://support.netapp.com/aods/`
-
-
-Téléchargement de logiciels :
-
-* `https://support-sg-emea.netapp.com`
-* `https://support-sg-naeast.netapp.com`
-* `https://support-sg-nawest.netapp.com`
-
-| 443 | Mises à niveau du service des nœuds de gestion 
 
 
 | Nœud de gestion | Cluster de stockage MVIP | 443 | Accès à l'interface et à l'API pour les mises à niveau du nœud de stockage et du logiciel Element 

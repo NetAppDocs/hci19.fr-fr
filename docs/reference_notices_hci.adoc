@@ -67,6 +67,7 @@ Les fichiers de notification fournissent des informations sur les droits d'auteu
 * link:../media/storage_firmware_bundle_2.27_notices.pdf["Remarque concernant le pack de microprogramme de stockage 2.27"^]
 * link:../media/compute_iso_notice.pdf["Avis relatif à la norme ISO du micrologiciel de calcul"^]
 * link:../media/H610S_BMC_notice.pdf["Notification pour BMC H610S"^]
+* link:../media/mgmt_svcs_2.23_notice.pdf["Avis concernant les services de gestion 2.23.64 (plug-in NetApp Element pour VMware vCenter Server 5.1.12)"^]
 * link:../media/mgmt_svcs_2.22_notice.pdf["Avis concernant les services de gestion 2.22.7 (plug-in NetApp Element pour vCenter Server 5.0.37)"^]
 * link:../media/mgmt_svcs_2.21_notice.pdf["Avis concernant les services de gestion 2.21.61 (plug-in NetApp Element pour vCenter Server 4.10.12)"^]
 * link:../media/2.20_notice.pdf["Avis concernant les services de gestion 2.20.69 (plug-in NetApp Element pour vCenter Server 4.9.14)"^]

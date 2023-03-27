@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: docs/task_vcp_upgrade_plugin.html 
 summary: Lors de la mise à niveau des systèmes NetApp HCI, vous pouvez mettre à niveau le plug-in Element pour vCenter Server. 
-keywords: netapp, vcp, vCenter plug-in, upgrade, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10, 5.0 
+keywords: netapp, vcp, vCenter plug-in, upgrade, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10, 5.0, 5.1 
 ---
 = Mettez à niveau le plug-in Element pour vCenter Server
 :hardbreaks:
@@ -21,15 +21,15 @@ Vous pouvez mettre à jour l'enregistrement du plug-in sur vCenter Server Virtua
 Cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants.
 
 
-NOTE: Les services de gestion 2.22.7 comprennent le plug-in NetApp Element pour vCenter Server 5.0 qui contient le plug-in distant. Si vous utilisez le plug-in Element, nous vous recommandons de mettre à niveau vers la version 5.0 afin de respecter la directive VMware qui supprime la prise en charge des plug-ins locaux. https://kb.vmware.com/s/article/87880["En savoir plus >>"^]. Si vous n'utilisez pas le plug-in, il s'agit d'une mise à niveau facultative.
+NOTE: Services de gestion 2.22.7 inclut Element Plug-in pour vCenter Server 5.0 qui contient le plug-in distant. Si vous utilisez le plug-in Element, vous devez effectuer une mise à niveau vers les services de gestion version 2.22.7 ou ultérieure pour vous conformer à la directive VMware qui supprime le support des plug-ins locaux. https://kb.vmware.com/s/article/87880["En savoir plus >>"^].
 
 [role="tabbed-block"]
 ====
 .Plug-in Element pour vCenter 5.0 et versions ultérieures
 --
-Depuis le plug-in Element pour vCenter Server 5.0, cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants :
+Cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants :
 
-* Vous effectuez une mise à niveau vers le plug-in Element pour vCenter Server 5.0.
+* Vous effectuez une mise à niveau vers Element Plug-in pour vCenter Server 5.1 ou 5.0.
 * Vous mettez à niveau vers un client Web HTML5 8.0 ou 7.0.
 
 
@@ -37,12 +37,12 @@ Depuis le plug-in Element pour vCenter Server 5.0, cette procédure de mise à n
 IMPORTANT: Le plug-in Element pour vCenter 5.0 et les versions ultérieures n'est pas compatible avec vCenter Server 6.7 et 6.5.
 
 
-NOTE: Lorsque vous effectuez une mise à niveau depuis le plug-in Element pour vCenter Server 4.x vers la version 5.0, les clusters déjà configurés avec le plug-in sont perdus, car les données ne peuvent pas être copiées à partir d'une instance vCenter vers un plug-in distant. Vous devez ajouter à nouveau les clusters au plug-in distant. Il s'agit d'une activité ponctuelle lors de la mise à niveau d'un plug-in local vers un plug-in distant.
+NOTE: Lorsque vous effectuez une mise à niveau d'Element Plug-in pour vCenter Server 4.x vers 5.x, les clusters déjà configurés avec le plug-in sont perdus car les données ne peuvent pas être copiées d'une instance vCenter vers un plug-in distant. Vous devez ajouter à nouveau les clusters au plug-in distant. Il s'agit d'une activité ponctuelle lors de la mise à niveau d'un plug-in local vers un plug-in distant.
 
 --
 .Plug-in Element pour vCenter 4.10 et versions antérieures
 --
-Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants :
+Cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants :
 
 * Vous allez effectuer la mise à niveau vers le plug-in Element pour VMware vCenter Server 4.10, 4.9, 4.8, 4.7, 4.6, 4.5 ou 4.4.
 * Vous mettez à niveau vers un client Web HTML5 7.0, 6.7 ou 6.5.
@@ -91,7 +91,7 @@ image::vcp_registration_utility_ui_qossioc.png[La illustre l'interface utilisate
 
 . Sélectionnez *enregistrement du plug-in vCenter*.
 +
-** La page d'inscription du plug-in vCenter pour le plug-in Element pour vCenter Server 5.0 :
+** Page d'enregistrement du plug-in vCenter pour Element Plug-in pour vCenter Server 5.x :
 +
 image::vcp_remote_plugin_registration_ui.png[Illustre l'interface utilisateur de l'utilitaire d'enregistrement pour un plug-in distant]
 
@@ -141,7 +141,7 @@ NOTE: Cette action crée une nouvelle base de données et termine l'installation
 +
 ** Depuis le plug-in Element pour vCenter Server 5.0, le point d'extension du plug-in distant NetApp Element apparaît :
 +
-image::vcp_remote_plugin_icons_home_page.png[Illustre le point d'extension du plug-in après une mise à niveau ou une installation réussie pour le plug-in Element 5.10 ou version ultérieure]
+image::vcp_remote_plugin_icons_home_page.png[Illustre le point d'extension du plug-in après une mise à niveau ou une installation réussie pour Element Plug-in 5.0 ou version ultérieure]
 
 ** Pour le plug-in Element pour vCenter Server 4.10 ou version antérieure, les points d'extension NetApp Element Configuration and Management apparaissent :
 +
@@ -164,8 +164,8 @@ Vous devriez voir les détails de la version suivante ou les détails d'une vers
 +
 [listing]
 ----
-NetApp Element Plug-in Version: 5.0
-NetApp Element Plug-in Build Number: 37
+NetApp Element Plug-in Version: 5.1
+NetApp Element Plug-in Build Number: 12
 ----
 
 

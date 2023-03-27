@@ -41,10 +41,6 @@ https://<ManagementNodeIP>
 .. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
 .. Sélectionnez *Upgrade* en haut à droite de l'interface.
 .. Le CLUF s'affiche. Faites défiler vers le bas, sélectionnez *J'accepte les mises à jour actuelles et futures*, puis sélectionnez *Enregistrer*.
-+
-
-NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à jour futures et la fonction de téléchargement automatique est activée. Vous recevrez des mises à jour sur les mises à jour et les mises à niveau logicielles NetApp que vous pouvez installer à votre discrétion et à votre convenance. Vous pouvez désactiver la fonctionnalité de téléchargement automatique en désactivant la connectivité réseau au référentiel logiciel en ligne de NetApp.
-
 
 
 
@@ -66,9 +62,6 @@ IMPORTANT: Si vous mettez à niveau un nœud de la série H610S vers Element 12.
 == Utilisez l'interface de contrôle du cloud hybride NetApp pour mettre à niveau le stockage Element
 
 Avec l'interface utilisateur de NetApp Hybrid Cloud Control, vous pouvez mettre à niveau un cluster de stockage.
-
-.Ce dont vous avez besoin
-Si votre noeud de gestion n'est pas connecté à Internet, vous avez téléchargé le https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Pack logiciel NetApp HCI pour les clusters de stockage NetApp HCI"^].
 
 
 CAUTION: Pour les problèmes potentiels lors de la mise à niveau des clusters de stockage à l'aide de NetApp Hybrid Cloud Control et de solutions de contournement de ces problèmes, consultez le https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Potential_issues_and_workarounds_when_running_storage_upgrades_using_NetApp_Hybrid_Cloud_Control["Article de la base de connaissances"^].
@@ -96,30 +89,29 @@ L'onglet *Storage* répertorie les clusters de stockage qui font partie de votre
 | Option | Étapes 
 
 
-| Votre nœud de gestion dispose d'une connectivité externe.  a| 
-.. Sélectionnez la flèche de liste déroulante en regard du cluster que vous mettez à niveau et sélectionnez les versions de mise à niveau disponibles sous l'onglet *Element*.
-.. Sélectionnez *commencer la mise à niveau*.
-
-
-
-TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir <<Modifications du statut des mises à niveau>>.
-
-
-NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. La page ne met pas à jour dynamiquement l'état et la version actuelle si la ligne du cluster est réduite. La ligne du cluster doit être développée pour mettre à jour la table ou vous pouvez actualiser la page.
-
-Vous pouvez télécharger les journaux une fois la mise à niveau terminée.
-
-
-
-| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
+| Tous les clusters exécutant Element 11.8 et versions ultérieures  a| 
 .. Sélectionnez *Parcourir* pour télécharger le package de mise à niveau que vous avez téléchargé.
 .. Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
-
-
++
 
 CAUTION: Le téléchargement du fichier sera perdu si vous vous éloignez de la fenêtre du navigateur.
 
++
 Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Si vous ne vous éloignez pas de la fenêtre du navigateur à ce stade, le téléchargement du fichier est conservé.
+
+.. Sélectionnez *commencer la mise à niveau*.
++
+
+TIP: Le *Statut de mise à niveau* change pendant la mise à niveau pour refléter l'état du processus. Elle change également en réponse aux actions que vous avez effectuées, comme la mise en pause de la mise à niveau, ou si la mise à niveau renvoie une erreur. Voir <<Modifications du statut des mises à niveau>>.
+
++
+
+NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. La page ne met pas à jour dynamiquement l'état et la version actuelle si la ligne du cluster est réduite. La ligne du cluster doit être développée pour mettre à jour la table ou vous pouvez actualiser la page.
+
++
+Vous pouvez télécharger les journaux une fois la mise à niveau terminée.
+
+
 
 
 
@@ -163,9 +155,6 @@ Voici les différents États que la colonne *Upgrade Status* de l'interface util
 | Erreur | Une erreur s'est produite lors de la mise à niveau. Vous pouvez télécharger le journal des erreurs et l'envoyer au support NetApp. Après avoir résolu l'erreur, vous pouvez revenir à la page et sélectionner *reprendre*. Lorsque vous reprenez la mise à niveau, la barre de progression revient en arrière pendant quelques minutes pendant que le système exécute la vérification de l'état et vérifie l'état actuel de la mise à niveau. 
 
 
-| Détection impossible | NetApp Hybrid Cloud Control affiche ce statut au lieu de *versions disponibles* lorsqu'il ne dispose pas d'une connectivité externe pour accéder au référentiel logiciel en ligne. Si vous disposez d'une connectivité externe mais que ce message s'affiche toujours, vérifiez votre link:task_mnode_configure_proxy_server.html["configuration du proxy"]. 
-
-
 | Effectuez le suivi | Uniquement pour les nœuds H610S, mise à niveau à partir de la version Element de la version 11.8. Une fois la phase 1 du processus de mise à niveau terminée, cet état vous invite à effectuer la phase 2 de la mise à niveau (voir le https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/H_Series/NetApp_H610S_storage_node_power_off_and_on_procedure["Article de la base de connaissances"^]). Une fois que vous avez terminé la phase 2 et que vous avez reconnu que vous l'avez terminée, l'état devient *jusqu'à la date*. 
 |===
 
@@ -175,87 +164,41 @@ Voici les différents États que la colonne *Upgrade Status* de l'interface util
 Vous pouvez utiliser des API pour mettre à niveau les nœuds de stockage d'un cluster vers la version la plus récente du logiciel Element. Vous pouvez utiliser l'outil d'automatisation de votre choix pour exécuter les API. Le workflow d'API documenté ici utilise l'interface d'API REST disponible sur le nœud de gestion, par exemple.
 
 .Étapes
-. Effectuez l'une des opérations suivantes en fonction de votre connexion :
+. Téléchargez le pack de mise à niveau du stockage sur un périphérique accessible au nœud de gestion ; accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["page de téléchargements"^] et téléchargez la dernière image du nœud de stockage.
+. Charger le pack de mise à niveau du stockage sur le nœud de gestion :
 +
-[cols="2*"]
-|===
-| Option | Étapes 
-
-
-| Votre nœud de gestion dispose d'une connectivité externe.  a| 
-.. Vérifiez la connexion au référentiel :
-+
-... Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
+.. Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
 +
 [listing]
 ----
 https://<ManagementNodeIP>/package-repository/1/
 ----
-... Sélectionnez *Authorise* et procédez comme suit :
+.. Sélectionnez *Authorise* et procédez comme suit :
 +
-.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
-.... Saisissez l'ID client en tant que `mnode-client`.
-.... Sélectionnez *Autoriser* pour démarrer une session.
-.... Fermez la fenêtre d'autorisation.
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
 
 
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET ​/packages​/remote-repository​/connection*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Exécuter*.
-... Si le code 200 est renvoyé, passer à l'étape suivante. S'il n'y a pas de connexion au référentiel distant, établissez la connexion ou utilisez l'option site sombre.
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *POST /packages*.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Parcourir* et sélectionnez le package de mise à niveau.
+.. Sélectionnez *Exécuter* pour lancer le téléchargement.
+.. Dans la réponse, copiez et enregistrez l'ID de package (`"id"`) pour une utilisation ultérieure.
 
 
-.. Recherchez l'ID du package de mise à niveau :
+. Vérifiez l'état du chargement.
 +
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET /packages*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Exécuter*.
-... Dans la réponse, copiez et enregistrez l'ID de package pour une utilisation ultérieure.
-
-
-
-
-
-
-| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
-.. Téléchargez le pack de mise à niveau du stockage sur un périphérique accessible au nœud de gestion ; accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["page de téléchargements"^] et téléchargez la dernière image du nœud de stockage.
-.. Charger le pack de mise à niveau du stockage sur le nœud de gestion :
-+
-... Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
-+
-[listing]
-----
-https://<ManagementNodeIP>/package-repository/1/
-----
-... Sélectionnez *Authorise* et procédez comme suit :
-+
-.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
-.... Saisissez l'ID client en tant que `mnode-client`.
-.... Sélectionnez *Autoriser* pour démarrer une session.
-.... Fermez la fenêtre d'autorisation.
-
-
-... Dans l'interface utilisateur de l'API REST, sélectionnez *POST /packages*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Parcourir* et sélectionnez le package de mise à niveau.
-... Sélectionnez *Exécuter* pour lancer le téléchargement.
-... Dans la réponse, copiez et enregistrez l'ID de package (`"id"`) pour une utilisation ultérieure.
-
-
-.. Vérifiez l'état du chargement.
-+
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET​ /packages​/{ID}​/status*.
-... Sélectionnez *essayez-le*.
-... Saisissez l'ID de paquet que vous avez copié à l'étape précédente dans *ID*.
-... Sélectionnez *Exécuter* pour lancer la demande d'état.
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *GET​ /packages​/{ID}​/status*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de paquet que vous avez copié à l'étape précédente dans *ID*.
+.. Sélectionnez *Exécuter* pour lancer la demande d'état.
 +
 La réponse indique `state` comme `SUCCESS` une fois l'opération terminée.
 
 
 
-
-
-|===
 . Recherchez l'ID de cluster de stockage :
 +
 .. Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :

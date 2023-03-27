@@ -62,10 +62,6 @@ https://<ManagementNodeIP>
 .. Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
 .. Sélectionnez *Upgrade* en haut à droite de l'interface.
 .. Le CLUF s'affiche. Faites défiler vers le bas, sélectionnez *J'accepte les mises à jour actuelles et futures*, puis sélectionnez *Enregistrer*.
-+
-
-NOTE: Lorsque vous acceptez le CLUF, il est enregistré pour toutes les mises à jour futures et la fonction de téléchargement automatique est activée. Vous recevrez des mises à jour sur les mises à jour et les mises à niveau logicielles NetApp que vous pouvez installer à votre discrétion et à votre convenance. Vous pouvez désactiver la fonctionnalité de téléchargement automatique en désactivant la connectivité réseau au référentiel logiciel en ligne de NetApp.
-
 
 
 
@@ -100,9 +96,6 @@ Depuis les services de gestion 24h/2.14, 7j/7, vous pouvez mettre à niveau un n
 TIP: Pour une mise à niveau réussie, assurez-vous que la vérification de l'état du cluster vSphere a réussi.
 
 
-TIP: Pour les mises à niveau vers des sites sombres, vous pouvez réduire le temps de chargement si le bundle de firmware de calcul et le nœud de gestion sont tous deux locaux.
-
-
 NOTE: La mise à niveau de la carte réseau, du BIOS et du contrôleur BMC peut prendre environ 60 minutes par nœud en fonction de la vitesse de la connectivité réseau entre le nœud de gestion et l'hôte BMC.
 
 
@@ -126,20 +119,21 @@ https://<ManagementNodeIP>
 . Connectez-vous au contrôle de cloud hybride NetApp en fournissant les identifiants de l'administrateur du cluster de stockage.
 . Sélectionnez *Upgrade* en haut à droite de l'interface.
 . Sur la page *mises à niveau*, sélectionnez *Compute Firmware*.
-. Choisissez l'une des options suivantes et effectuez l'ensemble des étapes applicables au cluster :
-+
-[cols="2*"]
-|===
-| Option | Étapes 
-
-
-| Votre nœud de gestion dispose d'une connectivité externe.  a| 
-.. Sélectionnez le cluster que vous mettez à niveau.
+. Sélectionnez le cluster que vous mettez à niveau.
 +
 Vous verrez que les nœuds du cluster sont répertoriés ainsi que les versions de firmware actuelles et les plus récentes, le cas échéant, à mettre à niveau.
 
-.. Sélectionnez le bundle de firmware de calcul.
-.. Sélectionnez *commencer la mise à niveau*.
+. Sélectionnez *Browse* pour télécharger le bundle de microprogramme de calcul que vous avez téléchargé à partir du https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Site de support NetApp"^].
+. Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
++
+
+TIP: Le téléchargement du fichier se fera en arrière-plan si vous vous éloignez de la fenêtre du navigateur.
+
++
+Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes.
+
+. Sélectionnez le bundle de firmware de calcul.
+. Sélectionnez *commencer la mise à niveau*.
 +
 Une fois que vous avez sélectionné *Begin Upgrade*, la fenêtre affiche les vérifications d'intégrité ayant échoué, le cas échéant.
 
@@ -147,31 +141,18 @@ Une fois que vous avez sélectionné *Begin Upgrade*, la fenêtre affiche les v�
 
 CAUTION: La mise à niveau ne peut pas être interrompue après le démarrage. Le micrologiciel sera mis à jour séquentiellement dans l'ordre suivant : carte réseau, BIOS et BMC. Ne vous connectez pas à l'interface utilisateur du contrôleur BMC pendant la mise à niveau. La connexion au contrôleur BMC met fin à la session sol (Serial-over-LAN) de contrôle du cloud hybride qui surveille le processus de mise à niveau.
 
-.. Si les vérifications d'intégrité au niveau du cluster ou du nœud ont réussi avec des avertissements, mais sans échecs critiques, vous verrez *prêt à être mis à niveau*. Sélectionnez *Upgrade Node*.
-
-
+. Si les vérifications d'intégrité au niveau du cluster ou du nœud ont réussi avec des avertissements, mais sans échecs critiques, vous verrez *prêt à être mis à niveau*. Sélectionnez *Upgrade Node*.
++
 
 NOTE: Pendant que la mise à niveau est en cours, vous pouvez quitter la page et y revenir plus tard pour continuer à suivre la progression. Pendant la mise à niveau, l'interface utilisateur affiche différents messages relatifs à l'état de la mise à niveau.
 
++
 
 CAUTION: Lors de la mise à niveau du micrologiciel sur les nœuds de calcul H610C et H615C, n'ouvrez pas la console série sur LAN (sol) via l'interface utilisateur Web du BMC. Ceci peut entraîner l'échec de la mise à niveau.
 
-L'interface utilisateur affiche un message une fois la mise à niveau terminée. Vous pouvez télécharger les journaux une fois la mise à niveau terminée.
++
+L'interface utilisateur affiche un message une fois la mise à niveau terminée. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section <<Modifications du statut des mises à niveau>>.
 
-
-
-| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
-.. Sélectionnez le cluster que vous mettez à niveau.
-.. Sélectionnez *Browse* pour télécharger le bundle de microprogramme de calcul que vous avez téléchargé à partir duhttps://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Site de support NetApp"^].
-.. Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
-
-
-
-TIP: Le téléchargement du fichier se fera en arrière-plan si vous vous éloignez de la fenêtre du navigateur.
-
-Un message à l'écran s'affiche une fois le fichier téléchargé et validé. La validation peut prendre plusieurs minutes. Vous pouvez télécharger les journaux une fois la mise à niveau terminée. Pour plus d'informations sur les différentes modifications de l'état de mise à niveau, reportez-vous à la section <<Modifications du statut des mises à niveau>>.
-
-|===
 
 
 
@@ -194,7 +175,7 @@ Voici les différents États que l'interface utilisateur affiche avant, pendant 
 | Erreur | Une erreur s'est produite lors de la mise à niveau. Vous pouvez télécharger le journal des erreurs et l'envoyer au support NetApp. 
 
 
-| Détection impossible | NetApp Hybrid Cloud Control ne dispose d'aucune connectivité externe pour accéder au référentiel logiciel en ligne. Ce statut s'affiche également si NetApp Hybrid Cloud Control ne parvient pas à interroger le nœud de calcul lorsque l'actif du nœud de calcul ne possède pas le numéro d'identification matériel. 
+| Détection impossible | Cet état est affiché si NetApp Hybrid Cloud Control ne peut pas interroger le nœud de calcul lorsque la ressource de nœud de calcul ne possède pas d'étiquette matérielle. 
 
 
 | Prêt à être mis à niveau. | Tous les vérifications de l'état sont effectuées avec succès, et le nœud est prêt à être mis à niveau. 
@@ -218,92 +199,42 @@ NOTE: Les nœuds de calcul H300E/H500E/H700E ne sont plus pris en charge grâce 
 Les ressources de nœud de calcul, y compris vCenter et matérielles, doivent être connues des ressources de nœud de gestion. Vous pouvez utiliser les API du service d'inventaire pour vérifier les ressources (`https://<ManagementNodeIP>/inventory/1/`).
 
 .Étapes
-. Effectuez l'une des opérations suivantes en fonction de votre connexion :
+. Accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["télécharger la page"^] téléchargez le dernier bundle de firmware de calcul sur un périphérique accessible au nœud de gestion.
+. Téléchargez le bundle du firmware de calcul sur le nœud de gestion :
 +
-[cols="2*"]
-|===
-| Option | Étapes 
-
-
-| Votre nœud de gestion dispose d'une connectivité externe.  a| 
-.. Vérifiez la connexion au référentiel :
-+
-... Ouvrez l'interface de l'API REST du service d'pack sur le nœud de gestion :
+.. Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
 +
 [listing]
 ----
 https://<ManagementNodeIP>/package-repository/1/
 ----
-... Sélectionnez *Authorise* et procédez comme suit :
+.. Sélectionnez *Authorise* et procédez comme suit :
 +
-.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
-.... Saisissez l'ID client en tant que `mnode-client`.
-.... Sélectionnez *Autoriser* pour démarrer une session.
-.... Fermez la fenêtre d'autorisation.
+... Saisissez le nom d'utilisateur et le mot de passe du cluster.
+... Saisissez l'ID client en tant que `mnode-client`.
+... Sélectionnez *Autoriser* pour démarrer une session.
+... Fermez la fenêtre d'autorisation.
 
 
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET ​/packages​/remote-repository​/connection*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Exécuter*.
-... Si le code 200 est renvoyé, passer à l'étape suivante. S'il n'y a pas de connexion au référentiel distant, établissez la connexion ou utilisez l'option site sombre.
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *POST /packages*.
+.. Sélectionnez *essayez-le*.
+.. Sélectionnez *Browse* et sélectionnez le pack de microprogramme de calcul.
+.. Sélectionnez *Exécuter* pour lancer le téléchargement.
+.. Dans la réponse, copiez et enregistrez l'ID du bundle du firmware de calcul (`"id"`) pour une utilisation ultérieure.
 
 
-.. Recherchez l'ID du pack du firmware de calcul :
+. Vérifiez l'état du chargement.
 +
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET /packages*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Exécuter*.
-... Dans la réponse, copiez et enregistrez le nom du bundle du firmware de calcul (`"packageName"`) et version (`"packageVersion"`) pour une utilisation ultérieure.
-
-
-
-
-
-
-| Votre nœud de gestion se trouve dans un site sombre sans connectivité externe.  a| 
-.. Accédez au logiciel NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["télécharger la page"^] téléchargez le dernier bundle de firmware de calcul sur un périphérique accessible au nœud de gestion.
-+
-
-TIP: Pour les mises à niveau vers des sites sombres, vous pouvez réduire le temps de chargement si le bundle de firmware de calcul et le nœud de gestion sont tous deux locaux.
-
-.. Téléchargez le bundle du firmware de calcul sur le nœud de gestion :
-+
-... Ouvrez l'interface de l'API REST du nœud de gestion sur le nœud de gestion :
-+
-[listing]
-----
-https://<ManagementNodeIP>/package-repository/1/
-----
-... Sélectionnez *Authorise* et procédez comme suit :
-+
-.... Saisissez le nom d'utilisateur et le mot de passe du cluster.
-.... Saisissez l'ID client en tant que `mnode-client`.
-.... Sélectionnez *Autoriser* pour démarrer une session.
-.... Fermez la fenêtre d'autorisation.
-
-
-... Dans l'interface utilisateur de l'API REST, sélectionnez *POST /packages*.
-... Sélectionnez *essayez-le*.
-... Sélectionnez *Browse* et sélectionnez le pack de microprogramme de calcul.
-... Sélectionnez *Exécuter* pour lancer le téléchargement.
-... Dans la réponse, copiez et enregistrez l'ID du bundle du firmware de calcul (`"id"`) pour une utilisation ultérieure.
-
-
-.. Vérifiez l'état du chargement.
-+
-... Dans l'interface utilisateur de l'API REST, sélectionnez *GET​ /packages​/{ID}​/status*.
-... Sélectionnez *essayez-le*.
-... Saisissez l'ID de paquet que vous avez copié à l'étape précédente dans *ID*.
-... Sélectionnez *Exécuter* pour lancer la demande d'état.
+.. Dans l'interface utilisateur de l'API REST, sélectionnez *GET​ /packages​/{ID}​/status*.
+.. Sélectionnez *essayez-le*.
+.. Saisissez l'ID de paquet que vous avez copié à l'étape précédente dans *ID*.
+.. Sélectionnez *Exécuter* pour lancer la demande d'état.
 +
 La réponse indique `state` comme `SUCCESS` une fois l'opération terminée.
 
-... Dans la réponse, copiez et enregistrez le nom du bundle du firmware de calcul (`"name"`) et version (`"version"`) pour une utilisation ultérieure.
+.. Dans la réponse, copiez et enregistrez le nom du bundle du firmware de calcul (`"name"`) et version (`"version"`) pour une utilisation ultérieure.
 
 
-
-
-|===
 . Recherchez l'ID du contrôleur de calcul et l'ID matériel de nœud pour le nœud que vous envisagez de mettre à niveau :
 +
 .. Ouvrez l'interface utilisateur de l'API REST du service d'inventaire sur le nœud de gestion :
@@ -632,7 +563,8 @@ CAUTION: Pendant le processus de mise sous tension, pendant environ cinq minutes
 . Dans vCenter, avec le nom d'hôte sélectionné, configurez et vérifiez la version du BIOS.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
