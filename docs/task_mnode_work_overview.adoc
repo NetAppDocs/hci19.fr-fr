@@ -32,6 +32,11 @@ Accéder au nœud de gestion :
 * link:task_mnode_access_ui.html["Accès au nœud de gestion (interface utilisateur ou API REST)"]
 
 
+Modifiez le certificat SSL par défaut :
+
+* link:reference_change_mnode_default_ssl_certificate.html["Modifiez le certificat SSL par défaut du nœud de gestion"]
+
+
 Effectuez des tâches à l'aide de l'interface du nœud de gestion :
 
 * link:task_mnode_work_overview_UI.html["Présentation de l'interface du nœud de gestion"]

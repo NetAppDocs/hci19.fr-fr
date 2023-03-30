@@ -199,6 +199,8 @@ sidebar:
           url: "/docs/task_mnode_recover.html"
       - title: Accédez au nœud de gestion
         url: "/docs/task_mnode_access_ui.html"
+      - title: Modifiez le certificat SSL par défaut du nœud de gestion
+        url: "/mnode/reference_change_mnode_default_ssl_certificate.html"
       - title: Utilisation de l'interface du nœud de gestion
         entries:
         - title: Présentation de l'interface du nœud de gestion
