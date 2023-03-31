@@ -18,8 +18,6 @@ Pour les environnements vSphere existants équipés d'un plug-in NetApp Element 
 
 Vous pouvez mettre à jour l'enregistrement du plug-in sur vCenter Server Virtual Appliance (vCSA) ou Windows à l'aide de l'utilitaire d'enregistrement. Vous devez modifier votre inscription au plug-in vCenter sur chaque serveur vCenter où vous devez utiliser le plug-in.
 
-Cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants.
-
 
 NOTE: Services de gestion 2.22.7 inclut Element Plug-in pour vCenter Server 5.0 qui contient le plug-in distant. Si vous utilisez le plug-in Element, vous devez effectuer une mise à niveau vers les services de gestion version 2.22.7 ou ultérieure pour vous conformer à la directive VMware qui supprime le support des plug-ins locaux. https://kb.vmware.com/s/article/87880["En savoir plus >>"^].
 

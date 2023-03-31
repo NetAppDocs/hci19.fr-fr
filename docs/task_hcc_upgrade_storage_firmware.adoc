@@ -98,9 +98,6 @@ Si le cluster est à jour et/ou qu'aucun package de mise à niveau n'est disponi
 . Sélectionnez la flèche de liste déroulante située à côté du cluster que vous mettez à niveau.
 . Sélectionnez *Parcourir* pour télécharger le package de mise à niveau que vous avez téléchargé.
 . Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
-. Sélectionnez la flèche de liste déroulante située à côté du cluster que vous mettez à niveau.
-. Sélectionnez *Parcourir* pour télécharger le package de mise à niveau que vous avez téléchargé.
-. Attendez la fin du chargement. Une barre de progression indique l'état du téléchargement.
 +
 
 CAUTION: Le téléchargement du fichier sera perdu si vous vous éloignez de la fenêtre du navigateur.
