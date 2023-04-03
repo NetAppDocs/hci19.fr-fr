@@ -1,5 +1,5 @@
 ---
-permalink: mnode/reference_change_mnode_default_ssl_certificate.html 
+permalink: docs/reference_change_mnode_default_ssl_certificate.html 
 sidebar: sidebar 
 keywords: ssl certificate, SSL, private key, self-signed, cluster, nodes, user-defined certificate, API, change default certificate, certificate, Element API, mnode 
 summary: 'Vous pouvez modifier le certificat SSL par défaut et la clé privée du nœud de stockage du cluster à l"aide de l"API NetApp Element.' 
