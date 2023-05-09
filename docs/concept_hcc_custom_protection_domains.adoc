@@ -36,4 +36,4 @@ Contactez la prise en charge de NetApp pour plus d'informations sur l'utilisatio
 
 == Trouvez plus d'informations
 
-link:api/index.html["Gérez le stockage avec l'API Element"]
+https://docs.netapp.com/us-en/element-software/api/index.html["Gérez le stockage avec l'API Element"^]

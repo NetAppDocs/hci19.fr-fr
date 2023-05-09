@@ -37,7 +37,7 @@ NOTE: Les volumes persistants associés à des services de gestion sont créés 
 
 == Trouvez plus d'informations
 
-* link:hci_task_manage_vol_management.html["Gérer les volumes"]
+* link:task_hcc_manage_vol_management.html["Gérer les volumes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * http://docs.netapp.com/sfe-122/index.jsp["Centre de documentation des logiciels SolidFire et Element"^]
 

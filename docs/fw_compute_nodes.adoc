@@ -45,6 +45,9 @@ NOTE: Un tiret (*-*) dans le tableau suivant indique que le composant matériel 
 | Relâchez le véhicule | Date de publication | BIOS | BMC | Carte réseau 10/25 GbE | Version du pilote VMware ESXi 6.5 | Version du pilote VMware ESXi 6.7 | Version du pilote VMware ESXi 7.0 
 
 
+| *Pack de firmware de calcul 2.174.0* | 04/12/2023 | 3B12.CO | 4.72.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
+
+
 | *Compute Firmware Bundle 2.154.4* | 06/08/2022 | 3B12.CO | 4.72.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
 
 
@@ -125,6 +128,9 @@ NOTE: Un tiret (*-*) dans le tableau suivant indique que le composant matériel 
 [cols="8*"]
 |===
 | Relâchez le véhicule | Date de publication | BIOS | BMC | Carte réseau 10/25 GbE | Version du pilote VMware ESXi 6.5 | Version du pilote VMware ESXi 6.7 | Version du pilote VMware ESXi 7.0 
+
+
+| *Pack de firmware de calcul 2.174.0* | 04/12/2023 | 3B07 | 4.04.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
 
 
 | *Compute Firmware Bundle 2.154.4* | 06/08/2022 | 3B07 | 4.04.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
@@ -219,6 +225,9 @@ NOTE: Un tiret (*-*) dans le tableau suivant indique que le composant matériel 
 [cols="8*"]
 |===
 | Relâchez le véhicule | Date de publication | BIOS | BMC | Carte réseau 10/25 GbE | Version du pilote VMware ESXi 6.5 | Version du pilote VMware ESXi 6.7 | Version du pilote VMware ESXi 7.0 
+
+
+| *Pack de firmware de calcul 2.174.0* | 04/12/2023 | NATP3.10 | 6.71.20 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
 
 
 | *Compute Firmware Bundle 2.154.4* | 06/08/2022 | NATP3.10 | 6.71.20 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
@@ -319,6 +328,9 @@ NOTE: Un tiret (*-*) dans le tableau suivant indique que le composant matériel 
 [cols="8*"]
 |===
 | Relâchez le véhicule | Date de publication | BIOS | BMC | Carte réseau 10/25 GbE | Version du pilote VMware ESXi 6.5 | Version du pilote VMware ESXi 6.7 | Version du pilote VMware ESXi 7.0 
+
+
+| *Pack de firmware de calcul 2.174.0* | 04/12/2023 | NAT3.4 | 07.02.00 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
 
 
 | *Compute Firmware Bundle 2.154.4* | 06/08/2022 | NAT3.4 | 6.98.00 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 

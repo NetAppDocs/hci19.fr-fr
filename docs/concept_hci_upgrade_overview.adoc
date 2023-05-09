@@ -79,5 +79,5 @@ NOTE: La mise à niveau du système d'exploitation du nœud de gestion n'est plu
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/element-software/upgrade/task_sf_upgrade_all.html["Mettez à niveau un système de stockage 100 % Flash NetApp SolidFire"^]
+* https://docs.netapp.com/us-en/element-software/upgrade/concept_element_upgrade_overview.html["Mettez à niveau un système de stockage 100 % Flash NetApp SolidFire"^]
 

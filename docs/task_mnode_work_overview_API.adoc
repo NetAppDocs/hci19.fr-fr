@@ -51,7 +51,7 @@ Tâches autorisées avec les API REST :
 [discrete]
 == Trouvez plus d'informations
 
-* link:task_mnode_access.html["Accédez au nœud de gestion"]
+* link:task_mnode_access_ui.html["Accédez au nœud de gestion"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 
