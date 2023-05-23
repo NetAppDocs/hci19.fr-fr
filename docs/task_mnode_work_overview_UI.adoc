@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: docs/task_mnode_work_overview_UI.html 
-summary: 'Grâce à l"interface du nœud de gestion (https://<mNodeIP>:442)[], vous pouvez modifier les paramètres du réseau et du cluster, exécuter des tests système ou utiliser des utilitaires système.' 
+summary: 'Grâce à l"interface du nœud de gestion , vous pouvez modifier les paramètres du réseau et du cluster, exécuter des tests système ou utiliser des utilitaires système.' 
 keywords: 'netapp, management node ui, mnode ui, :442, element' 
 ---
 = Présentation de l'interface du nœud de gestion
