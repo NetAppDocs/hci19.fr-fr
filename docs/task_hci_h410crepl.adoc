@@ -404,10 +404,198 @@ NOTE: Le mot de passe doit correspondre à celui que vous avez configuré dans l
 .. Sélectionnez *Oui* pour appliquer les modifications.
 
 
-. Ajoutez le nœud (hôte) au cluster et configurez le réseau de manière à ce que le nœud soit synchronisé avec les autres nœuds du cluster comme suit :
+. Configurez la mise en réseau de sorte que le nœud soit synchronisé avec les autres nœuds du cluster comme suit :
 +
+[role="tabbed-block"]
+====
+.Plug-in Element pour vCenter 5.0 et versions ultérieures
+--
+En commençant par Element Plug-in pour vCenter 5.0, ajoutez le nœud (hôte) au centre de données.
+
+.. Dans le client Web VMware vSphere, sélectionnez *Inventaire > hôtes et clusters*.
+.. Cliquez avec le bouton droit de la souris sur le centre de données et sélectionnez *Ajouter un hôte*.
++
+L'assistant vous guide tout au long de l'ajout de l'hôte.
+
++
+
+NOTE: Lorsque vous devez saisir le nom d'utilisateur et le mot de passe, utilisez les informations d'identification suivantes : nom d'utilisateur : mot de passe root : le mot de passe que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI
+
++
+L'ajout du nœud au cluster peut prendre quelques minutes. Une fois le processus terminé, le nouveau nœud ajouté est répertorié sous le cluster.
+
+.. Sélectionnez le nœud, puis sélectionnez *configurer > réseau > commutateurs virtuels* et effectuez les opérations suivantes :
++
+... Développez *vSwitch0*.
+... Dans le graphique qui s'affiche, sélectionnez le réseau VM image:three_horizontal_dots.PNG["icône de menu"] Icône suivie de *Supprimer*.
++
+image::h410c-esxi-vm.PNG[Affiche l'écran de suppression de la machine virtuelle.]
+
+... Confirmez l'action.
+... Sélectionnez *EDIT* sur l'en-tête vSwitch0.
+... Dans la fenêtre vSwitch0 - Modifier les paramètres, sélectionnez *Teaming et Failover*.
+... Vérifiez que vmnic3 est répertorié sous cartes de secours, puis sélectionnez *OK*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez le réseau de gestion image:three_horizontal_dots.PNG["icône de menu"] Suivi de *Modifier les paramètres*.
++
+image::h410c-esxi-mgmt-network.PNG[Affiche l'écran permettant de modifier le réseau de gestion.]
+
++
+... Dans la fenêtre réseau de gestion - Modifier les paramètres, sélectionnez *Teaming et Failover*.
+... Vérifiez que vmnic3 est répertorié sous cartes de secours, puis sélectionnez *OK*.
+
+
+.. Sélectionnez *Ajouter réseau* dans l'en-tête vSwitch0 et entrez les détails suivants dans la fenêtre qui s'affiche :
++
+... Pour le type de connexion, sélectionnez *Groupe de ports de machine virtuelle pour un commutateur standard*, puis *Suivant*.
+... Pour le périphérique cible, sélectionnez *Nouveau commutateur standard* et sélectionnez *Suivant*.
+... Sous Créer un commutateur standard, déplacez vmnic0 et vmnic4 vers cartes actives, puis sélectionnez *Suivant*.
+... Sous Paramètres de connexion, vérifiez que VM Network est le libellé réseau et, si nécessaire, entrez l'ID VLAN.
+... Sélectionnez *Suivant*.
+... Passez en revue l'écran prêt à terminer et sélectionnez *Terminer*.
+
+
+.. Développez vSwitch1 et sélectionnez *EDIT* pour modifier les paramètres comme suit :
++
+... Sous Propriétés, définissez MTU sur 9000 et sélectionnez *OK*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez le réseau VM image:three_horizontal_dots.PNG["icône de menu"] Icône suivie de *Modifier*.
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::vswitch1_vcp_50.PNG[La présente les sélections de sécurité à effectuer pour le réseau VM.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic0 vers les cartes de secours.
+... Sélectionnez *OK*.
+
+
+.. Sélectionnez *ADD NETWORKING* dans l'en-tête vSwitch1 et entrez les détails suivants dans la fenêtre Add Networking :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour utiliser un commutateur standard existant, naviguez jusqu'au vSwitch1 et sélectionnez *Suivant*.
+... Sous Créer un commutateur standard, déplacez vmnic1 et vmnic5 vers cartes actives, puis sélectionnez *Suivant*.
+... Sous propriétés des ports, définissez l'étiquette réseau sur vMotion, cochez la case trafic vMotion sous Activer les services et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez vMotion image:three_horizontal_dots.PNG["icône de menu"] Icône suivie de *Modifier*.
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::vmotion_vcp_50.PNG[Le montre les sélections de sécurité pour vMotion.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic4 vers les cartes de secours.
+... Sélectionnez *OK*.
+
+
+.. Sélectionnez *ADD NETWORKING* dans l'en-tête vSwitch1 et entrez les détails suivants dans la fenêtre Add Networking :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez *Nouveau commutateur standard* et sélectionnez *Suivant*.
+... Sous Créer un commutateur standard, déplacez vmnic1 et vmnic5 vers cartes actives, puis sélectionnez *Suivant*.
+... Sous Propriétés du port, définissez le libellé réseau sur iSCSI-B et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*.
+
+
+.. Développez *vSwitch2* et sélectionnez *EDIT*:
++
+... Sous Propriétés, définissez MTU sur 9000 et sélectionnez *OK*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez iSCSI-B. image:three_horizontal_dots.PNG["icône de menu"] Icône suivie de *Modifier*.
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::iscsi-b-vcp-50.PNG[La présente les sélections de sécurité pour le réseau iSCSI-B.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic1 vers les adaptateurs inutilisés.
+... Sélectionnez *OK*.
+
+
+.. Sélectionnez *ADD NETWORKING* dans l'en-tête vSwitch1 et entrez les détails suivants dans la fenêtre Add Networking :
++
+... Pour le type de connexion, sélectionnez *VMkernel Network adapter* et sélectionnez *Suivant*.
+... Pour le périphérique cible, sélectionnez l'option pour utiliser un commutateur standard existant, naviguez jusqu'au vSwitch2 et sélectionnez *Suivant*.
+... Sous Propriétés du port, définissez le libellé réseau sur iSCSI-A et sélectionnez *Suivant*.
+... Sous Paramètres IPv4, fournissez les informations IPv4 et sélectionnez *Suivant*.
+... Si vous êtes prêt à continuer, sélectionnez *Terminer*.
+
+
+.. Dans le graphique qui s'affiche, sélectionnez l'iSCSI-A. image:three_horizontal_dots.PNG["icône de menu"] Icône suivie de *Modifier*.
++
+... Sélectionnez *sécurité* et effectuez les sélections suivantes :
++
+image::iscsi-a-vcp-50.PNG[La présente les sélections de sécurité pour le réseau iSCSI-A.]
+
+... Sélectionnez *Teaming et Failover*, puis cochez la case *Override*.
+... Déplacez vmnic5 vers des cartes inutilisées en utilisant l'icône de flèche.
+... Sélectionnez *OK*.
+
+
+.. Une fois le nœud nouvellement ajouté sélectionné et l'onglet configurer ouvert, sélectionnez *stockage > cartes de stockage* et effectuez les opérations suivantes :
++
+... Sélectionnez la liste *ADD SOFTWARE ADAPTER*.
+... Sélectionnez *Ajouter une carte iSCSI*, puis sélectionnez *OK*.
+... Sous cartes de stockage, sélectionnez la carte iSCSI
+... Sous Propriétés > général, copiez le nom iSCSI.
++
+image::iscsi-adapter-name-vcp-50.PNG[Affiche la chaîne IQN de l'adaptateur iSCSI.]
+
++
+
+NOTE: Lorsque vous créez l'initiateur, vous avez besoin du nom iSCSI.
+
+
+
+.. Suivez les étapes ci-dessous dans le plug-in NetApp SolidFire vCenter :
++
+... Sélectionnez l'instance cible.
+... Sélectionnez *gestion*.
+... Sélectionnez le cluster cible.
+... Sélectionnez *gestion > initiateurs*.
+... Sélectionnez *Créer initiateur*.
+... Entrez l'adresse IQN que vous avez copiée précédemment dans le champ IQN/WWPN.
+... Sélectionnez *OK*.
+... Sélectionnez le nouvel initiateur.
+... Sélectionnez *liste actions > actions groupées*, puis *Ajouter au groupe d'accès*.
+... Sélectionnez le groupe d'accès cible, puis sélectionnez *Ajouter*.
+
+
+.. Dans le client Web VMware vSphere, sous Storage Adapters, sélectionnez la carte iSCSI et effectuez les opérations suivantes :
++
+... Sélectionnez *découverte dynamique > Ajouter*.
+... Saisissez l'adresse IP SVIP dans le champ serveur iSCSI.
++
+
+NOTE: Pour obtenir l'adresse IP SVIP, sélectionnez *gestion NetApp Element* et copiez l'adresse IP SVIP. Laissez le numéro de port par défaut tel quel. Il devrait être 3260.
+
+... Sélectionnez *OK*.
+... Sélectionnez *liaison de port réseau*, puis *AJOUTER*.
+... Sélectionnez iSCSI-A et iSCSI-B, puis sélectionnez *OK*
+... Sélectionnez *RESCAN ADAPTER*.
+... Sélectionnez *RESCAN STORAGE*. Recherchez de nouveaux volumes VMFS et sélectionnez *OK*.
+... Une fois la nouvelle analyse terminée, vérifiez si les volumes du cluster et les datastores sont visibles sur le nouveau nœud de calcul (hôte).
+
+
+
+
+--
+.Plug-in Element pour vCenter 4.10 et versions antérieures
+--
+Pour le plug-in Element pour vCenter 4.10 et les versions antérieures, ajoutez le nœud (hôte) au cluster.
+
 .. Dans le client Web VMware vSphere, sélectionnez *hôtes et clusters*.
-.. Cliquez avec le bouton droit de la souris sur le cluster auquel vous souhaitez ajouter le nœud, puis sélectionnez *Ajouter hôte*. L'assistant vous guide tout au long de l'ajout de l'hôte.
+.. Cliquez avec le bouton droit de la souris sur le cluster auquel vous souhaitez ajouter le nœud, puis sélectionnez *Ajouter hôte*.
++
+L'assistant vous guide tout au long de l'ajout de l'hôte.
+
 +
 
 NOTE: Lorsque vous devez saisir le nom d'utilisateur et le mot de passe, utilisez les informations d'identification suivantes : nom d'utilisateur : mot de passe root : le mot de passe que vous avez configuré dans le moteur de déploiement NetApp lors de la configuration de NetApp HCI
@@ -572,6 +760,8 @@ image::rescan.gif[Affiche l'icône de nouvelle analyse des cartes de stockage.]
 
 
 
+--
+====
 
 
 
