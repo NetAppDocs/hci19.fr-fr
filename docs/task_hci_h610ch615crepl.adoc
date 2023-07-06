@@ -39,10 +39,7 @@ Voici une présentation générale des étapes de cette procédure :<<Préparez-
 
 == Préparez-vous à remplacer le nœud
 
-Avant de remplacer le nœud, vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud du cluster. Pour en savoir plus sur le nœud, notamment son numéro de série et ses informations réseau,
-
-
-NOTE: Dans le cas d'une panne de composant à l'endroit où le nœud est toujours en ligne et fonctionne, par exemple une panne de module de mémoire DIMM (Dual Inline Memory module), vous devez retirer les disques du cluster avant de retirer le nœud défaillant.
+Avant de remplacer le nœud, vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud du cluster. Vous devez enregistrer des informations détaillées sur le nœud, telles que le numéro de série et les informations de mise en réseau. La migration des VM et l'enregistrement des détails du nœud s'appliquent également en cas de défaillance de composants lorsque le nœud est toujours en ligne et fonctionne, par exemple en cas de défaillance d'un module DIMM (Dual Inline Memory module).
 
 .Étapes
 . Dans le client Web VMware vSphere, procédez comme suit pour migrer les machines virtuelles vers un autre hôte disponible.

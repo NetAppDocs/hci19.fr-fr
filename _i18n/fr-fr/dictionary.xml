@@ -2148,7 +2148,6 @@
 <block ref="85d7ff8f1e3fd6efa440dcd74d3d3e02" category="inline-xref-macro-rx"></block>
 <block ref="74302f10271a48c9df46742d43d08db8" category="inline-xref-macro-rx"></block></block>
   <block id="d7f6ba0367c50b236e879580284dfabe" category="section-title">Préparez-vous à remplacer le nœud</block>
-  <block id="15e52a108fb327eeb4e05584634031a8" category="paragraph">Avant de remplacer le nœud, vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud du cluster. Pour en savoir plus sur le nœud, notamment son numéro de série et ses informations réseau,</block>
   <block id="d8d7c90a9eba54aa51121a64132d7c53" category="list-text">Dans le client Web VMware vSphere, procédez comme suit pour migrer les machines virtuelles vers un autre hôte disponible.</block>
   <block id="ec222debbf462515211b8a9dbc83ea5a" category="list-text">Sélectionnez le nœud défaillant et sélectionnez *moniteur &gt; État du matériel &gt; capteurs*.</block>
   <block id="b3cead0e8121cac5eaa77199cb96bf4b" category="list-text">Notez le numéro de série du nœud défaillant. La capture d'écran suivante n'est qu'un exemple :</block>
@@ -6586,4 +6585,5 @@
   <block id="bc1db729f0157876d24fd3c55560294c" category="list-text">Une fois la nouvelle analyse terminée, vérifiez si les volumes du cluster et les datastores sont visibles sur le nouveau nœud de calcul (hôte).</block>
   <block id="f096b63658cb95d8f43a07e2d68c70b3" category="paragraph">Pour le plug-in Element pour vCenter 4.10 et les versions antérieures, ajoutez le nœud (hôte) au cluster.</block>
   <block id="fc4dbbaeabdf5700f373a65d12b45108" category="list-text">Cliquez avec le bouton droit de la souris sur le cluster auquel vous souhaitez ajouter le nœud, puis sélectionnez *Ajouter hôte*.</block>
+  <block id="a4b367d6a2f57fe52d770b2264b7d2d8" category="paragraph">Avant de remplacer le nœud, vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud du cluster. Vous devez enregistrer des informations détaillées sur le nœud, telles que le numéro de série et les informations de mise en réseau. La migration des VM et l'enregistrement des détails du nœud s'appliquent également en cas de défaillance de composants lorsque le nœud est toujours en ligne et fonctionne, par exemple en cas de défaillance d'un module DIMM (Dual Inline Memory module).</block>
 </blocks>
