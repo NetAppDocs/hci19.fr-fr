@@ -235,9 +235,6 @@ NOTE: Un tiret (*-*) dans le tableau suivant indique que le composant matériel 
 | Relâchez le véhicule | Date de publication | NIC | MÉMOIRE CACHE NVDIMM RMS200 (RMS200) | MÉMOIRE CACHE NVDIMM RMS200 (RMS300) | Lecteur Samsung PM863 (SED) | Lecteur Samsung PM863 (N-SED) | Drive Toshiba Hawk-4 (SED) | Drive Toshiba Hawk-4 (N-SED) | Lecteur Samsung PM883 (SED) 
 
 
-| *Ensemble de microprogramme de stockage 2.164.0* | 10/20/2022 | 7.10.18 | ae3b8cc | 7d8422bc | GXT5404Q | GXT5103Q | 8ENP7101 | 8ENP6101 | HXT7A04Q 
-
-
 | *Ensemble de microprogramme de stockage 2.146.2* | 02/22/2022 | 7.10.18 | ae3b8cc | 7d8422bc | GXT5404Q | GXT5103Q | 8ENP7101 | 8ENP6101 | HXT7A04Q 
 
 
