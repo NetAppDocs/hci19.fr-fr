@@ -17,6 +17,16 @@ summary: Versions de micrologiciel et de pilote prises en charge dans les logici
 [role="lead"]
 Versions de firmware et de pilote ESXi prises en charge pour les versions de NetApp HCI et de firmware pour les nœuds de stockage NetApp HCI.
 
-link:fw_storage_nodes.html["Nœuds de stockage"]* H610S * H410S
+link:fw_storage_nodes.html["Nœuds de stockage"]
 
-link:fw_compute_nodes.html["Nœuds de calcul"]* H615C * H610C * H410C * H300E/H500E/H700E
+* H610S
+* H410S
+
+
+link:fw_compute_nodes.html["Nœuds de calcul"]
+
+* H615C
+* H610C
+* H410C
+* H300E/H500E/H700E
+

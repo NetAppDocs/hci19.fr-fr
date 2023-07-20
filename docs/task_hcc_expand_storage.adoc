@@ -49,7 +49,11 @@ https://<ManagementNodeIP>
 +
 Le navigateur ouvre le moteur de déploiement NetApp.
 
-. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur local du cluster de stockage NetApp HCI.
++
+
+NOTE: Vous ne pouvez pas vous connecter à l'aide des informations d'identification du protocole d'accès au répertoire léger.
+
 . Sur la page *Bienvenue*, cliquez sur *non* et cliquez sur *Continuer*.
 . Sur la page *Inventaire disponible*, sélectionnez les nœuds de stockage que vous souhaitez ajouter et cliquez sur *Continuer*.
 . Sur la page *Paramètres réseau*, certaines informations sur le réseau ont été détectées à partir du déploiement initial. Chaque nouveau nœud de stockage est répertorié par numéro de série, et vous devez lui attribuer les nouvelles informations réseau. Pour chaque nouveau nœud de stockage, procédez comme suit :

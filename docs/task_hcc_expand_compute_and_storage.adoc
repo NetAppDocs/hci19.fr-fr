@@ -55,7 +55,11 @@ https://<ManagementNodeIP>
 +
 Le navigateur ouvre le moteur de déploiement NetApp.
 
-. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur local du cluster de stockage NetApp HCI.
++
+
+NOTE: Vous ne pouvez pas vous connecter à l'aide des informations d'identification du protocole d'accès au répertoire léger.
+
 . Sur la page *Bienvenue*, cliquez sur *Oui* et cliquez sur *Continuer*.
 . Sur la page *Licence utilisateur final*, lisez le Contrat de licence utilisateur final VMware et cliquez sur *J'accepte* pour accepter les termes et cliquez sur *Continuer*.
 . Sur la page *vCenter*, procédez comme suit :

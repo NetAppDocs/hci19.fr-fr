@@ -116,7 +116,11 @@ https://<ManagementNodeIP>
 ----
 . Connectez-vous au contrôle de cloud hybride NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
 . Dans le volet développer l'installation, sélectionnez *développer*. Le navigateur ouvre le moteur de déploiement NetApp.
-. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur du cluster de stockage NetApp HCI.
+. Connectez-vous au moteur de déploiement NetApp en fournissant les informations d'identification de l'administrateur local du cluster de stockage NetApp HCI.
++
+
+NOTE: Vous ne pouvez pas vous connecter à l'aide des informations d'identification du protocole d'accès au répertoire léger.
+
 . Sur la page Bienvenue, sélectionnez *Oui*.
 . Sur la page Licence utilisateur final, effectuez les opérations suivantes :
 +
