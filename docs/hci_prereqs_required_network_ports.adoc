@@ -15,7 +15,9 @@ keywords: netapp, hci, ports, tcp, udp
 
 
 [role="lead"]
-Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de bord de votre centre de données afin de pouvoir gérer le système à distance, permettre aux clients externes à votre centre de données de se connecter aux ressources et de vous assurer que les services internes fonctionnent correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système. Tous les ports sont TCP, sauf indication contraire.
+Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de votre centre de données pour pouvoir gérer le système à distance, permettre aux clients situés à l'extérieur de votre centre de données de se connecter aux ressources et vous assurer que les services internes peuvent fonctionner correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système.
+
+Tous les ports sont TCP, sauf indication contraire, et tous les ports TCP doivent prendre en charge la communication de liaison tridirectionnelle entre le serveur de support NetApp, le nœud de gestion et les nœuds exécutant le logiciel Element. Par exemple, l'hôte d'une source de nœud de gestion communique avec l'hôte d'une destination MVIP de cluster de stockage via le port TCP 443, et l'hôte de destination communique de nouveau avec l'hôte source via n'importe quel port.
 
 Les abréviations suivantes sont utilisées dans le tableau :
 
@@ -24,8 +26,6 @@ Les abréviations suivantes sont utilisées dans le tableau :
 * MVIP : adresse IP virtuelle de gestion
 * SVIP : adresse IP virtuelle de stockage
 
-
-Tous les ports du tableau sont TCP, sauf indication contraire.
 
 |===
 | Source | Destination | Port | Description 
