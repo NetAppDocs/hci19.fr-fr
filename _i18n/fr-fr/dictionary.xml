@@ -2136,11 +2136,6 @@
   <block id="c75441b3cca2c155de3eee605d34aeb4" category="list-text">Vous avez vérifié que le nœud a échoué.</block>
   <block id="9763adab877e2500e5eb1d0be45a24a3" category="list-text">Vous avez un châssis de remplacement. Pour commander un produit de remplacement, contactez le support NetApp.</block>
   <block id="4177894d92f9956a6f7250cb8b52d834" category="list-text">Vous avez identifié chaque câble connecté au châssis.</block>
-  <block id="b1579568b723cfa21964d9882eb934fb" category="paragraph">Voici une présentation générale des étapes de cette procédure :<block ref="8b400d38091051616c1c5cc1808de640" category="inline-xref-macro-rx"></block>
-<block ref="3bbd6094cc077cc68f8084464864b066" category="inline-xref-macro-rx"></block>
-<block ref="85d7ff8f1e3fd6efa440dcd74d3d3e02" category="inline-xref-macro-rx"></block>
-<block ref="74302f10271a48c9df46742d43d08db8" category="inline-xref-macro-rx"></block></block>
-  <block id="d7f6ba0367c50b236e879580284dfabe" category="section-title">Préparez-vous à remplacer le nœud</block>
   <block id="d8d7c90a9eba54aa51121a64132d7c53" category="list-text">Dans le client Web VMware vSphere, procédez comme suit pour migrer les machines virtuelles vers un autre hôte disponible.</block>
   <block id="ec222debbf462515211b8a9dbc83ea5a" category="list-text">Sélectionnez le nœud défaillant et sélectionnez *moniteur &gt; État du matériel &gt; capteurs*.</block>
   <block id="b3cead0e8121cac5eaa77199cb96bf4b" category="list-text">Notez le numéro de série du nœud défaillant. La capture d'écran suivante n'est qu'un exemple :</block>
@@ -2150,7 +2145,6 @@
   <block id="33e9288e89d9611e1ac5260b3d7e8f48" category="list-text">Sélectionnez *Oui* pour confirmer l'action.</block>
   <block id="bb0e93ea56d61e6329bf2642673cf735" category="list-text">Cliquez avec le bouton droit de la souris sur le noeud en échec et sélectionnez *Supprimer de l'inventaire*.</block>
   <block id="7ab682c31b3906d62159c2f9d858b798" category="list-text">Cliquez sur *Oui* pour confirmer l'action.</block>
-  <block id="4bf11adaae89a783a7925f82b81963ee" category="section-title">Remplacer le nœud</block>
   <block id="0284c3c24e20ba25bd655bfa5902da86" category="paragraph">Après avoir retiré le nœud défectueux du cluster, vous pouvez retirer le châssis défectueux et installer le châssis de remplacement.</block>
   <block id="ef3f79bdcf9f4d42d419e2b9c45d5393" category="list-text">Déballez le nouveau châssis et posez-le sur une surface plane. Conservez le matériel d'emballage pendant lequel vous renvoyez le châssis défectueux à NetApp.</block>
   <block id="bfc31a5b7c0c06e46b597db93cca8594" category="list-text">Etiqueter chaque câble inséré à l'arrière du châssis que vous allez retirer. Après avoir installé le nouveau châssis, vous devez réinsérer les câbles dans les ports d'origine.</block>
@@ -2163,13 +2157,11 @@
   <block id="8daca91d830ace0c305c774cb41e9ecd" category="list-text">Retirez les deux blocs d'alimentation de chaque côté du châssis défectueux et insérez-les dans le châssis de remplacement.</block>
   <block id="48609f85b6f3b162f84d5b7d5d7677ae" category="list-text">Reconnectez les câbles aux ports à partir desquels vous les avez déconnectés à l'origine. Les étiquettes que vous avez ajoutées sur les câbles lorsque vous les avez déconnectées vous aideront à vous guider.</block>
   <block id="8d0dad879dbd06ad1f5f1f5acf51f28b" category="list-text">Mettez le châssis sous tension.</block>
-  <block id="ff29627b32e07511ae92253ec85e9e61" category="section-title">Ajoutez le nœud au cluster</block>
   <block id="1f2c6dfe21555b473dc802e5b22a343a" category="paragraph">Vous devez configurer NetApp HCI de manière à utiliser le nouveau nœud de calcul.</block>
   <block id="c056c0bf5b425a395761cd37de9ac4e3" category="list-text">L'instance vSphere NetApp HCI utilise avec une licence vSphere Enterprise plus si vous ajoutez le nœud à un déploiement avec des commutateurs virtuels distribués.</block>
   <block id="d57d6d6a586f9c13fbd97a299e3dfe3a" category="list-text">Aucune des instances vCenter ou vSphere utilisées avec NetApp HCI n'a expiré.</block>
   <block id="9a0e16aaba5fc23029c3fe1684661ae2" category="list-text">Vous disposez d'adresses IPv4 libres et inutilisées sur le même segment de réseau que les nœuds existants (le nouveau nœud doit être installé sur le même réseau que les nœuds existants de son type).</block>
   <block id="94220c63d490d69862d0b6bd8c55bc36" category="list-text">Les informations d'identification du compte administrateur vCenter sont prêtes.</block>
-  <block id="81dc4810c71d7b8507b965d26011ef81" category="list-text">Dans le volet développer l'installation, sélectionnez *développer*. Le navigateur ouvre le moteur de déploiement NetApp.</block>
   <block id="f325a8632fd080a5f3548693673f42c7" category="list-text">Sur la page Bienvenue, sélectionnez *Oui*.</block>
   <block id="131a2da3d2e15dfbc9e1264add2b347d" category="list-text">Sur la page Licence utilisateur final, effectuez les opérations suivantes :</block>
   <block id="c5ac50ff19e4b52e965c2389350385d2" category="list-text">Lisez le contrat de licence de l'utilisateur final VMware.</block>
@@ -2193,7 +2185,6 @@
   <block id="bdbca9155105fa70b02878fe37dcd59d" category="list-text">Sur la page Revue de la section Paramètres réseau, le nouveau nœud est affiché en gras. Si vous devez apporter des modifications aux informations dans une section, effectuez les opérations suivantes :</block>
   <block id="bbf4838d1335d01314d62bc07ab7bf9a" category="list-text">Facultatif : si vous ne souhaitez pas envoyer les statistiques de clusters et les informations de support aux serveurs SolidFire Active IQ hébergés par NetApp, décochez la case finale. Cela désactive la surveillance de l'état et des diagnostics en temps réel pour NetApp HCI. La désactivation de cette fonctionnalité permet à NetApp de prendre en charge et de surveiller NetApp HCI de manière proactive afin de détecter et de résoudre les problèmes avant que la production n'soit affectée.</block>
   <block id="e8972e60e4ed1d76df0feffb68866e46" category="list-text">Facultatif : vérifiez que tous les nouveaux nœuds de calcul sont visibles dans vCenter.</block>
-  <block id="e8ddb30cd234af505251fddfe210e770" category="section-title">Installez les pilotes GPU</block>
   <block id="34a9fb6a8c162efa753bd66e9b87e554" category="paragraph">Les nœuds de calcul avec les processeurs graphiques (GPU) NVIDIA, comme le nœud H610C, nécessitent l'installation des pilotes logiciels NVIDIA dans VMware ESXi afin de bénéficier de cette puissance de traitement accrue. Pour installer les pilotes GPU, le nœud de calcul doit disposer d'une carte GPU.</block>
   <block id="d7dc44e401260dbcb4fba3e3f12c02e3" category="list-text">Ouvrez un navigateur et accédez au portail de licences NVIDIA à l'adresse suivante :<block ref="03481d49de4b71271c82055400407083" prefix=" " category="inline-code"></block></block>
   <block id="b2103fba1bd5328076195ac35de4dfcd" category="list-text">Téléchargez l'un des packages de pilotes suivants sur votre ordinateur, en fonction de votre environnement :</block>
@@ -2206,7 +2197,6 @@
   <block id="b35c238fed123f6afd6b2567bdb9cb83" category="cell">VSphere 6.7</block>
   <block id="ba2a9a549d747a47e02e9b887742d185" category="paragraph">NVIDIA-GRID-vSphere-6.7-410.92-410.91-412.16.zip</block>
   <block id="b9e90fd8805746049212e3a607805ca8" category="list-text">Extrayez le package de pilotes de votre ordinateur. Le fichier .VIB résultant est le fichier de pilote non compressé.</block>
-  <block id="69e7c0efe52761dba85359c9648bc4c6" category="list-text">Copiez le fichier du pilote .VIB de votre ordinateur vers ESXi exécuté sur le nœud de calcul. Les exemples de commandes suivants pour chaque version supposent que le pilote se trouve dans le répertoire $HOME/NVIDIA/ESX6.x/ de l'hôte de gestion. L'utilitaire SCP est facilement disponible dans la plupart des distributions Linux ou disponible en tant qu'utilitaire téléchargeable pour toutes les versions de Windows :</block>
   <block id="2b66f3a1e27f17f479018be59a0cc7d7" category="cell">ESXi 6.0</block>
   <block id="f0d858488904d8587f0a9f9286dceb97" category="paragraph">scp $HOME/NVIDIA/ESX6.0/NVIDIA**.vib root@&lt;ESXi_IP_ADDR&gt;:/.</block>
   <block id="7eaf1c8bbd4a508edbc15f2e4461c0e0" category="cell">ESXi 6.5</block>
@@ -3308,16 +3298,7 @@
   <block id="0d5228cf80832928fe934652a94cdf4f" category="paragraph">Les alarmes du client Web VMware vSphere vous avertissent en cas de défaillance d'un nœud. Vous devez correspondre au numéro de série du nœud défaillant du client Web VMware vSphere avec le numéro de série indiqué sur l'autocollant situé à l'arrière du nœud.</block>
   <block id="51345fe1ab5e7f7efb63a32d183cdda9" category="paragraph">Lors du remplacement d'un nœud de calcul H410C, prenez en compte les points suivants :</block>
   <block id="5d6b6b077cfdeafcbe028bddcb655d4d" category="list-text">Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à un système NetApp HCI existant, assurez-vous que les besoins en alimentation sont satisfaits.</block>
-  <block id="9726e8dc43a3741dbccc204feb2a9dda" category="paragraph">Voici une présentation générale des étapes de cette procédure :<block ref="417a9ef94ddd6fb6079bf181e8da50c6" category="inline-xref-macro-rx"></block>
-<block ref="450dee795ede92f968238358045ee72c" category="inline-xref-macro-rx"></block>
-<block ref="302025b37ed9a655d26cb02c1523b2a4" category="inline-xref-macro-rx"></block>
-<block ref="133c0f35bcfb7bec627508ed13eaf913" category="inline-xref-macro-rx"></block>
-<block ref="3e9667909114056c0816cabcad3091ec" category="inline-xref-macro-rx"></block></block>
   <block id="cd4a531fb438950b1b12718c24e3a003" category="inline-link-macro">Supprimez des nœuds de témoins pour libérer des ressources de calcul</block>
-  <block id="693ac156676e30f319b9cd3e020727f7" category="paragraph">Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :<block ref="6f2e0dd9461f023001b32f634a66ca39" category="inline-link-macro-rx"></block>
-<block ref="96458e97c135f9cdca1845fd2743e79f" category="inline-xref-macro-rx"></block>
-<block ref="d095c71c5d51f56f74c0c624a25acdfc" category="inline-xref-macro-rx"></block></block>
-  <block id="bdf21dc543b5ab0b0d4037a3b86f500e" category="section-title">Préparez-vous à remplacer le nœud de calcul</block>
   <block id="49de3917417cb7a9d4c88a097084490f" category="paragraph">Vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud défaillant du cluster. Vous devez obtenir des informations détaillées sur le nœud défaillant, par exemple le numéro de série et les informations relatives à la mise en réseau.</block>
   <block id="3fabab9b6cb1e87fc93159f208c29e60" category="list-text">Procédez comme suit pour supprimer le nœud de l'inventaire. La procédure dépend de la version de NetApp HCI de votre installation actuelle :</block>
   <block id="1fb164c998d60aaf7600a4699029e6ff" category="cell">Numéro de version du NetApp HCI</block>
@@ -3327,7 +3308,6 @@
   <block id="030be96a2580787247ec3061b2771b9c" category="list-text">Cliquez avec le bouton droit de la souris sur le nœud et sélectionnez *Supprimer de l'inventaire*.</block>
   <block id="99795f9ed04c0bb6ca3b66f13bde3f1d" category="list-text">Notez le numéro de série du nœud 0, qui est le numéro de série du nœud défaillant. Cela permet d'identifier le nœud dans le châssis en indiquant le numéro de série qui figure sur l'autocollant à l'arrière du nœud et le numéro de série que vous avez indiqué.</block>
   <block id="7a323f53d4e64c45f636ac4a7040e243" category="list-text">Lorsque le noeud défaillant est sélectionné, sélectionnez *gérer &gt; réseau &gt; adaptateurs VMkernel*, puis copiez les quatre adresses IP répertoriées. Vous pouvez réutiliser ces informations lorsque vous effectuez les étapes de configuration du réseau initiales dans VMware ESXi.</block>
-  <block id="c4aee125828819cff98e36e2ce8cb1a1" category="section-title">Remplacez le nœud de calcul dans le châssis</block>
   <block id="cf9dd3afde945016d53ec0a6ee2b2237" category="paragraph">Après avoir retiré le nœud défectueux du cluster, vous pouvez supprimer le nœud du châssis et installer le nœud de remplacement.</block>
   <block id="a300fbfd884ff458fb7de4f74e2cc07c" category="list-text">Mettre en place une protection antistatique.</block>
   <block id="9391763b95ed4f6ddcc3a77cdbc0f247" category="list-text">Déballez le nouveau nœud et placez-le sur une surface plane à proximité du châssis. Conservez les éléments d'emballage pendant toute la renvoie du nœud défaillant à NetApp.</block>
@@ -3338,7 +3318,6 @@
   <block id="b8c64f9d6365a16ee348b8be6dc88946" category="admonition">Assurez-vous que le nœud est sous tension. S'il ne s'éteint pas automatiquement, appuyez sur le bouton d'alimentation situé à l'avant du nœud.</block>
   <block id="4721f9e0782a50025b6fcdc7c281e2e9" category="list-text">Si vous avez précédemment retiré des modules DIMM du nœud défaillant, insérez-les dans le nœud de remplacement.</block>
   <block id="092ca6225b68d75823f18626f2ef0dec" category="admonition">Vous devez remplacer les modules DIMM dans les emplacements dont ils ont été retirés dans le nœud défaillant.</block>
-  <block id="3611828f40bf631c043f2a1f9b7d8d80" category="section-title">Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures</block>
   <block id="fd3ac6bf15d6190cc923c4eac0662f3a" category="paragraph">Dans NetApp HCI 1.7 et versions ultérieures, après le remplacement physique du nœud, vous devez supprimer les ressources du nœud de calcul à l'aide des API du nœud de gestion. Pour utiliser des API REST, votre cluster de stockage doit exécuter le logiciel NetApp Element version 11.5 ou ultérieure et vous devez avoir déployé un nœud de gestion exécutant la version 11.5 ou ultérieure.</block>
   <block id="65a4d29cbb5e1c44baa414f5cf2dc489" category="list-text">Saisissez l'adresse IP du nœud de gestion suivie de /mnode :<block ref="11c432671376fce97dca37986bfc6be6" prefix=" " category="inline-code"></block></block>
   <block id="49de61ab68074de5da296d48ffde4acb" category="list-text">Sélectionnez *Authorise* ou toute icône de verrouillage et entrez les informations d'identification d'administrateur de cluster pour les autorisations d'utilisation des API.</block>
@@ -3350,7 +3329,6 @@
   <block id="b9bc6e4f464a0c8b1538f9995b92a895" category="list-text">Sélectionnez *Exécuter*. Faites défiler le corps de réponse vers le bas jusqu'à la section calcul et copiez les valeurs parent et ID du nœud de calcul défaillant.</block>
   <block id="149ab1533be009942aca64f58c4e6d19" category="list-text">Sélectionnez *DELETE/ASSET/{ASSET_ID}/Compute-nodes/{Compute_ID}*.</block>
   <block id="79ec8a7988ef4e63af167fe84122742f" category="list-text">Sélectionnez *essayez-le*. Entrez les valeurs parent et ID que vous avez obtenues à l'étape 7.</block>
-  <block id="4cf099434af6b1eb3de3a02c4d7343f4" category="section-title">Ajoutez le nœud de calcul au cluster</block>
   <block id="39b2525fb75e02c64814c90f2cbf3407" category="paragraph">Vous devez réajouter le nœud de calcul au cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.</block>
   <block id="2c111a0fdc76875d754c1dba15adb4c8" category="list-text">Assurez-vous que l'instance vSphere de NetApp HCI utilise une licence vSphere Enterprise plus si vous étendez un déploiement avec des commutateurs distribués virtuels.</block>
   <block id="2797d21d72c04e7d29225422f3460348" category="inline-link-macro">Gestion des initiateurs et des groupes d'accès aux volumes</block>
@@ -3481,7 +3459,6 @@
   <block id="2d7b1bce570cfad61bcea75e56445e4c" category="list-text">Sous Détails de l'adaptateur, sélectionnez *liaison du port réseau* et sélectionnez *+*.</block>
   <block id="09814996c945834d0173335b143561ec" category="list-text">Cochez les cases iSCSI-B et iSCSI-A, puis cliquez sur OK. Un message recommandant une nouvelle analyse de la carte de stockage s'affiche.</block>
   <block id="aeffbcab16d409629a6f42a11f66bf51" category="list-text">Sélectionnez l'icône de nouvelle analyse. Une fois l'analyse à nouveau terminée, vérifiez si les volumes du cluster sont visibles sur le nouveau nœud de calcul (hôte).</block>
-  <block id="9c9a41bc801502e6500c79ea7586ba95" category="section-title">Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds</block>
   <block id="cec682e94e3f77f9a4e97bcc8d93f2c4" category="paragraph">Si vous remplacez physiquement le nœud de calcul défaillant, vous devez redéployer la machine virtuelle de NetApp HCI Witness Node si le nœud de calcul défaillant hébertait le nœud de contrôle. Ces instructions s'appliquent uniquement aux nœuds de calcul qui font partie d'une installation NetApp HCI avec des clusters de stockage à deux ou trois nœuds.</block>
   <block id="284dc6d1de61ec5c2a96db8bc40dd3ab" category="list-text">Rassemblez les informations suivantes :</block>
   <block id="0b579df7695c3410f10a561f05959978" category="list-text">Nom du cluster depuis le cluster de stockage</block>
@@ -6491,8 +6468,6 @@
   <block id="9e08f10312f3eaa134087c34ad076d92" category="paragraph">C'est ça<block ref="f76e21c4f97e9ef2eb0114383d271ddf" category="inline-link-rx"></block> Supprime le certificat SSL et la clé privée actuellement installés. Le cluster génère alors un nouveau certificat auto-signé et une nouvelle clé privée.</block>
   <block id="f056eadecebc58790da8eb91b5211492" category="inline-link">Quelles sont les exigences relatives à la définition de certificats SSL personnalisés dans Element Software ?</block>
   <block id="e3b4df69e2fe4e8545e5e0240eada6a2" category="list-text"><block ref="e3b4df69e2fe4e8545e5e0240eada6a2" category="inline-link-rx"></block></block>
-  <block id="631923a687ff82d68973d99b95597b47" category="inline-link">Page Ressources SolidFire et Element</block>
-  <block id="238c5b123e3473c57e2925edccb205c2" category="list-text"><block ref="238c5b123e3473c57e2925edccb205c2" category="inline-link-rx"></block></block>
   <block id="ba3433b658d56109d8826f49ee0a8064" category="list-text"><block ref="ba3433b658d56109d8826f49ee0a8064" category="inline-link-rx"></block></block>
   <block id="d5147898f653b5500d1ba07c4204c743" category="list-text"><block ref="9d6606ad3ff5278801234da0e6746362" category="inline-link-rx"></block> outil de validation réseau 5.8.1 ou version ultérieure</block>
   <block id="c411aac8cf32395c454762934e85315b" category="list-text"><block ref="c411aac8cf32395c454762934e85315b" category="inline-link-macro-rx"></block></block>
@@ -6575,4 +6550,29 @@
   <block id="732713df3c4c58fb19fab37e747f6f0d" category="list-text"><block ref="732713df3c4c58fb19fab37e747f6f0d" category="inline-link-macro-rx"></block></block>
   <block id="7149d03eb62017e7cc5192a67ff56c1c" category="paragraph">Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de votre centre de données pour pouvoir gérer le système à distance, permettre aux clients situés à l'extérieur de votre centre de données de se connecter aux ressources et vous assurer que les services internes peuvent fonctionner correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système.</block>
   <block id="331d6d490990c63b2cee0dc04fe2589b" category="paragraph">Tous les ports sont TCP, sauf indication contraire, et tous les ports TCP doivent prendre en charge la communication de liaison tridirectionnelle entre le serveur de support NetApp, le nœud de gestion et les nœuds exécutant le logiciel Element. Par exemple, l'hôte d'une source de nœud de gestion communique avec l'hôte d'une destination MVIP de cluster de stockage via le port TCP 443, et l'hôte de destination communique de nouveau avec l'hôte source via n'importe quel port.</block>
+  <block id="b0c85ded726a3c8e46cbaafa60707f98" category="inline-link">Comment installer manuellement ESXi sur le nœud de calcul NetApp HCI</block>
+  <block id="280e8a9497f3d56d4812b7ef2ce31fc6" category="paragraph">NetApp recommande d'utiliser le moteur de déploiement NetApp pour ajouter un nœud de calcul de remplacement. Si vous ne pouvez pas continuer à utiliser le moteur de déploiement NetApp pour l'installation de VMware ESXi, consultez l'article de la base de connaissances NetApp<block ref="d673ea2f9a1bf5256cf7dd0779becf21" category="inline-link-rx"></block>.</block>
+  <block id="4e5f0133d50930ab8acffdd21544c950" category="section-title">Étape 1 : préparez le remplacement du nœud</block>
+  <block id="9385a8fdfdd5ec6a7a983c13d83b5d55" category="section-title">Étape 2 : remplacez le nœud</block>
+  <block id="bf96948cb523bea2d786273b1d9e3726" category="section-title">Étape 3 : ajoutez le nœud au cluster</block>
+  <block id="667494acc646db65248acfcbfe2a10ab" category="section-title">Étape 4 : installez les pilotes GPU</block>
+  <block id="524202cb16f1d9b45d55ae3cf01846a9" category="list-text">Téléchargez la version du package de pilotes sur votre ordinateur, en fonction de votre environnement.</block>
+  <block id="cdf9b80a781028cfcd33975c9b549a66" category="paragraph">L'exemple suivant montre la version du package de pilotes pour vSphere 6.0, 6.5 et 6.7 :</block>
+  <block id="42531de91f94d49640c00256e0aa3ceb" category="list-text">Copiez le fichier du pilote .VIB de votre ordinateur vers ESXi exécuté sur le nœud de calcul. L'utilitaire SCP (Secure Copy Protocol) est disponible dans la plupart des distributions Linux, ou est disponible en tant qu'utilitaire téléchargeable pour toutes les versions de Windows.</block>
+  <block id="7a144dd231d33708e9980e0a26cb3083" category="paragraph">L'exemple suivant montre les commandes pour ESXi 6.0, 6.5 et 6.7. Les commandes supposent que le pilote se trouve dans le répertoire $HOME/NVIDIA/ESX6.x/ de l'hôte de gestion :</block>
+  <block id="d908683c495cc5cc655f7cd09695c523" category="paragraph">Voici une présentation générale des étapes de cette procédure :
+<block ref="b3fddefb8533cc7fc260062e1b11797b" category="inline-xref-macro-rx"></block>
+<block ref="7fbd89059403f3c320101b5b73d264e9" category="inline-xref-macro-rx"></block>
+<block ref="a1a1a48df94086d036719fc33e283f5e" category="inline-xref-macro-rx"></block>
+<block ref="e2315890dcab7fdfd216149d3ebc535d" category="inline-xref-macro-rx"></block>
+<block ref="f15458d9685a9671cd038c3a408d2679" category="inline-xref-macro-rx"></block></block>
+  <block id="6a1419cffec796a0cf9688c584b108e5" category="paragraph">Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :</block>
+  <block id="6f2e0dd9461f023001b32f634a66ca39" category="list-text"><block ref="6f2e0dd9461f023001b32f634a66ca39" category="inline-link-macro-rx"></block></block>
+  <block id="d5e0ed137993fa47f6c52eaba475f986" category="list-text"><block ref="96458e97c135f9cdca1845fd2743e79f" category="inline-xref-macro-rx"></block></block>
+  <block id="27e4d3a5ce33dd22d6512ac546804968" category="list-text"><block ref="d095c71c5d51f56f74c0c624a25acdfc" category="inline-xref-macro-rx"></block></block>
+  <block id="fefc802a17eb78beb3791d194d57c778" category="section-title">Étape 1 : préparez-vous à remplacer le nœud de calcul</block>
+  <block id="c5fe75a9a5a9f7b0e4279644ad5bba34" category="section-title">Étape 2 : remplacez le nœud de calcul dans le châssis</block>
+  <block id="527e6719cbc58f7527999477eaac0dd2" category="section-title">Étape 3 : supprimez la ressource de nœud de calcul dans NetApp HCI 1.7 et versions ultérieures</block>
+  <block id="714f787cf5a78abe3413cd3fa33c6c6b" category="section-title">Étape 4 : ajoutez le nœud de calcul au cluster</block>
+  <block id="4b07d1c342b03364f7120990720b53ef" category="section-title">Étape 5 : redéploiement des nœuds Witness pour les clusters de stockage à deux et trois nœuds</block>
 </blocks>

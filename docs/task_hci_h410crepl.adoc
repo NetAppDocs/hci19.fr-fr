@@ -16,9 +16,13 @@ keywords: netapp, hci, H410C nodes, replacement, node replacement
 [role="lead"]
 Vous devez remplacer un nœud de calcul en cas de défaillance du processeur ou d'autres problèmes liés à la carte mère ou s'il ne s'active pas. Les instructions s'appliquent aux nœuds H410C. Si vous disposez d'un nœud de calcul H410C exécutant la version 1.6P1 ou ultérieure de NetApp HCI Bootstrap OS, vous n'avez pas besoin de remplacer le nœud en cas de panne de la mémoire DIMM. Vous devez remplacer uniquement le module DIMM défectueux. Si les modules DIMM de votre nœud ne sont pas défaillants, vous pouvez les utiliser dans le nœud de remplacement.
 
+[NOTE]
+====
+La version du nœud de remplacement doit être identique à celle du système d'exploitation NetApp HCI Bootstrap et aux autres nœuds de calcul de l'installation de NetApp HCI.
 
-NOTE: La version du nœud de remplacement doit être identique à celle du système d'exploitation NetApp HCI Bootstrap et aux autres nœuds de calcul de l'installation de NetApp HCI.
+NetApp recommande d'utiliser le moteur de déploiement NetApp pour ajouter un nœud de calcul de remplacement. Si vous ne pouvez pas continuer à utiliser le moteur de déploiement NetApp pour l'installation de VMware ESXi, consultez l'article de la base de connaissances NetApp https://kb.netapp.com/Legacy/NetApp_HCI/OS/How_to_install_ESXi_on_NetApp_HCI_compute_node_manually["Comment installer manuellement ESXi sur le nœud de calcul NetApp HCI"^].
 
+====
 .Ce dont vous avez besoin
 * Vous avez déterminé que le nœud de calcul doit être remplacé.
 * Vous avez remplacé un nœud de calcul. Pour commander un nœud de remplacement, contactez le support NetApp. Le nœud de calcul vous est livré avec le processus de démarrage installé. Les nœuds sont expédiés à partir d'usine avec la dernière version du système d'exploitation Bootstrap. Vous devrez peut-être effectuer le processus de retour à l'image d'usine (RTFI) sur le nœud dans les scénarios suivants :
@@ -41,19 +45,23 @@ Lors du remplacement d'un nœud de calcul H410C, prenez en compte les points sui
 
 
 .Présentation des étapes
-Voici une présentation générale des étapes de cette procédure :<<Préparez-vous à remplacer le nœud de calcul>>
-<<Remplacez le nœud de calcul dans le châssis>>
-<<Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures>>
-<<Ajoutez le nœud de calcul au cluster>>
-<<Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds>>
+Voici une présentation générale des étapes de cette procédure :
+<<Étape 1 : préparez-vous à remplacer le nœud de calcul>>
+<<Étape 2 : remplacez le nœud de calcul dans le châssis>>
+<<Étape 3 : supprimez la ressource de nœud de calcul dans NetApp HCI 1.7 et versions ultérieures>>
+<<Étape 4 : ajoutez le nœud de calcul au cluster>>
+<<Étape 5 : redéploiement des nœuds Witness pour les clusters de stockage à deux et trois nœuds>>
 
-Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :link:task_hci_removewn.html["Supprimez des nœuds de témoins pour libérer des ressources de calcul"]
-<<Modifiez le mot de passe si vous avez reçu un noeud de remplacement avec un mot de passe BMC non standard>>
-<<Mettez à niveau le micrologiciel BMC de votre nœud>>
+Voici quelques tâches supplémentaires que vous devrez peut-être effectuer si votre système possède les conditions spécifiques qui lui sont applicables :
+
+* link:task_hci_removewn.html["Supprimez des nœuds de témoins pour libérer des ressources de calcul"]
+* <<Modifiez le mot de passe si vous avez reçu un noeud de remplacement avec un mot de passe BMC non standard>>
+* <<Mettez à niveau le micrologiciel BMC de votre nœud>>
 
 
 
-== Préparez-vous à remplacer le nœud de calcul
+
+== Étape 1 : préparez-vous à remplacer le nœud de calcul
 
 Vous devez migrer les machines virtuelles hébergées sur le nœud vers un hôte disponible et supprimer le nœud défaillant du cluster. Vous devez obtenir des informations détaillées sur le nœud défaillant, par exemple le numéro de série et les informations relatives à la mise en réseau.
 
@@ -93,7 +101,7 @@ NOTE: Pour connaître les étapes de migration, reportez-vous à la documentatio
 
 
 
-== Remplacez le nœud de calcul dans le châssis
+== Étape 2 : remplacez le nœud de calcul dans le châssis
 
 Après avoir retiré le nœud défectueux du cluster, vous pouvez supprimer le nœud du châssis et installer le nœud de remplacement.
 
@@ -140,7 +148,7 @@ TIP: Assurez-vous que le nœud de remplacement est câblé de la même manière 
 
 
 
-== Supprimez le nœud de calcul dans NetApp HCI 1.7 et versions ultérieures
+== Étape 3 : supprimez la ressource de nœud de calcul dans NetApp HCI 1.7 et versions ultérieures
 
 Dans NetApp HCI 1.7 et versions ultérieures, après le remplacement physique du nœud, vous devez supprimer les ressources du nœud de calcul à l'aide des API du nœud de gestion. Pour utiliser des API REST, votre cluster de stockage doit exécuter le logiciel NetApp Element version 11.5 ou ultérieure et vous devez avoir déployé un nœud de gestion exécutant la version 11.5 ou ultérieure.
 
@@ -170,7 +178,7 @@ NOTE: Si vous obtenez le `Auth Error TypeError: Failed to fetch` Message d'erreu
 
 
 
-== Ajoutez le nœud de calcul au cluster
+== Étape 4 : ajoutez le nœud de calcul au cluster
 
 Vous devez réajouter le nœud de calcul au cluster. Les étapes varient en fonction de la version de NetApp HCI que vous utilisez.
 
@@ -774,7 +782,7 @@ image::rescan.gif[Affiche l'icône de nouvelle analyse des cartes de stockage.]
 
 
 
-== Redéployez des nœuds Witness pour les clusters de stockage à deux et trois nœuds
+== Étape 5 : redéploiement des nœuds Witness pour les clusters de stockage à deux et trois nœuds
 
 Si vous remplacez physiquement le nœud de calcul défaillant, vous devez redéployer la machine virtuelle de NetApp HCI Witness Node si le nœud de calcul défaillant hébertait le nœud de contrôle. Ces instructions s'appliquent uniquement aux nœuds de calcul qui font partie d'une installation NetApp HCI avec des clusters de stockage à deux ou trois nœuds.
 
