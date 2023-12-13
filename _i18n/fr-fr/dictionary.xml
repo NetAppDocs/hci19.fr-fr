@@ -6575,4 +6575,6 @@
   <block id="527e6719cbc58f7527999477eaac0dd2" category="section-title">Étape 3 : supprimez la ressource de nœud de calcul dans NetApp HCI 1.7 et versions ultérieures</block>
   <block id="714f787cf5a78abe3413cd3fa33c6c6b" category="section-title">Étape 4 : ajoutez le nœud de calcul au cluster</block>
   <block id="4b07d1c342b03364f7120990720b53ef" category="section-title">Étape 5 : redéploiement des nœuds Witness pour les clusters de stockage à deux et trois nœuds</block>
+  <block id="df0f8acf74958be223bdd3dabcce5038" category="inline-link">Les mises à niveau de SolidFire et de HCI ne peuvent pas démarrer en raison d'une erreur de téléchargement du pack de mise à niveau</block>
+  <block id="b9bbae8efe5c0f15ffba3f05d619b861" category="admonition">À partir du 2023 novembre, vous ne pouvez pas démarrer de mise à niveau de composant à l'aide de NetApp Hybrid Cloud Control ou de l'API REST, car les certificats de clé de signature (privé et public) ont expiré le 5 novembre 2023. Vous pouvez résoudre ce problème en suivant la solution de contournement décrite dans l'article de la base de connaissances<block ref="43e83b9864cac922c7475bad0e74a40f" category="inline-link-rx"></block>.</block>
 </blocks>
