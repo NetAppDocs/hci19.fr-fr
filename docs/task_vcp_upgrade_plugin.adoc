@@ -27,7 +27,7 @@ NOTE: Services de gestion 2.22.7 inclut Element Plug-in pour vCenter Server 5.0 
 --
 Cette procédure de mise à niveau couvre les scénarios de mise à niveau suivants :
 
-* Vous effectuez une mise à niveau vers Element Plug-in pour vCenter Server 5.2, 5.1 ou 5.0.
+* Vous effectuez une mise à niveau vers Element Plug-in pour vCenter Server 5.3, 5.2, 5.1 ou 5.0.
 * Vous mettez à niveau vers un client Web HTML5 8.0 ou 7.0.
 
 
@@ -162,8 +162,8 @@ Vous devriez voir les détails de la version suivante ou les détails d'une vers
 +
 [listing]
 ----
-NetApp Element Plug-in Version: 5.2
-NetApp Element Plug-in Build Number: 12
+NetApp Element Plug-in Version: 5.3
+NetApp Element Plug-in Build Number: 9
 ----
 
 

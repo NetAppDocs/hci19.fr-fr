@@ -6126,34 +6126,6 @@
   <block id="b7f7f58ec15cebe706964cdc95d8f5cf" category="sidebar">Utiliser Rancher sur NetApp HCI</block>
   <block id="efaccef33aabd635656b681f92a298ea" category="sidebar">Maintenance du matériel H-series</block>
   <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">Versions antérieures</block>
-  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Commencez</block>
-  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notes de mise à jour</block>
-  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Quoi de neuf</block>
-  <block id="01064f33f360eefba819bf9542c0486b" category="sidebar">Installer le matériel de maintenance</block>
-  <block id="147fc8b7d94adc0dceb5978ab928f776" category="sidebar">Installation du matériel de la série H.</block>
-  <block id="09af8dd99d422c917dcb27847056b045" category="sidebar">Maintenance du matériel H-series</block>
-  <block id="bc2592cdeeae26af69f28b4f6a1c8ca0" category="sidebar">Installez NetApp HCI</block>
-  <block id="96e1a5a82d70a24f161f0adb6e19ac8d" category="sidebar">Présentation de l'installation et du déploiement</block>
-  <block id="8a6e336622cf399a6453e4659f2a6147" category="sidebar">Commencez votre déploiement par le moteur de déploiement NetApp</block>
-  <block id="a54d0ac20b8277a267fb90e8c0b05032" category="sidebar">Exécution de tâches post-déploiement</block>
-  <block id="cfe80b2a0cabf734adc7b7c1613cfe4f" category="sidebar">Utiliser NetApp HCI</block>
-  <block id="930dca22f6f735a61fd8f484808fecb3" category="sidebar">Gérez votre infrastructure avec NetApp Hybrid Cloud Control</block>
-  <block id="6cb5dfacb4ee1684b5483221bfcf580c" category="sidebar">Utilisez le plug-in NetApp Element pour vCenter Server</block>
-  <block id="4584c33b1e8065c9dccf2c31d92f9dbf" category="sidebar">Utiliser Rancher</block>
-  <block id="d02b5df8c0bf5a555ea650be898817f7" category="sidebar">Développez NetApp HCI</block>
-  <block id="748ace58318ab9d82392d680b07e89e6" category="sidebar">Mettez à niveau NetApp HCI</block>
-  <block id="f7731734f4507319f744fe2c8158536a" category="sidebar">Dépannage des NetApp HCI et Rancher</block>
-  <block id="eeabaf7c41bcd50a6a02694c070dbfb4" category="sidebar">Réinitialisez BMC sur les nœuds de calcul</block>
-  <block id="166868e0f588717c1c62116a03c9b979" category="sidebar">Plus d'articles sur la base de connaissances</block>
-  <block id="2a9dbfa4b74c53d7304fc8b79a1874d3" category="sidebar">NetApp</block>
-  <block id="fcf140abed196b8eba71c45f21312bce" category="sidebar">Les solutions NetApp</block>
-  <block id="81a123ccab93cd947289b672b0e50348" category="sidebar">Didacticiels de démonstration</block>
-  <block id="45a52e6c046bce2a0f9f5253cc23fbd6" category="sidebar">Vidéothèque NetApp HCI</block>
-  <block id="9135ac6f13de11d3b4b9f2f98ff9bcb8" category="sidebar">Services de formation NetApp</block>
-  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">Communauté sur les blogs</block>
-  <block id="a310588c148d934b9b30c31802d4a30b" category="sidebar">Communauté NetApp</block>
-  <block id="213686afc3803be7caa09348765467fe" category="sidebar">Où obtenir de l'aide</block>
-  <block id="389672366ff11f72a82c5c495b9b5159" category="sidebar">Documentation sur NetApp HCI 1.8</block>
   <block id="2e4fe9cef5b49ad23180da86877e63cb" category="cell">Nœud de calcul BMC/IPMI séries H410 et H600</block>
   <block id="59f1e3a87c5b329f2a5a951d9bf325f8" category="cell">L'interface HTTPS et l'API permettent d'accéder au contrôle à distance des nœuds</block>
   <block id="1381491a5bb8087f95db0601150c5c28" category="cell">Nœud de stockage BMC/IPMI séries H410 et H600</block>
@@ -6538,14 +6510,12 @@
   <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
   <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
   <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
-  <block id="eea7cb3a63edf642e1f15162351dfce7" category="list-text">Vous effectuez une mise à niveau vers Element Plug-in pour vCenter Server 5.2, 5.1 ou 5.0.</block>
   <block id="474ed7ffbbc0fc1d58ad983e7ef700f6" category="admonition">Le plug-in Element pour vCenter 5.0 ou version ultérieure n'est pas compatible avec vCenter Server 6.7 et 6.5.</block>
   <block id="2553e35e4b345db1c1e3175a10539fdf" category="image-alt">Illustre le point d'extension du plug-in après une mise à niveau ou une installation réussie pour Element Plug-in 5.0 ou version ultérieure</block>
   <block id="f35f89119a6374d18bd89e0103590c61" category="image-alt">Décrit les points d'extension du plug-in après une mise à niveau ou une installation réussie pour Element Plug-in 4.10 ou version antérieure</block>
   <block id="faf6c38631911f7840c3498b4ec9f746" category="inline-link-macro">Avis concernant les services de gestion 2.24.40 (plug-in NetApp Element pour VMware vCenter Server 5.2.12)</block>
   <block id="1f3c662e49f317f7c70a24adc13870a1" category="list-text"><block ref="1f3c662e49f317f7c70a24adc13870a1" category="inline-link-macro-rx"></block></block>
   <block id="ce397f79b5032c3e327db3efe5a6048a" category="inline-link">Notes de version du plug-in vCenter 5.2</block>
-  <block id="4718467fa890cd0dcf159b3d461cedbe" category="list-text"><block ref="6bd87cf3d55c2ead3ab585e965bea4db" category="inline-link-rx"></block> _NOUVEAU_</block>
   <block id="410ecb079e286058eeb2bc6b56d9379c" category="list-text"><block ref="410ecb079e286058eeb2bc6b56d9379c" category="inline-link-rx"></block></block>
   <block id="732713df3c4c58fb19fab37e747f6f0d" category="list-text"><block ref="732713df3c4c58fb19fab37e747f6f0d" category="inline-link-macro-rx"></block></block>
   <block id="7149d03eb62017e7cc5192a67ff56c1c" category="paragraph">Vous devrez peut-être autoriser les ports suivants à travers le pare-feu de votre centre de données pour pouvoir gérer le système à distance, permettre aux clients situés à l'extérieur de votre centre de données de se connecter aux ressources et vous assurer que les services internes peuvent fonctionner correctement. Certains de ces ports, adresses URL ou adresses IP peuvent ne pas être nécessaires, selon la manière dont vous utilisez le système.</block>
@@ -6577,4 +6547,10 @@
   <block id="4b07d1c342b03364f7120990720b53ef" category="section-title">Étape 5 : redéploiement des nœuds Witness pour les clusters de stockage à deux et trois nœuds</block>
   <block id="df0f8acf74958be223bdd3dabcce5038" category="inline-link">Les mises à niveau de SolidFire et de HCI ne peuvent pas démarrer en raison d'une erreur de téléchargement du pack de mise à niveau</block>
   <block id="b9bbae8efe5c0f15ffba3f05d619b861" category="admonition">À partir du 2023 novembre, vous ne pouvez pas démarrer de mise à niveau de composant à l'aide de NetApp Hybrid Cloud Control ou de l'API REST, car les certificats de clé de signature (privé et public) ont expiré le 5 novembre 2023. Vous pouvez résoudre ce problème en suivant la solution de contournement décrite dans l'article de la base de connaissances<block ref="43e83b9864cac922c7475bad0e74a40f" category="inline-link-rx"></block>.</block>
+  <block id="d3c4a89052a32dd9783dd119f30d6d47" category="inline-link">Notes de version du plug-in vCenter 5.3</block>
+  <block id="0c21440ced3ddae10d1eea32870fdf02" category="list-text"><block ref="ce90fd614158a5c7e0a42a5908fa1cd7" category="inline-link-rx"></block> _NOUVEAU_</block>
+  <block id="6bd87cf3d55c2ead3ab585e965bea4db" category="list-text"><block ref="6bd87cf3d55c2ead3ab585e965bea4db" category="inline-link-rx"></block></block>
+  <block id="976b368b923346c8ea4ccc71e72749f5" category="inline-link-macro">Avis concernant les services de gestion 2.25.42 (plug-in NetApp Element pour VMware vCenter Server 5.3.9)</block>
+  <block id="f7e890b0a90e234e4df04fc0c6b8c6a7" category="list-text"><block ref="f7e890b0a90e234e4df04fc0c6b8c6a7" category="inline-link-macro-rx"></block></block>
+  <block id="bef71f962ff7a233f3e8439eeb8dac70" category="list-text">Vous effectuez une mise à niveau vers Element Plug-in pour vCenter Server 5.3, 5.2, 5.1 ou 5.0.</block>
 </blocks>
