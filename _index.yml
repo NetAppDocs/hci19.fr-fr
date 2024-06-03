@@ -1,0 +1,81 @@
+---
+indexpage:
+  title: Documentation NetApp HCI
+  summary: Pour en savoir plus, consultez la documentation de gestion et de configuration
+    NetApp HCI et les informations sur les solutions NetApp HCI.
+  keywords: netapp, hci, on premise
+  lead: NetApp HCI est une infrastructure hyperconvergée sur site évolutive pour le
+    cloud hybride. Pour en savoir plus, consultez la documentation de gestion et de
+    configuration NetApp HCI et les informations sur les solutions NetApp HCI. Ce
+    site contient la documentation de NetApp HCI 1.9.
+  tiles:
+  - title: Commencez
+    links:
+    - title: Présentation du produit
+      url: "/docs/concept_hci_product_overview.html"
+    - title: Versions de micrologiciel et de pilote ESXi prises en charge
+      url: docs/firmware_driver_versions.html
+    - title: Notes de mise à jour
+      url: "/docs/rn_relatedrn.html"
+    - title: Quoi de neuf
+      url: "/docs/rn_whatsnew.html"
+  - title: Installer et entretenir le matériel
+    links:
+    - title: Installation du matériel de la série H.
+      url: "/docs/task_hci_installhw.html"
+    - title: Maintenance du matériel H-series
+      url: "/docs/task_hci_hwmainoverview.html"
+  - title: Installez NetApp HCI
+    links:
+    - title: Présentation de l'installation et du déploiement
+      url: "/docs/task_hci_getstarted.html"
+    - title: Commencez votre déploiement par le moteur de déploiement NetApp
+      url: "/docs/concept_nde_access_overview.html"
+    - title: Exécution de tâches post-déploiement
+      url: "/docs/concept_nde_post_deployment_overview.html"
+  - title: Utiliser NetApp HCI
+    links:
+    - title: Gérez votre infrastructure avec NetApp Hybrid Cloud Control
+      url: "/docs/task_nde_access_hcc.html"
+    - title: Travaillez avec le nœud de gestion
+      url: "/docs/task_mnode_work_overview.html"
+    - title: Utilisez le plug-in NetApp Element pour vCenter Server
+      url: https://docs.netapp.com/us-en/vcp/index.html
+    - title: Utiliser Rancher
+      url: "/docs/concept_rancher_product_overview.html"
+    - title: Développez NetApp HCI
+      url: "/docs/concept_hcc_expandoverview.html"
+    - title: Mettez à niveau NetApp HCI
+      url: "/docs/concept_hci_upgrade_overview.html"
+  - title: Résoudre les problèmes
+    links:
+    - title: Dépannage des NetApp HCI et Rancher
+      url: https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/NetApp_HCI_and_Rancher_troubleshooting
+    - title: Réinitialisez BMC sur les nœuds de calcul
+      url: https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_reset_BMC_on_NetApp_HCI_compute_nodes
+    - title: Plus d'articles sur la base de connaissances
+      url: https://kb.netapp.com/Special:Search?query=netapp+hci&type=wiki
+  - title: NetApp
+    links:
+    - title: Page Ressources NetApp HCI
+      url: https://www.netapp.com/hybrid-cloud/hci-documentation/
+    - title: Les solutions NetApp
+      url: https://docs.netapp.com/us-en/netapp-solutions/index.html
+  - title: Démonstrations et didacticiels
+    links:
+    - title: Vidéothèque NetApp HCI
+      url: https://media.netapp.com/category/videos/netapp-hci
+    - title: Services de formation NetApp
+      url: https://www.netapp.com/support-and-training/netapp-university/
+  - title: Blogs et communauté
+    links:
+    - title: Communauté NetApp
+      url: https://community.netapp.com/t5/forums/searchpage/tab/message?advanced=false&allow_punctuation=false&q=hci
+    - title: Où obtenir de l'aide
+      url: https://mysupport.netapp.com/site/products/all/details/netapp-hci/guideme-tab
+  - title: Versions antérieures
+    links:
+    - title: Documentation sur NetApp HCI 1.8
+      url: https://docs.netapp.com/us-en/hci18/index.html
+    - title: Centre de documentation NetApp HCI
+      url: https://docs.netapp.com/hci/index.jsp
