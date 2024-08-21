@@ -30,7 +30,7 @@ Avec le plug-in Element pour vCenter Server 4.x, lorsque vous effectuez une mise
 ====
 +
 
-NOTE: Lors de la mise à niveau d'ESXi pour les nœuds de calcul d'un https://www.netapp.com/us/media/tr-4823.pdf["cluster à deux nœuds"^], mettez à niveau un seul nœud de calcul à la fois de sorte qu'un seul nœud témoin soit temporairement indisponible et que le quorum du cluster puisse être maintenu.
+NOTE: Lors de la mise à niveau d'ESXi pour https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["cluster à deux nœuds"^] les nœuds de calcul d'un, mettez à niveau un seul nœud de calcul à la fois de sorte qu'un seul nœud témoin soit temporairement indisponible et que le quorum du cluster puisse être maintenu.
 
 . https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#register-the-plug-in-with-vcenter["S'inscrire"^] Le plug-in Element pour vCenter Server à nouveau avec vCenter.
 . https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#add-storage-clusters-for-use-with-the-plug-in["Ajouter des clusters"^] utilisation du plug-in.
@@ -44,5 +44,5 @@ NOTE: Lors de la mise à niveau d'ESXi pour les nœuds de calcul d'un https://ww
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://www.netapp.com/us/media/tr-4823.pdf["Rapport technique NetApp HCI sur le cluster de stockage à deux nœuds"^]
+* https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Rapport technique NetApp HCI sur le cluster de stockage à deux nœuds"^]
 

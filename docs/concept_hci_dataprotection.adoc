@@ -37,7 +37,7 @@ La réplication à distance des données peut prendre les formes suivantes :
 * <<Réplication entre les clusters Element et ONTAP à l'aide de SnapMirror>>
 
 
-Voir https://www.netapp.com/us/media/tr-4741.pdf["Tr-4741 : réplication à distance du logiciel NetApp Element"^].
+Voir https://www.netapp.com/pdf.html?item=/media/10607-tr4741pdf.pdf["Tr-4741 : réplication à distance du logiciel NetApp Element"^].
 
 
 

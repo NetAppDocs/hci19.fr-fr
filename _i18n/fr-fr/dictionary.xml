@@ -739,7 +739,6 @@
   <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link-macro">ici</block>
   <block id="88b68b205e674e3025849d8b5b19d8d0" category="admonition">Dans un cluster de stockage à deux nœuds, au moins deux nœuds Witness sont déployés pour assurer la redondance en cas de défaillance du nœud témoin. Lorsque le processus d'installation de NetApp HCI installe Witness Nodes, un modèle de machine virtuelle est stocké dans VMware vCenter que vous pouvez utiliser pour redéployer un nœud témoin s'il est accidentellement retiré, perdu ou corrompu. Vous pouvez également utiliser le modèle pour redéployer un nœud témoin si vous devez remplacer un nœud de calcul défaillant qui héberge le nœud Witness. Pour obtenir des instructions, consultez la section *Redeploy Witness Nodes clusters de stockage à deux et trois nœuds* <block ref="29ec30455b40779461eab8434f6212ca" category="inline-link-macro-rx"></block>.</block>
   <block id="1886c33029d6a5f67a53baeb16356d18" category="inline-link">Cluster de stockage à deux nœuds NetApp HCI | TR-4823</block>
-  <block id="23d36a99e35a6625ac76fe1f034e722a" category="list-text"><block ref="23d36a99e35a6625ac76fe1f034e722a" category="inline-link-rx"></block></block>
   <block id="fb0dc3afb0cd76839a33bce88aca90ab" category="summary">Découvrez comment configurer des règles d'affinité pour les machines virtuelles Rancher afin de bénéficier de la résilience des hôtes.</block>
   <block id="7cbd1eff19cdbaa29c89553dc167314d" category="doc">Améliorez la résilience des machines virtuelles Rancher</block>
   <block id="1816422ae322aac270c22277d2d73314" category="paragraph">Une fois que vous avez déployé Rancher sur NetApp HCI, votre environnement vSphere contiendra trois nouveaux nœuds en tant que machines virtuelles pour héberger l'environnement Rancher. L'interface utilisateur web Rancher est disponible depuis chacun de ces nœuds. Pour une résilience totale, chacune des trois machines virtuelles et les disques virtuels correspondants doivent résider sur un hôte physique différent après des événements tels que les cycles de mise sous tension et les basculements.</block>
@@ -1910,7 +1909,6 @@
   <block id="9345b76867dd96005ed1e404ca6e256f" category="list-text"><block ref="9345b76867dd96005ed1e404ca6e256f" category="inline-link-macro-rx"></block></block>
   <block id="82b3f7ae87bb09e10a73ba2a67846c4f" category="list-text"><block ref="82b3f7ae87bb09e10a73ba2a67846c4f" category="inline-link-macro-rx"></block></block>
   <block id="c94f753aa1baf797e0eea49696404564" category="inline-link">_TR-4820 : Guide de planification rapide du réseau NetApp HCI_</block>
-  <block id="42f1d5fbe05e1bdd25e119b9262b7dbd" category="list-text"><block ref="42f1d5fbe05e1bdd25e119b9262b7dbd" category="inline-link-rx"></block></block>
   <block id="61ef7316fec99b866e4908a20af06e08" category="inline-link">NetApp Configuration Advisor</block>
   <block id="0f60bab2e5199a2a170f3a2a45c881a6" category="list-text"><block ref="6e3eeeb26eacee460355bd5f8c854330" category="inline-link-rx"></block> outil de validation réseau 5.8.1 ou version ultérieure</block>
   <block id="176d9ae1b8e18dc2cedc534e1da45e7c" category="doc">Notes de version du pack de firmware de stockage 2.99.2</block>
@@ -2267,7 +2265,6 @@
   <block id="99494896be55aff6e412f1ef0dd3ca4c" category="list-text"><block ref="1f3c51825f286c5250086b5376a2ce29" category="inline-xref-macro-rx"></block></block>
   <block id="e56841e919b23e1af6ae192bcf82f545" category="list-text"><block ref="b85ef421159ab16d832d7cee8cebee71" category="inline-xref-macro-rx"></block></block>
   <block id="e73fbad1f8418c19025f40cdb1b36fc8" category="inline-link">Tr-4741 : réplication à distance du logiciel NetApp Element</block>
-  <block id="4295c2c146dffb0e501aa5660faa08a6" category="paragraph">Voir<block ref="248edd64302142b459fba4dec31bdb70" category="inline-link-rx"></block>.</block>
   <block id="ff5dd3355a0a16a7f2fc734ab2229851" category="section-title">Réplication synchrone et asynchrone entre les clusters</block>
   <block id="697cef1ff0b4e36164796a8a21f78548" category="paragraph">Pour les clusters exécutant le logiciel NetApp Element, la réplication en temps réel permet de créer rapidement des copies distantes des données de volume.</block>
   <block id="0389e516b3bf2b6b34e9309ede779a02" category="paragraph">Vous pouvez associer un cluster de stockage à quatre autres clusters de stockage maximum. Il peut répliquer des données de volume de manière synchrone ou asynchrone à partir de l'un des clusters d'une paire de clusters pour effectuer des scénarios de basculement et de restauration.</block>
@@ -4065,9 +4062,7 @@
   <block id="6b42784c557c3f5a1a952c899f760b43" category="paragraph">Consultez ces ressources :</block>
   <block id="2fbd4cfd16900b4f22e7f4097fc857d1" category="list-text">Utilisez le Manuel de découverte d'installation _NetApp HCI_ pour configurer votre réseau avant l'installation.</block>
   <block id="886bc05c9156ba9a0ef0e59bbe922cc0" category="inline-link">_Instructions d'installation et de configuration de NetApp HCI_</block>
-  <block id="82fd08126fae06d6277e6d275f22adee" category="list-text">Pour plus de détails et pour connaître les autres configurations prises en charge, reportez-vous à<block ref="6bea819619d5f9270163ce0543e87e1e" category="inline-link-rx"></block> et le<block ref="a72ae021af8843b5883c31a3cf48fdbb" category="inline-link-rx"></block>.</block>
   <block id="edeed001a7f09dfe7e394923f01fabcb" category="inline-link">_TR-4823 : cluster de stockage NetApp HCI à 2 nœuds_</block>
-  <block id="800b3008a6000b89c3546a67908cb985" category="list-text">Pour plus d'informations sur les configurations NetApp HCI inférieures à quatre nœuds de stockage, reportez-vous à la section<block ref="1f9877144b35a10963cfdabe34a39b35" category="inline-link-rx"></block>.</block>
   <block id="2ddcd8d0a81226eb8f35042ac6c6e593" category="inline-link-macro">Configurez LCAP pour des performances de stockage optimales</block>
   <block id="405abbf068b60685bf7c22dc59b5838a" category="list-text">Pour plus d'informations sur la configuration du protocole LACP (Link Aggregation Control Protocol) sur les ports de switch utilisés pour chacun des nœuds de stockage, reportez-vous à la section <block ref="ca38e0bcccdbd590268fcccffc4dab9a" category="inline-link-macro-rx"></block>.</block>
   <block id="192476cda33667b77205e5378299fce7" category="paragraph">Cette configuration consolide l'ensemble du trafic sur deux ports physiques et redondants, ce qui réduit le câblage et rationalise la configuration du réseau. Cette configuration nécessite le stockage, vMotion et les segments du réseau des machines virtuelles utilisent l'étiquetage VLAN. Le segment du réseau de gestion peut utiliser un VLAN natif ou marqué ; toutefois, le VLAN natif est le mode préféré afin que le moteur de déploiement NetApp (NDE) puisse attribuer des ressources réseau de manière automatisée (Zero Conf).</block>
@@ -4169,7 +4164,6 @@
   <block id="3664bb4df59eca4395d94a7c6384dfc0" category="inline-link-macro">Instructions d'installation et de configuration du système NetApp HCI</block>
   <block id="07b021dc180c131c18c2e77e5fa1150f" category="list-text"><block ref="07b021dc180c131c18c2e77e5fa1150f" category="inline-link-macro-rx"></block></block>
   <block id="f62052d22b7c5c8f9a15b0afff504755" category="inline-link">Tr-4820 : Guide de planification rapide de la mise en réseau NetApp HCI</block>
-  <block id="85dcef363aee58216fb5391e1fe35922" category="list-text"><block ref="85dcef363aee58216fb5391e1fe35922" category="inline-link-rx"></block></block>
   <block id="da3eb0bd8c882a21931739ac39ce915a" category="inline-link">Documentation du plug-in NetApp Element pour vCenter Server</block>
   <block id="412377cf78b07a27c835e112fdfa7507" category="list-text"><block ref="412377cf78b07a27c835e112fdfa7507" category="inline-link-rx"></block></block>
   <block id="451ea6f06481d8471ac166075c39c8cd" category="summary">Vous pouvez utiliser le nœud de gestion (nœud M) pour utiliser les services système, gérer les ressources et les paramètres du cluster, exécuter des tests et des utilitaires système, configurer Active IQ pour le contrôle du système et activer l'accès au support NetApp pour le dépannage.</block>
@@ -4420,7 +4414,6 @@
   <block id="f23d91ab86d1cf2e82bd86fd860c8585" category="list-text"><block ref="f0107c2e24795b3c47b3466dee69927b" category="inline-link-rx"></block>.</block>
   <block id="3e15463df093d30427e71f517fbcb0b0" category="paragraph">Avec le plug-in Element pour vCenter Server 4.x, lorsque vous effectuez une mise à niveau vers VMware vCenter Server 7.0 Update 3, le plug-in 4.x ne parvient pas à se déployer. Pour résoudre ce problème à l'aide de Spring Framework 4, voir<block ref="770c119932f7fa962a47dc0795db1af6" category="inline-link-rx"></block>.</block>
   <block id="42baa5e1ef15c663eada13ad52636d31" category="inline-link">cluster à deux nœuds</block>
-  <block id="4fc3110ffa80f16c08c41963de559312" category="admonition">Lors de la mise à niveau d'ESXi pour les nœuds de calcul d'un<block ref="c40679731a13cea0e8ba16410d87ab2b" category="inline-link-rx"></block>, mettez à niveau un seul nœud de calcul à la fois de sorte qu'un seul nœud témoin soit temporairement indisponible et que le quorum du cluster puisse être maintenu.</block>
   <block id="0ba7583639a274c434bbe6ef797115a4" category="inline-link">S'inscrire</block>
   <block id="81750b82d55f7148c9a0001ed71e7dd4" category="list-text"><block ref="670ccc28c8c6a3ae1c020a0fa12ec195" category="inline-link-rx"></block> Le plug-in Element pour vCenter Server à nouveau avec vCenter.</block>
   <block id="2984cab36bd51d5446963e671e808f5d" category="inline-link">Ajouter des clusters</block>
@@ -4430,7 +4423,6 @@
   <block id="b4c5d7523b472861778f2afd883b2b2b" category="inline-link">Activez QoSSIOC</block>
   <block id="e9649f789dba33069d65dd43f646890f" category="list-text"><block ref="ab3ca5933bb57bf5671eabef88a511cb" category="inline-link-rx"></block> pour tous les datastores contrôlés par le plug-in.</block>
   <block id="c238cdf4d684fe1ceb6e88d6f4b60ebe" category="inline-link">Rapport technique NetApp HCI sur le cluster de stockage à deux nœuds</block>
-  <block id="6a718d1cc3413213dbf56882de72ccb2" category="list-text"><block ref="6a718d1cc3413213dbf56882de72ccb2" category="inline-link-rx"></block></block>
   <block id="9b7bb36b310f8ee8e2e028e42b095b77" category="doc">Rancher sur les concepts NetApp HCI</block>
   <block id="46d2eed8ffa3441771a3cebe7d1f1a05" category="paragraph">Apprenez les concepts de base relatifs à Rancher sur NetApp HCI.</block>
   <block id="e2fb643ff693958331473dfe3fcd9263" category="list-text">*Rancher Server* ou *Plan de contrôle* : le plan de contrôle Rancher, parfois appelé _Rancher Server_, provisionne, gère et surveille les clusters Kubernetes utilisés par les équipes de développement et d'opérations.</block>
@@ -4866,7 +4858,6 @@
   <block id="6b2019a31feeec476725deff1e79ed78" category="doc">Exigences environnementales</block>
   <block id="11144d4ff9f1c8879c32b13d1fe55516" category="paragraph">Assurez-vous que l'alimentation du rack utilisé pour installer NetApp HCI est fournie par les prises secteur et que votre centre de données fournit un refroidissement adapté à la taille de votre installation NetApp HCI.</block>
   <block id="05a04100a1c10fafc9e93be86bb13553" category="inline-link">fiche technique</block>
-  <block id="6c16ead3b4e36b80345f1e68a56b5630" category="paragraph">Pour obtenir des informations détaillées sur chaque composant de NetApp HCI, consultez le NetApp HCI<block ref="3893914a6d59fe23537d16c9f9b61af3" category="inline-link-rx"></block>.</block>
   <block id="ac54e75ab9caed383d040ca6a1ec8507" category="admonition">Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à une installation NetApp HCI, vous devez vous assurer que les besoins en alimentation sont satisfaits.</block>
   <block id="9a2f1ab5c842ae73f28def84c43b25c4" category="paragraph">La version 2.76 du pack du firmware de stockage contient plusieurs correctifs de bogues et de nouvelles fonctionnalités, notamment des correctifs de sécurité. Vous pouvez mettre à niveau le micrologiciel de stockage en suivant les instructions de la section <block ref="7b278358318478c3f88cee9434341a35" category="inline-link-macro-rx"></block>.</block>
   <block id="c68f814b3ea35ab0deff179d0a80d759" category="cell">*3B06*</block>
@@ -6582,4 +6573,13 @@
   <block id="a310588c148d934b9b30c31802d4a30b" category="sidebar">Communauté NetApp</block>
   <block id="213686afc3803be7caa09348765467fe" category="sidebar">Où obtenir de l'aide</block>
   <block id="389672366ff11f72a82c5c495b9b5159" category="sidebar">Documentation sur NetApp HCI 1.8</block>
+  <block id="de9f9af3b709ace792d8704d5d9b105f" category="list-text"><block ref="de9f9af3b709ace792d8704d5d9b105f" category="inline-link-rx"></block></block>
+  <block id="68f63921fdce687db3c7510ea1f63df3" category="paragraph">Voir<block ref="5fe7d084aafda4fb5c53715a85948ffe" category="inline-link-rx"></block>.</block>
+  <block id="75f97cab9e9de14d25c05846e421361a" category="paragraph">Pour des fonctionnalités détaillées de chaque composant de NetApp HCI, reportez-vous au NetApp HCI<block ref="cf48105a0f3c2479f34bbdfad268bcc0" category="inline-link-rx"></block> .</block>
+  <block id="5824ec67f2e84250bfcd931d8f2d6a16" category="list-text">Pour plus d'informations et pour connaître les autres configurations prises en charge, reportez-vous à<block ref="be0a1633f05f833fc37598e3b5d7e95e" category="inline-link-rx"></block> la section et à la<block ref="a72ae021af8843b5883c31a3cf48fdbb" category="inline-link-rx"></block>.</block>
+  <block id="8a91fe255efcffde80021047735fd330" category="list-text">Pour plus d'informations sur les configurations NetApp HCI inférieures à quatre nœuds de stockage, reportez-vous à<block ref="54d37355d9369a629af27e51f6998cd4" category="inline-link-rx"></block>la section.</block>
+  <block id="1e4bf851d18462d626029f69f75339e4" category="list-text"><block ref="1e4bf851d18462d626029f69f75339e4" category="inline-link-rx"></block></block>
+  <block id="a5f38386dcceecb027de7fd15fcc6aa4" category="list-text"><block ref="a5f38386dcceecb027de7fd15fcc6aa4" category="inline-link-rx"></block></block>
+  <block id="0287de700b52d79d64e09aca72f4850b" category="admonition">Lors de la mise à niveau d'ESXi pour<block ref="d6b7667dc675e8798d67d09fb8931bb2" category="inline-link-rx"></block> les nœuds de calcul d'un, mettez à niveau un seul nœud de calcul à la fois de sorte qu'un seul nœud témoin soit temporairement indisponible et que le quorum du cluster puisse être maintenu.</block>
+  <block id="a2f9c1250a16a7514c9d6b0865b7bf42" category="list-text"><block ref="a2f9c1250a16a7514c9d6b0865b7bf42" category="inline-link-rx"></block></block>
 </blocks>

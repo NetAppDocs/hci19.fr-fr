@@ -17,7 +17,7 @@ keywords: netapp, hci, environment, requirements
 [role="lead"]
 Assurez-vous que l'alimentation du rack utilisé pour installer NetApp HCI est fournie par les prises secteur et que votre centre de données fournit un refroidissement adapté à la taille de votre installation NetApp HCI.
 
-Pour obtenir des informations détaillées sur chaque composant de NetApp HCI, consultez le NetApp HCI http://www.netapp.com/us/media/ds-3881.pdf["fiche technique"^].
+Pour des fonctionnalités détaillées de chaque composant de NetApp HCI, reportez-vous au NetApp HCI https://www.netapp.com/pdf.html?item=/media/7977-ds-3881.pdf["fiche technique"^] .
 
 
 NOTE: Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à une installation NetApp HCI, vous devez vous assurer que les besoins en alimentation sont satisfaits.

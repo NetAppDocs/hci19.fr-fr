@@ -36,6 +36,6 @@ Voici les liens vers les tâches de maintenance du matériel :
 
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/us/media/tr-4820.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^]
+* https://www.netapp.com/pdf.html?item=/media/9413-tr4820pdf.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^]
 * https://mysupport.netapp.com/site/tools["NetApp Configuration Advisor"^] outil de validation réseau 5.8.1 ou version ultérieure
 
