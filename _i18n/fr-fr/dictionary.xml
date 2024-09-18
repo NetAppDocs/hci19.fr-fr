@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blocks>
   <block id="db035ffffac30b1a95fd497625c55167" category="summary">Pour en savoir plus, consultez la documentation de gestion et de configuration NetApp HCI et les informations sur les solutions NetApp HCI.</block>
-  <block id="ad0a505756223d68dc11afeae3459351" category="doc">Documentation NetApp HCI</block>
   <block id="839ff18e4b338f808e22e4d0a4c70094" category="summary">Vous pouvez utiliser le contrôle du cloud hybride NetApp pour collecter les journaux de votre installation de NetApp HCI ou d'Element pour faciliter la résolution de problèmes.</block>
   <block id="756909f99bc1a720d318a5f5b94eb094" category="doc">Collecte des journaux pour le dépannage</block>
   <block id="2a4218d09bfcf2b665c034eb84b5e91c" category="paragraph">Si vous rencontrez des problèmes lors de l'installation d'un système de stockage 100 % Flash NetApp HCI ou SolidFire, vous pouvez collecter les journaux à envoyer au support NetApp pour vous aider à effectuer vos diagnostics. Vous pouvez utiliser NetApp Hybrid Cloud Control ou l'API REST pour collecter les journaux sur les systèmes NetApp HCI ou Element.</block>
@@ -6582,4 +6581,5 @@
   <block id="a5f38386dcceecb027de7fd15fcc6aa4" category="list-text"><block ref="a5f38386dcceecb027de7fd15fcc6aa4" category="inline-link-rx"></block></block>
   <block id="0287de700b52d79d64e09aca72f4850b" category="admonition">Lors de la mise à niveau d'ESXi pour<block ref="d6b7667dc675e8798d67d09fb8931bb2" category="inline-link-rx"></block> les nœuds de calcul d'un, mettez à niveau un seul nœud de calcul à la fois de sorte qu'un seul nœud témoin soit temporairement indisponible et que le quorum du cluster puisse être maintenu.</block>
   <block id="a2f9c1250a16a7514c9d6b0865b7bf42" category="list-text"><block ref="a2f9c1250a16a7514c9d6b0865b7bf42" category="inline-link-rx"></block></block>
+  <block id="846572971d410f1d04ff53e7bfc8a84b" category="sidebar">Documentation NetApp HCI 1.9</block>
 </blocks>
