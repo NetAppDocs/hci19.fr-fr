@@ -113,10 +113,10 @@ Vous pouvez contrôler la progression pendant l'ajout et la configuration de res
 . *Facultatif* : vérifiez que tous les nouveaux nœuds de calcul sont visibles dans le client Web VMware vSphere.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2856176["Instructions d'installation et de configuration des nœuds de calcul et de stockage NetApp HCI"^]
 * https://kb.vmware.com/s/article/1003212["Base de connaissances VMware : prise en charge améliorée du processeur EVC (Enhanced vMotion Compatibility)"^]
 

@@ -128,11 +128,11 @@ Vous pouvez supprimer un ou plusieurs initiateurs. Lorsque vous supprimez un ini
 
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:concept_hci_initiators.html["En savoir plus sur les initiateurs"]
 * link:concept_hci_volume_access_groups.html["En savoir plus sur les groupes d'accès aux volumes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

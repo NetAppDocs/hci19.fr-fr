@@ -43,6 +43,5 @@ NOTE: Lors de la mise à niveau d'ESXi pour https://www.netapp.com/pdf.html?item
 == Trouvez plus d'informations
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Rapport technique NetApp HCI sur le cluster de stockage à deux nœuds"^]
 

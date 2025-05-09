@@ -11,7 +11,6 @@ summary: Versions de micrologiciel et de pilote prises en charge pour les nœuds
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: hci, earlier, documentation, versions
 
 
 [role="lead"]

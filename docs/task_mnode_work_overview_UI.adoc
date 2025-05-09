@@ -18,10 +18,10 @@ Les tâches que vous pouvez effectuer sur l'interface du nœud de gestion :
 * link:task_mnode_run_system_utilities.html["Exécutez les utilitaires du système à partir du nœud de gestion"]
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:task_mnode_access_ui.html["Accédez au nœud de gestion"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

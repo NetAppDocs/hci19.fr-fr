@@ -177,10 +177,10 @@ Exemple de charge utile :
 ----
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades["Problèmes connus et solutions de contournement pour les mises à niveau des nœuds de calcul"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

@@ -53,6 +53,5 @@ Vous pouvez voir les États des opérations en mode maintenance lorsque vous tra
 * https://docs.netapp.com/us-en/element-software/api/reference_element_api_enablemaintenancemode.html["Activez le mode maintenance avec l'API Element"^]
 * https://docs.netapp.com/us-en/element-software/api/reference_element_api_disablemaintenancemode.html["Désactivez le mode de maintenance avec l'API Element"^]
 * https://docs.netapp.com/us-en/element-software/api/concept_element_api_about_the_api.html["Documentation de l'API NetApp Element"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 

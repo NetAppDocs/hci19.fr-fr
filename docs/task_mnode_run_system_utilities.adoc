@@ -57,9 +57,8 @@ IMPORTANT: Cette opération entraîne une perte temporaire de la connectivité r
 
 
 
-[discrete]
+
+
 == En savoir plus
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

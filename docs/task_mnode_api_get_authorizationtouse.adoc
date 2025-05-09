@@ -57,9 +57,8 @@ NOTE: Si vous essayez d'exécuter une commande après l'expiration du token, un 
 
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

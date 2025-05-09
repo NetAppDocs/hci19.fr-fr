@@ -96,10 +96,10 @@ L'API renvoie la mise à jour des informations relatives au contrôleur.
 
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:task_mnode_add_assets.html["Ajoutez des ressources de calcul et de contrôleur au nœud de gestion"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

@@ -32,9 +32,3 @@ Dans un environnement de production, il est recommandé de mettre à jour les n�
 
 .Commencez par l'automatisation des mises à niveau des firmwares
 Pour commencer, accédez au https://github.com/NetApp-Automation/nar_compute_firmware_upgrade["Référentiel NetApp Ansible sur GitHub"^] et téléchargez le `nar_compute_nodes_firmware_upgrades` rôle et documentation.
-
-[discrete]
-== Trouvez plus d'informations
-
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-

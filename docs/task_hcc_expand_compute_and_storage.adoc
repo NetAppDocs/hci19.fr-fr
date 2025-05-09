@@ -132,10 +132,10 @@ NOTE: Si vous avez étendu un cluster de stockage à deux nœuds à quatre nœud
 
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2856176["Instructions d'installation et de configuration des nœuds de calcul et de stockage NetApp HCI"^]
 * https://kb.vmware.com/s/article/1003212["Base de connaissances VMware : prise en charge améliorée du processeur EVC (Enhanced vMotion Compatibility)"^]

@@ -67,9 +67,8 @@ NetApp HCI se réserve les plages d'adresses IP suivantes pour les composants sy
 
 | 169.254.104.0/22 | Réseau Bridge Docker 
 |===
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

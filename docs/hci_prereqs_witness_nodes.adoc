@@ -11,7 +11,6 @@ keywords: netapp, hci, element, Witness Node
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: netapp, hci, element, Witness Node
 
 
 [role="lead"]
@@ -43,9 +42,8 @@ NetApp HCI ne prend en charge que certains modèles de nœuds de stockage dans d
 
 NOTE: Lorsque le processus d'installation de NetApp HCI installe Witness Nodes, un modèle de machine virtuelle est stocké dans VMware vCenter que vous pouvez utiliser pour redéployer un nœud témoin s'il est accidentellement retiré, perdu ou corrompu. Vous pouvez également utiliser le modèle pour redéployer un nœud témoin si vous devez remplacer un nœud de calcul défaillant qui héberge le nœud Witness. Pour obtenir des instructions, consultez la section *Redeploy Witness Nodes clusters de stockage à deux et trois nœuds* link:task_hci_h410crepl.html["ici"^].
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

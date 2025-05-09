@@ -283,11 +283,11 @@ Une fois les volumes de stockage supprimés, ils restent disponibles pendant env
 . Confirmez le processus en sélectionnant *Oui*.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:concept_hci_volumes.html["Découvrir les volumes"]
 * https://docs.netapp.com/us-en/element-software/index.html["Documentation SolidFire et Element"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

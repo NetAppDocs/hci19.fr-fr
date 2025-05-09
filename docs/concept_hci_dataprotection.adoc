@@ -171,9 +171,9 @@ Vous pouvez définir une disposition de domaine de protection personnalisée, o�
 
 La protection des données Helix double est une méthode de réplication qui répartit au moins deux copies redondantes des données sur tous les disques d'un système. L'approche « sans RAID » permet à un système d'absorber plusieurs défaillances simultanées à tous les niveaux du système de stockage et de les réparer rapidement.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 

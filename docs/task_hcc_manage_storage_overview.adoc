@@ -19,9 +19,8 @@ Avec NetApp HCI, vous pouvez gérer ces ressources de stockage en utilisant le c
 * link:task_hcc_qos_policies.html["Création et gestion de règles de QoS pour les volumes"]
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

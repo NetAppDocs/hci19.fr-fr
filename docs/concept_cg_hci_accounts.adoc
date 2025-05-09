@@ -79,11 +79,11 @@ Les comptes spécifiques aux volumes sont uniquement spécifiques au cluster de 
 
 Les comptes de volumes sont gérés dans le tableau NetApp Hybrid Cloud Control volumes.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:task_hcc_manage_accounts.html["Gérez les comptes utilisateurs"]
 * link:concept_hci_clusters.html["Découvrir les clusters"]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 

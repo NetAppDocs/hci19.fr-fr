@@ -271,10 +271,10 @@ L'interface NetApp Hybrid Cloud Control apparaît.
 
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * link:../media/hseries-isi.pdf["Instructions d'installation et de configuration du système NetApp HCI"^]
 * https://www.netapp.com/pdf.html?item=/media/9413-tr4820pdf.pdf["Tr-4820 : Guide de planification rapide de la mise en réseau NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Documentation du plug-in NetApp Element pour vCenter Server"^]

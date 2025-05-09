@@ -329,9 +329,8 @@ NOTE: Pour le système d'exploitation de nœud, les mises à niveau sans surveil
 
 La mise à niveau a réussi une fois que l' `PercentComplete` indique `100` et `results` indique le numéro de version mis à niveau.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

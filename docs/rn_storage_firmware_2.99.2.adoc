@@ -151,10 +151,10 @@ Les failles de sécurité qui ont été résolues dans cette version sont les su
 * CVE-2016-3706, CVE-2011-5320, CVE-2015-8984, CVE-2015-8983, CVE-2015-8982, CVE-2006-7254, CVE-2005-3590
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * https://docs.netapp.com/hci/index.jsp["Centre de documentation NetApp HCI"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/SF_Series/How_to_update_iDRAC%2F%2FBIOS_firmware_on_SF_Series_nodes["KB : mise à jour du micrologiciel iDRAC/BIOS sur les nœuds SF Series"^]
 

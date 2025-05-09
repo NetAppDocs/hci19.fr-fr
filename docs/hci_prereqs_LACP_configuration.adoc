@@ -27,9 +27,8 @@ Pour optimiser les performances des clusters de stockage NetApp HCI, configurez 
 . Avant de déployer NetApp HCI, définissez le mode bond sur tous les nœuds de stockage comme LACP dans l'interface utilisateur On-node (également appelée interface utilisateur du terminal ou interface utilisateur TUI).
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

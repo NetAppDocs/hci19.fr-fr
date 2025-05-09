@@ -349,12 +349,12 @@ NOTE: Vous devez créer un nouveau rôle NetApp HCC dans vCenter pour ajouter un
 
 
 
-[discrete]
+
+
 == En savoir plus
 
 * link:concept_hci_volumes.html#persistent-volumes["Volumes persistants"]
 * link:task_mnode_add_assets.html["Ajoutez des ressources de calcul et de contrôleur au nœud de gestion"]
 * link:task_mnode_install_add_storage_NIC.html["Configurez une carte réseau de stockage"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

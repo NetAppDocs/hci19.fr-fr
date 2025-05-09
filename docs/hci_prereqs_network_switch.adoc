@@ -52,9 +52,8 @@ NetApp HCI présente les caractéristiques suivantes en termes de commutateurs :
 
 Tous les nœuds NetApp HCI offrent des fonctionnalités de gestion hors bande supplémentaires via un port de gestion dédié. NETAPP H300S, H500S, H500S, H500E, H700S, Les nœuds H700E et H410C permettent également l'accès IPMI via le port A. Il est recommandé de simplifier la gestion à distance de NetApp HCI en configurant la gestion hors bande de tous les nœuds de votre environnement.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

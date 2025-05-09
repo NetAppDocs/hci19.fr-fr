@@ -123,9 +123,8 @@ NOTE: Les documents PDF et Microsoft Word incluent des informations sur la confi
 . Envoyez le fichier de rapport exporté à votre représentant des services professionnels NetApp.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

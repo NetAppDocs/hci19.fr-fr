@@ -72,9 +72,8 @@ TIP: Utilisez le `GET /services` commande permettant de lister les services sur 
 . Dans le corps de réponse, sélectionnez *Download* pour enregistrer la sortie du journal.
 
 
-[discrete]
+
+
 == En savoir plus
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

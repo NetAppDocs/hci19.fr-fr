@@ -100,10 +100,10 @@ Vous avez configuré l'adresse IP IPMI pour chaque nœud de calcul et de stockag
 . Répétez cette procédure pour tous les autres nœuds NetApp HCI H615C, H610C ou H610S avec des mots de passe IPMI par défaut.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * https://docs.netapp.com/us-en/solidfire-active-iq/index.html["Documentation NetApp SolidFire Active IQ"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

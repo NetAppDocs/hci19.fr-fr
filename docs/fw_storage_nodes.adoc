@@ -11,7 +11,6 @@ summary: Versions de firmware et de pilotes prises en charge pour les nœuds de 
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: hci, earlier, documentation, versions
 
 
 [role="lead"]

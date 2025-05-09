@@ -73,11 +73,11 @@ Vous pouvez supprimer un groupe d'accès aux volumes à l'aide de NetApp Hybrid 
 . Confirmez l'opération de suppression en sélectionnant *Oui*.
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
 * link:concept_hci_volume_access_groups.html["En savoir plus sur les groupes d'accès aux volumes"]
 * link:task_hcc_manage_initiators.html#add-initiators-to-a-volume-access-group["Ajoutez un initiateur à un groupe d'accès de volume"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

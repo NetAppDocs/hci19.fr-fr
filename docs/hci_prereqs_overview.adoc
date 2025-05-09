@@ -31,9 +31,8 @@ Voici les liens vers les exigences et les tâches de prédéploiement :
 * link:hci_prereqs_witness_nodes.html["Connaître les besoins en ressources des nœuds pour les clusters de stockage à deux nœuds"]
 
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

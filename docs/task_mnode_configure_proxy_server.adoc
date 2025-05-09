@@ -61,9 +61,8 @@ Le nom d'utilisateur proxy, le mot de passe proxy et le port SSH sont facultatif
 
 NOTE: Vous devrez peut-être redémarrer votre nœud de gestion, en fonction de votre environnement.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

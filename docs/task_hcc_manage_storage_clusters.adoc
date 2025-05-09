@@ -195,6 +195,4 @@ Si vous rencontrez des erreurs lorsque vous activez ou désactivez le mode de ma
 
 == Trouvez plus d'informations
 
-* link:task_mnode_manage_storage_cluster_assets.html["Créer et gérer les ressources du cluster de stockage"]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+link:task_mnode_manage_storage_cluster_assets.html["Créer et gérer les ressources du cluster de stockage"]

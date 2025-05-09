@@ -251,10 +251,10 @@ NOTE: Vous pouvez ajouter le nom d'utilisateur ou autoriser le script à vous de
 
 IMPORTANT: Fonctionnalité SSH disponible link:task_mnode_enable_remote_support_connections.html["Accès à la session de tunnel de support à distance (RST) de NetApp"] est désactivé par défaut sur les nœuds de gestion exécutant les services de gestion 2.18 et versions ultérieures. Si vous aviez précédemment activé la fonctionnalité SSH sur le nœud de gestion, vous devrez peut-être la activer link:task_mnode_ssh_management.html["Désactivez de nouveau SSH"] sur le nœud de gestion restauré.
 
-[discrete]
+
+
 == En savoir plus
 
 * link:concept_hci_volumes.html#persistent-volumes["Volumes persistants"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 

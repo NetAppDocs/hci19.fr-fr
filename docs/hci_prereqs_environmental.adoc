@@ -11,7 +11,6 @@ keywords: netapp, hci, environment, requirements
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: netapp, hci, environment, requirements
 
 
 [role="lead"]
@@ -22,9 +21,8 @@ Pour des fonctionnalités détaillées de chaque composant de NetApp HCI, report
 
 NOTE: Le nœud de calcul H410C ne fonctionne que sur une tension de ligne élevée (200-240 VCA). Lorsque vous ajoutez des nœuds H410C à une installation NetApp HCI, vous devez vous assurer que les besoins en alimentation sont satisfaits.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

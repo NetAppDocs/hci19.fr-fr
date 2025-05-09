@@ -415,9 +415,8 @@ Les vérifications de l'état du stockage font les vérifications suivantes par 
 
 | check_pending_nodes | Cluster | Vérifie qu'il n'y a aucun nœud en attente sur le cluster. 
 |===
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]

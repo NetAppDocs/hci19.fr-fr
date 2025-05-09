@@ -418,10 +418,10 @@ Installez les pilotes GPU dans ESXi pour chaque nœud H610C que vous avez instal
 
 Si votre nœud H615C dispose de processeurs graphiques, installez les pilotes GPU dans ESXi pour chaque nœud H615C installé et validez leur fonctionnalité.
 
-[discrete]
+
+
 == Trouvez plus d'informations
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Page Ressources NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plug-in NetApp Element pour vCenter Server"^]
 * https://www.netapp.com/pdf.html?item=/media/9413-tr4820pdf.pdf["_TR-4820 : Guide de planification rapide du réseau NetApp HCI_"^]
 * https://mysupport.netapp.com/site/tools["NetApp Configuration Advisor"^] outil de validation réseau 5.8.1 ou version ultérieure
